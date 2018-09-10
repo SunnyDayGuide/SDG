@@ -12,8 +12,6 @@ class MarketsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('markets')->truncate();
-
         Market::create([
             'code' => 'BR', 
             'name' => 'Branson', 
