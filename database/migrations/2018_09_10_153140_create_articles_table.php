@@ -16,6 +16,7 @@ class CreateArticlesTable extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('market_id');
+            $table->unsignedInteger('article_type_id')->nullable();
             $table->string('title');
             $table->string('author');
             $table->string('image');
@@ -27,7 +28,14 @@ class CreateArticlesTable extends Migration
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
 
-            $table->foreign('market_id')->references('id')->on('markets');
+            $table->foreign('market_id')
+                ->references('id')
+                ->on('markets');
+                
+            $table->foreign('article_type_id')
+                ->references('id')
+                ->on('article_types')
+                ->onDelete('set null');
         });
     }
 
