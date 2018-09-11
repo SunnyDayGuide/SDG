@@ -12,6 +12,10 @@ class MarketsTableSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        DB::table('markets')->truncate();
+        Schema::enableForeignKeyConstraints();
+
         Market::create([
             'code' => 'BR', 
             'name' => 'Branson', 

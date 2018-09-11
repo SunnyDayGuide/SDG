@@ -39,4 +39,9 @@ class Article extends Model
     {
     	return $this->belongsTo(ArticleType::class);
     }
+
+    pubic function sort()
+    {
+    	return $this->belongsTo(Sort::class);
+    }
 }
