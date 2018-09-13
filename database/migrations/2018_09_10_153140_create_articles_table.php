@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedInteger('rating')->nullable();
             $table->boolean('featured')->default(false);
             $table->string('slug')->unique();
-            $table->dateTime('published_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
 
             $table->foreign('market_id')
