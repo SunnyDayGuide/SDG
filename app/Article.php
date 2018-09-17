@@ -18,7 +18,27 @@ class Article extends Model
      *
      * @var array
      */
-    protected $with = ['articleType'];
+    protected $with = ['articleType', 'market'];
+
+	/**
+     * Get a string path for the thread.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return "/articles/{$this->id}";
+    }
+
+    /**
+     * Get the route key name.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     /**
      * An article belongs to a market.

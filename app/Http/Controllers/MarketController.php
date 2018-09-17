@@ -4,32 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Market;
-use App\ArticleType;
-use App\Thread;
-use App\Article;
 
-
-class ArticleController extends Controller
+class MarketController extends Controller
 {
-    /**
-     * Create a new ArticlesController instance.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['index', 'show']);
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @param  Market      $market
      * @return \Illuminate\Http\Response
      */
-    public function index(Market $market)
+    public function index()
     {
-        $articles = Article::orderBy('published_at', 'desc')->paginate(12);
-
-        return view('articles.index', compact('articles'));
+        $markets = Market::all();
+        return view('welcome', compact('markets'));
     }
 
     /**
@@ -59,10 +45,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Market $market)
     {
-        $article = Article::findOrFail($id);
-        return view('articles.show', compact('article'));
+        // $market = Market::findOrFail($id);
+        return view('markets.show', compact('market'));
     }
 
     /**

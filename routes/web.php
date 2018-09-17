@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('articles', 'ArticleController@index');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::get('/', 'MarketController@index')->name('home');
+Route::get('{market}', 'MarketController@show');
+
+Route::get('articles', 'ArticleController@index')->name('articles');
+Route::get('articles/{id}', 'ArticleController@show');

@@ -1,13 +1,14 @@
 @extends('layouts.app')
 @section('content')
+
 	<div class="container">
 		<div class="row">
-			<div class="col-md-12">
-			<h1>All Articles</h1>
+			<div class="col-md-8">
+			<h1>{{ $market->name }}</h1>
 			</div>
 		</div> <!-- End Row -->
 		<div class="row">
-			@foreach ($articles as $article)
+			@foreach ($market->articles as $article)
 			<div class="col-lg-4">
 				<div class="card mb-4">
 					<img class="card-img-top" src="{{ $article->image }}" alt="">
@@ -22,16 +23,6 @@
 			</div> <!-- End Collumn -->
 			@endforeach
 		</div> <!-- End Row -->
-
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="text-center">
-				{!! $articles->links() !!}
-				</div>
-			</div>
-		</div> <!-- End Row -->
-
 	</div>
 
 @endsection
