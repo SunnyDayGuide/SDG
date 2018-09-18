@@ -20,8 +20,14 @@ class Article extends Model
      */
     protected $with = ['articleType', 'market'];
 
+	protected $dates = [
+	    'created_at',
+	    'updated_at',
+	    'published_at'
+	];
+
 	/**
-     * Get a string path for the thread.
+     * Get a string path for the article.
      *
      * @return string
      */

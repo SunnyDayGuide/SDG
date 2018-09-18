@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Market;
 use App\ArticleType;
-use App\Thread;
 use App\Article;
+use Carbon\Carbon;
 
 
 class ArticleController extends Controller
@@ -27,8 +27,7 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles = Article::with('market')->latest()->paginate(12);
-        // $articles = Article::orderBy('published_at', 'desc')->paginate(12);
+        $articles = Article::with('market')->orderBy('published_at', 'desc')->paginate(12);
 
         return view('articles.index', compact('articles'));
     }

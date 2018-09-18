@@ -7,6 +7,11 @@ use App\Article;
 
 class Category extends Model
 {
+	function markets() {
+        return $this->belongsToMany(Market::class)
+        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description');
+    }
+
         public function articles()
     {
     	return $this->hasMany(Article::class);
