@@ -16,11 +16,21 @@
 // });
 
 Auth::routes();
+    Route::get('/articles', 'ArticleController@index');
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
 Route::get('/', 'MarketController@index')->name('home');
-Route::get('{market}', 'MarketController@show');
 
-Route::get('articles', 'ArticleController@index')->name('articles');
-Route::get('articles/{id}', 'ArticleController@show');
+Route::prefix('{market}')->group(function () {
+	Route::get('', 'MarketController@show');
+
+    Route::get('articles', 'ArticleController@index');
+	Route::get('articles/{article}', 'ArticleController@show');
+
+});
+
+
+// Route::get('{market}', 'MarketController@show');
+// Route::get('{market}/articles', 'ArticleController@index');
+// Route::get('{market}/articles/{article}', 'ArticleController@show');

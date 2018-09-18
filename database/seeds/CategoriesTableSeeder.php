@@ -15,9 +15,9 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->truncate();
 
         Category::create(['name' => 'Attractions & Activities', 'slug' => 'attractions-activities']);
-        Category::create(['name' => 'restaurants', 'slug' => 'restaurants']);
+        Category::create(['name' => 'Restaurants', 'slug' => 'restaurants']);
         Category::create(['name' => 'Shopping', 'slug' => 'shopping']);
         Category::create(['name' => 'Entertainment', 'slug' => 'entertainment']);
-        Category::create(['name' => 'Accommodation', 'slug' => 'accommodations']);
+        Category::create(['name' => 'Accommodations', 'slug' => 'accommodations']);
     }
 }

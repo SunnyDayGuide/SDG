@@ -12,7 +12,7 @@ class MarketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Market $market)
     {
         $markets = Market::all();
         return view('welcome', compact('markets'));
@@ -47,7 +47,6 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
-        // $market = Market::findOrFail($id);
         return view('markets.show', compact('market'));
     }
 

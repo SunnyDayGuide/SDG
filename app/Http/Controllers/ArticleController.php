@@ -27,7 +27,8 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles = Article::orderBy('published_at', 'desc')->paginate(12);
+        $articles = Article::with('market')->latest()->paginate(12);
+        // $articles = Article::orderBy('published_at', 'desc')->paginate(12);
 
         return view('articles.index', compact('articles'));
     }
@@ -59,9 +60,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($market_id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::find($id);
         return view('articles.show', compact('article'));
     }
 

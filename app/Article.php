@@ -27,7 +27,7 @@ class Article extends Model
      */
     public function path()
     {
-        return "/articles/{$this->id}";
+        return $this->market->path() . "/articles/{$this->slug}";
     }
 
     /**
