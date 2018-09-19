@@ -19,8 +19,13 @@ Auth::routes();
 
 Route::get('/articles', 'ArticleController@index');
 
-Route::get('dashboard', 'HomeController@index')->name('dashboard');
-Route::get('dashboard/markets')
+Route::name('dashboard.')->group(function () {
+    Route::get('dashboard', 'HomeController@index')->name('dashboard');
+	Route::resource('dashboard/markets', 'Admin\AdminMarketController');
+});
+
+// Route::get('dashboard', 'HomeController@index')->name('dashboard');
+// Route::resource('dashboard/markets', 'Admin\AdminMarketController');
 
 Route::get('/', 'MarketController@index')->name('home');
 
