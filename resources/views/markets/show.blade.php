@@ -6,6 +6,11 @@
 			<div class="col-md-8">
 			<h1>{{ $market->name }}</h1>
 			</div>
+			<ul>
+				@foreach ($market->categories as $category)
+				<li>{{ $category->name }}</li>
+				@endforeach
+			</ul>
 		</div> <!-- End Row -->
 		<div class="row">
 			@foreach ($market->articles as $article)

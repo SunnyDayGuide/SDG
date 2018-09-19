@@ -16,9 +16,11 @@
 // });
 
 Auth::routes();
-    Route::get('/articles', 'ArticleController@index');
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/articles', 'ArticleController@index');
+
+Route::get('dashboard', 'HomeController@index')->name('dashboard');
+Route::get('dashboard/markets')
 
 Route::get('/', 'MarketController@index')->name('home');
 

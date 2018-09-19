@@ -32,7 +32,8 @@ class Market extends Model
     }
 
     function categories() {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class)
+        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description');
     }
 
     public function articles()

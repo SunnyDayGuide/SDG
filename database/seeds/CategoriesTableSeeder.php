@@ -12,7 +12,9 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
         DB::table('categories')->truncate();
+        Schema::enableForeignKeyConstraints();
 
         Category::create(['name' => 'Attractions & Activities', 'slug' => 'attractions-activities']);
         Category::create(['name' => 'Restaurants', 'slug' => 'restaurants']);

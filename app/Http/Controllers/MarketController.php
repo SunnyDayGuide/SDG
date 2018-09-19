@@ -14,7 +14,8 @@ class MarketController extends Controller
      */
     public function index(Market $market)
     {
-        $markets = Market::all();
+        // $markets = Market::all();
+        $markets = Market::has('categories')->get();
         return view('welcome', compact('markets'));
     }
 
@@ -47,6 +48,7 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
+        
         return view('markets.show', compact('market'));
     }
 

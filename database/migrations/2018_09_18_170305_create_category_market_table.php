@@ -14,15 +14,15 @@ class CreateCategoryMarketTable extends Migration
     public function up()
     {
         Schema::create('category_market', function (Blueprint $table) {
-            $table->unsignedInteger('category_id');
-            $table->unsignedInteger('market_id');
+            $table->unsignedInteger('category_id')->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedInteger('market_id')->index();
+            $table->foreign('market_id')->references('id')->on('markets')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->text('body')->nullable();
             $table->string('image')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
-
-            $table->primary(['category_id', 'market_id']);
         });
     }
 

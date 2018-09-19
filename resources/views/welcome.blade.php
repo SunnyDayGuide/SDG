@@ -87,6 +87,7 @@
                     <a href="{{ $market->path() }}">{{ $market->name }}</a>
                     @endforeach
                 </div>
+                
             </div>
         </div>
     </body>
