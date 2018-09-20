@@ -49,23 +49,29 @@ class AdminMarketController extends Controller
             'name' => 'required',
             'state' => 'required',
             'state_code' => 'required|max:2',
-            'slug' => 'required',
+            'slug' => 'required|unique:markets',
             'brand_id' => 'required|exists:brands,id'
         ]);
 
         $market = Market::create([
             'code' => request('code'),
             'name' => request('name'),
+            'name_alt' => request('name_alt'),
             'state' => request('state'),
             'state_code' => request('state_code'),
+            'cities' => request('cities'),
             'slug' => request('slug'),
             'brand_id' => request('brand_id'),
         ]);
+        
+        $categories = request('categories');
+        $market->categories()->attach($categories);
 
-        Session::flash('success', 'The market was successfully saved!');
+        // Session::flash('success', 'The market was successfully saved!');
 
-        return redirect()->route('dashboard.markets.show', $market->id);
-
+        // this is just a temp redirect until I create show page
+        return redirect()->route('dashboard.markets.index');
+        // return redirect()->route('dashboard.markets.show', $market->id);
     }
 
     /**

@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Market extends Model
 {
     /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+    
+    /**
      * Get the route key name for Laravel.
      *
      * @return string
