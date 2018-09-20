@@ -23,6 +23,7 @@ class CreateCategoryMarketTable extends Migration
             $table->string('image')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
+            $table->timestamps();
         });
     }
 

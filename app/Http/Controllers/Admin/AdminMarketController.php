@@ -32,7 +32,7 @@ class AdminMarketController extends Controller
     {
         $brands = Brand::all();
         $categories = Category::all();
-        return view('dashboard.markets.create')->withCategories($categories)->withBrands($brands);
+        return view('dashboard.markets.create', compact('market', 'brands', 'categories'));
     }
 
     /**
@@ -63,7 +63,7 @@ class AdminMarketController extends Controller
             'slug' => request('slug'),
             'brand_id' => request('brand_id'),
         ]);
-        
+
         $categories = request('categories');
         $market->categories()->attach($categories);
 
@@ -95,6 +95,10 @@ class AdminMarketController extends Controller
     public function edit($id)
     {
         $market = Market::find($id);
+        $brands = Brand::all();
+        $categories = Category::all();
+
+        return view('dashboard.markets.edit', compact('market', 'brands', 'categories'));
 
     }
 
@@ -107,7 +111,43 @@ class AdminMarketController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $market = Market::find($id);
+
+        // validate the data
+        if (($request->input('slug') == $market->slug) || ($request->input('code') == $market->code)) {
+            request()->validate([
+                'name' => 'required',
+                'state' => 'required',
+                'state_code' => 'required|max:2',
+                'brand_id' => 'required|exists:brands,id'
+            ]);
+        } else {
+            request()->validate([
+                'code' => 'required|unique:markets|max:2',
+                'name' => 'required',
+                'state' => 'required',
+                'state_code' => 'required|max:2',
+                'slug' => 'required|unique:markets',
+                'brand_id' => 'required|exists:brands,id'
+            ]);
+        }
+
+        $market->code = $request->input('code');
+        $market->name = $request->input('name');
+        $market->name_alt = $request->input('name_alt');
+        $market->state = $request->input('state');
+        $market->state_code = $request->input('state_code');
+        $market->cities = $request->input('cities');
+        $market->slug = $request->input('slug');
+        $market->brand_id = $request->input('brand_id');
+
+        $market->save();
+
+        $categories = request('categories');
+        $market->categories()->sync($categories);
+
+        return redirect()->route('dashboard.markets.index');
+
     }
 
     /**

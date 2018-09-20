@@ -23,6 +23,37 @@ class Market extends Model
         return 'slug';
     }
 
+
+/**
+ * Determine if the market has the given category.
+ *
+ * @param mixed $category
+ * @return boolean
+ */
+ public function hasCategory($category)
+ {
+    // Assuming your category model has a 'name' field on it
+    if (is_string($category)) {
+        return $this->categories->contains('name', $category);
+    }
+    
+    // If you pass a category id in, check by id
+    if (is_numeric($category)) {
+        return $this->categories->contains('id', $category);
+    }
+    
+    // If you pass a Category object in, compare each of your category's id to this one's
+    foreach ($this->category as $market_category) {
+        if ($market_category->id == $category->id) {
+            return true;
+        }
+    }
+    
+    // If nothing matched, return false
+    return false;
+ }
+
+
     /**
      * Get a string path for the thread.
      *
@@ -40,7 +71,8 @@ class Market extends Model
 
     function categories() {
         return $this->belongsToMany(Category::class)
-        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description');
+        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
+        ->withTimestamps();
     }
 
     public function articles()
