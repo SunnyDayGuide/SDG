@@ -14,6 +14,7 @@ class CreateCategoryMarketTable extends Migration
     public function up()
     {
         Schema::create('category_market', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedInteger('market_id')->index();

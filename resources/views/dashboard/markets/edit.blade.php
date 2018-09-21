@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col">
+		<div class="col-md-8">
 			<h1>Edit Market</h1>
 		</div>
 	</div>
@@ -82,7 +82,10 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-success btn-lg btn-block">Update Market</button>
+					<button type="submit" class="btn btn-primary btn-lg btn-block">Update Market</button>
+				</div>
+				<div class="form-group">
+					<a href="/dashboard/markets" class="btn btn-secondary btn-lg btn-block">Cancel</a>
 				</div>
 
 				@if (Session::has('success'))
@@ -100,7 +103,6 @@
                 @endif
 			</form>
 		</div>
-
 	</div> <!-- end of row -->
 </div>
 

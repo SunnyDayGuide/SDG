@@ -23,6 +23,8 @@ Route::name('dashboard.')->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
 	Route::resource('dashboard/markets', 'Admin\AdminMarketController');
 });
+Route::get('dashboard/markets/{market}/category/{category}/edit', 'Admin\AdminMarketController@editMarketCategory')->name('dashboard.markets.editCategory');
+
 
 // Route::get('dashboard', 'HomeController@index')->name('dashboard');
 // Route::resource('dashboard/markets', 'Admin\AdminMarketController');

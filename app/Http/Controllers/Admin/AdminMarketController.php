@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Market;
 use App\Brand;
@@ -102,6 +103,16 @@ class AdminMarketController extends Controller
 
     }
 
+    public function editMarketCategory(Market $market, Category $category) {
+        $market = Market::find($id);
+        // dd($market->categories);
+        $categories = $market->categories;
+        foreach ($categories as $category) {
+            return $category;
+        }
+        return view('dashboard.markets.editCategory', compact('market', 'category'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -114,32 +125,30 @@ class AdminMarketController extends Controller
         $market = Market::find($id);
 
         // validate the data
-        if (($request->input('slug') == $market->slug) || ($request->input('code') == $market->code)) {
-            request()->validate([
-                'name' => 'required',
-                'state' => 'required',
-                'state_code' => 'required|max:2',
-                'brand_id' => 'required|exists:brands,id'
-            ]);
-        } else {
-            request()->validate([
-                'code' => 'required|unique:markets|max:2',
-                'name' => 'required',
-                'state' => 'required',
-                'state_code' => 'required|max:2',
-                'slug' => 'required|unique:markets',
-                'brand_id' => 'required|exists:brands,id'
-            ]);
-        }
+        request()->validate([
+            'code' => [
+                'required',
+                'max:2',
+                Rule::unique('markets')->ignore($market->id),
+            ],
+            'slug' => [
+                'required',
+                Rule::unique('markets')->ignore($market->id),
+            ],
+            'name' => 'required',
+            'state' => 'required',
+            'state_code' => 'required|max:2',
+            'brand_id' => 'required|exists:brands,id'
+        ]);
 
-        $market->code = $request->input('code');
-        $market->name = $request->input('name');
-        $market->name_alt = $request->input('name_alt');
-        $market->state = $request->input('state');
-        $market->state_code = $request->input('state_code');
-        $market->cities = $request->input('cities');
-        $market->slug = $request->input('slug');
-        $market->brand_id = $request->input('brand_id');
+        $market->code = $request->code;
+        $market->name = $request->name;
+        $market->name_alt = $request->name_alt;
+        $market->state = $request->state;
+        $market->state_code = $request->state_code;
+        $market->cities = $request->cities;
+        $market->slug = $request->slug;
+        $market->brand_id = $request->brand_id;
 
         $market->save();
 
