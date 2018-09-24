@@ -23,7 +23,6 @@ class Market extends Model
         return 'slug';
     }
 
-
 /**
  * Determine if the market has the given category.
  *
@@ -32,7 +31,7 @@ class Market extends Model
  */
  public function hasCategory($category)
  {
-    // Assuming your category model has a 'name' field on it
+    // If you pass a category 'name' in, check by 'name'
     if (is_string($category)) {
         return $this->categories->contains('name', $category);
     }
@@ -70,7 +69,7 @@ class Market extends Model
     }
 
     function categories() {
-        return $this->belongsToMany(Category::class)
+        return $this->belongsToMany(Category::class, 'market_category')
         ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
         ->withTimestamps();
     }

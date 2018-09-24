@@ -24,10 +24,9 @@
 
 			<div class="col-md-3 offset-md-1">
 				<div class="card">
-					<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
 					<h5 class="card-header bg-secondary text-white">Update Category</h5>
 					<div class="list-group list-group-flush">
-						@foreach ($market->categories as $category)
+						@foreach ($categories as $category)
 						<a href="/dashboard/markets/{{ $market->id }}/category/{{ $category->id }}/edit" class="list-group-item list-group-item-action">{{ $category->name }}</a>
 						@endforeach
 					</div>

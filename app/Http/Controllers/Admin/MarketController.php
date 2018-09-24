@@ -11,7 +11,7 @@ use App\Category;
 use Session;
 
 
-class AdminMarketController extends Controller
+class MarketController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -68,11 +68,7 @@ class AdminMarketController extends Controller
         $categories = request('categories');
         $market->categories()->attach($categories);
 
-        // Session::flash('success', 'The market was successfully saved!');
-
-        // this is just a temp redirect until I create show page
-        return redirect()->route('dashboard.markets.index');
-        // return redirect()->route('dashboard.markets.show', $market->id);
+        return redirect()->route('dashboard.markets.show', $market->id);
     }
 
     /**
@@ -84,7 +80,8 @@ class AdminMarketController extends Controller
     public function show($id)
     {
         $market = Market::find($id);
-        return view('dashboard.markets.show', compact('market'));
+        $categories = $market->categories;
+        return view('dashboard.markets.show', compact('market', 'categories'));
     }
 
     /**
@@ -103,14 +100,36 @@ class AdminMarketController extends Controller
 
     }
 
-    public function editMarketCategory(Market $market, Category $category) {
-        $market = Market::find($id);
-        // dd($market->categories);
-        $categories = $market->categories;
-        foreach ($categories as $category) {
-            return $category;
-        }
-        return view('dashboard.markets.editCategory', compact('market', 'category'));
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $marketId, $categoryId
+     * @return \Illuminate\Http\Response
+     */
+    public function editMarketCategory($marketId, $categoryId) {
+        $market = Market::find($marketId);
+        $category = Category::find($categoryId);
+
+        $market_category = $market->categories->get($marketId, $categoryId)->pivot;
+
+        return view('dashboard.markets.editMarketCategory', compact('market', 'category', 'market_category'));
+    }
+
+    public function updateMarketCategory(Request $request, $marketId, $categoryId) {
+        $market = Market::find($marketId);
+        $categories = Category::all();
+
+        $attributes = [
+            'title' => request('title'), 
+            'body' => request('body'), 
+            'image' => request('image'), 
+            'meta_title' => request('meta_title'), 
+            'meta_description' => request('meta_description'), 
+        ];
+
+        $market->categories()->updateExistingPivot($categoryId, $attributes);
+
+        return view('dashboard.markets.show', compact('market', 'brands', 'categories', 'marketCategory'));
     }
 
     /**

@@ -21,9 +21,10 @@ Route::get('/articles', 'ArticleController@index');
 
 Route::name('dashboard.')->group(function () {
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
-	Route::resource('dashboard/markets', 'Admin\AdminMarketController');
+	Route::resource('dashboard/markets', 'Admin\MarketController');
 });
-Route::get('dashboard/markets/{market}/category/{category}/edit', 'Admin\AdminMarketController@editMarketCategory')->name('dashboard.markets.editCategory');
+Route::get('dashboard/markets/{marketId}/category/{categoryId}/edit', 'Admin\MarketController@editMarketCategory');
+Route::patch('dashboard/markets/{marketId}/category/{categoryId}', 'Admin\MarketController@updateMarketCategory');
 
 
 // Route::get('dashboard', 'HomeController@index')->name('dashboard');

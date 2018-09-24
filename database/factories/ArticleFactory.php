@@ -7,9 +7,6 @@ $factory->define(App\Article::class, function (Faker $faker) {
 
     return [
         'market_id' => $faker->numberBetween($min = 1, $max = 11),
-        // 'article_type_id' => function () {
-        //     return factory('App\ArticleType')->create()->id;
-        // },
         'article_type_id' => $faker->numberBetween($min = 1, $max = 3),
         'title' => $title,
         'author' => $faker->name,
@@ -17,7 +14,7 @@ $factory->define(App\Article::class, function (Faker $faker) {
         'content' => $faker->paragraph,
         'excerpt' => $faker->sentence,
         'rating' => 0,
-        'featured' => false,
+        'featured' => $faker->boolean($chanceOfGettingTrue = 40),
         'active' => true,
         'slug' => str_slug($title),
         'published_at' => $faker->dateTime($max = 'now', $timezone = null)

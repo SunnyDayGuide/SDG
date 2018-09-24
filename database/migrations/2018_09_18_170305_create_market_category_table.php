@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryMarketTable extends Migration
+class CreateMarketCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCategoryMarketTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_market', function (Blueprint $table) {
+        Schema::create('market_category', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id')->index();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
@@ -35,6 +35,6 @@ class CreateCategoryMarketTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_market');
+        Schema::dropIfExists('market_category');
     }
 }
