@@ -28,6 +28,7 @@ class ArticleController extends Controller
     public function index(Market $market)
     {
         $articles = Article::with('market')->orderBy('published_at', 'desc')->paginate(12);
+        // $articles = Article::sluggy('market')->get();
 
         return view('articles.index', compact('articles'));
     }

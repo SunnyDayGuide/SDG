@@ -85,6 +85,11 @@
                 <div class="links">
                     @foreach ($markets as $market)
                     <a href="{{ $market->path() }}">{{ $market->name }}</a>
+                    <ul>
+                    @foreach ($market->categories as $category)
+                        <li>{{ $category->name }}</li>
+                    @endforeach
+                    </ul>
                     @endforeach
                 </div>
                 

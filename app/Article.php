@@ -2,10 +2,22 @@
 
 namespace App;
 
+use App\Scopes\MarketScope;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MarketScope);
+    }
     /**
      * Don't auto-apply mass assignment protection.
      *
@@ -25,6 +37,11 @@ class Article extends Model
 	    'updated_at',
 	    'published_at'
 	];
+
+    // public function scopeMarkets($query, $market)
+    // {
+    //     return $query->where('slug', $market);
+    // }
 
 	/**
      * Get a string path for the article.

@@ -27,16 +27,25 @@
 							<td>{{ $market->id }}</td>
 							<td>{{ $market->name }}</td>
 							<td>{{ $market->slug }}</td>
-							<td>
+							<td align="right">
 								<a href="{{ route('dashboard.markets.show', $market->id) }}" class="btn btn-sm btn-secondary">View</a>
 								<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+								<div class="d-inline-block">
+									<form action="{{ route('dashboard.markets.destroy', $market->id) }}" method="POST">
+										@method('DELETE')
+									    @csrf
+									    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">
+									</form>
+								</div>
 							</td>
 						</tr>
 					@endforeach
 
 				</tbody>
 			</table>
-		</div>
-	</div>
-</div>
+			<h4 class="text-danger">Cannot delete a market until I resolve cascade or softDelete situation</h4>
+			<h5><a href="https://medium.com/asked-io/cascading-softdeletes-with-laravel-5-a1a9335a5b4d" class="text-danger">Check out this solution</h5></p>
+		</div> <!-- end col -->
+	</div> <!-- end row -->
+</div> <!-- end container -->
 @endsection

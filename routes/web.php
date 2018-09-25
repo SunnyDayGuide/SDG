@@ -17,6 +17,8 @@
 
 Auth::routes();
 
+Route::get('/', 'PageController@home')->name('home');
+
 Route::get('/articles', 'ArticleController@index');
 
 Route::name('dashboard.')->group(function () {
@@ -30,10 +32,8 @@ Route::patch('dashboard/markets/{marketId}/category/{categoryId}', 'Admin\Market
 // Route::get('dashboard', 'HomeController@index')->name('dashboard');
 // Route::resource('dashboard/markets', 'Admin\AdminMarketController');
 
-Route::get('/', 'MarketController@index')->name('home');
-
 Route::prefix('{market}')->group(function () {
-	Route::get('', 'MarketController@show');
+	Route::get('/', 'MarketController@show');
 
     Route::get('articles', 'ArticleController@index');
 	Route::get('articles/{article}', 'ArticleController@show');

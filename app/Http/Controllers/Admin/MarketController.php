@@ -174,7 +174,8 @@ class MarketController extends Controller
         $categories = request('categories');
         $market->categories()->sync($categories);
 
-        return redirect()->route('dashboard.markets.index');
+        // return redirect()->route('dashboard.markets.index');
+        return redirect('/dashboard/markets');
 
     }
 
@@ -186,6 +187,11 @@ class MarketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $market = Market::find($id);
+        $market->categories()->detach();
+
+        $market->delete();
+
+        return redirect('/dashboard/markets');
     }
 }

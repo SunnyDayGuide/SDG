@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Market extends Model
 {
@@ -54,7 +55,7 @@ class Market extends Model
 
 
     /**
-     * Get a string path for the thread.
+     * Get a string path for the market.
      *
      * @return string
      */
