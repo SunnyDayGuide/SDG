@@ -25,7 +25,7 @@
 						<p>{{ $article->market->name }} {{ $article->articleType->name }}</p>
 					</div> <!-- End Card Body-->
 				</div> <!-- End Card -->
-			</div> <!-- End Collumn -->
+			</div> <!-- End Column -->
 			@endforeach
 		</div> <!-- End Row -->
 	</div>

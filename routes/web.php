@@ -11,27 +11,24 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
 Route::get('/', 'PageController@home')->name('home');
 
 Route::get('/articles', 'ArticleController@index');
 
+// Admin Dashboard Routes
+Route::get('dashboard', 'HomeController@index')->name('dashboard');
+
 Route::name('dashboard.')->group(function () {
-    Route::get('dashboard', 'HomeController@index')->name('dashboard');
 	Route::resource('dashboard/markets', 'Admin\MarketController');
+	Route::resource('dashboard/categories', 'Admin\CategoryController')->except(['show']);
 });
+
 Route::get('dashboard/markets/{marketId}/category/{categoryId}/edit', 'Admin\MarketController@editMarketCategory');
 Route::patch('dashboard/markets/{marketId}/category/{categoryId}', 'Admin\MarketController@updateMarketCategory');
 
-
-// Route::get('dashboard', 'HomeController@index')->name('dashboard');
-// Route::resource('dashboard/markets', 'Admin\AdminMarketController');
-
+// Site Routes
 Route::prefix('{market}')->group(function () {
 	Route::get('/', 'MarketController@show');
 
@@ -40,7 +37,3 @@ Route::prefix('{market}')->group(function () {
 
 });
 
-
-// Route::get('{market}', 'MarketController@show');
-// Route::get('{market}/articles', 'ArticleController@index');
-// Route::get('{market}/articles/{article}', 'ArticleController@show');

@@ -7,6 +7,12 @@ use App\Article;
 
 class Category extends Model
 {
+	/**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
 	function markets() {
         return $this->belongsToMany(Market::class, 'market_category')
