@@ -18,7 +18,7 @@ Route::get('/', 'PageController@home')->name('home');
 Route::get('/articles', 'ArticleController@index');
 
 // Admin Dashboard Routes
-Route::get('dashboard', 'HomeController@index')->name('dashboard');
+Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
 
 Route::name('dashboard.')->group(function () {
 	Route::resource('dashboard/markets', 'Admin\MarketController');
