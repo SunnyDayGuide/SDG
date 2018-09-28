@@ -64,6 +64,8 @@ class Market extends Model
         return "/{$this->slug}";
     }
 
+
+    // relationships
     public function brand()
     {
     	return $this->belongsTo(Brand::class);
@@ -79,4 +81,10 @@ class Market extends Model
     {
     	return $this->hasMany(Article::class);
     }
+
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
 }

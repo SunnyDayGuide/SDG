@@ -18,7 +18,7 @@
 			<div class="col-md-8">
 				<p><strong>Slug:</strong> {{ $market->slug }}/</p>
 				<p><strong>Alternate Name:</strong> {{ $market->name_alt ?: 'None' }}</p>
-				<p><strong>State:</strong> {{ $market->state }} / {{ $market->state_code }}</p>
+				<p><strong>State:</strong> {{ $market->state->name }}</p>
 				<p><strong>Associated Cities:</strong> {{ $market->cities ?: 'None' }}</p>
 				<p><strong>Sunny Day Brand:</strong> {{ $market->brand->name }}</p>
 			</div>

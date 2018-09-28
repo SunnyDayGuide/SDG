@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Market;
 use App\Brand;
 use App\Category;
+use App\State;
 use Session;
 
 
@@ -29,12 +30,16 @@ class MarketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(State $state)
     {
         $brands = Brand::all();
         $categories = Category::all();
-        return view('dashboard.markets.create', compact('market', 'brands', 'categories'));
+        $states = $state->availableStates();
+
+        return view('dashboard.markets.create', compact('market', 'brands', 'categories', 'states'));
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,9 +53,8 @@ class MarketController extends Controller
         request()->validate([
             'code' => 'required|unique:markets|max:2',
             'name' => 'required',
-            'state' => 'required',
-            'state_code' => 'required|max:2',
             'slug' => 'required|unique:markets',
+            'state_id' => 'required|exists:states,id',
             'brand_id' => 'required|exists:brands,id'
         ]);
 
@@ -58,11 +62,10 @@ class MarketController extends Controller
             'code' => request('code'),
             'name' => request('name'),
             'name_alt' => request('name_alt'),
-            'state' => request('state'),
-            'state_code' => request('state_code'),
             'cities' => request('cities'),
+            'state_id' => request('state_id'),
             'slug' => request('slug'),
-            'brand_id' => request('brand_id'),
+            'brand_id' => request('brand_id')
         ]);
 
         $categories = request('categories');
@@ -81,8 +84,13 @@ class MarketController extends Controller
     {
         $market = Market::find($id);
         $categories = $market->categories;
+
         return view('dashboard.markets.show', compact('market', 'categories'));
     }
+
+    // public function getPrimaryState {
+
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -90,46 +98,15 @@ class MarketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, State $state)
     {
         $market = Market::find($id);
         $brands = Brand::all();
         $categories = Category::all();
+        $states = $state->availableStates();
 
-        return view('dashboard.markets.edit', compact('market', 'brands', 'categories'));
+        return view('dashboard.markets.edit', compact('market', 'brands', 'categories', 'states'));
 
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $marketId, $categoryId
-     * @return \Illuminate\Http\Response
-     */
-    public function editMarketCategory($marketId, $categoryId) {
-        $market = Market::find($marketId);
-        $category = Category::find($categoryId);
-
-        $market_category = $market->categories->get($marketId, $categoryId)->pivot;
-
-        return view('dashboard.markets.editMarketCategory', compact('market', 'category', 'market_category'));
-    }
-
-    public function updateMarketCategory(Request $request, $marketId, $categoryId) {
-        $market = Market::find($marketId);
-        $categories = Category::all();
-
-        $attributes = [
-            'title' => request('title'), 
-            'body' => request('body'), 
-            'image' => request('image'), 
-            'meta_title' => request('meta_title'), 
-            'meta_description' => request('meta_description'), 
-        ];
-
-        $market->categories()->updateExistingPivot($categoryId, $attributes);
-
-        return view('dashboard.markets.show', compact('market', 'brands', 'categories', 'marketCategory'));
     }
 
     /**
@@ -155,16 +132,14 @@ class MarketController extends Controller
                 Rule::unique('markets')->ignore($market->id),
             ],
             'name' => 'required',
-            'state' => 'required',
-            'state_code' => 'required|max:2',
+            'state_id' => 'required|exists:states,id',
             'brand_id' => 'required|exists:brands,id'
         ]);
 
         $market->code = $request->code;
         $market->name = $request->name;
         $market->name_alt = $request->name_alt;
-        $market->state = $request->state;
-        $market->state_code = $request->state_code;
+        $market->state_id = $request->state_id;
         $market->cities = $request->cities;
         $market->slug = $request->slug;
         $market->brand_id = $request->brand_id;
@@ -194,4 +169,44 @@ class MarketController extends Controller
 
         return redirect('/dashboard/markets');
     }
-}
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $marketId, $categoryId
+     * @return \Illuminate\Http\Response
+     */
+    public function editMarketCategory($marketId, $categoryId) {
+        $market = Market::find($marketId);
+        $category = Category::find($categoryId);
+
+        $market_category = $market->categories->get($marketId, $categoryId)->pivot;
+
+        return view('dashboard.markets.editMarketCategory', compact('market', 'category', 'market_category'));
+    }
+    
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $marketId, $categoryId
+     * @return \Illuminate\Http\Response
+     */
+    public function updateMarketCategory(Request $request, $marketId, $categoryId) {
+        $market = Market::find($marketId);
+        $categories = Category::all();
+
+        $attributes = [
+            'title' => request('title'), 
+            'body' => request('body'), 
+            'image' => request('image'), 
+            'meta_title' => request('meta_title'), 
+            'meta_description' => request('meta_description'), 
+        ];
+
+        $market->categories()->updateExistingPivot($categoryId, $attributes);
+
+        return view('dashboard.markets.show', compact('market', 'brands', 'categories', 'marketCategory'));
+    }
+
+    }

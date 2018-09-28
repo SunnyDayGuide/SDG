@@ -14,10 +14,10 @@ class Category extends Model
      */
     protected $guarded = [];
 
-	function markets() {
-        return $this->belongsToMany(Market::class, 'market_category')
-        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
-        ->withTimestamps();
+	   public function markets() {
+            return $this->belongsToMany(Market::class, 'market_category')
+            ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
+            ->withTimestamps();
     }
 
         public function articles()

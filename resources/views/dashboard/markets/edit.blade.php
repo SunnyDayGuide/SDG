@@ -40,18 +40,15 @@
                            value="{{ old('name_alt', $market->name_alt) }}">
 				</div>
 
-				<div class="row form-group">
-					<div class="col-md-10">
-						<label for="state">State:</label>
-	                    <input type="text" class="form-control" id="state" name="state"
-                           value="{{ old('state', $market->state) }}" required>
-					</div>
-					<div class="col">
-						<label for="state_code">State Code:</label>
-	                    <input type="text" class="form-control" id="state_code" name="state_code"
-                           value="{{ old('state_code', $market->state_code) }}" required>
-					</div>
-				</div>
+				<div class="form-group">
+ 					<label for="state_id">Primary State</label>
+					<select class="form-control" name="state_id">
+						<option selected>Select Select</option>
+						@foreach($states as $state)
+							<option value="{{ $state->id }}" {{ $market->state->id == $state->id ? 'selected' : '' }}>{{ $state->name }}</option>
+						@endforeach
+					</select>
+ 				</div>
 
 				<div class="form-group">
 					<label for="cities">Cities:</label>

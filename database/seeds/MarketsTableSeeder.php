@@ -20,8 +20,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'BR', 
             'name' => 'Branson', 
             'name_alt' => NULL, 
-            'state' => 'Missouri', 
-            'state_code' => 'MO', 
+            'state_id' => '30', 
             'cities' => NULL, 
             'slug' => 'branson',
             'brand_id' => '1'
@@ -30,8 +29,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'GS', 
             'name' => 'Myrtle Beach', 
             'name_alt' => 'The Grand Strand', 
-            'state' => 'South Carolina', 
-            'state_code' => 'SC', 
+            'state_id' => '48', 
             'cities' => NULL, 
             'slug' => 'myrtle-beach',
             'brand_id' => '1'
@@ -40,8 +38,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'HO', 
             'name' => 'Hatteras-Ocracoke', 
             'name_alt' => 'Hatteras & Ocracoke Islands', 
-            'state' => 'North Carolina', 
-            'state_code' => 'NC', 
+            'state_id' => '38',
             'cities' => NULL, 
             'slug' => 'hatteras-ocracoke',
             'brand_id' => '1'
@@ -50,8 +47,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'OB', 
             'name' => 'Outer Banks', 
             'name_alt' => 'Outer Banks of North Carolina', 
-            'state' => 'North Carolina', 
-            'state_code' => 'NC', 
+            'state_id' => '38',
             'cities' => 'Corolla, Duck & Southern Shores, Kitty Hawk, Kill Devil Hills, Nags Head, Roanoke Island, and the Currituck Mainland', 
             'slug' => 'outer-banks',
             'brand_id' => '1'
@@ -60,8 +56,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'OC', 
             'name' => 'Ocean City', 
             'name_alt' => NULL, 
-            'state' => 'Maryland', 
-            'state_code' => 'MD', 
+            'state_id' => '25',
             'cities' => NULL, 
             'slug' => 'ocean-city',
             'brand_id' => '1'
@@ -70,8 +65,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'RH', 
             'name' => 'Delaware Beaches', 
             'name_alt' => 'Coastal Delaware', 
-            'state' => 'Delaware', 
-            'state_code' => 'DE', 
+            'state_id' => '9',
             'cities' => 'Fenwick, Bethany, Dewey, Rehoboth & Lewes', 
             'slug' => 'delaware-beaches',
             'brand_id' => '1'
@@ -80,8 +74,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'SA', 
             'name' => 'Florida Suncoast', 
             'name_alt' => 'Bradenton & Sarasota Area Beaches', 
-            'state' => 'Florida', 
-            'state_code' => 'FL', 
+            'state_id' => '12',
             'cities' => 'Anna Maria Island, Bradenton, Longboat Key, Sarasota, Lido Key, Siesta Key & Venice', 
             'slug' => 'sarasota-bradenton',
             'brand_id' => '1'
@@ -90,8 +83,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'SC', 
             'name' => 'Sanibel-Captiva & Fort Myers Beach', 
             'name_alt' => NULL, 
-            'state' => 'Florida', 
-            'state_code' => 'FL', 
+            'state_id' => '12',
             'cities' => NULL, 
             'slug' => 'sanibel-captiva',
             'brand_id' => '1'
@@ -100,8 +92,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'VB', 
             'name' => 'Virginia Beach', 
             'name_alt' => NULL, 
-            'state' => 'Virginia', 
-            'state_code' => 'VA', 
+            'state_id' => '55',
             'cities' => NULL, 
             'slug' => 'virginia-beach',
             'brand_id' => '1'
@@ -110,8 +101,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'SM', 
             'name' => 'Smoky Mountains', 
             'name_alt' => 'Smoky Mountains of Tennessee', 
-            'state' => 'Tennessee', 
-            'state_code' => 'TN', 
+            'state_id' => '50',
             'cities' => 'Sevierville, Pigeon Forge & Gatlinburg', 
             'slug' => 'smoky-mountains',
             'brand_id' => '2'
@@ -120,8 +110,7 @@ class MarketsTableSeeder extends Seeder
             'code' => 'CG', 
             'name' => 'Williamsburg', 
             'name_alt' => 'Virginia\'s Historic Triangle', 
-            'state' => 'Virginia', 
-            'state_code' => 'VA', 
+            'state_id' => '55',
             'cities' => 'Williamsburg, Jamestown, Yorktown, Hampton & Newport News', 
             'slug' => 'williamsburg',
             'brand_id' => '3'
