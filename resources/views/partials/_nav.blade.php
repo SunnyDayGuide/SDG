@@ -24,6 +24,22 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @else
+                            <!-- Resource Dropdown will be ADMIN only -->
+                            <li class="nav-item dropdown">
+                                <a id="resourceDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Resources <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="resourceDropdown">
+                                    <a class="dropdown-item" href="{{ route('dashboard.markets.index') }}">
+                                        Markets
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('dashboard.categories.index') }}">
+                                        Categories
+                                    </a>
+                                </div>
+                            </li>                            
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

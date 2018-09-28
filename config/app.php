@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        AdrianMejias\States\StatesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -204,6 +205,7 @@ return [
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
+        'States' => AdrianMejias\States\StatesFacade::class,
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
