@@ -9,7 +9,7 @@
 	</div> <!-- end row -->
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="/dashboard/markets/{{ $market->id }}/category/{{ $category->id }}">
+			<form method="POST" action="/dashboard/markets/{{ $market->id }}/category/{{ $category->id }}" enctype="multipart/form-data">
 			@method('PATCH')
 		    @csrf
 
@@ -26,6 +26,11 @@
 			<div class="form-group">
 				<label for="image">Lead Image URL placeholder</label>
 				<input type="text" class="form-control" id="image" name="image" value="{{ old('image', $market_category->image) }}">
+			</div>
+
+			<div class="form-group">
+				<label for="image">Lead Image</label>
+				<input type="file" class="form-control-file" id="image" name="image" value="{{ old('image', $market_category->image) }}">
 			</div>
 
 			<div class="form-group">
