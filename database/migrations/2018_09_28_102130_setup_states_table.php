@@ -12,11 +12,12 @@ class SetupStatesTable extends Migration {
 	public function up()
 	{
 		// Creates the users table
-		Schema::create(\Config::get('states.table_name'), function($table)
+		Schema::create('states', function($table)
 		{		    
-		    $table->integer('id')->index();
-		    $table->string('iso_3166_2', 2)->default('');
+		    $table->unsignedInteger('id')->index();
+		    $table->char('iso_3166_2', 2)->default('');
 		    $table->string('name', 255)->default('');
+		    $table->unsignedInteger('country_id')->default('840');
 		    
 		    $table->primary('id');
 		});
@@ -29,7 +30,7 @@ class SetupStatesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop(\Config::get('states.table_name'));
+		Schema::drop('states');
 	}
 
 }

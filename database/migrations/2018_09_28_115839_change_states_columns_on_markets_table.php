@@ -15,7 +15,7 @@ class ChangeStatesColumnsOnMarketsTable extends Migration
     {
         Schema::table('markets', function (Blueprint $table) {
             $table->dropColumn(['state', 'state_code']);
-            $table->integer('state_id')
+            $table->unsignedInteger('state_id')
                 ->after('cities')
                 ->nullable();
         });
@@ -35,7 +35,9 @@ class ChangeStatesColumnsOnMarketsTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['state_id']);
-        $table->dropColumn('state_id');
+        Schema::table('markets', function (Blueprint $table) {
+            $table->dropForeign(['state_id']);
+            $table->dropColumn('state_id');
+        });
     }
 }
