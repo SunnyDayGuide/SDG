@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Storage;
 
 class Market extends Model
 {
@@ -22,6 +23,25 @@ class Market extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    // not using but hang on to in case I need
+    public function getCategoryImage($id) {
+        foreach ($this->categories as $category) {
+            return $image = $category->pivot->image;
+            Storage::disk('public')->delete($image);
+        }
+    }
+
+    // delete attached category image files before detaching from market and market delete
+    public function deleteCategoryImages($id) {
+        $images = [];
+
+        foreach ($this->categories as $category) {
+            $images[] = $category->pivot->image;
+        }
+
+        Storage::disk('public')->delete($images);
     }
 
 /**

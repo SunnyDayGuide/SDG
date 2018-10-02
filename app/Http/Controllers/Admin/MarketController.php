@@ -10,6 +10,7 @@ use App\Brand;
 use App\Category;
 use App\State;
 use Session;
+use Storage;
 
 
 class MarketController extends Controller
@@ -88,9 +89,6 @@ class MarketController extends Controller
         return view('dashboard.markets.show', compact('market', 'categories'));
     }
 
-    // public function getPrimaryState {
-
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -160,11 +158,11 @@ class MarketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Category $category)
     {
         $market = Market::find($id);
+        $market->deleteCategoryImages($id);
         $market->categories()->detach();
-
         $market->delete();
 
         return redirect('/dashboard/markets');
@@ -176,11 +174,12 @@ class MarketController extends Controller
      * @param  int  $marketId, $categoryId
      * @return \Illuminate\Http\Response
      */
+
     public function editMarketCategory($marketId, $categoryId) {
         $market = Market::find($marketId);
         $category = Category::find($categoryId);
 
-        $market_category = $market->categories->get($marketId, $categoryId)->pivot;
+        $market_category = $market->categories()->find($categoryId);
 
         return view('dashboard.markets.editMarketCategory', compact('market', 'category', 'market_category'));
     }
@@ -194,19 +193,44 @@ class MarketController extends Controller
      */
     public function updateMarketCategory(Request $request, $marketId, $categoryId) {
         $market = Market::find($marketId);
+        $category = Category::find($categoryId);
         $categories = Category::all();
+        $market_category = $market->categories()->find($categoryId);
+
+        // validate the data
+        request()->validate([
+            'image' => 'image'
+        ]);
+
+        if($request->hasFile('image')){
+            // add new image
+            $image = $request->file('image');
+            $filename = $market->code.'-'.$category->slug.'-'.time().'.'.$image->guessClientExtension();
+
+            $image = $image->storeAs('images/leads', $filename, 'public');
+
+            $oldFileName = $market_category->pivot->image;
+
+            // update database
+            $market->categories()->updateExistingPivot($categoryId, [
+                'image' => $image,
+            ]);
+
+            // delete old image
+            Storage::disk('public')->delete($oldFileName);
+
+        }
 
         $attributes = [
             'title' => request('title'), 
             'body' => request('body'), 
-            'image' => request('image'), 
             'meta_title' => request('meta_title'), 
             'meta_description' => request('meta_description'), 
         ];
 
         $market->categories()->updateExistingPivot($categoryId, $attributes);
 
-        return view('dashboard.markets.show', compact('market', 'brands', 'categories', 'marketCategory'));
+        return redirect()->route('dashboard.markets.show', $market->id);
     }
 
     }
