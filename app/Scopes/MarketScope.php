@@ -5,7 +5,7 @@ namespace App\Scopes;
 use Illuminate\Database\Eloquent\Scope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use App\Article;
+use App\Market;
 
 class MarketScope implements Scope
 {
@@ -18,7 +18,8 @@ class MarketScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-
-        $builder->where('market_id', '=', 1);
+        $marketId = Market::where('slug', $marketSlug)->first()->id;
+        $builder->where('market_id', $marketId);
     }
+
 }

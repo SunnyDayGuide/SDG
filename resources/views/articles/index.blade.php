@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-			<h1>All Articles</h1>
+			<h1>{{ $market->name }}, {{ $market->state->name }} Articles</h1>
 			</div>
 		</div> <!-- End Row -->
 		<div class="row">
