@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="/dashboard/markets/{{ $market->id }}">
+			<form method="POST" action="{{ route('dashboard.markets.update', $market->id) }}">
 			@method('PATCH')
 		    @csrf
 

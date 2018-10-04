@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="/dashboard/categories/{{ $category->id }}">
+			<form method="POST" action="{{ route('dashboard.categories.update', $category->id) }}">
 			@method('PATCH')
 		    @csrf
 

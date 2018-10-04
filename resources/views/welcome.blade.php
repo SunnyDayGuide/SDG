@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
@@ -84,12 +85,12 @@
 
                 <div class="links">
                     @foreach ($markets as $market)
-                    <a href="{{ $market->path() }}">{{ $market->name }}</a>
-                    <ul>
-                    @foreach ($market->categories as $category)
-                        <li>{{ $category->name }}</li>
-                    @endforeach
-                    </ul>
+                        <a href="{{ route('market.home', $market) }}">{{ $market->name }}</a>
+                        <ul class="list-inline">
+                            @foreach ($market->categories as $category)
+                                <li class="list-inline-item">{{ $category->name }}</li>
+                            @endforeach
+                        </ul>
                     @endforeach
                 </div>
                 
