@@ -26,6 +26,18 @@ class Article extends Model
     protected $guarded = [];
 
     /**
+     * Scope a query to only include articles of a given market.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByMarket($query, $market)
+    {
+        return $query->where('market_id', $market->id);
+    }
+
+    /**
      * The relationships to always eager-load.
      *
      * @var array
