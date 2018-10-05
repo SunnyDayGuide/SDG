@@ -35,6 +35,44 @@
 			</div>
 		</div> <!-- End Row -->
 
+		<hr>
+
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Market Categories</h2>
+				<table class="table">
+					<thead class="thead-light">
+						<th>#</th>
+						<th>Name</th>
+						<th>Slug</th>
+						<th></th>
+					</thead>
+					<tbody>
+						@foreach ($categories as $category)
+							<tr>
+								<td>{{ $category->id }}</td>
+								<td>{{ $category->name }}</td>
+								<td>{{ $category->slug }}</td>
+								<td align="right">
+									<a href="{{ route('dashboard.marketCategory.edit', [$market->id, $category->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
+									<div class="d-inline-block">
+										<form action="{{ route('dashboard.marketCategory.destroy', [$market->id, $category->id]) }}" method="POST">
+											@method('DELETE')
+										    @csrf
+										    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">
+										</form>
+									</div>
+								</td>
+							</tr>
+						@endforeach
+
+					</tbody>
+				</table>
+				<a href="{{ route('dashboard.marketCategory.create', $market->id) }}" class="btn btn-lg btn-primary btn-h1-spacing">Add a Market Category</a>
+			</div> <!-- end col -->
+			
+		</div> <!-- End Row -->
+
 	</div>
 
 @endsection

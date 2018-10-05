@@ -26,15 +26,17 @@ class Market extends Model
     }
 
     // not using but hang on to in case I need
-    public function getCategoryImage($id) {
-        foreach ($this->categories as $category) {
-            return $image = $category->pivot->image;
+    public function deleteCategoryImage($marketId, $categoryId) 
+    {
+        // foreach ($this->categories as $category) {
+            // return $image = $category->pivot->image;
             Storage::disk('public')->delete($image);
-        }
+        // }
     }
 
     // delete attached category image files before detaching from market and market delete
-    public function deleteCategoryImages($id) {
+    public function deleteCategoryImages($id) 
+    {
         $images = [];
 
         foreach ($this->categories as $category) {
@@ -88,18 +90,19 @@ class Market extends Model
     // relationships
     public function brand()
     {
-    	return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 
-    function categories() {
+    function categories() 
+    {
         return $this->belongsToMany(Category::class, 'market_category')
         ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
         ->withTimestamps();
     }
 
     public function articles()
-    {
-    	return $this->hasMany(Article::class);
+    {   
+        return $this->hasMany(Article::class);
     }
 
     public function state()

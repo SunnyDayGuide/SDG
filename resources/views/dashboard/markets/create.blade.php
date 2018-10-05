@@ -65,7 +65,7 @@
 					</select>
 				</div>
 
-				<div class="form-group">
+{{-- 				<div class="form-group">
 					<label for="categories">Categories</label>
 					@foreach($categories->sortBy('name') as $category)
 						<div class="form-check">
@@ -75,7 +75,7 @@
 							</label>
 						</div>
 					@endforeach
-				</div>
+				</div> --}}
 
 				<div class="form-group">
 					<button type="submit" class="btn btn-success btn-lg btn-block">Add Market</button>

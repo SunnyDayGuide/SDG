@@ -18,11 +18,14 @@ Route::get('/', 'PageController@home')->name('home');
 
 // Admin Dashboard Routes
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
-	Route::get('/', 'Admin\DashboardController@index')->name('dashboard');
+	Route::get('/', 'Admin\DashboardController@index')->name('home');
 	Route::resource('markets', 'Admin\MarketController');
 	Route::resource('categories', 'Admin\CategoryController')->except(['show']);
-	Route::get('markets/{market}/category/{category}/edit', 'Admin\MarketController@editMarketCategory')->name('marketCategories.edit');
-	Route::patch('markets/{market}/category/{category}', 'Admin\MarketController@updateMarketCategory')->name('marketCategories.update');
+	Route::get('markets/{market}/category/create', 'Admin\MarketCategoryController@create')->name('marketCategory.create');
+	Route::post('markets/{market}/category', 'Admin\MarketCategoryController@store')->name('marketCategory.store');
+	Route::get('markets/{market}/category/{category}/edit', 'Admin\MarketCategoryController@edit')->name('marketCategory.edit');
+	Route::patch('markets/{market}/category/{category}', 'Admin\MarketCategoryController@update')->name('marketCategory.update');
+	Route::delete('markets/{market}/category/{category}', 'Admin\MarketCategoryController@destroy')->name('marketCategory.destroy');
 });
 
 // Site Routes
