@@ -50,6 +50,8 @@ class MarketCategoryController extends Controller
             $image = $request->file('image');
             $filename = $market->code.'-'.$category->slug.'-'.time().'.'.$image->guessClientExtension();
             $image = $image->storeAs('images/leads', $filename, 'public');
+        } else {
+            $image = null;
         }
 
         $attributes = [
@@ -62,7 +64,7 @@ class MarketCategoryController extends Controller
 
         $market->categories()->attach($categoryId, $attributes);
 
-        return redirect()->route('dashboard.markets.show', $market->id);
+        return redirect()->route('dashboard.markets.edit', $market->id);
     }
 
     /**
@@ -127,7 +129,7 @@ class MarketCategoryController extends Controller
 
         $market->categories()->updateExistingPivot($categoryId, $attributes);
 
-        return redirect()->route('dashboard.markets.show', $market->id);
+        return redirect()->route('dashboard.markets.edit', $market->id);
     }
 
     /**
@@ -149,7 +151,7 @@ class MarketCategoryController extends Controller
         // detach
         $market->categories()->detach($categoryId);
 
-        return redirect()->route('dashboard.markets.show', $market->id);
+        return redirect()->route('dashboard.markets.edit', $market->id);
     }
 
 }

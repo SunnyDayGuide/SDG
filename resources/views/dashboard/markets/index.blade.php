@@ -20,6 +20,7 @@
 					<th>#</th>
 					<th>Name</th>
 					<th>Slug</th>
+					<th># Categories</th>
 					<th></th>
 				</thead>
 				<tbody>
@@ -28,9 +29,10 @@
 							<td>{{ $market->id }}</td>
 							<td>{{ $market->name }}</td>
 							<td>{{ $market->slug }}</td>
+							<td>{{ count($market->categories) }}</td>
 							<td align="right">
-								<a href="{{ route('dashboard.markets.show', $market->id) }}" class="btn btn-sm btn-secondary">View</a>
-								<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+{{-- 								<a href="{{ route('dashboard.markets.show', $market->id) }}" class="btn btn-sm btn-secondary">View</a>
+ --}}								<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
 								<div class="d-inline-block">
 									<form action="{{ route('dashboard.markets.destroy', $market->id) }}" method="POST">
 										@method('DELETE')

@@ -22,7 +22,7 @@ class MarketController extends Controller
      */
     public function index()
     {
-        $markets = Market::all();
+        $markets = Market::with('categories')->get();
         return view('dashboard.markets.index', compact('markets'));
     }
 
@@ -78,6 +78,7 @@ class MarketController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Don't likely need anymore, but hang onto in the meantime
      */
     public function show($id)
     {
@@ -98,7 +99,7 @@ class MarketController extends Controller
     {
         $market = Market::find($id);
         $brands = Brand::all();
-        $categories = Category::all();
+        $categories = $market->categories;
         $states = $state->availableStates();
 
         return view('dashboard.markets.edit', compact('market', 'brands', 'categories', 'states'));
@@ -141,11 +142,7 @@ class MarketController extends Controller
 
         $market->save();
 
-        $categories = request('categories');
-        $market->categories()->sync($categories);
-
-        // return redirect()->route('dashboard.markets.index');
-        return redirect('/dashboard/markets');
+        return redirect()->route('dashboard.markets.index');
     }
 
     /**
@@ -161,6 +158,6 @@ class MarketController extends Controller
         $market->categories()->detach();
         $market->delete();
 
-        return redirect('/dashboard/markets');
+        return redirect()->route('dashboard.markets.index');
     }
 }

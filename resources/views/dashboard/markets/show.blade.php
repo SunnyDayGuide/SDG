@@ -44,7 +44,7 @@
 					<thead class="thead-light">
 						<th>#</th>
 						<th>Name</th>
-						<th>Slug</th>
+						<th>Page Title</th>
 						<th></th>
 					</thead>
 					<tbody>
@@ -52,7 +52,7 @@
 							<tr>
 								<td>{{ $category->id }}</td>
 								<td>{{ $category->name }}</td>
-								<td>{{ $category->slug }}</td>
+								<td>{{ $category->pivot->title }}</td>
 								<td align="right">
 									<a href="{{ route('dashboard.marketCategory.edit', [$market->id, $category->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
 									<div class="d-inline-block">
