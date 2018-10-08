@@ -20,7 +20,7 @@ class MarketCategoryController extends Controller
         $market = Market::find($marketId);
         $categories = Category::all();
 
-        return view('dashboard.markets.createMarketCategory', compact('market', 'categories'));
+        return view('admin.markets.createMarketCategory', compact('market', 'categories'));
     }
 
     /**
@@ -64,7 +64,7 @@ class MarketCategoryController extends Controller
 
         $market->categories()->attach($categoryId, $attributes);
 
-        return redirect()->route('dashboard.markets.edit', $market->id);
+        return redirect()->route('admin.markets.edit', $market->id);
     }
 
     /**
@@ -80,7 +80,7 @@ class MarketCategoryController extends Controller
 
         $market_category = $market->categories()->find($categoryId);
 
-        return view('dashboard.markets.editMarketCategory', compact('market', 'category', 'market_category'));
+        return view('admin.markets.editMarketCategory', compact('market', 'category', 'market_category'));
     }
 
     /**
@@ -129,7 +129,7 @@ class MarketCategoryController extends Controller
 
         $market->categories()->updateExistingPivot($categoryId, $attributes);
 
-        return redirect()->route('dashboard.markets.edit', $market->id);
+        return redirect()->route('admin.markets.edit', $market->id);
     }
 
     /**
@@ -151,7 +151,7 @@ class MarketCategoryController extends Controller
         // detach
         $market->categories()->detach($categoryId);
 
-        return redirect()->route('dashboard.markets.edit', $market->id);
+        return redirect()->route('admin.markets.edit', $market->id);
     }
 
 }

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
 	</div> <!-- end row -->
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="{{ route('dashboard.marketCategory.update', [$market->id, $category->id]) }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('admin.marketCategory.update', [$market->id, $category->id]) }}" enctype="multipart/form-data">
 				@method('PATCH')
 			    @csrf
 

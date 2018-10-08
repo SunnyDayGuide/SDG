@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -9,7 +9,7 @@
 	</div> <!-- end row -->
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="{{ route('dashboard.marketCategory.store', $market->id) }}" enctype="multipart/form-data">
+			<form method="POST" action="{{ route('admin.marketCategory.store', $market->id) }}" enctype="multipart/form-data">
 			    @csrf
 
 			    <div class="form-group">
@@ -48,10 +48,10 @@
 				</div>
 
 				<div class="form-group">
-	                <button type="submit" class="btn btn-primary btn-lg btn-block">Add Market Category</button>
+	                <button type="submit" class="btn btn-success btn-lg btn-block">Add Market Category</button>
 	            </div>
 	            <div class="form-group">
-					<a href="/dashboard/markets/{{ $market->id }}" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+					<a href="{{ route('admin.markets.edit', $market->id) }}" class="btn btn-secondary btn-lg btn-block">Cancel</a>
 				</div>
 			</form>
 

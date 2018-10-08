@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="col-md-3 offset-md-1">
-			<a href="{{ route('dashboard.markets.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Market</a>
+			<a href="{{ route('admin.markets.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Market</a>
 		</div>
 
 	</div> <!-- end of .row -->
@@ -32,9 +32,9 @@
 							<td>{{ count($market->categories) }}</td>
 							<td align="right">
 {{-- 								<a href="{{ route('dashboard.markets.show', $market->id) }}" class="btn btn-sm btn-secondary">View</a>
- --}}								<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+ --}}								<a href="{{ route('admin.markets.edit', $market->id) }}" class="btn btn-sm btn-secondary">Edit</a>
 								<div class="d-inline-block">
-									<form action="{{ route('dashboard.markets.destroy', $market->id) }}" method="POST">
+									<form action="{{ route('admin.markets.destroy', $market->id) }}" method="POST">
 										@method('DELETE')
 									    @csrf
 									    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">

@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="col-md-3 offset-md-1">
-			<a href="{{ route('dashboard.categories.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Category</a>
+			<a href="{{ route('admin.categories.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Category</a>
 		</div>
 
 	</div> <!-- end of .row -->
@@ -29,9 +29,9 @@
 							<td>{{ $category->name }}</td>
 							<td>{{ $category->slug }}</td>
 							<td align="right">
-								<a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+								<a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-sm btn-secondary">Edit</a>
 								<div class="d-inline-block">
-									<form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="POST">
+									<form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
 										@method('DELETE')
 									    @csrf
 									    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">

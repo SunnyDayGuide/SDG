@@ -23,7 +23,7 @@ class MarketController extends Controller
     public function index()
     {
         $markets = Market::with('categories')->get();
-        return view('dashboard.markets.index', compact('markets'));
+        return view('admin.markets.index', compact('markets'));
     }
 
     /**
@@ -37,7 +37,7 @@ class MarketController extends Controller
         $categories = Category::all();
         $states = $state->availableStates();
 
-        return view('dashboard.markets.create', compact('market', 'brands', 'categories', 'states'));
+        return view('admin.markets.create', compact('market', 'brands', 'categories', 'states'));
     }
 
     /**
@@ -70,7 +70,7 @@ class MarketController extends Controller
         $categories = request('categories');
         $market->categories()->attach($categories);
 
-        return redirect()->route('dashboard.markets.show', $market->id);
+        return redirect()->route('admin.markets.show', $market->id);
     }
 
     /**
@@ -85,7 +85,7 @@ class MarketController extends Controller
         $market = Market::find($id);
         $categories = $market->categories;
 
-        return view('dashboard.markets.show', compact('market', 'categories'));
+        return view('admin.markets.show', compact('market', 'categories'));
     }
 
 
@@ -102,7 +102,7 @@ class MarketController extends Controller
         $categories = $market->categories;
         $states = $state->availableStates();
 
-        return view('dashboard.markets.edit', compact('market', 'brands', 'categories', 'states'));
+        return view('admin.markets.edit', compact('market', 'brands', 'categories', 'states'));
     }
 
     /**
@@ -142,7 +142,7 @@ class MarketController extends Controller
 
         $market->save();
 
-        return redirect()->route('dashboard.markets.index');
+        return redirect()->route('admin.markets.index');
     }
 
     /**
@@ -158,6 +158,6 @@ class MarketController extends Controller
         $market->categories()->detach();
         $market->delete();
 
-        return redirect()->route('dashboard.markets.index');
+        return redirect()->route('admin.markets.index');
     }
 }

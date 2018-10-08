@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('dashboard.categories.index', compact('categories'));
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class CategoryController extends Controller
             'slug' => request('slug'),
         ]);
 
-        return redirect()->route('dashboard.categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -72,7 +72,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('dashboard.categories.edit', compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoryController extends Controller
 
         $category->save();
 
-        return redirect('/dashboard/categories');
+        return route('admin.categories.index');
     }
 
     /**
@@ -116,6 +116,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return redirect('/dashboard/categories');
+        return route('admin.categories.index');
     }
 }

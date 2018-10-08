@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 				<h1>{{ $market->name }} / {{ $market->code }}</h1>
 			</div>
 			<div class="col-md-3 offset-md-1">
-				<a href="{{ route('dashboard.markets.edit', $market->id) }}" class="btn btn-primary btn-block btn-lg">Edit Market</a>
+				<a href="{{ route('admin.markets.edit', $market->id) }}" class="btn btn-primary btn-block btn-lg">Edit Market</a>
 			</div>
 		</div>
 
@@ -54,9 +54,9 @@
 								<td>{{ $category->name }}</td>
 								<td>{{ $category->pivot->title }}</td>
 								<td align="right">
-									<a href="{{ route('dashboard.marketCategory.edit', [$market->id, $category->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
+									<a href="{{ route('admin.marketCategory.edit', [$market->id, $category->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
 									<div class="d-inline-block">
-										<form action="{{ route('dashboard.marketCategory.destroy', [$market->id, $category->id]) }}" method="POST">
+										<form action="{{ route('admin.marketCategory.destroy', [$market->id, $category->id]) }}" method="POST">
 											@method('DELETE')
 										    @csrf
 										    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">
@@ -68,7 +68,7 @@
 
 					</tbody>
 				</table>
-				<a href="{{ route('dashboard.marketCategory.create', $market->id) }}" class="btn btn-lg btn-primary btn-h1-spacing">Add a Market Category</a>
+				<a href="{{ route('admin.marketCategory.create', $market->id) }}" class="btn btn-lg btn-primary btn-h1-spacing">Add a Market Category</a>
 			</div> <!-- end col -->
 			
 		</div> <!-- End Row -->

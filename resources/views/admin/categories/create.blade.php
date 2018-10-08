@@ -1,37 +1,33 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('content')
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
-			<h1>Edit Category</h1>
+		<div class="col">
+			<h1>Add a Category</h1>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="{{ route('dashboard.categories.update', $category->id) }}">
-			@method('PATCH')
-		    @csrf
+			<form method="POST" action="{{ route('admin.categories.store') }}">
+			{{ csrf_field() }}
 
 				<div class="form-group">
 						<label for="name">Category Name:</label>
 	                    <input type="text" class="form-control" id="name" name="name"
-                           value="{{ old('name', $category->name) }}" required>
+                           value="{{ old('name') }}" required>
 				</div>
 
 				<div class="form-group">
 					<label for="slug">Slug:</label>
                     <input type="text" class="form-control" id="slug" name="slug"
-                           value="{{ old('slug', $category->slug) }}" required>
+                           value="{{ old('slug') }}" required>
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-lg btn-block">Update Category</button>
-				</div>
-				<div class="form-group">
-					<a href="/dashboard/markets" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+					<button type="submit" class="btn btn-success btn-lg btn-block">Add Category</button>
 				</div>
 
 				@if (Session::has('success'))
@@ -49,6 +45,7 @@
                 @endif
 			</form>
 		</div>
+
 	</div> <!-- end of row -->
 </div>
 

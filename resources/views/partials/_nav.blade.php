@@ -31,10 +31,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="resourceDropdown">
-                                    <a class="dropdown-item" href="{{ route('dashboard.markets.index') }}">
+                                    <a class="dropdown-item" href="{{ route('admin.markets.index') }}">
                                         Markets
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('dashboard.categories.index') }}">
+                                    <a class="dropdown-item" href="{{ route('admin.categories.index') }}">
                                         Categories
                                     </a>
                                 </div>
