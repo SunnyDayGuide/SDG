@@ -29,7 +29,7 @@
 
 				<div class="form-group">
 					<label for="body">Category Page Body Text</label>
-					<input type="text" class="form-control" id="body" name="body" value="{{ old('body') }}">
+					<textarea class="form-control" rows="5" id="body" name="body" value="{{ old('body') }}">{{ old('body') }}</textarea>
 				</div>
 
 				<div class="form-group">
