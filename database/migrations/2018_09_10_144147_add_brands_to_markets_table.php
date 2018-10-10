@@ -14,7 +14,7 @@ class AddBrandsToMarketsTable extends Migration
     public function up()
     {
         Schema::table('markets', function (Blueprint $table) {
-            $table->unsignedInteger('brand_id')->after('slug');
+            $table->unsignedInteger('brand_id')->after('slug')->default('1');
 
             $table->foreign('brand_id')->references('id')->on('brands');
         });
