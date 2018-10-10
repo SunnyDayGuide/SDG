@@ -27,7 +27,7 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles= Article::byMarket($market)
+        $articles = Article::byMarket($market)
             ->orderBy('published_at', 'desc')
             ->paginate(12);
 
