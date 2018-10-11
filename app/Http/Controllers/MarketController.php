@@ -30,7 +30,9 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
-        return view('markets.show', compact('market'));
+        $articles = $market->getFeaturedArticles()->where('article_type_id', 1);
+
+        return view('markets.show', compact('market', 'articles'));
     }
 
 }

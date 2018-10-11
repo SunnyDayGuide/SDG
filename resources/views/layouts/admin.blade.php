@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        @include ('partials._nav')
+        @include ('admin.partials._nav')
 
         <main class="py-4">
             <div class="container">

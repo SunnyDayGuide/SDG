@@ -112,6 +112,13 @@ class Market extends Model
         return $this->hasMany(Article::class);
     }
 
+    public function getFeaturedArticles()
+    {
+        return $this->articles()
+            ->where('featured', 1)
+            ->get();
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);

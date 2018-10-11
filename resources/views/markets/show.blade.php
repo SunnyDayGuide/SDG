@@ -3,20 +3,31 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8">
-				<h1>{{ $market->name }} Home Page</h1>
+			<div class="col">
+				<div class="jumbotron">
+				  <h1 class="display-4">Welcome to {{ $market->name }}, {{ $market->state->name }}!</h1>
+				  <p class="lead">Here lies some market specific slide show or something. You are on the {{ $market->code }} home page</p>
+				  <hr class="my-4">
+				  <p>It might list the market's cities like this: {{ $market->cities }} if they exist</p>
+				  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="list-group">
-					@foreach ($market->categories as $category)
-						<a href="{{ $market->path().'/'.$category->slug }}" class="list-group-item list-group-item-action">{{ $category->name }}</a>
-					@endforeach
-				</div>
-				<div class="mt-4">
-					<a href="{{ route('articles', $market) }}" class="btn btn-primary">All Articles</a>
-				</div>
-			</div>			
 		</div> <!-- End Row -->
-	</div>
+
+		<div class="row">
+			<div class="col">
+				<h2>Featured Articles</h2>
+				<div class="row">
+					@include('articles._featured')
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<h2>Featured Events</h2>
+			</div>
+		</div>
+	</div> <!-- End Container -->
 
 @endsection
