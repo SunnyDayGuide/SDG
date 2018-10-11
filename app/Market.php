@@ -14,7 +14,14 @@ class Market extends Model
      * @var array
      */
     protected $guarded = [];
-    
+
+    /**
+     * The relationships to always eager-load.
+     * Categories should load because of navigation
+     * @var array
+     */
+    protected $with = ['categories'];
+
     /**
      * Get the route key name for Laravel.
      *

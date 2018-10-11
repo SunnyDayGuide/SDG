@@ -14,14 +14,26 @@ class Category extends Model
      */
     protected $guarded = [];
 
-	   public function markets() {
-            return $this->belongsToMany(Market::class, 'market_category')
-            ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
-            ->withTimestamps();
+    /**
+     * Get the route key name for Laravel.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
-        public function articles()
+   public function markets() 
+   {
+        return $this->belongsToMany(Market::class, 'market_category')
+        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
+        ->withTimestamps();
+    }
+
+    public function articles()
     {
     	return $this->hasMany(Article::class);
     }
+    
 }

@@ -36,6 +36,7 @@ Route::prefix('{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
     Route::get('articles', 'ArticleController@index')->name('articles');
 	Route::get('articles/{article}', 'ArticleController@show');
+	Route::get('{category}', 'CategoryController@show');
 
 });
 
