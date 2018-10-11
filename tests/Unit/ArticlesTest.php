@@ -10,10 +10,9 @@ class ArticlesTest extends TestCase
 	use RefreshDatabase;
 	
 	/** @test */
-    public function a_visitor_can_browse_articles()
+    public function an_article_has_a_path()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $article = create('App\Article');
+        dd($article);
     }
 }
