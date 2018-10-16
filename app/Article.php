@@ -2,11 +2,15 @@
 
 namespace App;
 
+use App\Category;
 use App\Scopes\MarketScope;
+use App\Traits\Categoriable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use Categoriable;
+    
      /**
      * The "booting" method of the model.
      *
