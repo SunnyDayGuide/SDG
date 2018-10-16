@@ -12,7 +12,9 @@ class CountriesSeeder extends Seeder {
     public function run()
     {
         //Empty the countries table
-        DB::table('countries')->delete();
+        Schema::disableForeignKeyConstraints();
+        DB::table('countries')->truncate();
+        Schema::enableForeignKeyConstraints();
 
         // Get all of the countries
         $json = File::get('database/data/countries.json');
