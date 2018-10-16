@@ -18,8 +18,7 @@ class CreateMarketsTable extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->string('name_alt')->nullable();
-            $table->string('state');
-            $table->string('state_code');
+            $table->unsignedInteger('state_id')->nullable();
             $table->string('cities')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();

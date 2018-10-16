@@ -14,7 +14,7 @@ class AddActiveStatusToArticlesTable extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->boolean('active')->after('featured')->default('false');
+            $table->boolean('active')->after('featured')->default('0');
         });
     }
 
