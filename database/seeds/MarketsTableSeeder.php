@@ -20,8 +20,8 @@ class MarketsTableSeeder extends Seeder
             'code' => 'BR', 
             'name' => 'Branson', 
             'name_alt' => NULL, 
-            'state_id' => '30', 
             'cities' => NULL, 
+            'state_id' => '30', 
             'slug' => 'branson',
             'brand_id' => '1'
         ]);
