@@ -29,6 +29,9 @@ Route::prefix('admin')
 		Route::get('markets/{market}/category/{category}/edit', 'MarketCategoryController@edit')->name('marketCategory.edit');
 		Route::patch('markets/{market}/category/{category}', 'MarketCategoryController@update')->name('marketCategory.update');
 		Route::delete('markets/{market}/category/{category}', 'MarketCategoryController@destroy')->name('marketCategory.destroy');
+
+		Route::get('articles/create', 'ArticleController@create')->name('articles.create');
+		Route::post('articles', 'ArticleController@store')->name('articles.store');
 });
 
 // Site Routes

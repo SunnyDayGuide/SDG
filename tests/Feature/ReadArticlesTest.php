@@ -13,7 +13,7 @@ class ReadArticlesTest extends TestCase
 	public function setUp()
     {
         parent::setUp();
-        $this->article = factory('App\Article')->create();
+        $this->article = create('App\Article');
     }
 
     /** @test */

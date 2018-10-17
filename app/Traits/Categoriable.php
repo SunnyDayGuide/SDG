@@ -8,9 +8,9 @@ trait Categoriable {
 	/**
      * Categories can be assigned
      */
-    public function assignCategory($category)
+    public function assignCategories($categories)
     {
-        return $this->categories()->attach($category);
+        return $this->categories()->sync($categories);
     }
 
     /**
