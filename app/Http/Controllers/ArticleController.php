@@ -20,39 +20,29 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of all articles by article type
      *
      * @param  Market      $market
      * @return \Illuminate\Http\Response
      */
     public function index(Market $market)
     {
-        $articles = Article::byMarket($market)
+        $tripIdeas = $market->articles()
             ->orderBy('published_at', 'desc')
-            ->paginate(12);
+            ->where('article_type_id', 1)
+            ->get();
 
-        return view('articles.index', compact('articles', 'market'));
-    }
+        $visitorInfos = $market->articles()
+            ->orderBy('published_at', 'desc')
+            ->where('article_type_id', 2)
+            ->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+        $advSpotlights = $market->articles()
+            ->orderBy('published_at', 'desc')
+            ->where('article_type_id', 3)
+            ->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
 
     /**
@@ -63,40 +53,7 @@ class ArticleController extends Controller
      */
     public function show(Market $market, Article $article)
     {
-        return view('articles.show', compact('article'));
+        return view('articles.show', compact('article', 'market'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
