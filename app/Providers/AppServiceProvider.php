@@ -15,8 +15,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::share('markets', Market::all());
-        \View::share('categories', Category::all());
+        \View::composer('*', function ($view) {
+            $markets = \Cache::rememberForever('markets', function () {
+                return Market::all();
+            });
+            $categories = \Cache::rememberForever('categories', function () {
+                return Category::all();
+            });
+        });
     }
 
     /**
