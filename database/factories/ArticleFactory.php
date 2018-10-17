@@ -21,9 +21,14 @@ $factory->define(App\Article::class, function (Faker $faker) {
     ];
 });
 
-// $factory->define(App\ArticleType::class, function ($faker) {
-//     return [
-//         'name' => $faker->word,
-//         'description' => $faker->sentence
-//     ];
-// });
+$factory->state(App\Article::class, 'tripIdea', [
+    'article_type_id' => 1,
+]);
+
+$factory->state(App\Article::class, 'visitorInfo', [
+    'article_type_id' => 2,
+]);
+
+$factory->state(App\Article::class, 'advSpotlight', [
+    'article_type_id' => 3,
+]);
