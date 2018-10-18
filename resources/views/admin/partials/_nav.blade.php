@@ -10,7 +10,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li>You are editing <span class="badge badge-secondary">{{ $market->name }}</span></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

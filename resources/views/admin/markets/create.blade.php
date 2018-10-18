@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<form method="POST" action="{{ route('dashboard.markets.store') }}">
+			<form method="POST" action="{{ route('admin.markets.store') }}">
 			{{ csrf_field() }}
 
 				<div class="row form-group">

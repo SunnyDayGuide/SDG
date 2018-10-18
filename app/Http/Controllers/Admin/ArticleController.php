@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Market;
+use App\Article;
+use App\ArticleType;
 
 class ArticleController extends Controller
 {
@@ -22,9 +24,13 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Market $market)
     {
-        //
+        $articles = $market->articles()
+            ->orderBy('published_at', 'desc')
+            ->get();
+        
+        return view('admin.articles.index', compact('market', 'articles'));
     }
 
     /**
@@ -32,9 +38,12 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Market $market)
     {
-        //
+        $article = new Article;
+        $market = Market::find($market->id);
+        $articleTypes = ArticleType::all();
+        return view('admin.articles.create', compact('market', 'articleTypes', 'article'));
     }
 
     /**
@@ -43,38 +52,35 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request, Market $market)
+    {        
+        $title = request('title');
+        $published = date('Y-m-d H:i:s');
+
         $article = Article::create([
-            'title' => request('title'),
+            'title' => $title,
             'author' => request('author'),
             'image' => request('image'),
             'content' => request('content'),
             'excerpt' => request('excerpt'),
-            'rating' => request('rating'),
+            'rating' => 0,
             'featured' => request('featured'),
-            'slug' => request('slug'),
-            'published_at' => request('published_at'),
-            'market_id' => request('market_id'),
+            'slug' => str_slug($title),
+            'published_at' => $published,
+            'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
         ]);
 
         $categories = request('categories');
-        $article->assignCategory($categories);
-        // $article->categories()->attach($categories);
+        $article->assignCategories($categories);
 
-        return redirect($article->path());
-    }
+        if (request()->wantsJson()) {
+            return response($article, 201);
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $articles = $market->articles()->get();
+
+        return view('admin.articles.index', compact('market', 'articles'));
     }
 
     /**
@@ -83,9 +89,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Market $market, $id)
     {
-        //
+        $article = Article::find($id);
+        $articleTypes = ArticleType::all();
+        return view('admin.articles.edit', compact('market', 'article', 'articleTypes'));
     }
 
     /**
@@ -95,7 +103,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Market $market, $id)
     {
         //
     }

@@ -22,16 +22,22 @@ Route::prefix('admin')
 	->namespace('Admin')
 	->group(function () {
 		Route::get('/', 'DashboardController@index')->name('home');
-		Route::resource('markets', 'MarketController');
+
+		// Superadmin Routes (Me!)
 		Route::resource('categories', 'CategoryController')->except(['show']);
+		Route::resource('markets', 'MarketController');
 		Route::get('markets/{market}/category/create', 'MarketCategoryController@create')->name('marketCategory.create');
 		Route::post('markets/{market}/category', 'MarketCategoryController@store')->name('marketCategory.store');
 		Route::get('markets/{market}/category/{category}/edit', 'MarketCategoryController@edit')->name('marketCategory.edit');
 		Route::patch('markets/{market}/category/{category}', 'MarketCategoryController@update')->name('marketCategory.update');
 		Route::delete('markets/{market}/category/{category}', 'MarketCategoryController@destroy')->name('marketCategory.destroy');
 
-		Route::get('articles/create', 'ArticleController@create')->name('articles.create');
-		Route::post('articles', 'ArticleController@store')->name('articles.store');
+		// regular admin user routes (Jackie, etc)
+		Route::get('{market}/articles', 'ArticleController@index')->name('articles.index');
+		Route::get('{market}/articles/create', 'ArticleController@create')->name('articles.create');
+		Route::post('{market}/articles', 'ArticleController@store')->name('articles.store');
+		Route::get('{market}/articles/{article}/edit', 'ArticleController@edit')->name('articles.edit');
+		Route::post('{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
 });
 
 // Site Routes

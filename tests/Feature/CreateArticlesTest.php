@@ -21,10 +21,12 @@ class CreateArticlesTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $this->get('admin/articles/create')
+        $market = 'App\Market'::find(1);
+
+        $this->get("admin/{$market->slug}/articles/create")
             ->assertRedirect(route('login'));
 
-        $this->post(route('admin.articles.store'))
+        $this->post("admin/{$market->slug}/articles")
             ->assertRedirect(route('login'));
     }
 
@@ -32,12 +34,15 @@ class CreateArticlesTest extends TestCase
     public function a_user_can_create_new_articles()
     {
         $this->signIn();
-        $article = factory('App\Article')->make();
 
-        $this->post('admin/articles', $article->toArray());
+        $market = 'App\Market'::find(1);
+        $article = make('App\Article', ['market_id' => $market->id]);
 
+        $this->post("admin/{$market->slug}/articles", $article->toArray());
+        
         $this->get($article->path())
-            ->assertSee($article->title);
+            ->assertSee($article->title)
+            ->assertSee($article->market->name);
     }
 
 }
