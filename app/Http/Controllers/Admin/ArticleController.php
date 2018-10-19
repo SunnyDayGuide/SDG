@@ -91,7 +91,7 @@ class ArticleController extends Controller
      */
     public function edit(Market $market, $id)
     {
-        $article = Article::find($id);
+        $article = Article::findorFail($id);
         $articleTypes = ArticleType::all();
         return view('admin.articles.edit', compact('market', 'article', 'articleTypes'));
     }
