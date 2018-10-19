@@ -27,7 +27,7 @@
 <div class="form-group">
 		<div class="form-check">
 			<input type="hidden" name="featured" value="0" />
-			<input class="form-check-input" type="checkbox" name="featured" value="1" {{ ( is_array(old('featured')) && in_array($article->featured, old('featured')) ) ? 'checked ' : '' }}>
+			<input class="form-check-input" type="checkbox" name="featured" value="1" {{ old('featured', $article->featured) ? 'checked="checked"' : '' }}>
 			<label class="form-check-label" for="featured">
 			Featured Article
 			</label>
@@ -42,11 +42,11 @@
 
 <div class="form-group">
 	<label for="article_type_id">Article Type</label>
-	<select class="form-control" name="market_id">
+	<select class="form-control" name="article_type_id">
 		<option selected>Select Type</option>
-		@foreach($articleTypes as $type)
-			<option value="{{ $type->id }}" {{ $article->articleType->id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
-		@endforeach
+		@foreach($articleTypes as $articleType)
+			<option value="{{ old('article_type_id', $articleType->id) }}" {{ isset($article->articleType->id) == $articleType->id ? 'selected="selected"' : '' }}>{{ $articleType->name }}</option>
+ 		@endforeach
 	</select>
 </div>	
 
@@ -82,7 +82,7 @@
 	</div>
 @endif
 
-@if (count($errors))
+@if ($errors->any())
     <ul class="alert alert-danger">
         @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
