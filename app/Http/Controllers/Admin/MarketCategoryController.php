@@ -14,6 +14,7 @@ class MarketCategoryController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @param int $marketId
      */
     public function create($marketId)
     {
@@ -49,7 +50,7 @@ class MarketCategoryController extends Controller
             // add new image
             $image = $request->file('image');
             $filename = $market->code.'-'.$category->slug.'-'.time().'.'.$image->guessClientExtension();
-            $image = $image->storeAs('images/leads', $filename, 'public');
+            $image->storeAs('images/leads', $filename, 'public');
         } else {
             $image = null;
         }
@@ -96,7 +97,6 @@ class MarketCategoryController extends Controller
         $category = Category::find($categoryId);
         $market_category = $market->categories()->find($categoryId);
 
-        // validate the data
         request()->validate([
             'image' => 'image'
         ]);
@@ -111,11 +111,6 @@ class MarketCategoryController extends Controller
             // save old file name so we can delete the replaced image 
             $oldFileName = $market_category->pivot->image;
 
-            // update database
-            $market->categories()->updateExistingPivot($categoryId, [
-                'image' => $image,
-            ]);
-
             // delete old image
             Storage::disk('public')->delete($oldFileName);
         }
@@ -125,6 +120,7 @@ class MarketCategoryController extends Controller
             'body' => request('body'), 
             'meta_title' => request('meta_title'), 
             'meta_description' => request('meta_description'), 
+            'image' => $image
         ];
 
         $market->categories()->updateExistingPivot($categoryId, $attributes);

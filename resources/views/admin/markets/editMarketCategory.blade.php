@@ -46,7 +46,7 @@
 	                <button type="submit" class="btn btn-primary btn-lg btn-block">Update Category</button>
 	            </div>
 	            <div class="form-group">
-					<a href="/dashboard/markets/{{ $market->id }}" class="btn btn-secondary btn-lg btn-block">Cancel</a>
+					<a href="/admin/markets/{{ $market->id }}/edit" class="btn btn-secondary btn-lg btn-block">Cancel</a>
 				</div>
 			</form>
 

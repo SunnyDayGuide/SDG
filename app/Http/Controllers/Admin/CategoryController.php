@@ -44,23 +44,9 @@ class CategoryController extends Controller
             'slug' => 'required|unique:categories',
         ]);
 
-        $market =  Category::create([
-            'name' => request('name'),
-            'slug' => request('slug'),
-        ]);
+        Category::create(request(['name', 'slug']));
 
         return redirect()->route('admin.categories.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -84,9 +70,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
+        $category = Category::findorFail($id);
 
-        // validate the data
         request()->validate([
             'slug' => [
                 'required',
@@ -95,12 +80,9 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        $category->name = $request->name;
-        $category->slug = $request->slug;
+        $category->update(request(['name', 'slug']));
 
-        $category->save();
-
-        return route('admin.categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -112,10 +94,11 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+
         $category->markets()->detach();
 
         $category->delete();
 
-        return route('admin.categories.index');
+        return redirect()->route('admin.categories.index');
     }
 }

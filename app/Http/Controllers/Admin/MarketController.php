@@ -23,6 +23,7 @@ class MarketController extends Controller
     public function index()
     {
         $markets = Market::with('categories')->get();
+
         return view('admin.markets.index', compact('markets'));
     }
 
@@ -30,6 +31,7 @@ class MarketController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * @param  State $state
      */
     public function create(State $state)
     {
@@ -48,7 +50,6 @@ class MarketController extends Controller
      */
     public function store(Request $request)
     {
-        // validate the data
         request()->validate([
             'code' => 'required|unique:markets|max:2',
             'name' => 'required',
@@ -57,20 +58,11 @@ class MarketController extends Controller
             'brand_id' => 'required|exists:brands,id'
         ]);
 
-        $market = Market::create([
-            'code' => request('code'),
-            'name' => request('name'),
-            'name_alt' => request('name_alt'),
-            'cities' => request('cities'),
-            'state_id' => request('state_id'),
-            'slug' => request('slug'),
-            'brand_id' => request('brand_id')
-        ]);
+        $market = Market::create(request([
+            'code', 'name', 'name_alt', 'cities', 'state_id', 'slug', 'brand_id'
+        ]));
 
-        $categories = request('categories');
-        $market->categories()->attach($categories);
-
-        return redirect()->route('admin.markets.show', $market->id);
+        return redirect()->route('admin.markets.index');
     }
 
     /**
@@ -88,11 +80,11 @@ class MarketController extends Controller
         return view('admin.markets.show', compact('market', 'categories'));
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
+     * @param  State $state
      * @return \Illuminate\Http\Response
      */
     public function edit($id, State $state)
@@ -116,7 +108,6 @@ class MarketController extends Controller
     {
         $market = Market::find($id);
 
-        // validate the data
         request()->validate([
             'code' => [
                 'required',
@@ -132,15 +123,9 @@ class MarketController extends Controller
             'brand_id' => 'required|exists:brands,id'
         ]);
 
-        $market->code = $request->code;
-        $market->name = $request->name;
-        $market->name_alt = $request->name_alt;
-        $market->state_id = $request->state_id;
-        $market->cities = $request->cities;
-        $market->slug = $request->slug;
-        $market->brand_id = $request->brand_id;
-
-        $market->save();
+        $market->update(request([
+            'code', 'name', 'name_alt', 'cities', 'state_id', 'slug', 'brand_id'
+        ]));
 
         return redirect()->route('admin.markets.index');
     }
@@ -149,6 +134,7 @@ class MarketController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
+     * @param  Category $category
      * @return \Illuminate\Http\Response
      */
     public function destroy($id, Category $category)
