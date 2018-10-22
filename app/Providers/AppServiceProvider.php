@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         \View::composer('*', function ($view) {
             $markets = \Cache::rememberForever('markets', function () {
-                return Market::with('categories')->get();
+                return Market::all();
             });
             // $categories = \Cache::rememberForever('categories', function () {
             //     return Category::all();
