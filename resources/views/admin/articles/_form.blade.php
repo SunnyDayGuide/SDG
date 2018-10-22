@@ -45,7 +45,7 @@
 	<select class="form-control" name="article_type_id">
 		<option selected>Select Type</option>
 		@foreach($articleTypes as $articleType)
-			<option value="{{ old('article_type_id', $articleType->id) }}" {{ isset($article->articleType->id) == $articleType->id ? 'selected="selected"' : '' }}>{{ $articleType->name }}</option>
+		<option value="{{ old('article_type_id', $articleType->id) }}" {{ $article->article_type_id == $articleType->id ? 'selected' : '' }}>{{ $articleType->name }}</option>
  		@endforeach
 	</select>
 </div>	
