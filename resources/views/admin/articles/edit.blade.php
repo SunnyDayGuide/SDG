@@ -10,10 +10,12 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-12">
 			<form method="POST" action="{{ route('admin.articles.update', [$market->slug, $article->id]) }}" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			@include('admin.articles._form')
+
+			@include ('partials._messages')
 			</form>
 		</div>
 
