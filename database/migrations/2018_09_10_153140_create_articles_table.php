@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
             $table->string('image');
             $table->text('content');
             $table->text('excerpt');
-            $table->unsignedInteger('rating')->nullable();
+            $table->unsignedInteger('rating')->default('0');
             $table->boolean('featured')->default(false);
             $table->string('slug')->unique();
             $table->timestamp('published_at')->nullable();
