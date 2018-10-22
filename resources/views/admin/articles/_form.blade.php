@@ -3,7 +3,7 @@
 	@foreach($market->categories->sortBy('name') as $category)
 		<div class="form-check">
 			<input class="form-check-input" type="checkbox" name="categories[]" 
-				value="{{ $category->id }}" {{ ( is_array(old('categories')) && in_array($category->id, old('categories')) ) ? 'checked ' : '' }}>
+				value="{{ $category->id }}" {{ ( is_array(old('categories')) && in_array($category->id, old('categories')) ) ? 'checked' : '' }}>
 			<label class="form-check-label" for="{{ $category->id }}">
 			{{ $category->name }}
 			</label>
@@ -67,9 +67,8 @@
 </div>
 
 <div class="form-group">
-	<label for="image">Image Placeholder</label>
-    <input type="text" class="form-control" id="image" name="image"
-           value="{{ old('image', $article->image) }}">
+	<label for="image">Featured Image</label>
+	<input type="file" class="form-control-file" id="image" name="image" value="{{ old('image', $article->image) }}">
 </div>
 
 <div class="form-group">

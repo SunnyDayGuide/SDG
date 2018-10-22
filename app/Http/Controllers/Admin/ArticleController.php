@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Storage;
 use App\Market;
 use App\Article;
 use App\ArticleType;
@@ -43,6 +44,7 @@ class ArticleController extends Controller
         $article = new Article;
         $market = Market::findorFail($market->id);
         $articleTypes = ArticleType::all();
+
         return view('admin.articles.create', compact('market', 'articleTypes', 'article'));
     }
 
@@ -57,10 +59,22 @@ class ArticleController extends Controller
         $title = request('title');
         $published = date('Y-m-d H:i:s');
 
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            
+            $imagePath = 'images/'.$market->slug.'/articles';
+            $filename = $market->code.'-'.$image->getClientOriginalName();
+
+            $image = $image->storeAs($imagePath, $filename, 'public');
+
+        } else {
+            $image = null;
+        }
+
         $article = Article::create([
             'title' => $title,
             'author' => request('author'),
-            'image' => request('image'),
+            'image' => $image,
             'content' => request('content'),
             'excerpt' => request('excerpt'),
             'rating' => 0,
