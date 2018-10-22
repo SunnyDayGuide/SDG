@@ -45,12 +45,13 @@ class MarketCategoryController extends Controller
 
         // process an image if there is one
         $category = Category::find($categoryId);
+        $imagePath = 'images/'.$market->slug.'/leads';
 
         if($request->hasFile('image')){
             // add new image
             $image = $request->file('image');
             $filename = $market->code.'-'.$category->slug.'-'.time().'.'.$image->guessClientExtension();
-            $image->storeAs('images/leads', $filename, 'public');
+            $image = $image->storeAs($imagePath, $filename, 'public');
         } else {
             $image = null;
         }
@@ -96,6 +97,7 @@ class MarketCategoryController extends Controller
         $market = Market::find($marketId);
         $category = Category::find($categoryId);
         $market_category = $market->categories()->find($categoryId);
+        $imagePath = 'images/'.$market->slug.'/leads';
 
         request()->validate([
             'image' => 'image'
@@ -106,7 +108,7 @@ class MarketCategoryController extends Controller
             // add new image
             $image = $request->file('image');
             $filename = $market->code.'-'.$category->slug.'-'.time().'.'.$image->guessClientExtension();
-            $image = $image->storeAs('images/leads', $filename, 'public');
+            $image = $image->storeAs($imagePath, $filename, 'public');
 
             // save old file name so we can delete the replaced image 
             $oldFileName = $market_category->pivot->image;
