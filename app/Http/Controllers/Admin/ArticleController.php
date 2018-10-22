@@ -41,7 +41,7 @@ class ArticleController extends Controller
     public function create(Market $market)
     {
         $article = new Article;
-        $market = Market::find($market->id);
+        $market = Market::findorFail($market->id);
         $articleTypes = ArticleType::all();
         return view('admin.articles.create', compact('market', 'articleTypes', 'article'));
     }

@@ -13,6 +13,7 @@ class MarketsTest extends TestCase
     /** @test */
     public function the_index_page_should_list_all_the_markets()
     {
+    	// this is just a plceholder test
         $this->assertTrue(true);
     }
 }

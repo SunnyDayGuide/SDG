@@ -22,7 +22,7 @@ class MarketController extends Controller
      */
     public function index()
     {
-        $markets = Market::with('categories')->get();
+        $markets = Market::all();
 
         return view('admin.markets.index', compact('markets'));
     }
@@ -36,10 +36,9 @@ class MarketController extends Controller
     public function create(State $state)
     {
         $brands = Brand::all();
-        $categories = Category::all();
         $states = $state->availableStates();
 
-        return view('admin.markets.create', compact('market', 'brands', 'categories', 'states'));
+        return view('admin.markets.create', compact('market', 'brands', 'states'));
     }
 
     /**
