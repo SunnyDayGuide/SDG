@@ -1,20 +1,11 @@
 @extends('layouts.admin')
+@section('pageHeader')
+<h1 class="h2">Catagories Dashboard</h1>
+@endsection
 
 @section('content')
-<div class="container">
-	<div class="row mb-4">
-		<div class="col-md-8">
-			<h1>Catgories Dashboard</h1>
-		</div>
-
-		<div class="col-md-3 offset-md-1">
-			<a href="{{ route('admin.categories.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Category</a>
-		</div>
-
-	</div> <!-- end of .row -->
-
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-9 table-responsive9">
 			<table class="table">
 				<thead class="thead-light">
 					<th>#</th>
@@ -44,6 +35,8 @@
 				</tbody>
 			</table>
 		</div> <!-- end col -->
+		<div class="col">
+			<a class="btn btn-primary btn-lg btn-block" href="{{ route('admin.categories.create') }}" role="button">Create New Category</a>
+		</div>
 	</div> <!-- end row -->
-</div> <!-- end container -->
 @endsection

@@ -1,14 +1,13 @@
 @extends('layouts.admin')
 
+@section('pageHeader')
+<h1 class="h2">Edit {{ $market->name }} {{ $category->name }}</h1>
+@endsection
+
 @section('content')
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<h1>{{ $market->name }} {{ $category->name }}</h1>
-		</div>
-	</div> <!-- end row -->
-	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<form method="POST" action="{{ route('admin.marketCategory.update', [$market->id, $category->id]) }}" enctype="multipart/form-data">
 				@method('PATCH')
 			    @csrf
@@ -51,7 +50,6 @@
 			</form>
 
 			@include('partials._messages')
-
 		</div>
 	</div>
 </div> <!-- end of container -->

@@ -1,16 +1,15 @@
 @extends('layouts.admin')
 
+@section('pageHeader')
+<h1 class="h2">Add a Market</h1>
+@endsection
+
 @section('content')
 
 <div class="container">
-	<div class="row">
-		<div class="col">
-			<h1>Add a Market</h1>
-		</div>
-	</div>
 
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<form method="POST" action="{{ route('admin.markets.store') }}">
 			{{ csrf_field() }}
 
@@ -65,7 +64,7 @@
 					</select>
 				</div>
 
-{{-- 				<div class="form-group">
+				{{-- <div class="form-group">
 					<label for="categories">Categories</label>
 					@foreach($categories->sortBy('name') as $category)
 						<div class="form-check">
@@ -80,21 +79,12 @@
 				<div class="form-group">
 					<button type="submit" class="btn btn-success btn-lg btn-block">Add Market</button>
 				</div>
+				<div class="form-group">
+					<a class="btn btn-secondary btn-lg btn-block" href="{{ route('admin.markets.index') }}" role="button">Cancel</a>
+				</div>
 
-				@if (Session::has('success'))
-					<div class="alert alert-success" role="alert">
-						<strong>Success:</strong> {{ Session::get('success') }}
-					</div>
-				@endif
-
-				@if (count($errors))
-                    <ul class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
 			</form>
+			@include ('partials._messages')
 		</div>
 
 	</div> <!-- end of row -->

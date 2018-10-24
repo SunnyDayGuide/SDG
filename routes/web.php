@@ -22,15 +22,16 @@ Route::prefix('admin')
 	->namespace('Admin')
 	->group(function () {
 		Route::get('/', 'DashboardController@index')->name('home');
+		Route::get('{market}', 'DashboardController@show')->name('market');
 
 		// Superadmin Routes (Me!)
-		Route::resource('categories', 'CategoryController')->except(['show']);
-		Route::resource('markets', 'MarketController');
-		Route::get('markets/{market}/category/create', 'MarketCategoryController@create')->name('marketCategory.create');
-		Route::post('markets/{market}/category', 'MarketCategoryController@store')->name('marketCategory.store');
-		Route::get('markets/{market}/category/{category}/edit', 'MarketCategoryController@edit')->name('marketCategory.edit');
-		Route::patch('markets/{market}/category/{category}', 'MarketCategoryController@update')->name('marketCategory.update');
-		Route::delete('markets/{market}/category/{category}', 'MarketCategoryController@destroy')->name('marketCategory.destroy');
+		Route::resource('super/categories', 'CategoryController')->except(['show']);
+		Route::resource('super/markets', 'MarketController');
+		Route::get('master/markets/{market}/category/create', 'MarketCategoryController@create')->name('marketCategory.create');
+		Route::post('master/markets/{market}/category', 'MarketCategoryController@store')->name('marketCategory.store');
+		Route::get('master/markets/{market}/category/{category}/edit', 'MarketCategoryController@edit')->name('marketCategory.edit');
+		Route::patch('master/markets/{market}/category/{category}', 'MarketCategoryController@update')->name('marketCategory.update');
+		Route::delete('master/markets/{market}/category/{category}', 'MarketCategoryController@destroy')->name('marketCategory.destroy');
 
 		// regular admin user routes (Jackie, etc)
 		Route::get('{market}/articles', 'ArticleController@index')->name('articles.index');
