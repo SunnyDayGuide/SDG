@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Article;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use Tests\TestCase;
 
 class CreateArticlesTest extends TestCase
 {
@@ -35,8 +37,10 @@ class CreateArticlesTest extends TestCase
     {
         $this->signIn();
 
+        Storage::fake('public');
+
         $market = 'App\Market'::find(1);
-        $article = make('App\Article', ['market_id' => $market->id]);
+        $article = make('App\Article', ['market_id' => $market->id, 'image' => $file = UploadedFile::fake()->image('article.jpg')]);
 
         $this->post("admin/{$market->slug}/articles", $article->toArray());
         

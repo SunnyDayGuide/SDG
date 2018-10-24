@@ -61,7 +61,7 @@ class ArticleController extends Controller
 
         if($request->hasFile('image')){
             $image = $request->file('image');
-            
+
             $imagePath = 'images/'.$market->slug.'/articles';
             $filename = $market->code.'-'.$image->getClientOriginalName();
 
@@ -79,6 +79,7 @@ class ArticleController extends Controller
             'excerpt' => request('excerpt'),
             'rating' => 0,
             'featured' => request('featured'),
+            'active' => request('active'),
             'slug' => str_slug($title),
             'published_at' => $published,
             'market_id' => $market->id,
@@ -87,10 +88,6 @@ class ArticleController extends Controller
 
         $categories = request('categories');
         $article->assignCategories($categories);
-
-        if (request()->wantsJson()) {
-            return response($article, 201);
-        }
 
         $articles = $market->articles()->get();
 
@@ -119,7 +116,45 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Market $market, $id)
     {
-        //
+        $article = Article::findorFail($id);
+        $title = request('title');
+
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            
+            $imagePath = 'images/'.$market->slug.'/articles';
+            $filename = $market->code.'-'.$image->getClientOriginalName();
+
+            $image = $image->storeAs($imagePath, $filename, 'public');
+
+            // save old file name so we can delete the replaced image 
+            $oldFileName = $article->image;
+
+            // delete old image
+            Storage::disk('public')->delete($oldFileName);
+        } else {
+            $image = $article->image;
+        }
+
+        $article->update([
+            'title' => $title,
+            'author' => request('author'),
+            'image' => $image,
+            'content' => request('content'),
+            'excerpt' => request('excerpt'),
+            'featured' => request('featured'),
+            'active' => request('active'),
+            'slug' => str_slug($title),
+            'market_id' => $market->id,
+            'article_type_id' => request('article_type_id')
+        ]);
+
+        $categories = request('categories');
+        $article->assignCategories($categories);
+
+        $articles = $market->articles()->get();
+
+        return view('admin.articles.index', compact('market', 'articles'));
     }
 
     /**
