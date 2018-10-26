@@ -15,7 +15,7 @@ $factory->define(App\Article::class, function (Faker $faker) {
         'excerpt' => $faker->sentence,
         'rating' => 0,
         'featured' => $faker->boolean($chanceOfGettingTrue = 40),
-        'active' => true,
+        'archived' => false,
         'slug' => str_slug($title),
         'published_at' => $faker->dateTime($max = 'now', $timezone = null)
     ];

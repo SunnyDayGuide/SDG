@@ -50,8 +50,7 @@
 			<label for="categories">Categories</label>
 			@foreach($market->categories->sortBy('name') as $category)
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" name="categories[]" 
-						value="{{ $category->id }}" {{ ( is_array(old('categories')) && in_array($category->id, old('categories')) ) ? 'checked' : '' }}>
+					<input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" {{ $article->categories->contains($category->id) ? 'checked' : '' }}> 
 					<label class="form-check-label" for="{{ $category->id }}">
 					{{ $category->name }}
 					</label>
@@ -70,15 +69,15 @@
 		</div>
 
 		<div class="form-group">
-			<label for="active">Article Type</label>
-			<select class="form-control" name="article_type_id">
-				<option value="1">Active</option>
-				<option value="0">Inactive</option>
-			</select>
+			<label for="archived">Status</label>
+			<select name="archived" id="archived" class="form-control">
+		        <option value="0" {{ old('archived', $article->archived) ? '' : 'selected' }}>Active</option>
+		        <option value="1" {{ old('archived', $article->archived) ? 'selected' : '' }}>Archived</option>
+		    </select>
 		</div>	
 
 		<div class="form-group">
-			<button type="submit" class="btn btn-success btn-lg btn-block">Publish</button>
+			<button type="submit" class="btn btn-success btn-lg btn-block">{{ $buttonText ?? 'Add Article' }}</button>
 		</div>
 
 	</div>  <!-- end of small col -->

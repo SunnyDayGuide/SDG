@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Category;
+use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
 use Illuminate\Database\Eloquent\Model;
@@ -20,8 +21,11 @@ class Article extends Model
     {
         parent::boot();
 
-        // static::addGlobalScope(new MarketScope);
+        static::addGlobalScope('active', function ($builder) {
+            $builder->where('archived', false);
+        });
     }
+
     /**
      * Don't auto-apply mass assignment protection.
      *
@@ -29,17 +33,12 @@ class Article extends Model
      */
     protected $guarded = [];
 
-    /**
-     * Scope a query to only include articles of a given market.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
+        /**
+     * Attributes to cast.
      */
-    public function scopeByMarket($query, $market)
-    {
-        return $query->where('market_id', $market->id);
-    }
+    protected $casts = [
+        'archived' => 'boolean'
+    ];
 
     /**
      * The relationships to always eager-load.
@@ -54,10 +53,15 @@ class Article extends Model
 	    'published_at'
 	];
 
-    // public function scopeMarkets($query, $market)
-    // {
-    //     return $query->where('slug', $market);
-    // }
+     /**
+     * Get the route key name.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 	/**
      * Get a string path for the article.
@@ -67,16 +71,6 @@ class Article extends Model
     public function path()
     {
         return $this->market->path() . "/articles/{$this->slug}";
-    }
-
-    /**
-     * Get the route key name.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
     }
 
     /**
@@ -97,6 +91,35 @@ class Article extends Model
     public function articleType()
     {
     	return $this->belongsTo(ArticleType::class)->orderBy('order');
+    }
+
+    /**
+     * Archive the article.
+     */
+    public function archive()
+    {
+        $this->update(['archived' => true]);
+    }
+
+    /**
+     * Get a new query builder that includes archives.
+     */
+    public static function withArchived()
+    {
+        return (new static)->newQueryWithoutScope('active');
+    }
+
+    /**
+     * Scope a query to only include articles of a given market.
+     * I don't think we even need this anymore
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByMarket($query, $market)
+    {
+        return $query->where('market_id', $market->id);
     }
 
 }

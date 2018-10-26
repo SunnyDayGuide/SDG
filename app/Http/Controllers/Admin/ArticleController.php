@@ -21,21 +21,22 @@ class ArticleController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of all Articles.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Market $market)
     {
-        $articles = $market->articles()
-            ->orderBy('published_at', 'desc')
-            ->get();
+        $articles = Article::withArchived()
+            ->where('market_id', $market->id)
+            ->with('categories')
+            ->paginate(10);
         
         return view('admin.articles.index', compact('market', 'articles'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Article.
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,6 +57,14 @@ class ArticleController extends Controller
      */
     public function store(Request $request, Market $market)
     {        
+        request()->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'image' => 'sometimes|image',
+            'content' => 'required',
+            'article_type_id' => 'required'
+        ]);
+
         $title = request('title');
         $published = date('Y-m-d H:i:s');
 
@@ -79,7 +88,6 @@ class ArticleController extends Controller
             'excerpt' => request('excerpt'),
             'rating' => 0,
             'featured' => request('featured'),
-            'active' => request('active'),
             'slug' => str_slug($title),
             'published_at' => $published,
             'market_id' => $market->id,
@@ -89,9 +97,8 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
-        $articles = $market->articles()->get();
-
-        return view('admin.articles.index', compact('market', 'articles'));
+        return redirect()->route('admin.articles.index', compact('market'))
+            ->with('flash', 'Your article has been created!');
     }
 
     /**
@@ -102,8 +109,9 @@ class ArticleController extends Controller
      */
     public function edit(Market $market, $id)
     {
-        $article = Article::findorFail($id);
+        $article = Article::withArchived()->with('categories')->findorFail($id);
         $articleTypes = ArticleType::all();
+
         return view('admin.articles.edit', compact('market', 'article', 'articleTypes'));
     }
 
@@ -116,7 +124,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Market $market, $id)
     {
-        $article = Article::findorFail($id);
+        $article = Article::withArchived()->findorFail($id);
+
+        request()->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'image' => 'sometimes|image',
+            'content' => 'required',
+            'article_type_id' => 'required',
+            'archived' => 'required|boolean'
+        ]);
+
         $title = request('title');
 
         if($request->hasFile('image')){
@@ -143,7 +161,7 @@ class ArticleController extends Controller
             'content' => request('content'),
             'excerpt' => request('excerpt'),
             'featured' => request('featured'),
-            'active' => request('active'),
+            'archived' => request('archived'),
             'slug' => str_slug($title),
             'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
@@ -152,9 +170,12 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
-        $articles = $market->articles()->get();
+        if (request()->wantsJson()) {
+            return response($article, 200);
+        }
 
-        return view('admin.articles.index', compact('market', 'articles'));
+        return redirect()->route('admin.articles.index', compact('market'))
+            ->with('flash', 'Your article has been updated!');
     }
 
     /**
