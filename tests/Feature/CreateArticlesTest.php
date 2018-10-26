@@ -46,7 +46,8 @@ class CreateArticlesTest extends TestCase
         
         $this->get($article->path())
             ->assertSee($article->title)
-            ->assertSee($article->market->name);
+            ->assertSee($article->market->name)
+            ->assertSee('article.jpg');
     }
 
 }

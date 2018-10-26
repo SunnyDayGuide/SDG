@@ -6,10 +6,11 @@
 @section('content')
 
 <form method="POST" action="{{ route('admin.articles.update', [$market->slug, $article->id]) }}" enctype="multipart/form-data">
-{{ csrf_field() }}
-@include('admin.articles._form')
+	@method('PATCH')
+	@csrf
+	@include('admin.articles._form', ['buttonText' => 'Update Article'])
+</form>
 
 @include ('partials._messages')
-</form>
 
 @endsection

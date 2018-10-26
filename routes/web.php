@@ -38,7 +38,7 @@ Route::prefix('admin')
 		Route::get('{market}/articles/create', 'ArticleController@create')->name('articles.create');
 		Route::post('{market}/articles', 'ArticleController@store')->name('articles.store');
 		Route::get('{market}/articles/{article}/edit', 'ArticleController@edit')->name('articles.edit');
-		Route::post('{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
+		Route::patch('{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
 });
 
 // Site Routes

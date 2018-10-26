@@ -1,40 +1,52 @@
 @extends('layouts.admin')
 @section('pageHeader')
 <h1 class="h2">{{ $market->name }} - All Articles</h1>
+<a class="btn btn-primary" href="{{ route('admin.articles.create', $market->slug) }}" role="button">Create Article</a>
 @endsection
 
 @section('content')
 
-	<div class="row">
-		<div class="col-md-9 table-responsive">
-			<table class="table">
-				<thead class="thead-light">
-					<th>#</th>
-					<th>Name</th>
-					<th>Type</th>
-					<th>Featured</th>
-					<th></th>
-				</thead>
-				<tbody>
-					@foreach ($articles as $article)
-						<tr>
-							<td>{{ $article->id }}</td>
-							<td>{{ $article->title }}</td>
-							<td>{{ $article->articleType->name }}</td>
-							<td>{{ $article->featured }}</td>
-							<td align="right">
- 								<a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="btn btn-sm btn-secondary">Edit</a>
-							</td>
-						</tr>
-					@endforeach
+<div class="row">
+	<div class="col-md-12 table-responsive">
+		<table class="table">
+			<thead class="thead-light">
+				<th>Title</th>
+				<th>Type</th>
+				<th>Categories</th>
+				<th>Tags</th>
+				<th>Date</th>
+				<th>Featured</th>
+			</thead>
+			<tbody>
+				@foreach ($articles as $article)
+				<tr class="{{ $article->archived ? 'alert alert-light' : '' }}">
+					<td><strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="{{ $article->archived ? 'alert-link' : '' }}">{{ $article->title }}</a></strong></td>
+					<td>{{ $article->articleType->name }}</td>
+					<td>
+						@isset($article->categories)
+						@foreach ($article->categories as $category)
+						{{ $category->name }}{{ $loop->last ? '' : ', ' }}
+						@endforeach
+						@endisset
+					</td>
+					<td>Tag 1, Tag 2</td>
+					<td>Published <br>
+						{{ $article->published_at->format('n-d-Y') }}
+					</td>
+					<td>{{ $article->featured }}</td>
+				</tr>
+				@endforeach
 
-				</tbody>
-			</table>
-		</div>
-		<div class="col">
-			<a class="btn btn-primary btn-lg btn-block" href="{{ route('admin.articles.create', $market->slug) }}" role="button">Create Article</a>
-		</div>
+			</tbody>
+		</table>
 
-	</div> <!-- end of row -->
+		{{ $articles->links() }}
+
+	</div>
+	<div class="col">
+
+	</div>
+
+</div> <!-- end of row -->
 
 @endsection
