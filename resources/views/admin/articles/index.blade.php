@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('pageHeader')
-<h1 class="h2">{{ $market->name }} - All Articles</h1>
-<a class="btn btn-primary" href="{{ route('admin.articles.create', $market->slug) }}" role="button">Create Article</a>
+<h1 class="h2 mr-4">Articles</h1>
+<a class="btn btn-primary" href="{{ route('admin.articles.create', $market->slug) }}" role="button">New Article</a>
 @endsection
 
 @section('content')
@@ -12,14 +12,14 @@
 			<thead class="thead-light">
 				<th>Title</th>
 				<th>Type</th>
-				<th>Categories</th>
-				<th>Tags</th>
-				<th>Date</th>
-				<th>Featured</th>
+				<th width="15%">Categories</th>
+				<th width="15%">Tags</th>
+				<th width="10%">Date</th>
+				<th width="1em">Featured</th>
 			</thead>
 			<tbody>
 				@foreach ($articles as $article)
-				<tr class="{{ $article->archived ? 'alert alert-light' : '' }}">
+				<tr class="{{ $article->archived ? 'table-light' : '' }}">
 					<td><strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="{{ $article->archived ? 'alert-link' : '' }}">{{ $article->title }}</a></strong></td>
 					<td>{{ $article->articleType->name }}</td>
 					<td>

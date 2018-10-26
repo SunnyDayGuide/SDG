@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('pageHeader')
-<h1 class="h2">Markets Dashboard</h1>
+<h1 class="h2 mr-4">Markets</h1>
+<a class="btn btn-primary" href="{{ route('admin.markets.create') }}" role="button">New Market</a>
+
 @endsection
 
 @section('content')
@@ -45,12 +47,6 @@
 			</table>
 		</div> <!-- end col -->
 	</div> <!-- end row -->
-
-	<div class="row">
-		<div class="col-md-3 offset-md-9">
-			<a href="{{ route('admin.markets.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Market</a>
-		</div>
-	</div> <!-- end of .row -->
 
 	<h4 class="text-danger">Cannot delete a market until I resolve cascade or softDelete situation</h4>
 	<h5><a href="https://medium.com/asked-io/cascading-softdeletes-with-laravel-5-a1a9335a5b4d" class="text-danger">Check out this solution</h5>

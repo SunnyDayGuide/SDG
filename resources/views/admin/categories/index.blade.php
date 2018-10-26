@@ -1,11 +1,12 @@
 @extends('layouts.admin')
 @section('pageHeader')
-<h1 class="h2">Catagories Dashboard</h1>
+<h1 class="h2 mr-4">Catagories</h1>
+<a class="btn btn-primary" href="{{ route('admin.categories.create') }}" role="button">New Category</a>
 @endsection
 
 @section('content')
 	<div class="row">
-		<div class="col-md-9 table-responsive9">
+		<div class="col-md-12 table-responsive9">
 			<table class="table">
 				<thead class="thead-light">
 					<th>#</th>
@@ -35,8 +36,5 @@
 				</tbody>
 			</table>
 		</div> <!-- end col -->
-		<div class="col">
-			<a class="btn btn-primary btn-lg btn-block" href="{{ route('admin.categories.create') }}" role="button">Create New Category</a>
-		</div>
 	</div> <!-- end row -->
 @endsection
