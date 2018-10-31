@@ -39,6 +39,7 @@ Route::prefix('admin')
 		Route::post('{market}/articles', 'ArticleController@store')->name('articles.store');
 		Route::get('{market}/articles/{article}/edit', 'ArticleController@edit')->name('articles.edit');
 		Route::patch('{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
+		Route::delete('{market}/articles/{article}', 'ArticleController@destroy')->name('articles.destroy');
 });
 
 // Site Routes

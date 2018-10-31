@@ -20,14 +20,20 @@
 			<tbody>
 				@foreach ($articles as $article)
 				<tr class="{{ $article->archived ? 'table-light' : '' }}">
-					<td><strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="{{ $article->archived ? 'alert-link' : '' }}">{{ $article->title }}</a></strong></td>
+					<td><strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="{{ $article->archived ? 'alert-link' : '' }}">{{ $article->title }}</a></strong>
+						<form action="{{ route('admin.articles.destroy', [$market->slug, $article->id]) }}" method="POST">
+							@method('DELETE')
+						    @csrf
+						    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">
+						</form>
+					</td>
 					<td>{{ $article->articleType->name }}</td>
 					<td>
-						@isset($article->categories)
-						@foreach ($article->categories as $category)
-						{{ $category->name }}{{ $loop->last ? '' : ', ' }}
-						@endforeach
-						@endisset
+						@if ($article->categories->count())
+							@foreach ($article->categories as $category)
+							{{ $category->name }}{{ $loop->last ? '' : ', ' }}
+							@endforeach
+						@endif
 					</td>
 					<td>Tag 1, Tag 2</td>
 					<td>Published <br>

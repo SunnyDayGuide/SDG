@@ -43,7 +43,6 @@ class ArticleController extends Controller
     public function create(Market $market)
     {
         $article = new Article;
-        $market = Market::findorFail($market->id);
         $articleTypes = ArticleType::all();
 
         return view('admin.articles.create', compact('market', 'articleTypes', 'article'));
@@ -167,12 +166,9 @@ class ArticleController extends Controller
             'article_type_id' => request('article_type_id')
         ]);
 
+        // get categories and attach them
         $categories = request('categories');
         $article->assignCategories($categories);
-
-        if (request()->wantsJson()) {
-            return response($article, 200);
-        }
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');
@@ -184,8 +180,16 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Market $market, $id)
     {
-        //
+        $article = Article::withArchived()->findorFail($id);
+
+        Storage::disk('public')->delete($article->image);
+        $article->categories()->detach();
+        
+        $article->delete();
+
+        return redirect()->route('admin.articles.index', compact('market'))
+            ->with('flash', 'Your article has been deleted!');
     }
 }

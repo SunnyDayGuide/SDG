@@ -1,6 +1,6 @@
 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
-    @isset($market->id)
+    @isset($market)
     <h5 class="text-uppercase d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
       {{ $market->name }} 
       <span data-feather="sunset"></span>
