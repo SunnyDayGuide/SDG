@@ -70,9 +70,9 @@
 				<div class="form-group">
 					<label for="article_type_id">Article Type</label>
 					<select class="form-control" name="article_type_id">
-						<option selected>Select Type</option>
+						<option value="">Select Type</option>
 						@foreach($articleTypes as $articleType)
-						<option value="{{ old('article_type_id', $articleType->id) }}" {{ $article->article_type_id == $articleType->id ? 'selected' : '' }}>{{ $articleType->name }}</option>
+						<option value="{{ $articleType->id }}" {{ $article->article_type_id == $articleType->id ? 'selected' : '' }}>{{ $articleType->name }}</option>
 						@endforeach
 					</select>
 				</div>

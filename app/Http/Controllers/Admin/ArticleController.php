@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Storage;
-use App\Market;
 use App\Article;
 use App\ArticleType;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
+use App\Market;
+use Illuminate\Http\Request;
+use Storage;
 
 class ArticleController extends Controller
 {
@@ -54,16 +55,8 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Market $market)
+    public function store(ArticleRequest $request, Market $market)
     {        
-        request()->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'image' => 'sometimes|image',
-            'content' => 'required',
-            'article_type_id' => 'required'
-        ]);
-
         $title = request('title');
         $published = date('Y-m-d H:i:s');
 
@@ -121,18 +114,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Market $market, $id)
+    public function update(ArticleRequest $request, Market $market, $id)
     {
         $article = Article::withArchived()->findorFail($id);
-
-        request()->validate([
-            'title' => 'required',
-            'author' => 'required',
-            'image' => 'sometimes|image',
-            'content' => 'required',
-            'article_type_id' => 'required',
-            'archived' => 'required|boolean'
-        ]);
 
         $title = request('title');
 
