@@ -106,9 +106,7 @@
 		<div class="card mb-4">
 			<h5 class="card-header">Tags</h5>
 			<div class="card-body">
-				<h5 class="card-title">Enter some tags here</h5>
-				<p class="card-text">This will be the tag box</p>
-				<a href="#" class="card-link">Add Tags</a>
+				<input type="text" name="tags" id="tags" class="form-control selectized" value="{{ old('tags', $tags) }}">
 			</div>
 		</div>
 

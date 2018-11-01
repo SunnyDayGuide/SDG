@@ -152,6 +152,7 @@ return [
          */
         AdrianMejias\States\StatesServiceProvider::class,
         Webpatser\Countries\CountriesServiceProvider::class,
+        \Conner\Tagging\Providers\TaggingServiceProvider::class,
 
         /*
          * Application Service Providers...

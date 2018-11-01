@@ -31,6 +31,7 @@ class ArticleController extends Controller
         $articles = Article::withArchived()
             ->where('market_id', $market->id)
             ->with('categories')
+            ->with('tagged')
             ->paginate(10);
         
         return view('admin.articles.index', compact('market', 'articles'));
@@ -45,8 +46,9 @@ class ArticleController extends Controller
     {
         $article = new Article;
         $articleTypes = ArticleType::all();
+        $tags = Article::existingTags()->pluck('name');
 
-        return view('admin.articles.create', compact('market', 'articleTypes', 'article'));
+        return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags'));
     }
 
     /**
@@ -89,6 +91,8 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
+        $article->tag(explode(',', $request->tags));
+
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been created!');
     }
@@ -103,8 +107,9 @@ class ArticleController extends Controller
     {
         $article = Article::withArchived()->with('categories')->findorFail($id);
         $articleTypes = ArticleType::all();
+        $tags = Article::existingTags()->pluck('name');
 
-        return view('admin.articles.edit', compact('market', 'article', 'articleTypes'));
+        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags'));
     }
 
     /**
@@ -116,7 +121,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Market $market, $id)
     {
-        $article = Article::withArchived()->findorFail($id);
+        $article = Article::withArchived()->with('tagged')->findorFail($id);
 
         $title = request('title');
 
@@ -154,6 +159,8 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
+        $article->retag(explode(',', $request->tags));
+
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');
     }
@@ -164,7 +171,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Market $market, $id)
+    public function destroy($market, $id)
     {
         $article = Article::withArchived()->findorFail($id);
 

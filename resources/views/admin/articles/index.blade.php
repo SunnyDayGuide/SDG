@@ -8,24 +8,31 @@
 
 <div class="row">
 	<div class="col-md-12 table-responsive">
+		<p><i class="fas fa-star text-success"></i> = Featured</p>
 		<table class="table">
 			<thead class="thead-light">
+				<th></th>
 				<th>Title</th>
 				<th>Type</th>
 				<th width="15%">Categories</th>
 				<th width="15%">Tags</th>
-				<th width="10%">Date</th>
-				<th width="1em">Featured</th>
+				<th width="15%">Date</th>
+				<th>Action</th>
 			</thead>
 			<tbody>
 				@foreach ($articles as $article)
-				<tr class="{{ $article->archived ? 'table-light' : '' }}">
-					<td><strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}" class="{{ $article->archived ? 'alert-link' : '' }}">{{ $article->title }}</a></strong>
-						<form action="{{ route('admin.articles.destroy', [$market->slug, $article->id]) }}" method="POST">
-							@method('DELETE')
-						    @csrf
-						    <input type="submit" class="btn btn-sm btn-secondary" value="Delete">
-						</form>
+				<tr>
+					<td>
+						@if($article->featured == true)
+						<i class="fas fa-star text-success"></i>
+						@endif
+					</td>
+					<td>
+						<strong><a href="{{ route('admin.articles.edit', [$market->slug, $article->id]) }}">{{ $article->title }}</a>
+						@if($article->archived == true)
+						<span>— Archived</span>
+						@endif
+					</strong>
 					</td>
 					<td>{{ $article->articleType->name }}</td>
 					<td>
@@ -35,11 +42,23 @@
 							@endforeach
 						@endif
 					</td>
-					<td>Tag 1, Tag 2</td>
+					<td>
+						@if ($article->tags->count())
+							@foreach ($article->tags as $tag)
+							{{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+							@endforeach
+						@endif
+					</td>
 					<td>Published <br>
 						{{ $article->published_at->format('n-d-Y') }}
 					</td>
-					<td>{{ $article->featured }}</td>
+					<td>
+						<form action="{{ route('admin.articles.destroy', [$market->slug, $article->id]) }}" method="POST">
+							@method('DELETE')
+						    @csrf
+						    <button type="submit" class="btn btn-danger" value="Delete"><i class="far fa-trash-alt"></i></button>
+						</form>
+					</td>
 				</tr>
 				@endforeach
 

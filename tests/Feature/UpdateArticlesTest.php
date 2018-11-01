@@ -26,7 +26,12 @@ class UpdateArticlesTest extends TestCase
         $this->signIn();
 
         $market = 'App\Market'::first();
-        $article = create('App\Article', ['market_id' => $market->id]);
+        $article = create('App\Article', [
+            'market_id' => $market->id, 
+            'image' => $file = UploadedFile::fake()->image('article.jpg')
+        ]);
+
+        Storage::fake('public');
 
         $this->patch(
         	route('admin.articles.update', [
@@ -40,12 +45,20 @@ class UpdateArticlesTest extends TestCase
 	            'featured' => true,
 	            'archived' => false,
 	            'market_id' => $market->id,
-	            'article_type_id' => $article->article_type_id
+	            'article_type_id' => $article->article_type_id,
+                'image' => $file = UploadedFile::fake()->image('article2.jpg')
         	]
         );
 
         $this->get(route('admin.articles.index', ['market' => $market->slug]))
         	->assertSee($updatedArticle['title']);
+
+        Storage::disk('public')
+            ->assertExists('images/'.$market->slug.'/articles/' . $market->code.'-'.'article2.jpg');
+
+        Storage::disk('public')
+            ->assertMissing('images/'.$market->slug.'/articles/' . $market->code.'-'.'article1.jpg');
+
     }
 
     /** @test */
@@ -118,5 +131,5 @@ class UpdateArticlesTest extends TestCase
 
         $this->assertFalse($article->fresh()->archived);
     }
-
+    
 }

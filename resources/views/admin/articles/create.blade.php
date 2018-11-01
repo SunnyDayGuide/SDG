@@ -13,3 +13,13 @@
 @include ('partials._messages')
 
 @endsection
+
+@section('scripts')
+<script>
+var tags = [
+    @foreach ($tags as $tag)
+    {tag: "{{$tag}}" },
+    @endforeach
+];
+</script>
+@endsection
