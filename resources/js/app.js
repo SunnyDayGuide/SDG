@@ -9,6 +9,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.$ = window.jQuery = require('jquery')
+require('selectize');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -20,3 +23,24 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Assign jQuery to the window so that plugins can read it from the global scope. 
+ * Then we are assigning the Selectize Plugin to any input with the id of “tags”.
+ * https://laravel-news.com/how-to-add-tagging-to-your-laravel-app
+ */
+
+$( document ).ready(function() {
+    $('#tags').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+            return {
+                value: input,
+                tag: input
+            }
+        }
+    });
+});
+
