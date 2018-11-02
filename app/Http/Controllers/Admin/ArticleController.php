@@ -90,8 +90,7 @@ class ArticleController extends Controller
             'article_type_id' => request('article_type_id')
         ]);
 
-        $categories = request('categories');
-        $article->assignCategories($categories);
+        $article->assignCategories(request('categories'));
 
         if (request('tags')) {
             $tags = explode(',', $request->tags);
@@ -164,8 +163,7 @@ class ArticleController extends Controller
         ]);
 
         // get categories and attach them
-        $categories = request('categories');
-        $article->assignCategories($categories);
+        $article->assignCategories(request('categories'));
 
         if (request('tags')) {
             $tags = explode(',', $request->tags);
