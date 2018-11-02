@@ -43,9 +43,9 @@
 						@endif
 					</td>
 					<td>
-						@if ($article->tags->count())
-							@foreach ($article->tags as $tag)
-							{{ $tag->name }}{{ $loop->last ? '' : ', ' }}
+						@if ($article->tagged->count())
+							@foreach ($article->tagged as $tag)
+							{{ $tag->tag_name }}{{ $loop->last ? '' : ', ' }}
 							@endforeach
 						@endif
 					</td>

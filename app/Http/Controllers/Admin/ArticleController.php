@@ -112,11 +112,10 @@ class ArticleController extends Controller
     {
         $article = Article::withArchived()
             ->with('categories')
-            ->with('tagged')
             ->findorFail($id);
 
         $articleTypes = ArticleType::all();
-        $tags = Article::existingTags()->pluck('name');
+        $tags = Tag::pluck('name');
 
         return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags'));
     }
