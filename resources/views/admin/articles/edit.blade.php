@@ -18,9 +18,10 @@
 @section('scripts')
 <script>
 var tags = [
-    @foreach ($tags as $tag)
-    {tag: "{{$tag}}" },
-    @endforeach
+	@foreach ($tags as $tag)
+	{tag: "{{ $tag }}"},
+	{value: "{{ $tag }}"},
+	@endforeach
 ];
 </script>
 @endsection

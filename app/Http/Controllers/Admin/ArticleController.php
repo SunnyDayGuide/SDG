@@ -7,6 +7,7 @@ use App\ArticleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Market;
+use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
 use Storage;
 
@@ -46,7 +47,8 @@ class ArticleController extends Controller
     {
         $article = new Article;
         $articleTypes = ArticleType::all();
-        $tags = Article::existingTags()->pluck('name');
+        // $tags = Article::existingTags()->pluck('name');
+        $tags = Tag::pluck('name');
 
         return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags'));
     }
@@ -91,7 +93,10 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
-        $article->tag(explode(',', $request->tags));
+        if (request('tags')) {
+            $tags = explode(',', $request->tags);
+            $article->tag($tags);
+        }
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been created!');
@@ -105,7 +110,11 @@ class ArticleController extends Controller
      */
     public function edit(Market $market, $id)
     {
-        $article = Article::withArchived()->with('categories')->findorFail($id);
+        $article = Article::withArchived()
+            ->with('categories')
+            ->with('tagged')
+            ->findorFail($id);
+
         $articleTypes = ArticleType::all();
         $tags = Article::existingTags()->pluck('name');
 
@@ -121,7 +130,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Market $market, $id)
     {
-        $article = Article::withArchived()->with('tagged')->findorFail($id);
+        $article = Article::withArchived()->findorFail($id);
 
         $title = request('title');
 
@@ -159,7 +168,10 @@ class ArticleController extends Controller
         $categories = request('categories');
         $article->assignCategories($categories);
 
-        $article->retag(explode(',', $request->tags));
+        if (request('tags')) {
+            $tags = explode(',', $request->tags);
+            $article->retag($tags);
+        }
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');

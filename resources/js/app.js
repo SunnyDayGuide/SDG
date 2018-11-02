@@ -35,10 +35,14 @@ $( document ).ready(function() {
         plugins: ['remove_button'],
         delimiter: ',',
         persist: false,
+        valueField: 'tag',
+        labelField: 'tag',
+        searchField: 'tag',
+        options: tags,
         create: function(input) {
             return {
+                tag: input,
                 value: input,
-                tag: input
             }
         }
     });

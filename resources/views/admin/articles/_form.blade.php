@@ -106,7 +106,12 @@
 		<div class="card mb-4">
 			<h5 class="card-header">Tags</h5>
 			<div class="card-body">
-				<input type="text" name="tags" id="tags" class="form-control selectized" value="{{ old('tags', $tags) }}">
+				<input type="text" name="tags" id="tags" class="form-control selectized" 
+				value="@if ($article->tagged->count())
+					@foreach ($article->tagged as $tag)
+					{{ $tag->tag_name }}{{ $loop->last ? '' : ', ' }}
+					@endforeach
+				@endif">
 			</div>
 		</div>
 
