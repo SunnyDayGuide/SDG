@@ -108,12 +108,7 @@
 			<div class="card-body">
 				<input type="text" name="tags" id="tags" class="form-control selectized" 
 				@if ($article->tags->count() > 0)
-				value="@foreach ($article->tags as $tag2){{ $tag2->name }}{{ $loop->last ? '' : ',' }}@endforeach"@endif>
-			</div>
-			<div class="card-footer">
-				@foreach ($article->tagged as $tag)
-					<li>{{ $tag->tag_name }}{{ $loop->last ? ',' : ',' }}</li>
-				@endforeach
+				value="{{ $tags3 }}"@endif>
 			</div>
 		</div>
 

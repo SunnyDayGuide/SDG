@@ -9,6 +9,11 @@
 			<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 			<p>{{ $article->market->name }} {{ $article->articleType->name }}</p>
 		</div> <!-- End Card Body-->
+		<div class="card-footer">
+			@foreach($article->tags as $tag)
+			<a href="#" class="badge badge-secondary">{{ $tag->name }}</a>
+			@endforeach
+		</div>
 	</div> <!-- End Card -->
 </div> <!-- End Collumn -->
 @endforeach

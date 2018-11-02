@@ -116,7 +116,13 @@ class ArticleController extends Controller
         $articleTypes = ArticleType::all();
         $tags = Tag::pluck('name');
 
-        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags'));
+        $tags2 = [];
+        foreach ($article->tags as $tag) {
+           $tags2[] = $tag->name.',';
+        }
+        $tags3 = (implode("",$tags2));
+
+        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags3'));
     }
 
     /**
