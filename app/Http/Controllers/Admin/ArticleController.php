@@ -49,8 +49,9 @@ class ArticleController extends Controller
         $articleTypes = ArticleType::all();
         
         $tags = Tag::pluck('name');
+        $tags2 = (implode(",",$article->tagNames()));
 
-        return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags'));
+        return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags', 'tags2'));
     }
 
     /**
@@ -92,7 +93,7 @@ class ArticleController extends Controller
 
         $article->assignCategories(request('categories'));
 
-        if (request('tags')) {
+        if (isset($request->tags)) {
             $tags = explode(',', $request->tags);
             $article->tag($tags);
         }
@@ -167,10 +168,11 @@ class ArticleController extends Controller
         // get categories and attach them
         $article->assignCategories(request('categories'));
 
-        if (request('tags')) {
+        // if there are tags, set them. otherwise (if null) delete the old tags
+        if (isset($request->tags)) {
             $tags = explode(',', $request->tags);
             $article->retag($tags);
-        }
+        } else $article->untag();
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');

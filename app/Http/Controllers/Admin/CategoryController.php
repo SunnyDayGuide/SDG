@@ -96,6 +96,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         $category->markets()->detach();
+        $category->articles()->detach();
 
         $category->delete();
 
