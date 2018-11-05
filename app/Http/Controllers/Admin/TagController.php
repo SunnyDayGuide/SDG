@@ -89,7 +89,7 @@ class TagController extends Controller
 
          if (isset($request->tag_group)) {
             $tag->setGroup($request->tag_group);
-        } else $tag->removeGroup($tag->group->name);
+        } 
 
         return redirect()->route('admin.tags.index');
     }
