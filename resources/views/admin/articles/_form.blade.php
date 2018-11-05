@@ -106,9 +106,7 @@
 		<div class="card mb-4">
 			<h5 class="card-header">Tags</h5>
 			<div class="card-body">
-				<input type="text" name="tags" id="tags" class="form-control selectized" 
-				@if ($article->tags->count() > 0)
-				value="{{ $tags3 }}"@endif>
+				<input type="text" name="tags" id="tags" class="form-control selectized" value="{{ $tags2 }}">
 			</div>
 		</div>
 

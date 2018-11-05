@@ -47,7 +47,7 @@ class ArticleController extends Controller
     {
         $article = new Article;
         $articleTypes = ArticleType::all();
-        // $tags = Article::existingTags()->pluck('name');
+        
         $tags = Tag::pluck('name');
 
         return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags'));
@@ -116,13 +116,9 @@ class ArticleController extends Controller
         $articleTypes = ArticleType::all();
         $tags = Tag::pluck('name');
 
-        $tags2 = [];
-        foreach ($article->tags as $tag) {
-           $tags2[] = $tag->name.',';
-        }
-        $tags3 = (implode("",$tags2));
+        $tags2 = (implode(",",$article->tagNames()));
 
-        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags3'));
+        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags2'));
     }
 
     /**
