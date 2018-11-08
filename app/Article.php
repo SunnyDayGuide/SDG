@@ -2,17 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Category;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
-use Conner\Tagging\Taggable;
+use Illuminate\Database\Eloquent\Model;
+use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
     use Categoriable;
-    use Taggable;
+    use HasTags;
     
      /**
      * The "booting" method of the model.

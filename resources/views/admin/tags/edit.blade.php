@@ -19,11 +19,11 @@
 				</div>
 
 				<div class="form-group">
-					<label for="tag_group">Tag Group</label>
-					<select class="form-control" name="tag_group">
+					<label for="tag_group">Tag Type</label>
+					<select class="form-control" name="type">
 						<option value="">Select Group</option>
-						@foreach($tagGroups->sortBy('name') as $tagGroup)
-							<option value="{{ $tagGroup->name }}" {{ $tag->tag_group_id == $tagGroup->id ? 'selected' : '' }}>{{ $tagGroup->name }}</option>
+						@foreach($categories->sortBy('name') as $category)
+							<option value="{{ $category->name }}" {{ $tag->type == $category->name ? 'selected' : '' }}>{{ $category->name }}</option>
 						@endforeach
 					</select>
 				</div>

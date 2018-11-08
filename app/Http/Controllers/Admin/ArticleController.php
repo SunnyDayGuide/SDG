@@ -7,8 +7,8 @@ use App\ArticleType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Market;
-use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
+use Spatie\Tags\Tag;
 use Storage;
 
 class ArticleController extends Controller
@@ -32,7 +32,6 @@ class ArticleController extends Controller
         $articles = Article::withArchived()
             ->where('market_id', $market->id)
             ->with('categories')
-            ->with('tagged')
             ->paginate(10);
         
         return view('admin.articles.index', compact('market', 'articles'));
@@ -49,7 +48,7 @@ class ArticleController extends Controller
         $articleTypes = ArticleType::all();
         
         $tags = Tag::pluck('name');
-        $tags2 = (implode(",",$article->tagNames()));
+        $tags2 = json_encode($article->tags());
 
         return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags', 'tags2'));
     }
@@ -95,7 +94,7 @@ class ArticleController extends Controller
 
         if (isset($request->tags)) {
             $tags = explode(',', $request->tags);
-            $article->tag($tags);
+            $article->syncTags($tags);
         }
 
         return redirect()->route('admin.articles.index', compact('market'))
@@ -115,9 +114,11 @@ class ArticleController extends Controller
             ->findorFail($id);
 
         $articleTypes = ArticleType::all();
+
         $tags = Tag::pluck('name');
 
-        $tags2 = (implode(",",$article->tagNames()));
+        $tags2 = json_decode($article->tags->pluck('name'));
+        $tags2 = implode(",",$tags2);
 
         return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags2'));
     }
@@ -168,11 +169,10 @@ class ArticleController extends Controller
         // get categories and attach them
         $article->assignCategories(request('categories'));
 
-        // if there are tags, set them. otherwise (if null) delete the old tags
         if (isset($request->tags)) {
             $tags = explode(',', $request->tags);
-            $article->retag($tags);
-        } else $article->untag();
+            $article->syncTagsWithType($tags);
+        }
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');

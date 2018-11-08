@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Article;
+use App\Category;
 use App\Http\Controllers\Controller;
-use Conner\Tagging\Model\Tag;
-use Conner\Tagging\Model\TagGroup;
 use Illuminate\Http\Request;
+use Spatie\Tags\Tag;
 
 class TagController extends Controller
 {
@@ -17,7 +17,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::with('group')->get();
+        $tags = Tag::all();
 
         return view('admin.tags.index', compact('tags'));
     }
@@ -29,9 +29,9 @@ class TagController extends Controller
      */
     public function create()
     {
-        $tagGroups = TagGroup::all();
+        $categories = Category::all();
 
-        return view('admin.tags.create', compact('tagGroups'));
+        return view('admin.tags.create', compact('categories'));
     }
 
     /**
@@ -47,11 +47,10 @@ class TagController extends Controller
             'name' => 'required',
         ]);
 
-        $tag = Tag::create(request(['name']));
+        $name = $request->name;
+        $type = $request->type;
 
-        if (isset($request->tag_group)) {
-            $tag->setGroup($request->tag_group);
-        }
+        $tag = Tag::create($name, $type);
 
         return redirect()->route('admin.tags.index');
     }
@@ -59,37 +58,35 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        $tag = Tag::find($id);
-        $tagGroups = TagGroup::all();
+        $categories = Category::all();
 
-        return view('admin.tags.edit', compact('tag', 'tagGroups'));
+        return view('admin.tags.edit', compact('tag', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        $tag = Tag::findorFail($id);
+        $tag = Tag::findorFail($tag->id);
 
         request()->validate([
             'name' => 'required',
         ]);
 
-        $tag->update(request(['name']));
+        $tag->name = $request->name;
+        $tag->type = $request->type;
 
-         if (isset($request->tag_group)) {
-            $tag->setGroup($request->tag_group);
-        } 
+        $tag->save();
 
         return redirect()->route('admin.tags.index');
     }

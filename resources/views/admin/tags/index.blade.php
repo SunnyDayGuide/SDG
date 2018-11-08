@@ -11,8 +11,8 @@
 				<thead class="thead-light">
 					<th>Name</th>
 					<th>Slug</th>
-					<th>Count</th>
-					<th>Tag Group</th>
+					<th>Tag Type</th>
+					<th>Order</th>
 					<th></th>
 				</thead>
 				<tbody>
@@ -20,12 +20,12 @@
 						<tr>
 							<td>{{ $tag->name }}</td>
 							<td>{{ $tag->slug }}</td>
-							<td>{{ $tag->count }}</td>
 							<td>
-								@isset ($tag->group)
-								{{ $tag->group->name }}
+								@isset ($tag->type)
+								{{ $tag->type }}
 								@endisset
-							</td>
+								</td>
+							<td>{{ $tag->order_column }}</td>
 							<td align="right">
 								<a href="{{ route('admin.tags.edit', $tag->id) }}" class="btn btn-sm btn-secondary">Edit</a>
 							</td>

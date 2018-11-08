@@ -18,11 +18,11 @@
 				</div>
 
 				<div class="form-group">
-					<label for="tag_group">Tag Group</label>
-					<select class="form-control" name="tag_group">
-						<option value="">Select Group</option>
-						@foreach($tagGroups->sortBy('name') as $tagGroup)
-							<option value='{{ $tagGroup->name }}'>{{ $tagGroup->name }}</option>
+					<label for="type">Tag Type</label>
+					<select class="form-control" name="type">
+						<option value="">Select Type</option>
+						@foreach($categories->sortBy('name') as $category)
+							<option value="{{ $category->name }}">{{ $category->name }}</option>
 						@endforeach
 					</select>
 				</div>
