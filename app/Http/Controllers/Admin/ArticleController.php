@@ -171,8 +171,8 @@ class ArticleController extends Controller
 
         if (isset($request->tags)) {
             $tags = explode(',', $request->tags);
-            $article->syncTagsWithType($tags);
-        }
+            $article->syncTags($tags);
+        } else $article->tags()->detach();
 
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been updated!');
