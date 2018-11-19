@@ -113,7 +113,6 @@ class Article extends Model
 
     /**
      * Scope a query to only include articles of a given market.
-     * I don't think we even need this anymore
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $type

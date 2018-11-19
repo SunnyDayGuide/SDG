@@ -20,6 +20,11 @@
 								<p class="card-text">{{ $article->excerpt }}</p>
 								<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 							</div> <!-- End Card Body-->
+							<div class="card-footer">
+								@foreach($article->tags as $tag)
+								<a href="#" class="badge badge-secondary">{{ $tag->name }}</a>
+								@endforeach
+							</div>
 						</div> <!-- End Card -->
 					</div> <!-- End Collumn -->
 				@endforeach
@@ -27,8 +32,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="text-center">
-{{-- 					{!! $tripIdeas->links() !!}
- --}}					</div>
+					{!! $tripIdeas->links() !!}
+					</div>
 				</div>
 			</div> <!-- End Row -->
 		</section>
@@ -50,13 +55,7 @@
 					</div> <!-- End Collumn -->
 				@endforeach
 			</div> <!-- End Row -->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="text-center">
-{{-- 					{!! $visitorInfos->links() !!}
- --}}					</div>
-				</div>
-			</div> <!-- End Row -->
+
 		</section>
 
 		<section>
@@ -76,13 +75,7 @@
 					</div> <!-- End Collumn -->
 				@endforeach
 			</div> <!-- End Row -->
-			<div class="row">
-				<div class="col-md-12">
-					<div class="text-center">
-{{-- 					{!! $advSpotlights->links() !!}
- --}}					</div>
-				</div>
-			</div> <!-- End Row -->
+
 		</section>
 
 	</div>

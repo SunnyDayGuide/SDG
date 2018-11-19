@@ -27,20 +27,9 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $tripIdeas = $market->articles()
-            ->orderBy('published_at', 'desc')
-            ->where('article_type_id', 1)
-            ->get();
-
-        $visitorInfos = $market->articles()
-            ->orderBy('published_at', 'desc')
-            ->where('article_type_id', 2)
-            ->get();
-
-        $advSpotlights = $market->articles()
-            ->orderBy('published_at', 'desc')
-            ->where('article_type_id', 3)
-            ->get();
+        $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
+        $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
+        $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
 
         return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
@@ -54,6 +43,19 @@ class ArticleController extends Controller
     public function show(Market $market, Article $article)
     {
         return view('articles.show', compact('article', 'market'));
+    }
+
+    /**
+     * get all the articles in a market.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public static function getArticles(Market $market)
+    {
+        return Article::byMarket($market)
+            ->with('tags')
+            ->orderBy('published_at', 'desc');
     }
 
 }
