@@ -19,18 +19,18 @@ class CategoryController extends Controller
     public function show(Market $market, Category $category)
     {
         // get the market category lead page info
-        $category = $this->getMarketCategory($market, $category);
+        $lead = $this->getMarketCategory($market, $category);
 
         // display the related articles
-        $articles = $market->getFeaturedArticles()
-            ->where('article_type_id', 1);
-        // $articles = $this->getArticles($market);
+        $articles = $category->articles()
+            ->where('market_id', $market->id)
+            ->get();        
 
         // TO-DO: display the related advertisers
         // TO-DO: display the related events
         
         //show the lead page
-        return view('categories.show', compact('market', 'category', 'articles'));
+        return view('categories.show', compact('market', 'articles', 'lead'));
     }
 
     protected function getMarketCategory(Market $market, Category $category)

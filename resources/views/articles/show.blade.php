@@ -11,7 +11,7 @@
 		</div> <!-- End Row -->
 		<div class="row">
 			<div class="col-md-8">
-				<img class="img-fluid mb-2" src="{{ $article->image }}" alt="">
+				<img class="img-fluid mb-2" src="{{ asset($article->image) }}" alt="">
 				<div>{{ $article->content }}</div>
 			</div> <!-- End Collumn -->
 		</div> <!-- End Row -->
