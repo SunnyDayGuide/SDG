@@ -23,6 +23,7 @@ class CategoryController extends Controller
 
         // display the related articles
         $articles = $category->articles()
+            ->with('tags')
             ->where('market_id', $market->id)
             ->get();        
 

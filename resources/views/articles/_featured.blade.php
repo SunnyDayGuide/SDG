@@ -1,5 +1,5 @@
 @foreach ($articles as $article)
-<div class="col-lg-4">
+<div class="col-lg-4 card-deck">
 	<div class="card mb-4">
 		<img class="card-img-top" src="{{ asset($article->image) }}" alt="">
 		<div class="card-body">
@@ -9,11 +9,13 @@
 			<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 			<p>{{ $article->market->name }} {{ $article->articleType->name }}</p>
 		</div> <!-- End Card Body-->
+		@if ($article->tags->count())
 		<div class="card-footer">
 			@foreach($article->tags as $tag)
 			<a href="#" class="badge badge-secondary">{{ $tag->name }}</a>
 			@endforeach
 		</div>
+		@endif
 	</div> <!-- End Card -->
 </div> <!-- End Collumn -->
 @endforeach

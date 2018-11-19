@@ -116,7 +116,7 @@ class Market extends Model
     {
         return $this->articles()
             ->where('featured', 1)
-            ->get();
+            ->with('tags');
     }
 
     public function state()
