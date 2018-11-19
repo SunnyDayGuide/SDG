@@ -50,5 +50,8 @@ Route::prefix('{market}')->group(function () {
 	Route::get('articles/{article}', 'ArticleController@show');
 	Route::get('{category}', 'CategoryController@show');
 
+	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
+	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
+
 });
 

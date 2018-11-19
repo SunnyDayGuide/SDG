@@ -27,9 +27,11 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
-        $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
-        $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
+        $articles = $market->articles()->with('tags')->orderBy('published_at', 'desc');
+
+        $tripIdeas = $articles->where('article_type_id', 1)->paginate(6);
+        $visitorInfos = $articles->where('article_type_id', 2)->get();
+        $advSpotlights = $articles->where('article_type_id', 3)->get();
 
         return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
@@ -53,9 +55,21 @@ class ArticleController extends Controller
      */
     public static function getArticles(Market $market)
     {
-        return Article::byMarket($market)
-            ->with('tags')
-            ->orderBy('published_at', 'desc');
+        return $market->articles()->with('tags')->orderBy('published_at', 'desc');
+    }
+
+    public function rate(Market $market, Article $article)
+    {
+        $article->gainRating();
+
+        return back();
+    }
+
+    public function rateno(Market $market, Article $article)
+    {
+        $article->loseRating();
+        
+        return back();
     }
 
 }

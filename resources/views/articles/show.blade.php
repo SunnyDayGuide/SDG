@@ -15,6 +15,21 @@
 				<div>{{ $article->content }}</div>
 			</div> <!-- End Collumn -->
 		</div> <!-- End Row -->
+		<div class="row">
+			<div class="col">
+				<h4>Was this article helpful?</h4>
+				<form method="POST" action="{{ route('articles.rate', [$market->slug, $article]) }}">
+					@method('PATCH')
+					@csrf
+					<button type="submit" class="btn btn-primary">YES</button>
+				</form>
+				<form method="POST" action="{{ route('articles.rateno', [$market->slug, $article]) }}">
+					@method('PATCH')
+					@csrf
+					<button type="submit" class="btn btn-primary">NO</button>
+				</form>
+			</div>
+		</div>
 	</div>
 
 @endsection

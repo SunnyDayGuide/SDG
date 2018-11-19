@@ -123,4 +123,22 @@ class Article extends Model
         return $query->where('market_id', $market->id);
     }
 
+    /**
+     * Award rating points to the model.
+     */
+    public function gainRating()
+    {
+        $this->increment('rating', 1);
+    }
+
+    /**
+     * Award rating points to the model.
+     */
+    public function loseRating()
+    {
+        if ($this->rating > 0) {
+            $this->decrement('rating', 1);
+        }
+        
+    }
 }
