@@ -16,12 +16,6 @@
 @endsection
 
 @section('scripts')
-<script>
-var tags = [
-	@foreach ($tags as $tag)
-	{tag: "{{ $tag }}"},
-	{value: "{{ $tag }}"},
-	@endforeach
-];
-</script>
+@include ('admin.partials._tagscript')
+
 @endsection
