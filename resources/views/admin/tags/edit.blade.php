@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
-			<form method="POST" action="{{ route('admin.tags.update', $tag->id) }}">
+			<form method="POST" action="{{ route('admin.tags.update', $tag->slug) }}">
 			@method('PATCH')
 			@csrf
 

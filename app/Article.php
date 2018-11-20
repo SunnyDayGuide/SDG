@@ -3,10 +3,12 @@
 namespace App;
 
 use App\Category;
+use App\CustomTag;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Tags\HasTags;
 
 class Article extends Model
@@ -139,6 +141,17 @@ class Article extends Model
         if ($this->rating > 0) {
             $this->decrement('rating', 1);
         }
-        
+    }
+
+    public static function getTagClassName(): string
+    {
+        return CustomTag::class;
+    }
+
+    public function tags(): MorphToMany
+    {
+        return $this
+            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
+            ->orderBy('order_column');
     }
 }

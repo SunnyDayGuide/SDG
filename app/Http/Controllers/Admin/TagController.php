@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Category;
+use App\CustomTag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Tags\Tag;
@@ -17,7 +18,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+        $tags = CustomTag::all();
 
         return view('admin.tags.index', compact('tags'));
     }
@@ -47,10 +48,7 @@ class TagController extends Controller
             'name' => 'required',
         ]);
 
-        $name = $request->name;
-        $type = $request->type;
-
-        $tag = Tag::create($name, $type);
+        $tag = CustomTag::create(request(['name', 'type']));
 
         return redirect()->route('admin.tags.index');
     }
@@ -61,7 +59,7 @@ class TagController extends Controller
      * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(CustomTag $tag)
     {
         $categories = Category::all();
 
@@ -75,9 +73,9 @@ class TagController extends Controller
      * @param  int  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, CustomTag $tag)
     {
-        $tag = Tag::findorFail($tag->id);
+        $tag = CustomTag::findorFail($tag->id);
 
         request()->validate([
             'name' => 'required',

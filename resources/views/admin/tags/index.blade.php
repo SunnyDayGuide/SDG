@@ -27,7 +27,7 @@
 								</td>
 							<td>{{ $tag->order_column }}</td>
 							<td align="right">
-								<a href="{{ route('admin.tags.edit', $tag->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+								<a href="{{ route('admin.tags.edit', $tag->slug) }}" class="btn btn-sm btn-secondary">Edit</a>
 							</td>
 						</tr>
 					@endforeach
