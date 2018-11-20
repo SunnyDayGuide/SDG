@@ -12,7 +12,7 @@
 		@if ($article->tags->count())
 		<div class="card-footer">
 			@foreach($article->tags as $tag)
-			<a href="#" class="badge badge-secondary">{{ $tag->name }}</a>
+			<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="badge badge-secondary">{{ $tag->name }}</a>
 			@endforeach
 		</div>
 		@endif

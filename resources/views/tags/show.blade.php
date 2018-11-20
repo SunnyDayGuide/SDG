@@ -19,6 +19,24 @@
 			</div>
 		</div> <!-- End Row -->
 
+		<div class="row mt-5 bg-primary">
+			<div class="col-md-12">
+				<h2>Related Advertisers</h2>
+				<div class="row">
+					<p>a list of advertisers here</p>
+				</div>
+			</div>
+		</div> <!-- End Row -->
+
+		<div class="row mt-5 bg-danger">
+			<div class="col-md-12">
+				<h2>Related Events</h2>
+				<div class="row">
+					<p>a list of event here</p>
+				</div>
+			</div>
+		</div> <!-- End Row -->
+
 	</div>
 
 @endsection
