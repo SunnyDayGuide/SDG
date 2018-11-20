@@ -15,8 +15,21 @@
 				<div>{{ $article->content }}</div>
 			</div> <!-- End Collumn -->
 		</div> <!-- End Row -->
-		<div class="row">
+		<div class="row mt-3">
 			<div class="col">
+				<div class="alert alert-primary feedback">
+					<h4>Was this article helpful?</h4>
+					<div class="voting">
+						<a class="voting-upvote enabled" rel="nofollow" role="button" data-direction="up" data-type="post" data-nonce="599c4d2ed2" data-id="1475" data-allow="1" data-display="standard" href="#">
+							<i class="fas fa-check-square"></i>
+							<span>Yes</span>
+						</a>
+						<a class="voting-downvote enabled" rel="nofollow" role="button" data-direction="down" data-type="post" data-nonce="599c4d2ed2" data-id="1475" data-allow="1" data-display="standard" href="#">
+							<i class="hkb-upvote-icon"></i>
+							<span>No</span>
+						</a>
+					</div>
+				</div>
 				<h4>Was this article helpful?</h4>
 				<form method="POST" action="{{ route('articles.rate', [$market->slug, $article]) }}">
 					@method('PATCH')
