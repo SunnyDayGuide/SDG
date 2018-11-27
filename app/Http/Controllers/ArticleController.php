@@ -27,11 +27,9 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles = $market->articles()->with('tags')->orderBy('published_at', 'desc');
-
-        $tripIdeas = $articles->where('article_type_id', 1)->paginate(6);
-        $visitorInfos = $articles->where('article_type_id', 2)->get();
-        $advSpotlights = $articles->where('article_type_id', 3)->get();
+        $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
+        $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
+        $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
 
         return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }

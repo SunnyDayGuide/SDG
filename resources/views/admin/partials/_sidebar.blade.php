@@ -1,4 +1,4 @@
-<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+<nav class="col-sm-3 col-md-2 d-none d-md-block bg-light sidebar">
   <div class="sidebar-sticky">
     @isset($market)
     <h5 class="text-uppercase d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -67,10 +67,17 @@
           <span data-feather="tag"></span>
           Tags
         </a>
-      </li>      <li class="nav-item">
-        <a class="nav-link" href="#">
+      </li>      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.users.index') }}">
           <span data-feather="users"></span>
           Users
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.departments.index') }}">
+          <span data-feather="users"></span>
+          Departments
         </a>
       </li>
     </ul>

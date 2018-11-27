@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-<div class="container">
 	<div class="row mb-3">
 		<div class="col-md-12 table-responsive">
 			<table class="table">
@@ -51,5 +50,4 @@
 	<h4 class="text-danger">Cannot delete a market until I resolve cascade or softDelete situation</h4>
 	<h5><a href="https://medium.com/asked-io/cascading-softdeletes-with-laravel-5-a1a9335a5b4d" class="text-danger">Check out this solution</h5>
 
-</div> <!-- end container -->
 @endsection
