@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             MarketsTableSeeder::class,
             MarketCategoryTableSeeder::class,
-            ArticleTypesTableSeeder::class
+            ArticleTypesTableSeeder::class,
+            DepartmentsTableSeeder::class
         ]);
     }
 }
