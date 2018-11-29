@@ -17,10 +17,17 @@
 					@foreach ($departments as $department)
 						<tr>
 							<td>{{ $department->name }}</td>
-							<td>{{ count($department->users) }}</td>
+							<td>{{ count($department->employees) }}</td>
 							<td align="right">
-								<a href="{{ route('admin.departments.show', $department->id) }}" class="btn btn-sm btn-secondary">View</a>
+								
+								@if($department->manager)
+									<a href="{{ route('admin.departments.show', $department->id) }}" class="btn btn-sm btn-secondary">View</a>
+								@else
+									<a href="#" class="btn btn-sm btn-danger disabled">Please assign manager</a>
+								@endif
+
 								<a href="{{ route('admin.departments.edit', $department->id) }}" class="btn btn-sm btn-secondary">Edit</a>
+
 								<div class="d-inline-block">
 									<form action="{{ route('admin.departments.destroy', $department->id) }}" method="POST">
 										@method('DELETE')

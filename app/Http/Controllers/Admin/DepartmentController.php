@@ -25,6 +25,8 @@ class DepartmentController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * I am just grabbing all of the employees because there is likely zero chance that we 
+     * will create a department and assign it a manager/employee that doesn't aready exist
      */
     public function create()
     {
@@ -56,9 +58,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        $employees = $department->users;
-
-        return view('admin.departments.show', compact('department', 'employees'));
+        return view('admin.departments.show', compact('department'));
     }
 
     /**
@@ -98,7 +98,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->users()->detach();
+        $department->employees()->detach();
+
         $department->delete();
 
         return redirect()->route('admin.departments.index');

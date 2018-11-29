@@ -25,6 +25,8 @@ Route::prefix('admin')
 		Route::get('{market}', 'DashboardController@show')->name('market');
 
 		// Superadmin Routes (Me!)
+		Route::resource('master/users', 'UserController');
+		Route::resource('master/departments', 'DepartmentController');
 		Route::resource('master/categories', 'CategoryController')->except(['show']);
 		Route::resource('master/markets', 'MarketController');
 		Route::get('master/{market}/category/create', 'MarketCategoryController@create')->name('marketCategory.create');

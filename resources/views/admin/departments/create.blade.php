@@ -31,20 +31,10 @@
 					<button type="submit" class="btn btn-success btn-lg">Add Department</button>
 				</div>
 
-				@if (Session::has('success'))
-					<div class="alert alert-success" role="alert">
-						<strong>Success:</strong> {{ Session::get('success') }}
-					</div>
-				@endif
-
-				@if (count($errors))
-			        <ul class="alert alert-danger">
-			            @foreach ($errors->all() as $error)
-			                <li>{{ $error }}</li>
-			            @endforeach
-			        </ul>
-			    @endif
 			</form>
+
+			@include ('partials._messages')
+			
 		</div>
 	</div>
 </div>
