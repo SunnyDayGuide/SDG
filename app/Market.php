@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
@@ -53,34 +54,7 @@ class Market extends Model
         Storage::disk('public')->delete($images);
     }
 
-/**
- * Determine if the market has the given category.
- *
- * @param mixed $category
- * @return boolean
- */
- public function hasCategory($category)
- {
-    // If you pass a category 'name' in, check by 'name'
-    if (is_string($category)) {
-        return $this->categories->contains('name', $category);
-    }
-    
-    // If you pass a category id in, check by id
-    if (is_numeric($category)) {
-        return $this->categories->contains('id', $category);
-    }
-    
-    // If you pass a Category object in, compare each of your category's id to this one's
-    foreach ($this->category as $market_category) {
-        if ($market_category->id == $category->id) {
-            return true;
-        }
-    }
-    
-    // If nothing matched, return false
-    return false;
- }
+
 
 
     /**
@@ -112,16 +86,27 @@ class Market extends Model
         return $this->hasMany(Article::class);
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
+    public function users()
+    {
+        $this->belongsToMany(User::class, 'user_market');
+    }
+
+
+    /**
+     * Get a market's featured articles.
+     *
+     * @return a collection of Articles
+     */
     public function getFeaturedArticles()
     {
         return $this->articles()
             ->where('featured', 1)
             ->with('tags');
-    }
-
-    public function state()
-    {
-        return $this->belongsTo(State::class);
     }
 
 }

@@ -12,7 +12,9 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
         User::truncate();
+        Schema::enableForeignKeyConstraints();
 
         collect([
             [
