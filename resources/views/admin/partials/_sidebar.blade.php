@@ -3,80 +3,85 @@
     @isset($market)
     <h5 class="text-uppercase d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
       {{ $market->name }} 
-      <span data-feather="sunset"></span>
     </h5>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link active" href="{{ route('admin.market', $market->slug) }}">
-          <span data-feather="home"></span>
+        <a class="nav-link" href="{{ route('admin.market', $market->slug) }}">
+          <i class="mr-1 fas fa-tachometer-alt"></i>
           Dashboard <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="shopping-bag"></span>
+          <i class="mr-1 fas fa-ad"></i>
           Advertisers
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="mr-1 fas fa-bed"></i>
+          Lodging
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.articles.index', $market->slug) }}">
-          <span data-feather="file-text"></span>
+          <i class="mr-1 fas fa-file"></i>
           Articles
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="calendar"></span>
+          <i class="mr-1 fas fa-calendar"></i>
           Events
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="scissors"></span>
+          <i class="mr-1 fas fa-cut"></i>
           Coupons
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">
-          <span data-feather="aperture"></span>
-          Logos?
+          <i class="mr-1 fas fa-quidditch"></i>
+          Logos
         </a>
       </li>
     </ul>
     @endisset
 
-    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+    <h5 class="text-uppercase d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
       Superadmin Only
-        <span data-feather="settings"></span>
-    </h6>
+        <i class="fas fa-user-secret"></i>
+    </h5>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.markets.index') }}">
-          <span data-feather="book-open"></span>
+          <i class="mr-1 fas fa-book-open"></i>
           Markets
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.categories.index') }}">
-          <span data-feather="clipboard"></span>
+          <i class="mr-1 fas fa-list"></i>
           Categories
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.tags.index') }}">
-          <span data-feather="tag"></span>
+          <i class="mr-1 fas fa-tag"></i>
           Tags
         </a>
       </li>      
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.users.index') }}">
-          <span data-feather="users"></span>
+          <i class="mr-1 fas fa-user"></i>
           Users
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.departments.index') }}">
-          <span data-feather="users"></span>
+          <i class="mr-1 fas fa-users"></i>
           Departments
         </a>
       </li>

@@ -29,8 +29,8 @@
 							</td>
 							<td>
 								@if ($user->markets->count())
-									@foreach ($user->markets as $market)
-									{{ $market->code }}{{ $loop->last ? '' : ', ' }}
+									@foreach ($user->markets as $userMarket)
+									{{ $userMarket->code }}{{ $loop->last ? '' : ', ' }}
 									@endforeach
 								@endif
 							</td>
