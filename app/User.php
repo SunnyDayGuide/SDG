@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Department;
+use App\Events\UserCreated;
 use App\Market;
 use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
@@ -29,6 +30,10 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class
     ];
 
     public function departments()

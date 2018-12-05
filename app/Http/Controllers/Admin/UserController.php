@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Department;
+use App\Events\UserCreated;
 use App\Http\Controllers\Controller;
-use App\Mail\UserCreated;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,18 +14,14 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    /**
-     * @var Illuminate\Auth\Passwords\PasswordBroker 
-     */
-    private $passwordBroker;
 
     /**
      * PasswordResetController constructor.
      * @param Illuminate\Auth\Passwords\PasswordBroker $passwordBroker
      */
-    public function __construct(\Illuminate\Auth\Passwords\PasswordBroker $passwordBroker)
+    public function __construct()
     {
-        $this->passwordBroker = $passwordBroker;
+        //
     }
 
     /**
@@ -73,8 +69,6 @@ class UserController extends Controller
 
         $user->departments()->attach(request('departments'));
         $user->markets()->attach(request('markets'));
-
-        $this->sendPasswordReset($user);
 
         return redirect()->route('admin.users.index');
     }
@@ -144,19 +138,4 @@ class UserController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-
-    public function sendPasswordReset($user)
-    {
-        $user = User::where("email", $user->email)->first();
-        $token = $this->passwordBroker->createToken($user);
-
-        Mail::to($user->email)->send(
-            new UserCreated($user, $token)
-        );
-
-        // This is old manual way. Using app password broker here instead
-        // method from here: https://laracasts.com/discuss/channels/laravel/reset-password-manually-without-email
-        // $reset_token = hash_hmac('sha256', Str::random(40), $this->hashKey);
-        // DB::table('password_resets')->insert( ['email' => $user->email, 'token' => $reset_token, 'created_at' => Carbon::now()] );
-    }
 }
