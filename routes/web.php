@@ -35,6 +35,7 @@ Route::prefix('admin')
 		Route::patch('master/{market}/category/{category}', 'MarketCategoryController@update')->name('marketCategory.update');
 		Route::delete('master/{market}/category/{category}', 'MarketCategoryController@destroy')->name('marketCategory.destroy');
 		Route::resource('master/tags', 'TagController')->except(['show']);
+		Route::resource('master/freemail-types', 'FreemailTypeController')->except(['show']);
 
 		// regular admin user routes (Jackie, etc)
 		Route::get('{market}/articles', 'ArticleController@index')->name('articles.index');

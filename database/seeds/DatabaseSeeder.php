@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             MarketsTableSeeder::class,
             MarketCategoryTableSeeder::class,
             ArticleTypesTableSeeder::class,
-            DepartmentsTableSeeder::class
+            DepartmentsTableSeeder::class,
+            FreemailTypesTableSeeder::class
         ]);
     }
 }
