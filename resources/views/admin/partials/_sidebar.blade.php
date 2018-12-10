@@ -85,6 +85,12 @@
           Departments
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.freemails.index') }}">
+          <i class="mr-1 fas fa-mail-bulk"></i>
+          Freemail
+        </a>
+      </li>
     </ul>
   </div>
   </nav>

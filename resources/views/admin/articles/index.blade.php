@@ -68,10 +68,7 @@
 		{{ $articles->links() }}
 
 	</div>
-	<div class="col">
-
-	</div>
-
+	
 </div> <!-- end of row -->
 
 @endsection

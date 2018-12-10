@@ -18,7 +18,7 @@ class FreemailTypeController extends Controller
     {
         $freemailTypes = FreemailType::all();
 
-        return view('admin.freemail.types-index', compact('freemailTypes'));
+        return view('admin.freemails.types-index', compact('freemailTypes'));
     }
 
     /**
@@ -28,7 +28,7 @@ class FreemailTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.freemail.types-create');
+        return view('admin.freemails.types-create');
     }
 
     /**
@@ -54,7 +54,7 @@ class FreemailTypeController extends Controller
      */
     public function edit(FreemailType $freemailType)
     {
-        return view('admin.freemail.types-edit', compact('freemailType'));
+        return view('admin.freemails.types-edit', compact('freemailType'));
     }
 
     /**
