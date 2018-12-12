@@ -10,6 +10,7 @@
         "doctrine/dbal": "^2.8",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
+        "laravel/nova": "*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-tags": "^2.1",
@@ -39,6 +40,12 @@
         },
         "files": ["tests/utilities/functions.php"]
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": [

@@ -22,7 +22,7 @@ Route::prefix('admin')
 	->namespace('Admin')
 	->group(function () {
 		Route::get('/', 'DashboardController@index')->name('home');
-		Route::get('{market}', 'DashboardController@show')->name('market');
+		Route::get('markets/{market}', 'DashboardController@show')->name('market');
 
 		// Superadmin Routes (Me!)
 		Route::resource('master/users', 'UserController');
@@ -39,16 +39,16 @@ Route::prefix('admin')
 		Route::resource('master/freemails', 'FreemailController');
 
 		// regular admin user routes (Jackie, etc)
-		Route::get('{market}/articles', 'ArticleController@index')->name('articles.index');
-		Route::get('{market}/articles/create', 'ArticleController@create')->name('articles.create');
-		Route::post('{market}/articles', 'ArticleController@store')->name('articles.store');
-		Route::get('{market}/articles/{article}/edit', 'ArticleController@edit')->name('articles.edit');
-		Route::patch('{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
-		Route::delete('{market}/articles/{article}', 'ArticleController@destroy')->name('articles.destroy');
+		Route::get('markets/{market}/articles', 'ArticleController@index')->name('articles.index');
+		Route::get('markets/{market}/articles/create', 'ArticleController@create')->name('articles.create');
+		Route::post('markets/{market}/articles', 'ArticleController@store')->name('articles.store');
+		Route::get('markets/{market}/articles/{article}/edit', 'ArticleController@edit')->name('articles.edit');
+		Route::patch('markets/{market}/articles/{article}', 'ArticleController@update')->name('articles.update');
+		Route::delete('markets/{market}/articles/{article}', 'ArticleController@destroy')->name('articles.destroy');
 });
 
 // Site Routes
-Route::prefix('{market}')->group(function () {
+Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
     Route::get('articles', 'ArticleController@index')->name('articles');
 	Route::get('articles/{article}', 'ArticleController@show');

@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
         collect([
             [
                 'name' => 'Meredith',
-                'email' => 'meredith@sunnydayguide.com',
+                'email' => 'meredith@sdg.com',
                 'password' => bcrypt('password')
             ],
             [
