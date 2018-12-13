@@ -51,9 +51,9 @@ Route::prefix('admin')
 Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
     Route::get('articles', 'ArticleController@index')->name('articles');
-	Route::get('articles/{article}', 'ArticleController@show');
-	Route::get('{category}', 'CategoryController@show');
-	Route::get('tags/{tag}', 'TagController@show');
+	Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
+	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
+	Route::get('{category}', 'CategoryController@show')->name('categories.show');
 
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
