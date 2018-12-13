@@ -22,7 +22,7 @@
 					<label for="manager_id">Manager</label>
 					<select class="form-control" name="manager_id">
 						<option value="">Select Manager</option>
-						@foreach($department->employees as $employee)
+						@foreach($employees as $employee)
 						<option value="{{ $employee->id }}" {{ $department->manager_id == $employee->id ? 'selected' : '' }}>{{ $employee->name }}</option>
 						@endforeach
 					</select>

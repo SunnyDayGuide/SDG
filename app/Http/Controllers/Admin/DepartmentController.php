@@ -69,7 +69,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        $employees = User::all();
+        $employees = $department->employees;
 
         return view('admin.departments.edit', compact('department', 'employees'));
     }
