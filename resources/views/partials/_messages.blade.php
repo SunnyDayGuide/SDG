@@ -1,6 +1,6 @@
-@if (Session::has('success'))
+@if (session('message'))
 	<div class="alert alert-success" role="alert">
-		<strong>Success:</strong> {{ Session::get('success') }}
+		{{ session('message') }}
 	</div>
 @endif
 

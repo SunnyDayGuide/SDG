@@ -97,6 +97,8 @@ class ArticleController extends Controller
             $article->syncTags($tags);
         }
 
+        session()->flash('message', 'The article has been created.');
+
         return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been created!');
     }

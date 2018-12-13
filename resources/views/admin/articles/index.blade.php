@@ -71,4 +71,6 @@
 	
 </div> <!-- end of row -->
 
+@include ('partials._messages')
+
 @endsection
