@@ -23,9 +23,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Route::pattern('market', '^(?!nova).*$');
 
         parent::boot();
+
     }
 
     /**
