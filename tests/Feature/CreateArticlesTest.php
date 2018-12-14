@@ -25,10 +25,10 @@ class CreateArticlesTest extends TestCase
 
         $market = 'App\Market'::find(1);
 
-        $this->get("admin/{$market->slug}/articles/create")
+        $this->get(route('admin.articles.create', $market))
             ->assertRedirect(route('login'));
 
-        $this->post("admin/{$market->slug}/articles")
+        $this->post(route('admin.articles.store', $market))
             ->assertRedirect(route('login'));
     }
 
@@ -46,40 +46,12 @@ class CreateArticlesTest extends TestCase
             'image' => $file = UploadedFile::fake()->image('article.jpg')
         ]);
 
-        $this->post("admin/{$market->slug}/articles", $article->toArray());
+        $this->post(route('admin.articles.store', $market), $article->toArray());
         
         $this->get($article->path())
             ->assertSee($article->title)
             ->assertSee($article->market->name)
             ->assertSee('article.jpg');
-    }
-
-    /** @test */
-    function an_article_requires_a_title()
-    {
-        $this->publishArticle(['title' => null])
-            ->assertSessionHasErrors('title');
-    }
-
-    /** @test */
-    function an_article_requires_an_author()
-    {
-        $this->publishArticle(['author' => null])
-            ->assertSessionHasErrors('author');
-    }
-
-    /** @test */
-    function an_article_requires_content()
-    {
-        $this->publishArticle(['content' => null])
-            ->assertSessionHasErrors('content');
-    }
-
-    /** @test */
-    function an_article_requires_an_article_type()
-    {
-        $this->publishArticle(['article_type_id' => null])
-            ->assertSessionHasErrors('article_type_id');
     }
 
      /** @test */
@@ -96,7 +68,7 @@ class CreateArticlesTest extends TestCase
             'image' => $file = UploadedFile::fake()->image('article.jpg')
         ]);
 
-        $response = $this->json('DELETE', "admin/{$market->slug}/articles/$article->id");
+        $response = $this->json('DELETE', route('admin.articles.destroy', [$market->slug, $article->id]));
 
         // $response->assertStatus(302)->assertRedirect(route('login'));
 
