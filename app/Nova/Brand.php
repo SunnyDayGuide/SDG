@@ -29,7 +29,7 @@ class Brand extends Resource
      *
      * @var string
      */
-    public static $group = 'Admin';
+    public static $group = 'Site Admin';
     
     /**
      * The columns that should be searched.

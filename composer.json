@@ -14,6 +14,7 @@
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
         "spatie/laravel-tags": "^2.1",
+        "spatie/nova-tags-field": "^1.1",
         "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {

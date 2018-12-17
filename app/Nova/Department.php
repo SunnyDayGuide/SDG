@@ -30,7 +30,7 @@ class Department extends Resource
      *
      * @var string
      */
-    public static $group = 'Admin';
+    public static $group = 'Users';
 
     /**
      * The columns that should be searched.

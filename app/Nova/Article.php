@@ -3,9 +3,15 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Spatie\TagsField\Tags;
 
 class Article extends Resource
 {
@@ -42,7 +48,18 @@ class Article extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Title')->sortable(),
+            BelongsTo::make('Market')->sortable(),
+            BelongsTo::make('Article Type', 'articleType'),
+            Boolean::make('Featured'),
+            Text::make('Title')->sortable()
+                ->rules('required'),
+            Text::make('Slug'),
+            Text::make('Author')->hideFromIndex(),
+            Trix::make('Content'),
+            Text::make('Excerpt')->hideFromIndex(),
+            Image::make('Featured Image', 'image'),
+            MorphToMany::make('Categories'),
+            Tags::make('Tags'),
         ];
     }
 

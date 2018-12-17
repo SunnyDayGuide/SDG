@@ -7,14 +7,14 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Category extends Resource
+class Tag extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Category';
+    public static $model = 'App\CustomTag';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -29,7 +29,6 @@ class Category extends Resource
      * @var string
      */
     public static $group = 'Site Admin';
-    
     /**
      * The columns that should be searched.
      *
@@ -52,14 +51,11 @@ class Category extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:30'),
 
-            Text::make('slug')
-                ->sortable()
-                ->rules('required', 'max:255')
-                ->creationRules('unique:categories,slug')
-                ->updateRules('unique:categories,slug,{{resourceId}}'),
-
+            Text::make('Slug')
+                ->hideWhenCreating()
+                ->hideWhenUpdating(),
         ];
     }
 

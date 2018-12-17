@@ -2,19 +2,18 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
+use Illuminate\Http\Request;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Category extends Resource
+class ArticleType extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Category';
+    public static $model = 'App\ArticleType';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -24,19 +23,12 @@ class Category extends Resource
     public static $title = 'name';
 
     /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Site Admin';
-    
-    /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id', 'name',
+        'id', 'name'
     ];
 
     /**
@@ -49,17 +41,6 @@ class Category extends Resource
     {
         return [
             ID::make()->sortable(),
-
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make('slug')
-                ->sortable()
-                ->rules('required', 'max:255')
-                ->creationRules('unique:categories,slug')
-                ->updateRules('unique:categories,slug,{{resourceId}}'),
-
         ];
     }
 
