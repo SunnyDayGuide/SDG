@@ -33,6 +33,14 @@ class State extends Resource
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Site Admin';
+    /**
+
+    /**
      * Indicates if the resource should be displayed in the sidebar.
      *
      * @var bool
