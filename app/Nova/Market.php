@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
@@ -26,7 +27,7 @@ class Market extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'code';
 
     /**
      * The logical group associated with the resource.
@@ -114,7 +115,7 @@ class Market extends Resource
 
             BelongsToMany::make('Categories')
                 ->fields(function ($model) {
-                    $market = $model->slug;
+                    $market = $this->code;
                     $imagePath = 'images/' . $market . '/leads';
 
                     return [
@@ -143,6 +144,7 @@ class Market extends Resource
                     ];
                 }),
 
+                HasMany::make('Articles'),
 
         ];
     }
