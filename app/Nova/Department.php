@@ -56,9 +56,9 @@ class Department extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Manager', 'manager', 'App\Nova\User'),
-
             BelongsToMany::make('Employees', 'employees', 'App\Nova\User'),
+            
+            BelongsTo::make('Manager', 'manager', 'App\Nova\User'),
         ];
     }
 
