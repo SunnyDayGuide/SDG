@@ -2,8 +2,9 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class ArticleType extends Resource
@@ -32,6 +33,14 @@ class ArticleType extends Resource
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Editorial';
+    /**
+ 
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,6 +50,7 @@ class ArticleType extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Name')->sortable(),
         ];
     }
 

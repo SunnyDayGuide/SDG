@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\ArticleMarket;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -35,10 +36,17 @@ class Article extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'title',
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Editorial';
+    /**
+ 
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,16 +56,16 @@ class Article extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Market')->sortable(),
-            BelongsTo::make('Article Type', 'articleType'),
-            Boolean::make('Featured'),
             Text::make('Title')->sortable()
                 ->rules('required'),
-            Text::make('Slug'),
+            BelongsTo::make('Market'),
+            BelongsTo::make('Article Type', 'articleType'),
+            Boolean::make('Featured')->sortable(),
+            Text::make('Slug')->hideFromIndex(),
             Text::make('Author')->hideFromIndex(),
             Trix::make('Content'),
             Text::make('Excerpt')->hideFromIndex(),
-            Image::make('Featured Image', 'image'),
+            Image::make('Featured Image', 'image')->hideFromIndex(),
             MorphToMany::make('Categories'),
             Tags::make('Tags'),
         ];
@@ -82,7 +90,9 @@ class Article extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new ArticleMarket,
+        ];
     }
 
     /**
