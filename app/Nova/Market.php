@@ -42,7 +42,7 @@ class Market extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'code'
+        'id', 'name', 'code', 'slug'
     ];
 
     /**
@@ -115,7 +115,7 @@ class Market extends Resource
 
             BelongsToMany::make('Categories')
                 ->fields(function ($model) {
-                    $market = $this->code;
+                    $market = $this->slug;
                     $imagePath = 'images/' . $market . '/leads';
 
                     return [
