@@ -3,6 +3,8 @@
 namespace App\Nova;
 
 use App\Nova\Filters\ArticleMarket;
+use App\Nova\Filters\ArticleStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -11,6 +13,7 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -68,16 +71,16 @@ class Article extends Resource
 
         return [
             ID::make()->sortable(),
-            Text::make('Title')
-                ->sortable()
-                ->rules('required'),
             BelongsTo::make('Market'),
             BelongsTo::make('Article Type', 'articleType'),
             Boolean::make('Featured')->sortable(),
             Number::make('Rating')->exceptOnForms(),
-            Text::make('Author')->hideFromIndex(),
+            Text::make('Title')
+                ->sortable()
+                ->rules('required'),
             Trix::make('Content'),
-            Text::make('Excerpt')->hideFromIndex(),
+            Text::make('Author')->hideFromIndex(),
+            Textarea::make('Excerpt')->hideFromIndex(),
             Image::make('Featured Image', 'image')
                             ->hideFromIndex()
                             ->disk('public')
@@ -86,8 +89,15 @@ class Article extends Resource
                                 return $request->image->getClientOriginalName();
                             }),
             MorphToMany::make('Categories'),
-            Tags::make('Tags'),
-            DateTime::make('Published At')->format('M-DD-YYYY')->hideFromIndex(),
+            Tags::make('Tags')->hideFromIndex(),
+            Select::make('status')->options([
+                '0' => 'Draft',
+                '1' => 'Scheduled',
+                '2' => 'Published',
+            ])->displayUsingLabels(),
+            DateTime::make('Publish Date')
+                ->format('M-DD-YYYY')
+                ->hideFromIndex(),
         ];
     }
 
@@ -112,6 +122,7 @@ class Article extends Resource
     {
         return [
             new ArticleMarket,
+            new ArticleStatus
         ];
     }
 

@@ -17,17 +17,18 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('market_id');
             $table->string('title');
-            $table->string('author');
+            $table->string('slug');
+            $table->string('author')->nullable();
             $table->string('image')->nullable();
             $table->text('content');
             $table->text('excerpt')->nullable();
             $table->unsignedInteger('article_type_id')->nullable();
             $table->boolean('featured')->default(false);
             $table->unsignedInteger('rating')->default('0');
-            $table->string('slug');
-            $table->boolean('archived')->default(false);
-            $table->timestamp('published_at')->nullable();
+            $table->string('status'); // draft, active
+            $table->dateTime('publish_date');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('market_id')
                 ->references('id')

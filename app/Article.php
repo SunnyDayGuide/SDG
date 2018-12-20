@@ -11,10 +11,12 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
+    use SoftDeletes;
     use Categoriable;
     use Sluggable;
     use HasTags;
@@ -28,9 +30,9 @@ class Article extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('active', function ($builder) {
-            $builder->where('archived', false);
-        });
+        // static::addGlobalScope('active', function ($builder) {
+        //     $builder->where('archived', false);
+        // });
     }
 
     /**
@@ -44,7 +46,7 @@ class Article extends Model
      * Attributes to cast.
      */
     protected $casts = [
-        'archived' => 'boolean'
+        'featured' => 'boolean'
     ];
 
     /**
@@ -57,7 +59,8 @@ class Article extends Model
 	protected $dates = [
 	    'created_at',
 	    'updated_at',
-	    'published_at'
+	    'publish_date',
+        'deleted_at'
 	];
 
      /**
