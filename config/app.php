@@ -152,6 +152,7 @@ return [
          */
         AdrianMejias\States\StatesServiceProvider::class,
         Webpatser\Countries\CountriesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -213,6 +214,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'States' => AdrianMejias\States\StatesFacade::class,
         'Countries' => Webpatser\Countries\CountriesFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
