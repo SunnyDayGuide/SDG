@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98f298ed7552c12bc249c8039adeb6f8",
+    "content-hash": "fbe1ebeba9b47dd300cd3adb2b0112f5",
     "packages": [
         {
             "name": "adrianmejias/laravel-states",
@@ -673,6 +673,49 @@
                 "schedule"
             ],
             "time": "2018-06-06T03:12:17+00:00"
+        },
+        {
+            "name": "ebess/advanced-nova-media-library",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ebess/advanced-nova-media-library.git",
+                "reference": "36ae12fd23ccd17dfdefe47a3fed9edcfe8c3c83"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ebess/advanced-nova-media-library/zipball/36ae12fd23ccd17dfdefe47a3fed9edcfe8c3c83",
+                "reference": "36ae12fd23ccd17dfdefe47a3fed9edcfe8c3c83",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.6",
+                "php": ">=7.1.0",
+                "spatie/laravel-medialibrary": "^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ebess\\AdvancedNovaMediaLibrary\\AdvancedNovaMediaLibraryServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ebess\\AdvancedNovaMediaLibrary\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Nova tools for managing the Spatie media library.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-12-19T13:54:39+00:00"
         },
         {
             "name": "egulias/email-validator",
