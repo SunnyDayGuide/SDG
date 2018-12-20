@@ -6,9 +6,11 @@ use App\Nova\Filters\ArticleMarket;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -47,6 +49,14 @@ class Article extends Resource
     public static $group = 'Editorial';
     /**
  
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['market'];
+
+    /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -77,6 +87,7 @@ class Article extends Resource
                             }),
             MorphToMany::make('Categories'),
             Tags::make('Tags'),
+            DateTime::make('Published At')->format('M-DD-YYYY')->hideFromIndex(),
         ];
     }
 
