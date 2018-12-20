@@ -35,7 +35,7 @@ class ArticlesTest extends TestCase
     {
         $this->article = create('App\Article');
         $this->assertEquals(
-            "destinations/{$this->article->market->slug}/articles/{$this->article->slug}", $this->article->path()
+            "/destinations/{$this->article->market->slug}/articles/{$this->article->slug}", $this->article->path()
         );
     }
 
