@@ -64,7 +64,7 @@ class Market extends Model
      */
     public function path()
     {
-        return "destinations/{$this->slug}";
+        return "/destinations/{$this->slug}";
     }
 
 
