@@ -54,18 +54,27 @@ class Article extends Resource
      */
     public function fields(Request $request)
     {
+        $market = \App\Market::find($request->market);
+
         return [
             ID::make()->sortable(),
-            Text::make('Title')->sortable()
+            Text::make('Title')
+                ->sortable()
                 ->rules('required'),
             BelongsTo::make('Market'),
             BelongsTo::make('Article Type', 'articleType'),
             Boolean::make('Featured')->sortable(),
-            Text::make('Slug')->hideFromIndex(),
+            Number::make('Rating')->exceptOnForms(),
             Text::make('Author')->hideFromIndex(),
             Trix::make('Content'),
             Text::make('Excerpt')->hideFromIndex(),
-            Image::make('Featured Image', 'image')->hideFromIndex(),
+            Image::make('Featured Image', 'image')
+                            ->hideFromIndex()
+                            ->disk('public')
+                            ->path('images/' . $market['slug'] . '/articles')
+                            ->storeAs(function (Request $request) {
+                                return $request->image->getClientOriginalName();
+                            }),
             MorphToMany::make('Categories'),
             Tags::make('Tags'),
         ];
