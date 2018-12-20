@@ -84,7 +84,7 @@ class ArticleController extends Controller
             'excerpt' => request('excerpt'),
             'rating' => 0,
             'featured' => request('featured'),
-            'slug' => str_slug($title),
+            // 'slug' => str_slug($title),
             'published_at' => $published,
             'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
@@ -136,8 +136,6 @@ class ArticleController extends Controller
     {
         $article = Article::withArchived()->findorFail($id);
 
-        $title = request('title');
-
         if($request->hasFile('image')){
             $image = $request->file('image');
             
@@ -156,14 +154,13 @@ class ArticleController extends Controller
         }
 
         $article->update([
-            'title' => $title,
+            'title' => request('title'),
             'author' => request('author'),
             'image' => $image,
             'content' => request('content'),
             'excerpt' => request('excerpt'),
             'featured' => request('featured'),
             'archived' => request('archived'),
-            'slug' => str_slug($title),
             'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
         ]);

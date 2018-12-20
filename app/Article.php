@@ -7,6 +7,8 @@ use App\CustomTag;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Spatie\Tags\HasTags;
@@ -14,6 +16,7 @@ use Spatie\Tags\HasTags;
 class Article extends Model
 {
     use Categoriable;
+    use Sluggable;
     use HasTags;
     
      /**
@@ -141,6 +144,36 @@ class Article extends Model
         if ($this->rating > 0) {
             $this->decrement('rating', 1);
         }
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    /**
+     * The slug is generated for as article from it's title, but the slug is scoped to the market. 
+     * So a BR can have an article with the same title as CG, but both will have the same slug.
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param string $attribute
+     * @param array $config
+     * @param string $slug
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithUniqueSlugConstraints(Builder $query, Model $model, $attribute, $config, $slug)
+    {
+        $market = $model->market;
+        return $query->where('market_id', $market->getKey());
     }
 
     public static function getTagClassName(): string
