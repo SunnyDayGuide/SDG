@@ -12,14 +12,17 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Tags\HasTags;
 
-class Article extends Model
+class Article extends Model implements HasMedia
 {
     use SoftDeletes;
     use Categoriable;
     use Sluggable;
     use HasTags;
+    use HasMediaTrait;
     
      /**
      * The "booting" method of the model.
@@ -108,7 +111,7 @@ class Article extends Model
      */
     public function archive()
     {
-        $this->update(['archived' => true]);
+        $this->update(['status' => 'archived']);
     }
 
     /**

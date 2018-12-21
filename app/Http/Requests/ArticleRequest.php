@@ -25,11 +25,10 @@ class ArticleRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'author' => 'required',
             'image' => 'sometimes|image',
             'content' => 'required',
             'article_type_id' => 'required',
-            'archived' => 'required|boolean'
+            'status' => 'required'
         ];
     }
 }

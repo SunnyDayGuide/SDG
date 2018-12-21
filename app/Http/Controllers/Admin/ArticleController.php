@@ -84,8 +84,8 @@ class ArticleController extends Controller
             'excerpt' => request('excerpt'),
             'rating' => 0,
             'featured' => request('featured'),
-            // 'slug' => str_slug($title),
-            'published_at' => $published,
+            'status' => request('status'),
+            'publish_date' => $published,
             'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
         ]);
@@ -160,7 +160,7 @@ class ArticleController extends Controller
             'content' => request('content'),
             'excerpt' => request('excerpt'),
             'featured' => request('featured'),
-            'archived' => request('archived'),
+            'status' => request('status'),
             'market_id' => $market->id,
             'article_type_id' => request('article_type_id')
         ]);
@@ -179,7 +179,7 @@ class ArticleController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
+     * THIS IS NOW A SOFT DELETE
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

@@ -53,7 +53,7 @@ class ArticleController extends Controller
      */
     public static function getArticles(Market $market)
     {
-        return $market->articles()->with('tags')->orderBy('published_at', 'desc');
+        return $market->articles()->with('tags')->orderBy('publish_date', 'desc');
     }
 
     public function rate(Market $market, Article $article)
