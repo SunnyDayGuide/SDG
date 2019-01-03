@@ -50,7 +50,7 @@
 						@endif
 					</td>
 					<td>Published <br>
-						{{ $article->published_at->format('n-d-Y') }}
+						{{ $article->publish_date->format('n-d-Y') }}
 					</td>
 					<td>
 						<form action="{{ route('admin.articles.destroy', [$market->slug, $article->id]) }}" method="POST">

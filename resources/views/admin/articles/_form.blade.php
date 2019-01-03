@@ -41,10 +41,11 @@
 			<div class="card-body">
 
 				<div class="form-group">
-					<label for="archived">Status</label>
-					<select name="archived" id="archived" class="form-control">
-						<option value="0" {{ old('archived', $article->archived) ? '' : 'selected' }}>Active</option>
-						<option value="1" {{ old('archived', $article->archived) ? 'selected' : '' }}>Archived</option>
+					<label for="status">Status</label>
+					<select name="status" id="status" class="form-control">
+						<option value="0" {{ old('status', $article->status) ? '' : 'selected' }}>Draft</option>
+						<option value="1" {{ old('status', $article->status) ? 'selected' : '' }}>Scheduled</option>
+						<option value="2" {{ old('status', $article->status) ? 'selected' : '' }}>Published</option>
 					</select>
 				</div>
 

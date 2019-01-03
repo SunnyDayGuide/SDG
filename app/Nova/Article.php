@@ -73,31 +73,32 @@ class Article extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Market'),
-            BelongsTo::make('Article Type', 'articleType'),
-            Boolean::make('Featured')->sortable(),
-            Number::make('Rating')->exceptOnForms(),
             Text::make('Title')
                 ->sortable()
                 ->rules('required'),
-            Trix::make('Content'),
+            Trix::make('Content')
+                ->rules('required'),
             Text::make('Author')->hideFromIndex(),
             Textarea::make('Excerpt')->hideFromIndex(),
             Image::make('Featured Image', 'image')
-                            ->hideFromIndex()
-                            ->disk('public')
-                            ->path('images/' . $market['slug'] . '/articles')
-                            ->storeAs(function (Request $request) {
-                                return $request->image->getClientOriginalName();
-                            }),
+                ->hideFromIndex()
+                ->disk('public')
+                ->path('images/' . $market['slug'] . '/articles')
+                ->storeAs(function (Request $request) {
+                    return $request->image->getClientOriginalName();
+                }),
+            BelongsTo::make('Article Type', 'articleType'),
+            Boolean::make('Featured')->sortable(),
+            Number::make('Rating')->exceptOnForms(),
             MorphToMany::make('Categories'),
             Tags::make('Tags')->hideFromIndex(),
-            Select::make('status')->options([
+            Select::make('Status')->options([
                 '0' => 'Draft',
                 '1' => 'Scheduled',
                 '2' => 'Published',
             ])->displayUsingLabels(),
             DateTime::make('Publish Date')
-                ->format('M-DD-YYYY')
+                ->format('M/DD/YYYY @ H:Ma')
                 ->hideFromIndex(),
         ];
     }

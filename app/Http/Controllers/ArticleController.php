@@ -53,7 +53,10 @@ class ArticleController extends Controller
      */
     public static function getArticles(Market $market)
     {
-        return $market->articles()->with('tags')->orderBy('publish_date', 'desc');
+        return $market->articles()
+            ->with('tags')
+            ->where('publish_date', '<=', Carbon::now())
+            ->orderBy('publish_date', 'desc');
     }
 
     public function rate(Market $market, Article $article)

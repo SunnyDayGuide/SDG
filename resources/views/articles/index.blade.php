@@ -16,7 +16,7 @@
 							<img class="card-img-top" src="{{ asset($article->image) }}" alt="">
 							<div class="card-body">
 								<h5 class="card-title">{{ $article->title }}</h2>
-								<p>Published: {{ $article->published_at->diffForHumans() }}</p>
+								<p>Published: {{ $article->publish_date->diffForHumans() }}</p>
 								<p class="card-text">{{ $article->excerpt }}</p>
 								<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 							</div> <!-- End Card Body-->

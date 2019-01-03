@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\Tags\HasTags;
+use Carbon\Carbon;
 
 class Article extends Model implements HasMedia
 {
@@ -33,8 +34,8 @@ class Article extends Model implements HasMedia
     {
         parent::boot();
 
-        // static::addGlobalScope('active', function ($builder) {
-        //     $builder->where('archived', false);
+        // static::addGlobalScope('published', function ($builder) {
+        //     $builder->where('publish_date', '>=', Carbon::now());
         // });
     }
 
@@ -115,11 +116,22 @@ class Article extends Model implements HasMedia
     }
 
     /**
-     * Get a new query builder that includes archives.
+     * Get a new query builder that includes drafts.
      */
-    public static function withArchived()
+    public static function withDrafts()
     {
-        return (new static)->newQueryWithoutScope('active');
+        return (new static)->newQueryWithoutScope('published');
+    }
+
+    /**
+     * Scope a query to only include published articles.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('publish_date', '<=', Carbon::now());
     }
 
     /**

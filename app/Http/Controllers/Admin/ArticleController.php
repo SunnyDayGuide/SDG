@@ -29,8 +29,7 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles = Article::withArchived()
-            ->where('market_id', $market->id)
+        $articles = Article::where('market_id', $market->id)
             ->with('categories')
             ->paginate(10);
         
@@ -111,8 +110,7 @@ class ArticleController extends Controller
      */
     public function edit(Market $market, $id)
     {
-        $article = Article::withArchived()
-            ->with('categories')
+        $article = Article::with('categories')
             ->findorFail($id);
 
         $articleTypes = ArticleType::all();
@@ -134,7 +132,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Market $market, $id)
     {
-        $article = Article::withArchived()->findorFail($id);
+        $article = Article::findorFail($id);
 
         if($request->hasFile('image')){
             $image = $request->file('image');
@@ -185,7 +183,7 @@ class ArticleController extends Controller
      */
     public function destroy($market, $id)
     {
-        $article = Article::withArchived()->findorFail($id);
+        $article = Article::findorFail($id);
 
         Storage::disk('public')->delete($article->image);
         $article->categories()->detach();
