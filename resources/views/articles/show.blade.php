@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-	<div class="container">
+	<div class="container-fluid">
+		<div class="row">
+			{{ $inset }}
+		</div>
 		<div class="row">
 			<div class="col-md-8">
 				<h2>{{ $article->market->name }} {{ $article->articleType->name }}</h2>
@@ -20,7 +23,7 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<img class="img-fluid mb-2" src="{{ asset($article->image) }}" alt="">
+				{{-- <img class="img-fluid mb-2" src="{{ asset($article->image) }}" alt=""> --}}
 				<div>{!! $article->content !!}</div>
 			</div> <!-- End Collumn -->
 		</div> <!-- End Row -->

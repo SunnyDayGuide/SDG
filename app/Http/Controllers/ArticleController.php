@@ -28,6 +28,7 @@ class ArticleController extends Controller
     public function index(Market $market)
     {
         $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
+
         $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
         $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
 
@@ -42,7 +43,9 @@ class ArticleController extends Controller
      */
     public function show(Market $market, Article $article)
     {
-        return view('articles.show', compact('article', 'market'));
+        $inset = $article->getFirstMedia('featured');
+
+        return view('articles.show', compact('article', 'market', 'inset'));
     }
 
     /**

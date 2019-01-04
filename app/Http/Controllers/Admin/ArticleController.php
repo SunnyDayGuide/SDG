@@ -50,7 +50,9 @@ class ArticleController extends Controller
         $tags = Tag::pluck('name');
         $tags2 = json_encode($article->tags());
 
-        return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags', 'tags2'));
+        $insets = $article->getMedia('inset');
+
+        return view('admin.articles.create', compact('market', 'articleTypes', 'article', 'tags', 'tags2', 'insets'));
     }
 
     /**
@@ -133,7 +135,7 @@ class ArticleController extends Controller
         $tags2 = json_decode($article->tags->pluck('name'));
         $tags2 = implode(",",$tags2);
 
-        $insets = $article->getMedia('featured');
+        $insets = $article->getMedia('inset');
 
         return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags2', 'insets'));
     }
