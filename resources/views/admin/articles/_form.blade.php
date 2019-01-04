@@ -22,16 +22,33 @@
 			<textarea class="form-control" rows="2" id="excerpt" name="excerpt" value="{{ old('excerpt', $article->excerpt) }}">{{ old('excerpt', $article->excerpt) }}</textarea>
 		</div>
 
-		<div class="form-group">
-			<label for="image">Featured Image</label>
-			<input type="file" class="form-control-file" id="image" name="image" value="{{ old('image', $article->image) }}">
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="largeinsetLabel">Upload</span>
+		  </div>
+		  <div class="custom-file">
+		    <input type="file" class="custom-file-input" name="feature" id="feature" aria-describedby="largeinsetLabel">
+		    <label class="custom-file-label" for="feature">Choose large featured image</label>
+		  </div>
 		</div>
 
-		@isset($article->image)
-		<div class="form-group">
-			<img src="{{ asset($article->image) }}" alt="" width="50%">
+		<div class="input-group mb-3">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="insetLabel">Upload</span>
+		  </div>
+		  <div class="custom-file">
+		    <input type="file" class="custom-file-input" name="inset" id="inset" aria-describedby="insetLabel">
+		    <label class="custom-file-label" for="inset">Choose inset image</label>
+		  </div>
 		</div>
-		@endisset
+
+		@foreach($insets as $inset)
+			<div class="form-group">
+				{{ $inset('card') }}
+			</div>
+		@endforeach
+
+
 	</div>  <!-- end of big col -->
 
 	<div class="col-md-3 bg-white">

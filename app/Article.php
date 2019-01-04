@@ -7,15 +7,17 @@ use App\CustomTag;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 use Spatie\Tags\HasTags;
-use Carbon\Carbon;
 
 class Article extends Model implements HasMedia
 {
@@ -205,4 +207,35 @@ class Article extends Model implements HasMedia
             ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
             ->orderBy('order_column');
     }
+
+    /**
+     * Register the collections.
+     *
+     * @return array
+     */
+    public function registerMediaCollections()
+    {
+        $this->addMediaCollection('inset')
+            ->singleFile();
+
+        $this->addMediaCollection('featured')
+            ->singleFile();
+    }
+
+    /**
+     * Register the conversions that should be performed.
+     *
+     * @return array
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('full')
+            ->crop(Manipulations::CROP_CENTER, 900, 480)
+            ->withResponsiveImages();
+
+        $this->addMediaConversion('card')
+            ->crop(Manipulations::CROP_CENTER, 426, 227)
+            ->withResponsiveImages();
+    }
+
 }

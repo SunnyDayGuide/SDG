@@ -49,7 +49,7 @@
 							<img class="card-img-top" src="{{ $article->image }}" alt="">
 							<div class="card-body">
 								<h5 class="card-title">{{ $article->title }}</h2>
-								<p>Published: {{ $article->published_at->diffForHumans() }}</p>
+								<p>Published: {{ $article->publish_date->diffForHumans() }}</p>
 								<p class="card-text">{{ $article->excerpt }}</p>
 								<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 							</div> <!-- End Card Body-->
@@ -76,7 +76,7 @@
 							<img class="card-img-top" src="{{ $article->image }}" alt="">
 							<div class="card-body">
 								<h5 class="card-title">{{ $article->title }}</h2>
-								<p>Published: {{ $article->published_at->diffForHumans() }}</p>
+								<p>Published: {{ $article->publish_date->diffForHumans() }}</p>
 								<p class="card-text">{{ $article->excerpt }}</p>
 								<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 							</div> <!-- End Card Body-->
@@ -93,6 +93,29 @@
 			</div> <!-- End Row -->
 
 		</section>
+
+		<h1>Here's a Test</h1>
+		<div class="container">
+		  <div class="row">
+		    <div class="col">
+		      1 of 2
+		    </div>
+		    <div class="col">
+		      2 of 2
+		    </div>
+		  </div>
+		  <div class="row">
+		    <div class="col">
+		      1 of 3
+		    </div>
+		    <div class="col">
+		      2 of 3
+		    </div>
+		    <div class="col">
+		      3 of 3
+		    </div>
+		  </div>
+		</div>
 
 	</div>
 

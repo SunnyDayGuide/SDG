@@ -29,7 +29,8 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $articles = Article::where('market_id', $market->id)
+        $articles = Article::withTrashed()
+            ->where('market_id', $market->id)
             ->with('categories')
             ->paginate(10);
         
@@ -89,6 +90,18 @@ class ArticleController extends Controller
             'article_type_id' => request('article_type_id')
         ]);
 
+        if($request->inset){
+            $article->addMedia($request->inset)
+                ->withResponsiveImages()
+                ->toMediaCollection('inset');
+        }
+
+        if($request->feature){
+            $article->addMedia($request->feature)
+                ->withResponsiveImages()
+                ->toMediaCollection('featured');
+        }
+
         $article->assignCategories(request('categories'));
 
         if (isset($request->tags)) {
@@ -120,7 +133,9 @@ class ArticleController extends Controller
         $tags2 = json_decode($article->tags->pluck('name'));
         $tags2 = implode(",",$tags2);
 
-        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags2'));
+        $insets = $article->getMedia('featured');
+
+        return view('admin.articles.edit', compact('market', 'article', 'articleTypes', 'tags', 'tags2', 'insets'));
     }
 
     /**
@@ -163,6 +178,18 @@ class ArticleController extends Controller
             'article_type_id' => request('article_type_id')
         ]);
 
+        if($request->inset){
+            $article->addMedia($request->inset)
+                ->withResponsiveImages()
+                ->toMediaCollection('inset');
+        }
+
+        if($request->feature){
+            $article->addMedia($request->feature)
+                ->withResponsiveImages()
+                ->toMediaCollection('featured');
+        }
+
         // get categories and attach them
         $article->assignCategories(request('categories'));
 
@@ -181,16 +208,33 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($market, $id)
+    public function archive($market, $id)
     {
         $article = Article::findorFail($id);
-
-        Storage::disk('public')->delete($article->image);
-        $article->categories()->detach();
         
         $article->delete();
 
         return redirect()->route('admin.articles.index', compact('market'))
+            ->with('flash', 'Your article has been archived!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * THIS IS NOW A SOFT DELETE
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($market, $id)
+    {
+        $article = Article::withTrashed()->findorFail($id);
+
+        Storage::disk('public')->delete($article->image);
+        $article->categories()->detach();
+        
+        $article->forceDelete();
+
+        return redirect()->route('admin.articles.index', compact('market'))
             ->with('flash', 'Your article has been deleted!');
     }
+
 }

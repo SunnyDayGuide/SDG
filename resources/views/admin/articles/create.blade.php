@@ -6,7 +6,7 @@
 @section('content')
 
 <form method="POST" action="{{ route('admin.articles.store', $market->slug) }}" enctype="multipart/form-data">
-{{ csrf_field() }}
+@csrf
 @include('admin.articles._form')
 
 </form>
