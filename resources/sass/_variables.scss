@@ -3,19 +3,52 @@
 $body-bg: #fff;
 
 // Typography
-$font-family-sans-serif: "Nunito", sans-serif;
-$font-size-base: 0.9rem;
+$font-family-sans-serif: "Roboto", sans-serif;
+$headings-font-family: "Raleway", sans-serif;
+// $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+// SDG Colors
+$navy: #154270;
+
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
+$blue: #60A3D9;
+$indigo: $navy;
 $purple: #9561e2;
 $pink: #f66D9b;
 $red: #e3342f;
 $orange: #f6993f;
 $yellow: #ffed4a;
-$green: #38c172;
+$green: #B5D45F;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
-$primary: #6699CC;
+
+$primary:       $blue !default;
+
+// Sky Blue: #60A3D9
+// Sky Blue Screen: #A0C8E8
+// Lime: #B5D45F
+// Lime Screen: #D3E59F
+// Dark Grey: #656565
+// Light Grey: #C6C6C6
+
+// Grid columns
+$grid-gutter-width: 30px;
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1348px
+);
+
+// Navs
+$navbar-dark-color: #FFF;
+$navbar-dark-hover-color: $green;
+
+// Cards
+$card-border-radius: 0;

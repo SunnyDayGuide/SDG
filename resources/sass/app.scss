@@ -1,6 +1,7 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,700');
 
 // Variables
 @import 'variables';
@@ -9,11 +10,51 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// .navbar-laravel {
+//   background-color: #fff;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// }
+
+header {
+	margin-bottom: 85px;
+}
+
+.navbar {
+	height: 93px;
+	background-color: $indigo;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-bottom: 8px solid $green;
+}
+
+.navbar-brand {
+	width: 196px;
+	padding: 0;
+}
+.nav-link {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
 }
 
 label {
 	font-weight: bolder;
+}
+
+// fonts etc 
+h2 {
+	font-weight: $font-weight-normal
+}
+
+.tripIdeas {
+	h2 {
+		color: $primary;
+	}
+
+	.card {
+		width: 26rem;
+	}
 }
