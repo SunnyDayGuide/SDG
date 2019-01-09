@@ -10,20 +10,23 @@ $line-height-base: 1.6;
 
 // SDG Colors
 $navy: #154270;
+$blue: #60A3D9;
+$green: #B5D45F;
+$light: #C6C6C6;
+$dark: #656565;
+
 
 // Colors
-$blue: #60A3D9;
 $indigo: $navy;
-$purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #B5D45F;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
 
-$primary:       $blue !default;
+$primary: $navy;
+$editorial: $blue;
+$advertisers: $green;
+
+$theme-colors: (
+  "editorial": $editorial,
+  "advertiser": $advertisers
+);
 
 // Sky Blue: #60A3D9
 // Sky Blue Screen: #A0C8E8
@@ -39,12 +42,17 @@ $grid-gutter-width: 30px;
 //
 // Define the maximum width of `.container` for different screen sizes.
 
-$container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1348px
-);
+// $container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1348px
+// );
+// 
+
+// Fonts
+$font-weight-medium: 500;
+$font-weight-black: 900;
 
 // Navs
 $navbar-dark-color: #FFF;

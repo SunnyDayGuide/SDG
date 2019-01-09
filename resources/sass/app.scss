@@ -10,17 +10,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-// .navbar-laravel {
-//   background-color: #fff;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-// }
-
 header {
 	margin-bottom: 85px;
 }
 
 .navbar {
-	height: 93px;
+	// height: 93px;
 	background-color: $indigo;
 	padding-top: 0;
 	padding-bottom: 0;
@@ -28,11 +23,11 @@ header {
 }
 
 .navbar-brand {
-	width: 196px;
+	width: 180px;
 	padding: 0;
 }
 .nav-link {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-weight: 500;
 }
 
@@ -54,7 +49,26 @@ h2 {
 		color: $primary;
 	}
 
-	.card {
-		width: 26rem;
-	}
+}
+
+.visitorinfo {
+	border-bottom: 1px solid $primary;
+	padding-bottom: 1rem;
+}
+
+.ads {
+	margin: 4rem 0;
+}
+
+.card-footer {
+  background-color: $card-bg;
+  border-top: none;
+}
+
+.tags {
+	font-size: 75%;
+	font-weight: $font-weight-bold;
+	border-radius: 0;
+	background-color: $light;
+	opacity: .5;
 }
