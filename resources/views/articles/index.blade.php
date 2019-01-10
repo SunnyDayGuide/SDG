@@ -34,7 +34,7 @@
 	</div> <!-- End Row -->
 
 	<section id="tripIdeas" class="tripIdeas">
-		<div class="d-flex justify-content-between border-bottom border-primary mb-3">
+		<div class="d-flex justify-content-between border-bottom border-editorial mb-3">
 			<div><h2>Trip Ideas</h2></div>
 			<div>Sort by: Date?</div>
 		</div>
@@ -43,7 +43,7 @@
 			<div class="card-deck">
 				@foreach ($tripIdeas as $article)
 				<div class="col-md-4 mb-3">
-					<div class="card" style="width: 100%;">
+					<div class="card h-100" style="width: 100%;">
 						<div class="card-img-top">
 							{{ $article->getFirstMedia('inset') }}
 						</div>
@@ -54,7 +54,7 @@
 						@if ($article->tags->count())
 						<div class="card-footer">
 							@foreach($article->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn tags text-white">{{ $tag->name }}</a>
+							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 							@endforeach
 						</div>
 						@endif
@@ -95,10 +95,10 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-9 ml-0">
+			<div class="col-md-9">
 				@foreach ($tripIdeas as $article)
 				<div class="row mb-3 visitorinfo">
-					<div class="col-md-4 pl-0">
+					<div class="col-md-4">
 						{{ $article->getFirstMedia('inset') }}
 					</div>
 					<div class="col">

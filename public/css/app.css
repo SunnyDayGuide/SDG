@@ -78,7 +78,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.6;
-  color: #212529;
+  color: #656565;
   text-align: left;
   background-color: #fff;
 }
@@ -2050,7 +2050,7 @@ select.form-control:focus::-ms-value {
   padding-bottom: 0.375rem;
   margin-bottom: 0;
   line-height: 1.6;
-  color: #212529;
+  color: #656565;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0;
@@ -3375,7 +3375,7 @@ input[type=button].btn-block {
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #656565;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -4735,7 +4735,7 @@ input[type=button].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid #C6C6C6;
   border-radius: 0;
 }
 
@@ -4784,7 +4784,7 @@ input[type=button].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid #C6C6C6;
 }
 
 .card-header:first-child {
@@ -4798,7 +4798,7 @@ input[type=button].btn-block {
 .card-footer {
   padding: 0.75rem 1.25rem;
   background-color: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid #C6C6C6;
 }
 
 .card-footer:last-child {
@@ -5538,7 +5538,7 @@ input[type=button].btn-block {
 }
 
 .list-group-item-action:active {
-  color: #212529;
+  color: #656565;
   background-color: #e9ecef;
 }
 
@@ -6278,7 +6278,7 @@ button.close {
 
 .popover-body {
   padding: 0.5rem 0.75rem;
-  color: #212529;
+  color: #656565;
 }
 
 .carousel {
@@ -9712,7 +9712,7 @@ a.text-advertiser:focus {
 }
 
 .text-body {
-  color: #212529 !important;
+  color: #656565 !important;
 }
 
 .text-muted {
@@ -9875,11 +9875,17 @@ h2 {
 }
 
 .tripIdeas h2 {
-  color: #154270;
+  color: #60A3D9;
+}
+
+.tripIdeas .card-title,
+.tripIdeas .card-title a {
+  color: #60A3D9;
+  font-weight: 700;
 }
 
 .visitorinfo {
-  border-bottom: 1px solid #154270;
+  border-bottom: 1px solid #60A3D9;
   padding-bottom: 1rem;
 }
 
@@ -9893,10 +9899,8 @@ h2 {
 }
 
 .tags {
-  font-size: 75%;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 0;
   background-color: #C6C6C6;
-  opacity: 0.5;
 }
 

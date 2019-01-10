@@ -29,7 +29,7 @@
 		</div> <!-- End Row -->
 		<div class="row mt-3">
 			<div class="col">
-				<div class="alert alert-primary feedback">
+				<div class="alert alert-editorial feedback">
 					<h4>Was this article helpful?</h4>
 					<div class="voting">
 						<div class="d-inline">

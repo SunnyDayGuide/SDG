@@ -46,13 +46,18 @@ h2 {
 
 .tripIdeas {
 	h2 {
-		color: $primary;
+		color: $editorial;
+	}
+
+	.card-title, .card-title a {
+		color: $editorial;
+		font-weight: $font-weight-bold;
 	}
 
 }
 
 .visitorinfo {
-	border-bottom: 1px solid $primary;
+	border-bottom: 1px solid $editorial;
 	padding-bottom: 1rem;
 }
 
@@ -66,9 +71,7 @@ h2 {
 }
 
 .tags {
-	font-size: 75%;
-	font-weight: $font-weight-bold;
+	font-weight: $font-weight-medium;
 	border-radius: 0;
 	background-color: $light;
-	opacity: .5;
 }

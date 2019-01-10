@@ -48,7 +48,9 @@ $grid-gutter-width: 30px;
 //   lg: 960px,
 //   xl: 1348px
 // );
-// 
+ 
+// Body
+$body-color: $dark;
 
 // Fonts
 $font-weight-medium: 500;
@@ -60,3 +62,4 @@ $navbar-dark-hover-color: $green;
 
 // Cards
 $card-border-radius: 0;
+$card-border-color: $light;
