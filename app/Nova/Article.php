@@ -69,6 +69,7 @@ class Article extends Resource
     public function fields(Request $request)
     {
         $market = \App\Market::find($request->market);
+        $today = date('Y-m-d H:i:s');
 
         return [
             ID::make()->sortable(),
@@ -92,13 +93,19 @@ class Article extends Resource
             Number::make('Rating')->exceptOnForms(),
             MorphToMany::make('Categories'),
             Tags::make('Tags')->hideFromIndex(),
-            Select::make('Status')->options([
-                '0' => 'Draft',
-                '1' => 'Scheduled',
-                '2' => 'Published',
-            ])->displayUsingLabels(),
+            Select::make('Publish Status', 'status')->options([
+                '1' => 'Publish',
+                '0' => 'Save as Draft',
+            ])
+                ->withMeta(["value" => 1])
+                ->displayUsingLabels(),
+
             DateTime::make('Publish Date')
                 ->format('M/DD/YYYY @ H:Ma')
+                ->help(
+                    'Change the date to a time in the future to schedule an article.'
+                )
+                ->withMeta(["value" => date('Y-m-d H:i:s')])
                 ->hideFromIndex(),
         ];
     }

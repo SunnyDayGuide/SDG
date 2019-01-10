@@ -218,8 +218,7 @@ class Article extends Model implements HasMedia
         $this->addMediaCollection('inset')
             ->singleFile();
 
-        $this->addMediaCollection('featured')
-            ->singleFile();
+        $this->addMediaCollection('featured');
     }
 
     /**
