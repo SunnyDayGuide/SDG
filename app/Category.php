@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Article;
+use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
@@ -24,6 +24,14 @@ class Category extends Model
         return 'slug';
     }
 
+    /**
+     * Get all of the owning categoriable models.
+     */
+    public function categoriable()
+    {
+        return $this->morphTo();
+    }
+
    public function markets() 
    {
         return $this->belongsToMany(Market::class, 'market_category')
@@ -34,6 +42,11 @@ class Category extends Model
     public function articles()
     {
     	return $this->morphedByMany(Article::class, 'categoriable');
+    }
+
+    public function subcategories()
+    {
+        return $this->hasMany(Subcategory::class);
     }
     
 }

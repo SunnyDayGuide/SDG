@@ -54,6 +54,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
+	Route::get('{category}/cat/{subCategory}', 'SubCategoryController@show')->name('subcategories.show');
 
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
