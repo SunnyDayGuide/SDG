@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="mb-4">
-<div id="carouselExampleSlidesOnly" class="carousel slide bg-info" data-ride="carousel">
+<div>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -25,7 +25,11 @@
 
 @section('content')
 
-<div class="container">
+<div class="search p-5">
+	<h2 class="m-auto text-center">This is the search box</h2>
+</div>
+
+<div class="container mt-5">
 
 	<div class="row">
 		<div class="col-12">
