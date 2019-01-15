@@ -81,21 +81,6 @@ class Market extends Model
         ->withTimestamps();
     }
 
-    /**
-     * Get all of the subcategories for the market.
-     */
-    public function sub_categories()
-    {
-        return $this->hasManyThrough(
-            Subcategory::class,
-            Category::class,
-            'country_id', // Foreign key on users table...
-            'parent_id', // Foreign key on posts table...
-            'id', // Local key on countries table...
-            'id' // Local key on users table...
-        );
-    }
-
     public function articles()
     {   
         return $this->hasMany(Article::class);

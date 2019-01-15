@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Category;
-use App\Subcategory;
 
 trait Categoriable {
 	/**
@@ -21,12 +20,4 @@ trait Categoriable {
     {
         return $this->morphToMany(Category::class, 'categoriable')->withTimestamps();
     }
-
-    /**
-     * Get all of the model's subcategories.
-     */
-    public function subcategories()
-    {
-        return $this->morphToMany(Subcategory::class, 'subcategoriable')->withTimestamps();
-    }    
 }

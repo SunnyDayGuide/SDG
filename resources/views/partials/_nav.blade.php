@@ -20,9 +20,6 @@
                         <div class="dropdown-menu" aria-labelledby="catgoryDropdown">
                             @foreach ($market->categories as $category)
                             <a href="{{ $market->path().'/'.$category->slug }}" class="dropdown-item">{{ $category->name }}</a>
-                                @foreach ($category->subcategories as $subcategory)
-                                <p>{{ $subcategory->name }}</p>
-                                @endforeach
                             @endforeach
                         </div>
                     </li> 
