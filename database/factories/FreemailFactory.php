@@ -10,12 +10,14 @@ $factory->define(Freemail::class, function (Faker $faker) {
         'contact_name' => $faker->name,
         'contact_email' => $faker->safeEmail,
         'contact_phone' => $faker->phoneNumber,
+        'ext' => $faker->optional()->randomNumber(3),
+        'recipient_name' => $faker->name,
         'freemail_email' => $faker->safeEmail,
         'notes' => $faker->optional()->sentence,
         'active' => $faker->boolean($chanceOfGettingTrue = 80),
         'consent' => false,
         'freemail_type_id' => $faker->numberBetween($min = 1, $max = 4),
-        'user_id' => $faker->numberBetween($min = 14, $max = 25),
+        'user_id' => $faker->numberBetween($min = 1, $max = 4),
     ];
 });
 
