@@ -5,7 +5,7 @@ namespace App\Nova\Filters;
 use Illuminate\Http\Request;
 use Laravel\Nova\Filters\Filter;
 
-class ArticleMarket extends Filter
+class Category extends Filter
 {
     /**
      * The filter's component.
@@ -24,7 +24,7 @@ class ArticleMarket extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('market_id', $value);
+        return $query->where('catgegory_id', $value);
     }
 
     /**
@@ -35,7 +35,7 @@ class ArticleMarket extends Filter
      */
     public function options(Request $request)
     {
-        $markets = \App\Market::all();
-        return $markets->pluck('id', 'code')->all();
+        $categories = \App\Category::all();
+        return $categories->pluck('id', 'name')->all();
     }
 }

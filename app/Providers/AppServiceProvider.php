@@ -20,10 +20,10 @@ class AppServiceProvider extends ServiceProvider
                 return Market::all();
             });
             $categories = \Cache::rememberForever('categories', function () {
-                return Category::all();
+                return Category::whereNull('parent_id')->with('children')->get();
             });
 
-            $view->with(compact('markets'));
+            $view->with(compact('markets', 'categories'));
         });
     }
 

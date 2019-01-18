@@ -3,6 +3,8 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -57,8 +59,14 @@ class Category extends Resource
             Text::make('slug')
                 ->sortable()
                 ->rules('required', 'max:255')
-                ->creationRules('unique:categories,slug')
+                ->hideWhenCreating()
                 ->updateRules('unique:categories,slug,{{resourceId}}'),
+
+            BelongsTo::make('Parent', 'parent', 'App\Nova\Category')
+                ->nullable(),
+
+            HasMany::make('Children', 'children', 'App\Nova\Category')
+                ->exceptOnForms(),
 
         ];
     }
@@ -106,4 +114,15 @@ class Category extends Resource
     {
         return [];
     }
+
+    /**
+     * Get the search result subtitle for the resource.
+     *
+     * @return string
+     */
+    public function subtitle()
+    {
+        return "Parent: {$this->parent->name}";
+    }
+
 }

@@ -4,11 +4,15 @@ namespace App\Nova;
 
 use App\Nova\Filters\ArticleMarket;
 use App\Nova\Filters\ArticleStatus;
+use App\Nova\Filters\Category;
+use App\Nova\Filters\Market;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\MorphToMany;
@@ -22,6 +26,7 @@ use Spatie\TagsField\Tags;
 
 class Article extends Resource
 {
+
     /**
      * The model the resource corresponds to.
      *
@@ -91,21 +96,23 @@ class Article extends Resource
             BelongsTo::make('Article Type', 'articleType'),
             Boolean::make('Featured')->sortable(),
             Number::make('Rating')->exceptOnForms(),
-            MorphToMany::make('Categories'),
+            MorphToMany::make('Categories')->searchable(),
+
             Tags::make('Tags')->hideFromIndex(),
-            Select::make('Publish Status', 'status')->options([
-                '1' => 'Publish',
-                '0' => 'Save as Draft',
+            Select::make('Status', 'status')->options([
+                '1' => 'Published',
+                '0' => 'Draft',
             ])
-                ->withMeta(["value" => 1])
+                // ->withMeta(["value" => 1])
                 ->displayUsingLabels(),
 
             DateTime::make('Publish Date')
-                ->format('M/DD/YYYY @ H:Ma')
+                ->format('MMMM D YYYY, h:mm a')
                 ->help(
-                    'Change the date to a time in the future to schedule an article.'
+                    'Pick a date in the future to schedule an article.'
                 )
-                ->withMeta(["value" => date('Y-m-d H:i:s')])
+                ->rules('required')
+                // ->withMeta(["value" => date('Y-m-d H:i:s')])
                 ->hideFromIndex(),
         ];
     }
@@ -130,8 +137,9 @@ class Article extends Resource
     public function filters(Request $request)
     {
         return [
-            new ArticleMarket,
-            new ArticleStatus
+            new ArticleStatus,
+            new Market,
+            new Category,
         ];
     }
 
