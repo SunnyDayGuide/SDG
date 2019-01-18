@@ -22,12 +22,18 @@ class Freemail extends Model
         'active' => 'boolean'
     ];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'consent_date',
+    ];
+
      /**
      * A type is assigned to a freemail
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function freemailType()
+    public function freemail_type()
     {
         return $this->belongsTo(FreemailType::class);
     }
