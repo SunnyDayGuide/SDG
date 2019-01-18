@@ -10,13 +10,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
 header {
 	margin-bottom: 85px;
 }
 
 .navbar {
-	// height: 93px;
+	min-height: 93px;
 	background-color: $indigo;
 	padding-top: 0;
 	padding-bottom: 0;
@@ -33,8 +32,35 @@ header {
 	// font-weight: $font-weight-bold;
 }
 
-.dropdown:hover>.dropdown-menu {
-  display: block;
+@include media-breakpoint-up(md) {
+  .dropdown:hover>.dropdown-menu {
+	  display: block;
+	}
+}
+
+.bucket-list {
+	background-color: $green;
+	height: 100%;
+	padding: 1rem;
+
+	.nav-link {
+		color: $primary;
+	}
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 400px;
+    line-height: 60px;
+    padding: 2rem;
+    background-color: $navy;
+
+    h4 {
+    	color: $white;
+    	border-bottom: 1px solid $white;
+    }
 }
 
 label {
