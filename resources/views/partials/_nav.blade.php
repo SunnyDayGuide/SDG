@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-5" href="{{ url('/') }}">
+            <a class="navbar-brand mr-2 clearfix" href="{{ url('/') }}">
                 <img src="{{ asset($market->brand->logo) }}" alt="{{ $market->brand->name }}" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -20,9 +20,11 @@
                         <div class="dropdown-menu" aria-labelledby="catgoryDropdown">
                             @foreach ($market->categories as $category)
                             <a href="{{ $market->path().'/'.$category->slug }}" class="dropdown-item">{{ $category->name }}</a>
-                                @foreach ($category->subcategories as $subcategory)
-                                <p>{{ $subcategory->name }}</p>
+                                <ul>
+                                @foreach ($category->children as $subcategory)
+                                <li><a href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a></li>
                                 @endforeach
+                                </ul>
                             @endforeach
                         </div>
                     </li> 
@@ -43,9 +45,9 @@
                 </div>
 
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto d-flex">
 
-                    <li class="nav-item dropdown mr-3">
+                    <li class="nav-item dropdown mr-3 align-self-center">
                         <a id="marketDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Other Destinations <span class="caret"></span>
                         </a>
@@ -57,8 +59,8 @@
                         </div>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Bucket List</a>
+                    <li class="align-self-center bucket-list">
+                        <a href="#">Bucket List</a>
                     </li>
 
                     <li class="nav-item">

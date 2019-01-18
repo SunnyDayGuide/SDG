@@ -23,6 +23,8 @@
             @yield('jumbotron')
             @yield('content')
         </main>
+
+        @include('partials._footer')
     </div>
 
 <!-- Scripts -->
