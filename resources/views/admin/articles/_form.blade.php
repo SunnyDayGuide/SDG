@@ -61,8 +61,7 @@
 					<label for="status">Status</label>
 					<select name="status" id="status" class="form-control">
 						<option value="0" {{ old('status', $article->status) ? '' : 'selected' }}>Draft</option>
-						<option value="1" {{ old('status', $article->status) ? 'selected' : '' }}>Scheduled</option>
-						<option value="2" {{ old('status', $article->status) ? 'selected' : '' }}>Published</option>
+						<option value="1" {{ old('status', $article->status) ? 'selected' : '' }}>Published</option>
 					</select>
 				</div>
 
