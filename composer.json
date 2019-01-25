@@ -12,14 +12,18 @@
         "ebess/advanced-nova-media-library": "^2.0",
         "epartment/nova-dependency-container": "^1.1",
         "fideloper/proxy": "^4.0",
+        "froala/nova-froala-field": "^1.1",
         "intervention/imagecache": "^2.3",
         "laravel/framework": "5.7.*",
+        "laravel/horizon": "^2.0",
         "laravel/nova": "*",
         "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
+        "predis/predis": "~1.0",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-tags": "^2.1",
         "spatie/nova-tags-field": "^1.1",
+        "waynestate/nova-ckeditor4-field": "^0.2.0",
         "webpatser/laravel-countries": "dev-master"
     },
     "require-dev": {
