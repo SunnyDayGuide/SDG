@@ -474,7 +474,7 @@ body {
   left: 0;
   z-index: 100;
   /* Behind the navbar */
-  padding: 48px 0 0;
+  padding: 98px 0 0;
   /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 }
@@ -482,7 +482,7 @@ body {
 .sidebar-sticky {
   position: relative;
   top: 0;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 98px);
   padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto;
@@ -525,7 +525,7 @@ body {
  */
 
 [role=main] {
-  padding-top: 48px;
+  padding-top: 108px;
   /* Space for fixed navbar */
 }
 
@@ -536,7 +536,8 @@ body {
 .navbar-brand {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  font-size: 1rem;
+  padding-left: 0.75rem;
+  font-size: 1.5rem;
   background-color: rgba(0, 0, 0, 0.25);
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
 }
