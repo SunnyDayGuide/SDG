@@ -49,7 +49,7 @@
 				<div class="col-md-4 mb-3">
 					<div class="card h-100" style="width: 100%;">
 						<div class="card-img-top">
-							{{ $article->getFirstMedia('inset') }}
+							@include('partials._images', ['item' => $article])
 						</div>
 						<div class="card-body">
 							<h5 class="card-title"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
@@ -103,7 +103,7 @@
 				@foreach ($tripIdeas as $article)
 				<div class="row mb-3 visitorinfo">
 					<div class="col-md-4">
-						{{ $article->getFirstMedia('inset') }}
+						{{ $article->getFirstMedia('sm-card') }}
 					</div>
 					<div class="col">
 						<h5 class="mt-0"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>

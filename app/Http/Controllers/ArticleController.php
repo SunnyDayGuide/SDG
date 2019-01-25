@@ -28,11 +28,14 @@ class ArticleController extends Controller
     public function index(Market $market)
     {
         $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
+        foreach ($tripIdeas as $article) {
+            $image = $article->getFirstMedia('slider');
+        }
 
         $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
         $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
 
-        return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
+        return view('articles.index', compact('market', 'tripIdeas', 'visitorInfos', 'advSpotlights', 'image'));
     }
 
     /**
@@ -43,9 +46,10 @@ class ArticleController extends Controller
      */
     public function show(Market $market, Article $article)
     {
-        $inset = $article->getFirstMedia('featured');
+        $sliderImages = $article->getMedia('slider');
+        $slider = $article->getFirstMedia('slider');
 
-        return view('articles.show', compact('article', 'market', 'inset'));
+        return view('articles.show', compact('article', 'market', 'slider', 'sliderImages'));
     }
 
     /**
@@ -58,6 +62,7 @@ class ArticleController extends Controller
     {
         return $market->articles()
             ->with('tags')
+            ->with('media')
             ->where('publish_date', '<=', Carbon::now())
             ->orderBy('publish_date', 'desc');
     }

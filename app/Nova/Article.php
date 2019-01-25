@@ -7,6 +7,8 @@ use App\Nova\Filters\ArticleStatus;
 use App\Nova\Filters\Category;
 use App\Nova\Filters\Market;
 use Carbon\Carbon;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -77,22 +79,32 @@ class Article extends Resource
         $today = date('Y-m-d H:i:s');
 
         return [
-            ID::make()->sortable(),
+            ID::make()->hideFromIndex(),
             BelongsTo::make('Market'),
             Text::make('Title')
                 ->sortable()
                 ->rules('required'),
-            Trix::make('Content')
+            Froala::make('Content')
+                ->withFiles('trix')
                 ->rules('required'),
+            // CKEditor::make('Content')
+            //     ->rules('required')
+            //     ->hideFromIndex(),
             Text::make('Author')->hideFromIndex(),
             Textarea::make('Excerpt')->hideFromIndex(),
-            Image::make('Featured Image', 'image')
-                ->hideFromIndex()
-                ->disk('public')
-                ->path('images/' . $market['slug'] . '/articles')
-                ->storeAs(function (Request $request) {
-                    return $request->image->getClientOriginalName();
-                }),
+
+            Images::make('Slider Images', 'slider')
+                ->customPropertiesFields([
+                        Text::make('Credit'),
+                        Textarea::make('Caption'),
+                    ])
+                ->conversion('full')
+                ->conversionOnView('md-card')
+                ->thumbnail('sm-card')
+                ->multiple()
+                ->fullSize()    
+                ->hideFromIndex(),
+
             BelongsTo::make('Article Type', 'articleType'),
             Boolean::make('Featured')->sortable(),
             Number::make('Rating')->exceptOnForms(),
@@ -102,9 +114,7 @@ class Article extends Resource
             Select::make('Status', 'status')->options([
                 '1' => 'Published',
                 '0' => 'Draft',
-            ])
-                // ->withMeta(["value" => 1])
-                ->displayUsingLabels(),
+            ])->displayUsingLabels(),
 
             DateTime::make('Publish Date')
                 ->format('MMMM D YYYY, h:mm a')

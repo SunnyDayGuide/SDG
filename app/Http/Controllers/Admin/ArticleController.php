@@ -101,7 +101,8 @@ class ArticleController extends Controller
         if($request->feature){
             $article->addMedia($request->feature)
                 ->withResponsiveImages()
-                ->toMediaCollection('featured');
+                ->withCustomProperties(['caption' => 'this is a caption'])
+                ->toMediaCollection('top_slider');
         }
 
         $article->assignCategories(request('categories'));
@@ -189,7 +190,8 @@ class ArticleController extends Controller
         if($request->feature){
             $article->addMedia($request->feature)
                 ->withResponsiveImages()
-                ->toMediaCollection('featured');
+                ->withCustomProperties(['caption' => 'this is a caption'])
+                ->toMediaCollection('top_slider');
         }
 
         // get categories and attach them

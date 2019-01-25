@@ -12,7 +12,7 @@
 		<table class="table">
 			<thead class="thead-light">
 				<th width="5%">Market</th>
-				<th>Client</th>
+				<th width="25%">Client</th>
 				<th>Type</th>
 				<th>Sales Rep</th>
 				<th>Status</th>
@@ -23,7 +23,7 @@
 				<tr>
 					<td>{{ $freemail->market->code }}</td>
 					<td>{{ $freemail->client }}</td>
-					<td>{{ $freemail->freemailType->name }}</td>
+					<td>{{ $freemail->freemail_type->name }}</td>
 					<td>{{ $freemail->employee->name }}</td>
 					<td>Status</td>
 					<td>

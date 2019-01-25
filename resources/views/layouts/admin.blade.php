@@ -24,7 +24,7 @@
   <div id="app">
     @include ('admin.partials._nav')
 
-    <div class="container-fluid">
+    <div class="container-fluid admin">
       <div class="row">
         @include ('admin.partials._sidebar')
 

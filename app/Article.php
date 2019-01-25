@@ -209,32 +209,55 @@ class Article extends Model implements HasMedia
     }
 
     /**
-     * Register the collections.
-     *
-     * @return array
-     */
-    public function registerMediaCollections()
-    {
-        $this->addMediaCollection('inset')
-            ->singleFile();
-
-        $this->addMediaCollection('featured');
-    }
-
-    /**
      * Register the conversions that should be performed.
      *
      * @return array
      */
     public function registerMediaConversions(Media $media = null)
     {
-        $this->addMediaConversion('full')
-            ->crop(Manipulations::CROP_CENTER, 900, 480)
-            ->withResponsiveImages();
+        // $this->addMediaConversion('full')
+        //     ->withResponsiveImages();
 
-        $this->addMediaConversion('card')
-            ->crop(Manipulations::CROP_CENTER, 426, 227)
-            ->withResponsiveImages();
+        // $this->addMediaConversion('cropped')
+        //     ->crop(Manipulations::CROP_CENTER, 900, 480)
+        //     ->withResponsiveImages();
+
+        // $this->addMediaConversion('card')
+        //     ->crop(Manipulations::CROP_CENTER, 426, 227)
+        //     ->withResponsiveImages();
+
     }
+
+    /**
+     * Register the collections.
+     *
+     * @return array
+     */
+    public function registerMediaCollections()
+    {
+        $this
+        ->addMediaCollection('slider')
+        ->registerMediaConversions(function (Media $media) {
+            
+            $this->addMediaConversion('full')
+                ->withResponsiveImages();
+
+            $this
+                ->addMediaConversion('md-card')
+                ->crop(Manipulations::CROP_CENTER, 426, 227)
+                ->withResponsiveImages();
+
+            $this
+                ->addMediaConversion('sm-card')
+                ->crop(Manipulations::CROP_CENTER, 317, 169)
+                ->withResponsiveImages();
+        });
+
+        $this->addMediaCollection('inset');
+
+        // $this->addMediaCollection('slider');
+    }
+
+
 
 }
