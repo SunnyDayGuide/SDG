@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->unsignedInteger('article_type_id')->nullable();
             $table->boolean('featured')->default(false);
             $table->unsignedInteger('rating')->default('0');
-            $table->string('status'); // draft, active
+            $table->unsignedInteger('status'); // draft, active
             $table->dateTime('publish_date');
             $table->timestamps();
             $table->softDeletes();
