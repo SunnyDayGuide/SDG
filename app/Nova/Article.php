@@ -38,14 +38,14 @@ class Article extends Resource
      */
     public static $model = 'App\Article';
 
-    /**
-     * Get the model with the Market scope removed
-     * @return mixed
-     */
-    public static function newModel()
-    {
-        return static::$model::withoutGlobalScope(MarketScope::class);
-    }
+    // /**
+    //  * Get the model with the Market scope removed
+    //  * @return mixed
+    //  */
+    // public static function newModel()
+    // {
+    //     return static::$model::withoutGlobalScope(MarketScope::class);
+    // }
 
     /**
      * The single value that should be used to represent the resource when being displayed.

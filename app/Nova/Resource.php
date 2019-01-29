@@ -2,8 +2,9 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Resource as NovaResource;
+use App\Scopes\MarketScope;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
@@ -16,6 +17,7 @@ abstract class Resource extends NovaResource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
+        $query->withoutGlobalScope(MarketScope::class);
         return $query;
     }
 
@@ -40,7 +42,8 @@ abstract class Resource extends NovaResource
      */
     public static function detailQuery(NovaRequest $request, $query)
     {
-        return parent::detailQuery($request, $query);
+        return parent::detailQuery($request, $query)
+            ->withoutGlobalScope(MarketScope::class);;
     }
 
     /**
