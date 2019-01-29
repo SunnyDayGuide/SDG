@@ -1,11 +1,7 @@
 @php
 $collectionName = $collectionName ?? 'slider';
-$profile = $profile ?? 'md-card';
+$profile = $profile ?? 'card';
+$image = $item->getFirstMedia($collectionName);
 @endphp
 
-@foreach($item->getFirstMedia($collectionName) as $image)
-    {{-- <a href="{{ $image->getUrl() }}">
-        <img src="{{ $image->getUrl($profile) }}"/>
-    </a> --}}
-    {{ $image($profile) }}
-@endforeach
+{{ $image($profile) }}

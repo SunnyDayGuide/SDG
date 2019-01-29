@@ -60,7 +60,7 @@ class Article extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['articleType', 'market'];
+    protected $with = ['articleType', 'market', 'media', 'tags'];
 
 	protected $dates = [
 	    'created_at',
@@ -68,6 +68,7 @@ class Article extends Model implements HasMedia
 	    'publish_date',
         'deleted_at'
 	];
+
 
      /**
      * Get the route key name.
@@ -208,6 +209,8 @@ class Article extends Model implements HasMedia
             ->orderBy('order_column');
     }
 
+
+
     /**
      * Register the conversions that should be performed.
      *
@@ -243,7 +246,7 @@ class Article extends Model implements HasMedia
                 ->withResponsiveImages();
 
             $this
-                ->addMediaConversion('md-card')
+                ->addMediaConversion('card')
                 ->crop(Manipulations::CROP_CENTER, 426, 227)
                 ->withResponsiveImages();
 
@@ -255,7 +258,6 @@ class Article extends Model implements HasMedia
 
         $this->addMediaCollection('inset');
 
-        // $this->addMediaCollection('slider');
     }
 
 

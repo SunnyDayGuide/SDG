@@ -1,26 +1,9 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div>
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
-		<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-		<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-	</ol>
-	<div class="carousel-inner">
-		<div class="carousel-item active">
-			<img src="http://lorempixel.com/1920/700/sports/1" alt="" class="img-fluid">
-		</div>
-		<div class="carousel-item">
-			<img src="http://lorempixel.com/1920/700/sports/2" alt="" class="img-fluid">
-		</div>
-		<div class="carousel-item">
-			<img src="http://lorempixel.com/1920/700/sports/3" alt="" class="img-fluid">
-		</div>
+	<div>
+		@include('articles._slider')
 	</div>
-</div>
-</div>
 @endsection
 
 @section('content')
@@ -39,7 +22,7 @@
 
 	<section id="tripIdeas" class="tripIdeas">
 		<div class="d-flex justify-content-between border-bottom border-editorial mb-3">
-			<div><h2>Trip Ideas</h2></div>
+			<h2>Trip Ideas</h2>
 			<div>Sort by: Date?</div>
 		</div>
 
@@ -86,24 +69,19 @@
 		</div>
 	</section>
 
-	<section id="visitorInfo">
-		<div class="d-flex justify-content-between border-bottom border-primary mb-3">
-			<div><h2>Visitor Info</h2></div>
+	<section id="visitorInfo" class="visitorInfo">
+
+		<div class="d-flex justify-content-between border-bottom border-editorial mb-3">
+			<h2>Visitor Info</h2>
 			<div>Sort by: Date?</div>
-		</div>
-		<div class="row">
-			<div class="col-12 d-flex justify-content-between border-bottom border-primary mb-3">
-				<div><h2>Visitor Info</h2></div>
-				<div>Sort by: Date?</div>
-			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md-9">
-				@foreach ($tripIdeas as $article)
-				<div class="row mb-3 visitorinfo">
+				@foreach ($visitorInfos as $article)
+				<div class="row mb-3 stacked-cards">
 					<div class="col-md-4">
-						{{ $article->getFirstMedia('sm-card') }}
+						@include('partials._images', ['item' => $article, 'profile' => 'sm-card'])
 					</div>
 					<div class="col">
 						<h5 class="mt-0"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
@@ -129,32 +107,29 @@
 
 	</section>
 
-	<section id="advSpotlights">
+	<section id="advSpotlights" class="advSpotlights">
 
-		<div class="row">
-			<div class="col-12 d-flex justify-content-between border-bottom border-primary mb-3">
-				<div><h2>Advertiser Spotlights</h2></div>
-				<div>Sort by: Date?</div>
-			</div>
+		<div class="d-flex justify-content-between border-bottom border-advertiser mb-3 w-100">
+			<h2>Advertiser Spotlights</h2>
+			<div>Sort by: Date?</div>
 		</div>
 
 		<div class="row">
-			<div class="card-deck">
+			<div class="card-deck w-100">
 				@foreach ($advSpotlights as $article)
 				<div class="col-md-4 mb-3">
-					<div class="card" style="width: 100%;">
+					<div class="card h-100" style="width: 100%;">
 						<div class="card-img-top">
-							{{ $article->getFirstMedia('inset') }}
+							@include('partials._images', ['item' => $article])
 						</div>
 						<div class="card-body">
 							<h5 class="card-title"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
 							<p class="card-text">{{ $article->excerpt }}</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
 						</div>
 						@if ($article->tags->count())
 						<div class="card-footer">
 							@foreach($article->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="badge badge-secondary">{{ $tag->name }}</a>
+							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 							@endforeach
 						</div>
 						@endif
