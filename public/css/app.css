@@ -9912,7 +9912,21 @@ h2 {
   font-weight: 700;
 }
 
-.visitorinfo {
+.advSpotlights h2 {
+  color: #b5d45f;
+}
+
+.advSpotlights .card-title,
+.advSpotlights .card-title a {
+  color: #b5d45f;
+  font-weight: 700;
+}
+
+.visitorinfo h2 {
+  color: #53B7E8;
+}
+
+.visitorinfo .stacked-cards {
   border-bottom: 1px solid #53B7E8;
   padding-bottom: 1rem;
 }

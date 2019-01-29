@@ -85,9 +85,27 @@ h2 {
 
 }
 
+.advSpotlights {
+	h2 {
+		color: $advertisers;
+	}
+
+	.card-title, .card-title a {
+		color: $advertisers;
+		font-weight: $font-weight-bold;
+	}
+
+}
+
 .visitorinfo {
-	border-bottom: 1px solid $editorial;
-	padding-bottom: 1rem;
+		h2 {
+		color: $editorial;
+	}
+
+	.stacked-cards {
+		border-bottom: 1px solid $editorial;
+		padding-bottom: 1rem;
+	}
 }
 
 .search {
