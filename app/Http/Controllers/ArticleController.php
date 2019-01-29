@@ -51,8 +51,9 @@ class ArticleController extends Controller
     public function show(Market $market, Article $article)
     {
         $sliderImages = $article->getMedia('slider');
+        $slider = $article->getFirstMedia('slider');
 
-        return view('articles.show', compact('article', 'market', 'sliderImages'));
+        return view('articles.show', compact('article', 'market', 'slider', 'sliderImages'));
     }
 
     /**
@@ -64,6 +65,8 @@ class ArticleController extends Controller
     public static function getArticles(Market $market)
     {
         return $market->articles()
+            ->with('tags')
+            ->with('media')
             ->where('publish_date', '<=', Carbon::now())
             ->orderBy('publish_date', 'desc');
     }
