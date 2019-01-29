@@ -18,6 +18,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::serving(function () {
+            \App\Article::withoutGlobalScope(MarketScope::class)->get();
+        });
     }
 
     /**
