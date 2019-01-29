@@ -57,12 +57,4 @@ abstract class Resource extends NovaResource
         return parent::relatableQuery($request, $query);
     }
 
-    /**
-     * Get the model with the Market scope removed
-     * @return mixed
-     */
-    public static function newModel()
-    {
-        return static::$model::withoutGlobalScope(MarketScope::class);
-    }
 }
