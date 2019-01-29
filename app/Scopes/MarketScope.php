@@ -18,8 +18,7 @@ class MarketScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $marketId = Market::where('slug', $marketSlug)->first()->id;
-        $builder->where('market_id', $marketId);
+        $builder->where('market_id', request()->market->id);
     }
 
 }

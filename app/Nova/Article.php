@@ -6,6 +6,7 @@ use App\Nova\Filters\ArticleMarket;
 use App\Nova\Filters\ArticleStatus;
 use App\Nova\Filters\Category;
 use App\Nova\Filters\Market;
+use App\Scopes\MarketScope;
 use Carbon\Carbon;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Froala\NovaFroalaField\Froala;
@@ -30,6 +31,7 @@ class Article extends Resource
 {
 
     /**
+     * ->withoutGlobalScope(App\Scopes\MarketScope::class)
      * The model the resource corresponds to.
      *
      * @var string
@@ -99,7 +101,7 @@ class Article extends Resource
                         Textarea::make('Caption'),
                     ])
                 ->conversion('full')
-                ->conversionOnView('md-card')
+                ->conversionOnView('card')
                 ->thumbnail('sm-card')
                 ->multiple()
                 ->fullSize()    

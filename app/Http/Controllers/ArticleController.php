@@ -27,9 +27,17 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
+        $featured = Article::where('featured', true)->get();
+        // $featured = $this->getArticles($market)->where('featured', true)->get();
 
-        $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
-        $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
+        // $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
+        $tripIdeas = Article::where('article_type_id', 1)->paginate(6);
+
+        // $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
+        $visitorInfos = Article::where('article_type_id', 2)->get();
+
+        // $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
+        $advSpotlights = Article::where('article_type_id', 3)->get();
 
         return view('articles.index', compact('market', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }

@@ -36,6 +36,8 @@ class Article extends Model implements HasMedia
     {
         parent::boot();
 
+        static::addGlobalScope(new MarketScope);
+
         // static::addGlobalScope('published', function ($builder) {
         //     $builder->where('publish_date', '>=', Carbon::now());
         // });
