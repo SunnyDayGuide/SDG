@@ -9,7 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-window.$ = window.jQuery = require('jquery')
+window.$ = window.jQuery = require('jquery');
+
 require('selectize');
 
 /**

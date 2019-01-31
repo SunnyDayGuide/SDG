@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.1.3",
+        "64robots/nova-fields": "^0.6.7",
         "adrianmejias/laravel-states": "^1.2",
         "cviebrock/eloquent-sluggable": "^4.6",
         "doctrine/dbal": "^2.8",
