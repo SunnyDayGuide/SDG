@@ -1,21 +1,27 @@
 @php
 $collectionName = $collectionName ?? 'slider';
 $profile = $profile ?? 'card';
+foreach ($items as $item) {
+	$image = $item->getFirstMedia($collectionName);
+}
 @endphp
 
-<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+<div id="slider" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
-		@foreach($featured as $feature)
-	      <li data-target="#carouselIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+		@foreach($items as $item)
+	      <li data-target="#slider" data-slide-to="{{ $loop->index }}" class="indictator {{ $loop->first ? 'active' : '' }}"></li>
 	   @endforeach
 	</ol>
 	<div class="carousel-inner" role="listbox">
-		@foreach($featured as $feature)
+		@foreach($items as $item)
 			<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-				{{ $feature->getFirstMedia($collectionName) }}
+				@php
+				$image = $item->getFirstMedia($collectionName)
+				@endphp
+				{{ $image($profile) }}
 				<div class="carousel-caption d-none d-md-block">
-					<h1>{{ $feature->title }}</h1>
-					<p>{{ $feature->excerpt }}</p>
+					<h1>{{ $item->title }}</h1>
+					<p>{{ $item->excerpt }}</p>
 				</div>
 			</div>
 		@endforeach
