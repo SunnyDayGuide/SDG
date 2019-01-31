@@ -52,6 +52,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
     Route::get('articles', 'ArticleController@index')->name('articles');
 	Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
+	Route::get('events', 'EventController@index')->name('events');
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
 	Route::get('{category}/{subcategory}', 'CategoryController@subcategories')->name('subcategories.show');
