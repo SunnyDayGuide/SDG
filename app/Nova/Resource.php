@@ -43,7 +43,7 @@ abstract class Resource extends NovaResource
     public static function detailQuery(NovaRequest $request, $query)
     {
         return parent::detailQuery($request, $query)
-            ->withoutGlobalScope(MarketScope::class);;
+            ->withoutGlobalScope(MarketScope::class);
     }
 
     /**
@@ -57,7 +57,8 @@ abstract class Resource extends NovaResource
      */
     public static function relatableQuery(NovaRequest $request, $query)
     {
-        return parent::relatableQuery($request, $query);
+        return parent::relatableQuery($request, $query)
+            ->withoutGlobalScope(MarketScope::class);
     }
 
 }

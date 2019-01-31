@@ -12,14 +12,6 @@ use Carbon\Carbon;
 class ArticleController extends Controller
 {
     /**
-     * Create a new ArticlesController instance.
-     */
-    public function __construct()
-    {
-        
-    }
-
-    /**
      * Display a listing of all articles by article type
      *
      * @param  Market      $market
@@ -27,17 +19,25 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $featured = Article::where('featured', true)->get();
-        // $featured = $this->getArticles($market)->where('featured', true)->get();
+        $featured = $this->getArticles($market)
+            ->where('featured', true)
+            ->latest('publish_date')
+            ->get();
 
-        // $tripIdeas = $this->getArticles($market)->where('article_type_id', 1)->paginate(6);
-        $tripIdeas = Article::where('article_type_id', 1)->paginate(6);
+        $tripIdeas = $this->getArticles($market)
+            ->where('article_type_id', 1)
+            ->latest('publish_date')
+            ->paginate(6);
 
-        // $visitorInfos = $this->getArticles($market)->where('article_type_id', 2)->get();
-        $visitorInfos = Article::where('article_type_id', 2)->get();
+        $visitorInfos = $this->getArticles($market)
+            ->where('article_type_id', 2)
+            ->latest('publish_date')
+            ->get();
 
-        // $advSpotlights = $this->getArticles($market)->where('article_type_id', 3)->get();
-        $advSpotlights = Article::where('article_type_id', 3)->get();
+        $advSpotlights = $this->getArticles($market)
+            ->where('article_type_id', 3)
+            ->orderBy('title', 'asc')
+            ->get();
 
         return view('articles.index', compact('market', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
@@ -65,10 +65,7 @@ class ArticleController extends Controller
     public static function getArticles(Market $market)
     {
         return $market->articles()
-            ->with('tags')
-            ->with('media')
-            ->where('publish_date', '<=', Carbon::now())
-            ->orderBy('publish_date', 'desc');
+            ->published();
     }
 
     public function rate(Market $market, Article $article)

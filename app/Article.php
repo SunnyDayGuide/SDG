@@ -36,7 +36,7 @@ class Article extends Model implements HasMedia
     {
         parent::boot();
 
-        static::addGlobalScope(new MarketScope);
+        // static::addGlobalScope(new MarketScope);
 
         // static::addGlobalScope('published', function ($builder) {
         //     $builder->where('publish_date', '>=', Carbon::now());
@@ -70,7 +70,6 @@ class Article extends Model implements HasMedia
 	    'publish_date',
         'deleted_at'
 	];
-
 
      /**
      * Get the route key name.
@@ -249,7 +248,7 @@ class Article extends Model implements HasMedia
 
             $this
                 ->addMediaConversion('card')
-                ->crop(Manipulations::CROP_CENTER, 426, 227)
+                ->crop(Manipulations::CROP_CENTER, 338, 180)
                 ->withResponsiveImages();
 
             $this
