@@ -10,17 +10,13 @@ $line-height-base: 1.6;
 
 // SDG Colors
 $navy: #154270;
-// $blue: #53B7E8;
-// $blue-light: #B9E5FB;
-// $green: #b5d45f;
-// $green-light: #E1F3BD;
 $blue: #60A3D9;
-$blue-light: #A0C8E8;
+$blue-light: lighten($blue, 23);
 $green: #B5D45F;
-$green-light: #D3E59F;
+$green-light: lighten($green, 20);
 $light: #C6C6C6;
 $dark: #656565;
-
+$highlight: #FF6F61;
 
 // Colors
 $indigo: $navy;
@@ -31,7 +27,8 @@ $advertisers: $green;
 
 $theme-colors: (
   "editorial": $editorial,
-  "advertiser": $advertisers
+  "advertiser": $advertisers,
+  "highlight" : $highlight,
 );
 
 // Sky Blue: #60A3D9
@@ -42,7 +39,7 @@ $theme-colors: (
 // Light Grey: #C6C6C6
 
 // Grid columns
-$grid-gutter-width: 30px;
+// $grid-gutter-width: 30px;
 
 // Grid containers
 //
