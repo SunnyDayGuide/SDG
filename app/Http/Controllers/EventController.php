@@ -15,9 +15,7 @@ class EventController extends Controller
      */
     public function index(Market $market)
     {
-        $event = Event::with('categories')->find(1);
-
-        dd($event);
+        $events = $market->events()->current()->get();
 
         return view('events.index', compact('market', 'events'));
     }

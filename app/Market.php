@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Event;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -99,6 +100,11 @@ class Market extends Model
     public function articles()
     {   
         return $this->hasMany(Article::class);
+    }
+
+    public function events()
+    {   
+        return $this->hasMany(Event::class);
     }
 
     public function state()
