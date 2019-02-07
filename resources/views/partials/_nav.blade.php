@@ -1,7 +1,7 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-2 clearfix" href="{{ url('/') }}">
+            <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
                 <img src="{{ asset($market->brand->logo) }}" alt="{{ $market->brand->name }}" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
