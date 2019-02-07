@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="w-100">
+<div class="article-slider w-100">
 	@include('articles._slider', ['items' => $featured, 'profile' => 'full'])
 </div>
 @endsection
@@ -27,13 +27,17 @@
 		</div>
 
 		<div class="row">
-			<div class="card-deck">
+			<div class="card-deck mx-md-0">
 				@foreach ($tripIdeas as $article)
-				<div class="col-md-4 mb-3">
-					<div class="card h-100" style="width: 100%;">
+				<div class="col-lg-4 col-md-6 mb-3 px-md-0">
+					<div class="card h-100">
+						@if(null !== $article->getFirstMedia('slider'))
 						<div class="card-img-top">
-							@include('partials._images', ['item' => $article])
+							<a href="{{ $article->path() }}">
+								@include('partials._images', ['item' => $article])
+							</a>
 						</div>
+						@endif
 						<div class="card-body">
 							<h5 class="card-title"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
 							<p class="card-text">{{ $article->excerpt }}</p>
@@ -64,7 +68,7 @@
 	<section class="ads">
 		<div class="row justify-content-center">
 			<div class="col-8">
-				{{-- <img src="http://lorempixel.com/gray/900/272/technics/" alt="" class="img-fluid"> --}}
+				<img src="http://placehold.it/706x213" alt="advertisement" class="img-fluid">
 			</div>
 		</div>
 	</section>
