@@ -76,7 +76,6 @@ class Article extends Resource
      */
     public function fields(Request $request)
     {
-        $market = \App\Market::find($request->market);
         $today = date('Y-m-d H:i:s');
 
         return [
@@ -120,10 +119,9 @@ class Article extends Resource
             DateTime::make('Publish Date')
                 ->format('MMMM D YYYY, h:mm a')
                 ->help(
-                    'Pick a date in the future to schedule an article.'
+                    'Pick a date in the future to SCHEDULE an article.'
                 )
                 ->rules('required')
-                // ->withMeta(["value" => date('Y-m-d H:i:s')])
                 ->hideFromIndex(),
         ];
     }

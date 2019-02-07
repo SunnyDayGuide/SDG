@@ -248,7 +248,7 @@ class Article extends Model implements HasMedia
 
             $this
                 ->addMediaConversion('card')
-                ->crop(Manipulations::CROP_CENTER, 338, 180)
+                ->crop(Manipulations::CROP_CENTER, 382, 203)
                 ->withResponsiveImages();
 
             $this
