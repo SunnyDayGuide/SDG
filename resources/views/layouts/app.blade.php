@@ -21,7 +21,7 @@
     <div id="app">
         @include('partials._nav')
 
-        <main role="main">
+        <main role="main" class="content-wrapper">
             @yield('jumbotron')
             @yield('content')
         </main>

@@ -10979,6 +10979,10 @@ a.text-highlight:focus {
   }
 }
 
+.content-wrapper {
+  min-height: 100vh;
+}
+
 header {
   margin-bottom: 85px;
 }
@@ -11026,8 +11030,6 @@ h2 {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   height: 400px;
   line-height: 60px;
