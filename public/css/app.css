@@ -10992,6 +10992,7 @@ h1 {
 }
 
 h2 {
+  color: #154270;
   font-weight: 400;
 }
 
@@ -11050,10 +11051,6 @@ label {
   font-size: 1.5rem;
 }
 
-.tripIdeas h2 {
-  color: #60A3D9;
-}
-
 .tripIdeas .card-title,
 .tripIdeas .card-title a {
   color: #60A3D9;
@@ -11061,7 +11058,7 @@ label {
 }
 
 .advSpotlights {
-  background-color: #daeaaf;
+  background-color: #d1e49b;
   padding: 2rem 0;
 }
 
@@ -11079,13 +11076,21 @@ label {
   font-weight: 700;
 }
 
-.visitorInfo h2 {
+.visitorInfo h5 a {
   color: #60A3D9;
+  font-weight: 700;
+}
+
+.visitorInfo .media .image {
+  width: 35%;
 }
 
 .visitorInfo .stacked-cards {
-  border-bottom: 1px solid #60A3D9;
   padding-bottom: 1rem;
+}
+
+.visitorInfo .stacked-cards .card-img {
+  width: 33%;
 }
 
 .search {

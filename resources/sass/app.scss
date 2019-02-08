@@ -23,6 +23,7 @@ h1 {
 }
 
 h2 {
+  color: $primary;
   font-weight: $font-weight-normal;
 }
 
@@ -87,7 +88,7 @@ label {
 
 .tripIdeas {
 	h2 {
-		color: $editorial;
+		// color: $editorial;
 	}
 
 	.card-title, .card-title a {
@@ -118,12 +119,27 @@ label {
 
 .visitorInfo {
 		h2 {
-		color: $editorial;
+		// color: $primary;
 	}
 
+  h5 a {
+    color: $editorial;
+    font-weight: $font-weight-bold;
+  }
+
+  .media .image {
+    width: 35%;
+  }
+
 	.stacked-cards {
-		border-bottom: 1px solid $editorial;
+		// border-bottom: 1px solid $editorial;
 		padding-bottom: 1rem;
+
+    .card-img {
+      width: 33%;
+      // margin-right: .25rem;
+      // float:left;
+    }
 	}
 }
 

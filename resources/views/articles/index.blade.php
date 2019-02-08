@@ -75,7 +75,7 @@
 
 	<section id="visitorInfo" class="visitorInfo">
 
-		<div class="d-flex justify-content-between border-bottom border-editorial mb-3">
+		<div class="d-flex justify-content-between border-bottom border-primary mb-3">
 			<h2>Visitor Info</h2>
 			<div>Sort by: Date?</div>
 		</div>
@@ -83,18 +83,18 @@
 		<div class="row">
 			<div class="col-md-9">
 				@foreach ($visitorInfos as $article)
-				<div class="row mb-3 stacked-cards">
-					<div class="col-md-4">
+				<div class="media border-bottom border-light mb-3 pb-3">
+					<div class="image mr-3">
 						@include('partials._images', ['item' => $article, 'profile' => 'sm-card'])
 					</div>
-					<div class="col">
+					<div class="media-body">
 						<h5 class="mt-0"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
 						<p>{{ $article->excerpt }}</p>
 
 						@if ($article->tags->count())
 						<div>
 							@foreach($article->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="badge badge-secondary">{{ $tag->name }}</a>
+							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 							@endforeach
 						</div>
 						@endif
@@ -104,7 +104,7 @@
 			</div>
 
 			<div class="col-md-3 mr-0">
-				{{-- <img src="https://lorempixel.com/gray/400/900/technics" alt="" class="img-fluid"> --}}
+				<img src="http://placehold.it/400x900" alt="advertisement" class="img-fluid">
 			</div>
 
 		</div> <!-- End Row-->
@@ -148,17 +148,17 @@
 			</div> <!-- End Row-->
 
 			<div class="container">
-		        <div class="row">
-		          <div class="col-12 text-center mt-4">
-		            <a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
-		              <i class="fa fa-lg fa-chevron-left"></i>
-		            </a>
-		            <a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
-		              <i class="fa fa-lg fa-chevron-right"></i>
-		            </a>
-		          </div>
-		        </div>
-		    </div>
+				<div class="row">
+					<div class="col-12 text-center mt-4">
+						<a class="btn btn-outline-secondary mx-1 prev" href="javascript:void(0)" title="Previous">
+							<i class="fa fa-lg fa-chevron-left"></i>
+						</a>
+						<a class="btn btn-outline-secondary mx-1 next" href="javascript:void(0)" title="Next">
+							<i class="fa fa-lg fa-chevron-right"></i>
+						</a>
+					</div>
+				</div>
+			</div>
 
 		</div>
 
@@ -169,45 +169,45 @@
 
 @section('scripts')
 <script>
-(function ($) {
-  "use strict";
+	(function ($) {
+		"use strict";
   // Auto-scroll
   $('#myCarousel').carousel({
-    interval: 5000
+  	interval: 5000
   });
 
   // Control buttons
   $('.next').click(function () {
-    $('.carousel').carousel('next');
-    return false;
+  	$('.carousel').carousel('next');
+  	return false;
   });
   $('.prev').click(function () {
-    $('.carousel').carousel('prev');
-    return false;
+  	$('.carousel').carousel('prev');
+  	return false;
   });
 
   // On carousel scroll
   $("#myCarousel").on("slide.bs.carousel", function (e) {
-    var $e = $(e.relatedTarget);
-    var idx = $e.index();
-    var itemsPerSlide = 3;
-    var totalItems = $(".carousel-item").length;
-    if (idx >= totalItems - (itemsPerSlide - 1)) {
-      var it = itemsPerSlide -
-          (totalItems - idx);
-      for (var i = 0; i < it; i++) {
+  	var $e = $(e.relatedTarget);
+  	var idx = $e.index();
+  	var itemsPerSlide = 3;
+  	var totalItems = $(".carousel-item").length;
+  	if (idx >= totalItems - (itemsPerSlide - 1)) {
+  		var it = itemsPerSlide -
+  		(totalItems - idx);
+  		for (var i = 0; i < it; i++) {
         // append slides to end 
         if (e.direction == "left") {
-          $(
-            ".carousel-item").eq(i).appendTo(".carousel-inner");
+        	$(
+        		".carousel-item").eq(i).appendTo(".carousel-inner");
         } else {
-          $(".carousel-item").eq(0).appendTo(".carousel-inner");
+        	$(".carousel-item").eq(0).appendTo(".carousel-inner");
         }
-      }
     }
-  });
+}
+});
 })
-(jQuery);
+	(jQuery);
 
 </script>
 
