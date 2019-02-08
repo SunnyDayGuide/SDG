@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
@@ -20,6 +21,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
+use Michielfb\Time\Time;
 use R64\NovaFields\JSON;
 use Spatie\TagsField\Tags;
 
@@ -75,17 +77,17 @@ class Event extends Resource
 
             Date::make('Start Date')
                 ->sortable()
-                ->format('MM-DD-YYYY')
+                ->format('M-DD-YYYY')
                 ->rules('required', 'before_or_equal:end_date'),
             Date::make('End Date')
                 ->sortable()
-                ->format('MM-DD-YYYY')
+                ->format('M-DD-YYYY')
                 ->rules('nullable', 'after_or_equal:start_date'),
 
             Boolean::make('Is Recurring'),
 
-            Text::make('Start Time')->hideFromIndex(),
-            Text::make('End Time')->hideFromIndex(),
+            Time::make('Start Time')->format('h:mm a')->hideFromIndex(),
+            Time::make('End Time')->format('h:mm a')->hideFromIndex(),
 
             Textarea::make('Description')->hideFromIndex(),
             Textarea::make('Location')->hideFromIndex(),
