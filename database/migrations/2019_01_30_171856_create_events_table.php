@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
             $table->string('facebook_url')->nullable();
             $table->boolean('featured')->default(false);
             $table->boolean('is_recurring')->default(false);
+            $table->boolean('active')->default(true);
 
             $table->timestamps();
             $table->softDeletes();

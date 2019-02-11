@@ -70,6 +70,7 @@ class Event extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Market'),
+            Boolean::make('Active')->sortable(),
 
             Text::make('Title')
                 ->sortable()

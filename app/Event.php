@@ -37,6 +37,7 @@ class Event extends Model implements HasMedia
     protected $casts = [
         'is_recurring'     => 'boolean',
         'featured'        => 'boolean',
+        'active' => 'boolean'
         'rrule' => 'array',
         'dtstart' => 'datetime:Y-m-d',
         'until' => 'datetime:Y-m-d',
@@ -69,6 +70,18 @@ class Event extends Model implements HasMedia
     public function scopeCurrent($query)
     {
         return $query->where('end_date', '>=', Carbon::now());
+    }
+
+
+    /**
+     * Scope a query to only include active events.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 
     /**
