@@ -11112,6 +11112,35 @@ label {
   background-color: #C6C6C6;
 }
 
+.social .social-item {
+  font-size: 1rem;
+  padding: 6px 8px;
+  margin-right: 0.25rem;
+}
+
+.social .social-item.fb {
+  padding: 6px 12px;
+}
+
+.social .social-item.yt {
+  padding: 6px 7px;
+}
+
+.social .social-item.ig {
+  padding: 6px 9px;
+}
+
+.advertiser-cat {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  margin-left: 1rem;
+}
+
+.btn.tags {
+  padding: 0 0.25rem;
+}
+
 /* ---- Special Chart CSS */
 
 .tide_charts_body {
