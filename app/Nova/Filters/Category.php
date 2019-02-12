@@ -24,7 +24,9 @@ class Category extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-        return $query->where('catgegory_id', $value);
+        return $query->whereHas('categories', function($query) use ($value) {
+            $query->where('id', $value);
+        });
     }
 
     /**
@@ -35,7 +37,7 @@ class Category extends Filter
      */
     public function options(Request $request)
     {
-        $categories = \App\Category::all();
+        $categories = \App\Category::where('parent_id', null)->get();
         return $categories->pluck('id', 'name')->all();
     }
 }
