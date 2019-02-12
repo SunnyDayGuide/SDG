@@ -30,10 +30,19 @@ class CategoryController extends Controller
             ->get();     
 
         // TO-DO: display the related advertisers
+        $advertisers = $category->advertisers()
+            ->with('tags')
+            ->where('market_id', $market->id)
+            ->get();  
+
         // TO-DO: display the related events
+        $events = $category->events()
+            ->with('tags')
+            ->where('market_id', $market->id)
+            ->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'lead', 'category', 'subcategories'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories'));
     }
 
      /**

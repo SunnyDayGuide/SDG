@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Advertiser;
 use App\Category;
 use App\CustomTag;
 use App\Market;
@@ -109,6 +110,14 @@ class Article extends Model implements HasMedia
     public function articleType()
     {
     	return $this->belongsTo(ArticleType::class)->orderBy('order');
+    }
+
+    /**
+     * The articles that belong an advertiser.
+     */
+    public function advertisers()
+    {
+        return $this->belongsToMany(Advertiser::class);
     }
 
     /**

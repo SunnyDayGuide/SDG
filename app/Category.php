@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Advertiser;
 use App\Article;
+use App\Event;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +60,17 @@ class Category extends Model
     	return $this->morphedByMany(Article::class, 'categoriable');
     }
 
-        /**
+    public function advertisers()
+    {
+        return $this->morphedByMany(Advertiser::class, 'categoriable');
+    }
+
+    public function events()
+    {
+        return $this->morphedByMany(Event::class, 'categoriable');
+    }
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array

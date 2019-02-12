@@ -37,7 +37,7 @@ class Event extends Model implements HasMedia
     protected $casts = [
         'is_recurring'     => 'boolean',
         'featured'        => 'boolean',
-        'active' => 'boolean'
+        'active' => 'boolean',
         'rrule' => 'array',
         'dtstart' => 'datetime:Y-m-d',
         'until' => 'datetime:Y-m-d',
@@ -92,6 +92,14 @@ class Event extends Model implements HasMedia
     public function market()
     {
     	return $this->belongsTo(Market::class);
+    }
+
+    /**
+     * The events that belong an advertiser.
+     */
+    public function advertisers()
+    {
+        return $this->belongsToMany(Advertiser::class);
     }
 
     /**
