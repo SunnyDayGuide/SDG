@@ -19,6 +19,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
+use Spatie\OpeningHours\OpeningHours;
 use Spatie\Tags\HasTags;
 
 class Advertiser extends Model implements HasMedia
@@ -48,6 +49,13 @@ class Advertiser extends Model implements HasMedia
 	    'updated_at',
 	    'deleted_at'
 	];
+
+    /**
+     * Attributes to cast.
+     */
+    protected $casts = [
+        'hours' => 'array',
+    ];
 
      /**
      * Get the route key name.
@@ -201,6 +209,95 @@ class Advertiser extends Model implements HasMedia
 
     }
 
+    /**
+     * Scope a query to only include premier advertisers.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePremier($query)
+    {
+        return $query->where('level_id', 3);
+    }
+
+    /**
+     * Scope a query to only include featured advertisers.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('level_id', 2);
+    }
+
+    /**
+     * Scope a query to only include standard advertisers.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeStandard($query)
+    {
+        return $query->where('level_id', 1);
+    }
+
+    /**
+     * Scope a query to only include advertisers of a given level.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  mixed $level
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfType($query, $level)
+    {
+        return $query->where('level_id', $level);
+    }
+
+    public function fillHours()
+    {
+        $schedule = $this->getHours();
+        dd($schedule);
+        // $schedule = collect($this->hours);
+        // $hours = [];
+
+        // foreach ($schedule as $day) {
+        //     foreach ($day as $hours => $value) {
+        //         if ($day['hours']['start']) {
+        //             $hours = collect($day['hours'])->sort()->implode('-');
+        //         } else
+        //         $hours = 'Closed';
+        //     }
+        //     echo $hours . '<br>';
+        // }
+
+        // dd($day, $schedule->shift());
+
+        $openingHours = (new OpeningHours)->fill([
+            // $this->getHours();
+        ]);
+
+        // dd($openingHours);
+
+        return $openingHours;
+        
+    }
+    public function getHours()
+    {
+        $schedule = collect($this->hours);
+
+        foreach ($schedule as $day) {
+            foreach ($day as $hours => $value) {
+                if ($day['hours']['start']) {
+                    $hours = collect($day['hours'])->sort()->implode('-');
+                } else
+                $hours = 'Closed';
+            }
+            echo $schedule . '<br>';
+        }
+
+        return $schedule;
+    }
 
 
 }

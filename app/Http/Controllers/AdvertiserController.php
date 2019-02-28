@@ -29,8 +29,16 @@ class AdvertiserController extends Controller
     {
         $logo = $advertiser->getFirstMedia('logo');
         $sliderImages = $advertiser->getMedia('slider');
+        $locations = $advertiser->locations;
+        $supercategories = $advertiser->supercategories;
+        $subcategories = $advertiser->categories->where('parent_id', !null);
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages'));
+        $openingHours = $advertiser->fillHours();
+        $thisWeek = $openingHours->forWeek();
+
+        // dd($openingHours);
+
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'openingHours', 'thisWeek'));
     }
 
     /**
