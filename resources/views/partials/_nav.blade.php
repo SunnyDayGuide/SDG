@@ -13,11 +13,11 @@
                 <div class="navbar-nav-scroll">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a id="catgoryDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="categoryDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Plan Your Trip <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="catgoryDropdown">
+                        <div class="dropdown-menu" aria-labelledby="categoryDropdown">
                             @foreach ($market->categories as $category)
                             <a href="{{ $market->path().'/'.$category->slug }}" class="dropdown-item">{{ $category->name }}</a>
                                 <ul>
