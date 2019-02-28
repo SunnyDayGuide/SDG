@@ -11,7 +11,7 @@ $factory->define(App\Article::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'author' => $faker->name,
         'image' => $faker->imageUrl($width = 564, $height = 320, 'cats'),
-        'content' => $faker->paragraph,
+        'content' => '<p>'.$faker->paragraph.'</p>',
         'excerpt' => $faker->sentence,
         'rating' => 0,
         'featured' => $faker->boolean($chanceOfGettingTrue = 40),
