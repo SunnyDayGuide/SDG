@@ -188,9 +188,28 @@ label {
 }
 
 .btn.tags {
-  padding: 0 0.25rem;
+  padding: 0 0.5rem;
 }
 
+.scrollarea {
+  max-height: 260px;
+  overflow-y: scroll;
+}
+
+.locations {
+  a {
+    color: $body-color;
+  }
+}
+
+.tollfree {
+  font-weight: $font-weight-bold;
+  font-family: $font-family-sans-serif-reg;
+}
+
+.map {
+  height: 250px;
+}
 
 /* ---- Special Chart CSS */
 .tide_charts_body {

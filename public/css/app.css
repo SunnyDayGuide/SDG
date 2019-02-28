@@ -11138,7 +11138,25 @@ label {
 }
 
 .btn.tags {
-  padding: 0 0.25rem;
+  padding: 0 0.5rem;
+}
+
+.scrollarea {
+  max-height: 260px;
+  overflow-y: scroll;
+}
+
+.locations a {
+  color: #656565;
+}
+
+.tollfree {
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+}
+
+.map {
+  height: 250px;
 }
 
 /* ---- Special Chart CSS */
