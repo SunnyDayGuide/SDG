@@ -254,49 +254,35 @@ class Advertiser extends Model implements HasMedia
         return $query->where('level_id', $level);
     }
 
-    public function fillHours()
-    {
-        $schedule = $this->getHours();
-        dd($schedule);
-        // $schedule = collect($this->hours);
-        // $hours = [];
-
-        // foreach ($schedule as $day) {
-        //     foreach ($day as $hours => $value) {
-        //         if ($day['hours']['start']) {
-        //             $hours = collect($day['hours'])->sort()->implode('-');
-        //         } else
-        //         $hours = 'Closed';
-        //     }
-        //     echo $hours . '<br>';
-        // }
-
-        // dd($day, $schedule->shift());
-
-        $openingHours = (new OpeningHours)->fill([
-            // $this->getHours();
-        ]);
-
-        // dd($openingHours);
-
-        return $openingHours;
-        
-    }
-    public function getHours()
+    /**
+     * mutate advertiser hours to conform to '2:00-20:00' string that 
+     * Spatie\OpeningHours\OpeningHours::fill() method requires
+     */
+    public function mutateHours()
     {
         $schedule = collect($this->hours);
 
-        foreach ($schedule as $day) {
-            foreach ($day as $hours => $value) {
-                if ($day['hours']['start']) {
-                    $hours = collect($day['hours'])->sort()->implode('-');
-                } else
-                $hours = 'Closed';
-            }
-            echo $schedule . '<br>';
-        }
+        $changed = $schedule->map(function ($value, $key) {
+            if ($value['hours']['start']) {
+                $hours = [collect($value['hours'])->sort()->implode('-')];
+            } else
+                $hours = [];
+            return $hours;
+        });
+         
+        return $changed->all();
+    }
 
-        return $schedule;
+    /**
+     * fill advertiser hours into Spatie\OpeningHours\OpeningHours
+     */
+    public function fillHours()
+    {
+        $schedule = $this->mutateHours();
+
+        $openingHours = (new OpeningHours)->fill($schedule);
+
+        return $openingHours;
     }
 
 
