@@ -108,7 +108,6 @@ class Article extends Resource
             BelongsTo::make('Article Type', 'articleType'),
             Boolean::make('Featured')->sortable(),
             Number::make('Rating')->exceptOnForms(),
-            MorphToMany::make('Categories')->searchable(),
 
             Tags::make('Tags')->hideFromIndex(),
             Select::make('Status', 'status')->options([
@@ -123,6 +122,9 @@ class Article extends Resource
                 )
                 ->rules('required')
                 ->hideFromIndex(),
+
+            MorphToMany::make('Categories')->searchable(),
+            BelongsToMany::make('Advertisers')->searchable(),
         ];
     }
 
