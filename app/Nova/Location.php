@@ -2,8 +2,12 @@
 
 namespace App\Nova;
 
+use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
+use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Country;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
@@ -59,8 +63,9 @@ class Location extends Resource
     {
         return [
             ID::make()->sortable(),
-            $this->addressFields(),
+            $this->googleaddressFields(),
             Text::make('Phone Number', 'telephone'),
+            BelongsToMany::make('Advertisers'),
         ];
     }
 
@@ -84,6 +89,28 @@ class Location extends Resource
         ]);
     }
 
+    /**
+     * Get the Google address fields for the resource.
+     *
+     * @return \Illuminate\Http\Resources\MergeValue
+     */
+    protected function googleaddressFields()
+    {
+        return $this->merge([
+            GoogleAutocomplete::make('Address', 'formatted_address')
+                ->withValues(['street_number', 'route', 'locality', 'administrative_area_level_1', 'postal_code', 'country', 'latitude', 'longitude'])
+                ->countries(['US']),
+            Text::make('Address Line 2')->hideFromIndex(),
+            AddressMetadata::make('Street Number')->fromValue('street_number')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('Route')->fromValue('route')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('City')->fromValue('locality')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('State')->fromValue('administrative_area_level_1')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('Postal Code')->fromValue('postal_code')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('Country')->fromValue('country')->invisible()->hideFromIndex()->hideFromDetail(),
+            AddressMetadata::make('latitude')->fromValue('latitude')->hideFromIndex(),
+            AddressMetadata::make('longitude')->fromValue('longitude')->hideFromIndex(),
+        ]);
+    }
     /**
      * Get the cards available for the request.
      *
