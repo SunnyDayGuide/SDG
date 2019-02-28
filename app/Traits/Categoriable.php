@@ -14,11 +14,34 @@ trait Categoriable {
     }
 
     /**
-     * Get all of the model's categories.
+     * Get ALL of the model's supercategories and subcategories.
      */
     public function categories()
     {
-        return $this->morphToMany(Category::class, 'categoriable')->withTimestamps();
+        return $this->morphToMany(Category::class, 'categoriable')
+            ->withTimestamps();
     }
+
+
+    /**
+     * Get just the model's subcategories (Waterports, Food & Drink).
+     */
+    // public function subcategories()
+    // {
+    //     return $this->morphToMany(Category::class, 'categoriable')
+    //         ->where('parent_id', !null)
+    //         ->withTimestamps();
+    // }
+
+     /**
+     * Get just the model's SUPER categories (Act, Dining, Shop).
+     */
+    public function supercategories()
+    {
+        return $this->morphToMany(Category::class, 'categoriable')
+            ->where('parent_id', null)
+            ->withTimestamps();
+    }
+
 
 }

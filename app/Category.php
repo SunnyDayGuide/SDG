@@ -30,6 +30,20 @@ class Category extends Model
         return 'slug';
     }
 
+    // /**
+    //  * Get a string path for the category.
+    //  *
+    //  * @return string
+    //  */
+    // public function path()
+    // {
+    //     if ($this->parent()->exists()) {
+    //         return $this->market->path() . "/{$this->parent->slug}" . "/{$this->slug}";
+    //     } else
+    //     return $this->market->path() . "/{$this->slug}";
+    // }
+
+
     /**
      * Get all of the owning categoriable models.
      */
@@ -85,8 +99,8 @@ class Category extends Model
     }
 
     /**
-     * The slug is generated for as article from it's title, but the slug is scoped to the market. 
-     * So a BR can have an article with the same title as CG, but both will have the same slug.
+     * The slug is generated for a subcategory from it's name, but the slug is scoped to the parent category. 
+     * So Shopping can have a subcategory with the same name as Activities, but both subcats will have the same slug.
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param string $attribute

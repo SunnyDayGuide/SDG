@@ -23,7 +23,20 @@ class Category extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    // public static $title = 'name';
+
+    /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public function title()
+    {
+        if ($this->parent()->exists()) {
+            return $this->parent->name . ' -> ' .$this->name;
+        } else return $this->name;
+        
+    }
 
     /**
      * The logical group associated with the resource.
@@ -40,6 +53,13 @@ class Category extends Resource
     public static $search = [
         'id', 'name',
     ];
+
+    /**
+     * The relationships that should be eager loaded on index queries.
+     *
+     * @var array
+     */
+    public static $with = ['children', 'parent'];
 
     /**
      * Get the fields displayed by the resource.
