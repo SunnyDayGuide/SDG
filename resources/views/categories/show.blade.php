@@ -24,6 +24,17 @@
 			</div>
 		</div> <!-- End Row -->
 
+		<div class="row featured">
+			<div class="col-md-12">
+				<h2>Featured {{ $category->name }}</h2>
+				@foreach($featured as $advertiser)
+					<div>
+						<h3><a href="{{ $advertiser->path() }}">{{ $advertiser->name }}</a></h3>
+					</div>
+				@endforeach
+			</div>
+		</div>
+
 	</div>
 
 @endsection

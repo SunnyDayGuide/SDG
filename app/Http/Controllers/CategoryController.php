@@ -35,6 +35,10 @@ class CategoryController extends Controller
             ->where('market_id', $market->id)
             ->get();  
 
+        $featured = $category->advertisers()
+            ->where('market_id', $market->id)
+            ->ofType('3')->get();
+
         // TO-DO: display the related events
         $events = $category->events()
             ->with('tags')
@@ -42,7 +46,7 @@ class CategoryController extends Controller
             ->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories', 'featured'));
     }
 
      /**
@@ -65,10 +69,14 @@ class CategoryController extends Controller
             ->get();     
 
         // TO-DO: display the related advertisers
+        $featured = $subcategory->advertisers()
+            ->where('market_id', $market->id)
+            ->ofType('3')->get();
+
         // TO-DO: display the related events
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'lead', 'category', 'subcategory'));
+        return view('categories.show', compact('market', 'articles', 'lead', 'category', 'subcategory', 'featured'));
     }
 
     protected function getMarketCategory(Market $market, Category $category)
