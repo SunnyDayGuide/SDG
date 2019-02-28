@@ -38,7 +38,26 @@ class ArticleType extends Resource
      * @var string
      */
     public static $group = 'Editorial';
+   
+       /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return __('Article Types');
+    }
+
     /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Article Type');
+    }
  
     /**
      * Get the fields displayed by the resource.

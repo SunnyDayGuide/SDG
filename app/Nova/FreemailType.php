@@ -39,6 +39,26 @@ class FreemailType extends Resource
      */
     public static $group = 'Freemail';
 
+        /**
+     * Get the displayable label of the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return __('Freemail Types');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return __('Freemail Type');
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
