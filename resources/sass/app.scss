@@ -213,33 +213,33 @@ label {
 
 /* ---- Special Chart CSS */
 .tide_charts_body {
-	float: left;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #bbb;
-	margin: .35em;
-	width: 250px;
-	text-align: center;
+  float: left;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #bbb;
+  margin: .35em;
+  width: 250px;
+  text-align: center;
 }
 .tideCharts .tide_charts_body td, .tide_charts_body td {
-    border-top: 1px solid #ddd;
-    padding: 4px 6px;
-    border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 4px 6px;
+  border-right: 1px solid #ddd;
 }
 .tideCharts .tide_charts_body th, .tide_charts_body th {
-    padding: 4px 8px;
-    background-color: #336699;
-  	color: #FFF;
-  	font-weight: bold;
-  	font-size: 1.15rem;
+  padding: 4px 8px;
+  background-color: #336699;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 1.15rem;
 }
 .tide_charts_body tbody tr:nth-child(even) td, .tide_charts_body thead td {
-    background-color: #eee;
+  background-color: #eee;
 }
 
 .article-slider .carousel-item img {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
     /* Card Carousel */
