@@ -125,6 +125,7 @@ class Advertiser extends Resource
 
     /**
  * Get the address fields for the resource.
+ * Come back to the styling of this!!!
  *
  * @return array
  */
@@ -134,38 +135,45 @@ protected function hoursFields()
         Heading::make('Business Hours')->hideFromDetail(),
 
         JSON::make('Hours', [
-            Time::make('Monday Open', 'monday->hours->start')
+            Time::make('Mon. Open', 'monday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Monday Close', 'monday->hours->end')
+            Time::make('Mon. Close', 'monday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Tuesday Open', 'tuesday->hours->start')
+            Text::make('Notes', 'monday->data'),
+            Time::make('Tue. Open', 'tuesday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Tuesday Close', 'tuesday->hours->end')
+            Time::make('Tue. Close', 'tuesday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Wednesday Open', 'wednesday->hours->start')
+            Text::make('Notes', 'tuesday->data'),
+            Time::make('Wed. Open', 'wednesday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Wednesday Close', 'wednesday->hours->end')
+            Time::make('Wed. Close', 'wednesday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Thursday Open', 'thursday->hours->start')
+            Text::make('Notes', 'wednesday->data'),
+            Time::make('Thu. Open', 'thursday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Thursday Close', 'thursday->hours->end')
+            Time::make('Thu. Close', 'thursday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Friday Open', 'friday->hours->start')
+            Text::make('Notes', 'thursday->data'),
+            Time::make('Fri. Open', 'friday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Friday Close', 'friday->hours->end')
+            Time::make('Fri. Close', 'friday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Saturday Open', 'saturday->hours->start')
+            Text::make('Notes', 'friday->data'),
+            Time::make('Sat. Open', 'saturday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Saturday Close', 'saturday->hours->end')
+            Time::make('Sat. Close', 'saturday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Sunday Open', 'sunday->hours->start')
+            Text::make('Notes', 'saturday->data'),
+            Time::make('Sun. Open', 'sunday->hours->start')
                 ->format('h:mm a')->hideFromIndex(),
-            Time::make('Sunday Close', 'sunday->hours->end')
+            Time::make('Sun. Close', 'sunday->hours->end')
                 ->format('h:mm a')->hideFromIndex(),
-        ])->fieldClasses('w-full')
+            Text::make('Notes', 'sunday->data'),
+        ])->fieldClasses('flex flex-wrap items-start w-full')
           ->childConfig([
-            'labelClasses' => 'w-3/4 py-6 px-8',
-            'fieldClasses' => 'w-1/4 py-6 px-8'
+            'labelClasses' => 'flex w-1/6 items-start px-6 py-6',
+            'fieldClasses' => 'flex w-auto items-start px-6 py-6'
           ]),
     ];
 }

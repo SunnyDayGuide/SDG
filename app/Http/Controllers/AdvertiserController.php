@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Advertiser;
 use App\Market;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use DateTime;
 
 class AdvertiserController extends Controller
 {
@@ -34,11 +36,9 @@ class AdvertiserController extends Controller
         $subcategories = $advertiser->categories->where('parent_id', !null);
 
         $openingHours = $advertiser->fillHours();
-        $thisWeek = $openingHours->forWeek();
+        $nextOpen = $openingHours->nextOpen(Carbon::now());
 
-        // dd($openingHours);
-
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'openingHours', 'thisWeek'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'openingHours', 'nextOpen'));
     }
 
     /**
