@@ -17,20 +17,21 @@ return [
         // 'key' => env('FROALA_KEY'),
 
         'toolbarButtons' => [
-            'bold',
-            'italic',
-            'underline',
-            '|',
-            'formatOL',
-            'formatUL',
-            '|',
-            'insertImage',
-            'insertFile',
-            'insertLink',
-            'insertVideo',
-            '|',
-            'html',
-        ],
+            'html', '|', 'paragraphFormat', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 
+            '|', 
+            'fontSize', 'color', 'inlineClass', 'inlineStyle', 
+            '|', 
+            'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',
+            '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 
+            '|', 
+            'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', 
+            '|', 
+            'print', 'help',  
+            '|', 
+            'undo', 'redo', 'fullscreen', ],
+        'inlineStyles' => [
+            'text-advertiser' => 'color: #B5D45F;',
+        ]
     ],
 
     /*

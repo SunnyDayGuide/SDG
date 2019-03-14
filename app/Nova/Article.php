@@ -9,6 +9,7 @@ use App\Nova\Filters\Market;
 use App\Scopes\MarketScope;
 use Carbon\Carbon;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Emilianotisato\NovaTinyMCE\NovaTinyMCE;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -26,6 +27,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\TagsField\Tags;
+use Waynestate\Nova\CKEditor;
 
 class Article extends Resource
 {
@@ -87,6 +89,22 @@ class Article extends Resource
             Froala::make('Content')
                 ->withFiles('trix')
                 ->rules('required'),
+            NovaTinyMCE::make('Content')->options([
+                'plugins' => [
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern'
+                ],
+                'toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
+                'use_lfm' => true
+            ]),
+            // NovaTinyMCE::make('Content')->options([
+            //     'plugins' => [
+            //         'advlist autolink lists link image charmap print preview hr anchor pagebreak'
+            //     ],
+            //     'toolbar' => 'insertfile undo redo | styleselect | bold italic'
+            // ]),
             // CKEditor::make('Content')
             //     ->rules('required')
             //     ->hideFromIndex(),
