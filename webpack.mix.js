@@ -1,5 +1,13 @@
 const mix = require('laravel-mix');
 
+const fs = require('fs');
+ 
+ fs.symlink(
+     path.resolve('vendor/ckeditor/ckeditor'),
+     path.resolve('public/js/ckeditor'),
+     function (err) { err != null && err.errno != -17 ? console.log(err) : console.log("Done."); }
+ );
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

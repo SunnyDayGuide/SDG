@@ -22,7 +22,10 @@ return [
             '/',
             ['Format', 'FontSize'],
             ['Maximize', 'ShowBlocks', '-', 'About']
-        ]
+        ],
+        'height' => 600,
+        'easyimage_toolbar' => [ 'EasyImageAlignLeft', 'EasyImageAlignCenter', 'EasyImageAlignRight' ],
+        'extraPlugins' => ['image2']
     ],
 
     /*
@@ -50,5 +53,6 @@ return [
     | CKEditor 4 is only supported. This will not work with CKEditor 5
     |
     */
-    'ckeditor_url' => 'https://cdn.ckeditor.com/4.11.2/full-all/ckeditor.js',
+    // 'ckeditor_url' => 'https://cdn.ckeditor.com/4.11.2/full-all/ckeditor.js',
+    'ckeditor_url' => config('app.url').'/js/ckeditor/ckeditor.js',
 ];

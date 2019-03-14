@@ -9,6 +9,7 @@
         "64robots/nova-fields": "^0.6.7",
         "adrianmejias/laravel-states": "^1.2",
         "cviebrock/eloquent-sluggable": "^4.6",
+        "ckeditor/ckeditor": "dev-full/4.11.x",
         "doctrine/dbal": "^2.8",
         "ebess/advanced-nova-media-library": "^2.0",
         "emilianotisato/nova-google-autocomplete-field": "^0.7.0",
@@ -61,6 +62,10 @@
         {
             "type": "path",
             "url": "./nova"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/sunnydayguide/ckeditor-releases"
         }
     ],
     "extra": {
