@@ -89,25 +89,20 @@ class Article extends Resource
             Froala::make('Content')
                 ->withFiles('trix')
                 ->rules('required'),
-            NovaTinyMCE::make('Content')->options([
-                'plugins' => [
-                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-                    'searchreplace wordcount visualblocks visualchars code fullscreen',
-                    'insertdatetime media nonbreaking save table contextmenu directionality',
-                    'emoticons template paste textcolor colorpicker textpattern'
-                ],
-                'toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
-                'use_lfm' => true
-            ]),
+            // CKEditor::make('Content'),
             // NovaTinyMCE::make('Content')->options([
             //     'plugins' => [
-            //         'advlist autolink lists link image charmap print preview hr anchor pagebreak'
+            //         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            //         'searchreplace wordcount visualblocks visualchars code fullscreen',
+            //         'insertdatetime media nonbreaking save table contextmenu directionality',
+            //         'emoticons template paste textcolor colorpicker textpattern importcss'
             //     ],
-            //     'toolbar' => 'insertfile undo redo | styleselect | bold italic'
+            //     'toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
+            //     'use_lfm' => true,
+            //     'image_caption' => true,
+            //     'content_css' => config('app.url').'/css/app.css',
+            //     'importcss_append' => true
             // ]),
-            // CKEditor::make('Content')
-            //     ->rules('required')
-            //     ->hideFromIndex(),
             Text::make('Author')->hideFromIndex(),
             Textarea::make('Excerpt')->hideFromIndex(),
 
