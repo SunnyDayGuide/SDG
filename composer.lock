@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b55ed219be14f4d0940387141aa6e81",
+    "content-hash": "2d1142f045e195d4404cadf5262ecd22",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -220,16 +220,16 @@
         },
         {
             "name": "cviebrock/eloquent-sluggable",
-            "version": "4.6.0",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cviebrock/eloquent-sluggable.git",
-                "reference": "d8a6982d32a7fe92f42b1c33a34e89d33516c2fd"
+                "reference": "e05e778d3ff87a010b0dd73aab00a7c72761ff81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/d8a6982d32a7fe92f42b1c33a34e89d33516c2fd",
-                "reference": "d8a6982d32a7fe92f42b1c33a34e89d33516c2fd",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/e05e778d3ff87a010b0dd73aab00a7c72761ff81",
+                "reference": "e05e778d3ff87a010b0dd73aab00a7c72761ff81",
                 "shasum": ""
             },
             "require": {
@@ -279,7 +279,7 @@
                 "slug",
                 "sluggable"
             ],
-            "time": "2018-09-05T02:03:48+00:00"
+            "time": "2019-02-24T19:36:12+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -717,16 +717,16 @@
         },
         {
             "name": "ebess/advanced-nova-media-library",
-            "version": "2.2.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ebess/advanced-nova-media-library.git",
-                "reference": "5a071cd14d686f69102b5e9e90f618fc2f8023a4"
+                "reference": "5d6c40d3453574cb8c7b15e1c30b08065d010f5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ebess/advanced-nova-media-library/zipball/5a071cd14d686f69102b5e9e90f618fc2f8023a4",
-                "reference": "5a071cd14d686f69102b5e9e90f618fc2f8023a4",
+                "url": "https://api.github.com/repos/ebess/advanced-nova-media-library/zipball/5d6c40d3453574cb8c7b15e1c30b08065d010f5a",
+                "reference": "5d6c40d3453574cb8c7b15e1c30b08065d010f5a",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 "laravel",
                 "nova"
             ],
-            "time": "2019-01-16T09:06:51+00:00"
+            "time": "2019-03-01T09:47:11+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -858,6 +858,49 @@
                 "nova"
             ],
             "time": "2018-11-10T02:23:34+00:00"
+        },
+        {
+            "name": "emilianotisato/nova-tinymce",
+            "version": "0.5.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emilianotisato/nova-tinymce.git",
+                "reference": "97f5d1351ccb8f9df86796e37dd2380a04ffa26d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emilianotisato/nova-tinymce/zipball/97f5d1351ccb8f9df86796e37dd2380a04ffa26d",
+                "reference": "97f5d1351ccb8f9df86796e37dd2380a04ffa26d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Emilianotisato\\NovaTinyMCE\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Emilianotisato\\NovaTinyMCE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Nova package allow you to use TinyMCE editor for text areas.You can customize the editor options and... you can upload images to your server and put them rigth there on the text without leaving the text editor!",
+            "keywords": [
+                "editor",
+                "laravel",
+                "nova",
+                "tiny"
+            ],
+            "time": "2018-11-17T17:21:30+00:00"
         },
         {
             "name": "epartment/nova-dependency-container",
@@ -1002,20 +1045,25 @@
         },
         {
             "name": "fourstacks/nova-checkboxes",
-            "version": "v0.1.3",
+            "version": "v0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fourstacks/nova-checkboxes.git",
-                "reference": "93cfafdc2ebfdb8aaefd54f204e982411c019104"
+                "reference": "aee626a0be4194bc489f3277b1e2dcf89bfec4c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fourstacks/nova-checkboxes/zipball/93cfafdc2ebfdb8aaefd54f204e982411c019104",
-                "reference": "93cfafdc2ebfdb8aaefd54f204e982411c019104",
+                "url": "https://api.github.com/repos/fourstacks/nova-checkboxes/zipball/aee626a0be4194bc489f3277b1e2dcf89bfec4c0",
+                "reference": "aee626a0be4194bc489f3277b1e2dcf89bfec4c0",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "laravel/nova": "^1.0",
+                "orchestra/testbench": "3.7.*",
+                "phpunit/phpunit": "^7.0"
             },
             "type": "library",
             "extra": {
@@ -1039,7 +1087,7 @@
                 "laravel",
                 "nova"
             ],
-            "time": "2019-02-12T09:35:11+00:00"
+            "time": "2019-02-28T21:26:47+00:00"
         },
         {
             "name": "froala/nova-froala-field",
@@ -1557,16 +1605,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.27",
+            "version": "v5.7.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "688fbfa889d43f392825b381ad3981847120fdfa"
+                "reference": "8e69728f1c80a024588adbd24c65c4fcf9aa9192"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/688fbfa889d43f392825b381ad3981847120fdfa",
-                "reference": "688fbfa889d43f392825b381ad3981847120fdfa",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/8e69728f1c80a024588adbd24c65c4fcf9aa9192",
+                "reference": "8e69728f1c80a024588adbd24c65c4fcf9aa9192",
                 "shasum": ""
             },
             "require": {
@@ -1639,7 +1687,7 @@
                 "mockery/mockery": "^1.0",
                 "moontoast/math": "^1.1",
                 "orchestra/testbench-core": "3.7.*",
-                "pda/pheanstalk": "^3.0",
+                "pda/pheanstalk": "^3.0|^4.0",
                 "phpunit/phpunit": "^7.5",
                 "predis/predis": "^1.1.1",
                 "symfony/css-selector": "^4.1",
@@ -1661,7 +1709,7 @@
                 "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
                 "moontoast/math": "Required to use ordered UUIDs (^1.1).",
                 "nexmo/client": "Required to use the Nexmo transport (^1.0).",
-                "pda/pheanstalk": "Required to use the beanstalk queue driver (^3.0).",
+                "pda/pheanstalk": "Required to use the beanstalk queue driver (^3.0|^4.0).",
                 "predis/predis": "Required to use the redis cache and queue drivers (^1.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^3.0).",
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (^4.1).",
@@ -1699,7 +1747,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-02-19T14:37:47+00:00"
+            "time": "2019-02-26T15:41:34+00:00"
         },
         {
             "name": "laravel/horizon",
@@ -1948,21 +1996,21 @@
         },
         {
             "name": "laravel/telescope",
-            "version": "v1.0.13",
+            "version": "v1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/telescope.git",
-                "reference": "25c9e57f5000748eee371e750fe9a55e2ca10f1f"
+                "reference": "925386780c756d6aa7c18ae185bb7a756c122460"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/25c9e57f5000748eee371e750fe9a55e2ca10f1f",
-                "reference": "25c9e57f5000748eee371e750fe9a55e2ca10f1f",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/925386780c756d6aa7c18ae185bb7a756c122460",
+                "reference": "925386780c756d6aa7c18ae185bb7a756c122460",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "laravel/framework": "^5.7",
+                "laravel/framework": "~5.7.7|~5.8.0",
                 "moontoast/math": "^1.1",
                 "php": "^7.1.3",
                 "symfony/var-dumper": "^4.1"
@@ -2007,7 +2055,7 @@
                 "laravel",
                 "monitoring"
             ],
-            "time": "2019-01-31T19:18:34+00:00"
+            "time": "2019-02-18T22:02:39+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3366,24 +3414,24 @@
         },
         {
             "name": "spatie/eloquent-sortable",
-            "version": "3.4.3",
+            "version": "3.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "92fe48922c6b3ec10646f5b628c7abf53728e083"
+                "reference": "340c7338031338aba47c41836e335bf9a5ef0216"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/92fe48922c6b3ec10646f5b628c7abf53728e083",
-                "reference": "92fe48922c6b3ec10646f5b628c7abf53728e083",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/340c7338031338aba47c41836e335bf9a5ef0216",
+                "reference": "340c7338031338aba47c41836e335bf9a5ef0216",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "php": ">=7.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~5.8.0",
                 "phpunit/phpunit": "^6.2|^7.0"
             },
             "type": "library",
@@ -3412,7 +3460,7 @@
                 "sort",
                 "sortable"
             ],
-            "time": "2018-08-24T09:36:35+00:00"
+            "time": "2019-02-27T00:18:34+00:00"
         },
         {
             "name": "spatie/image",
@@ -3519,27 +3567,27 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.5.5",
+            "version": "7.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d"
+                "reference": "6ffb8a41e60f024abd35ff47e08628354d6efd0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a50e59d1eec7c2e161942ffd0d13860759e4760d",
-                "reference": "a50e59d1eec7c2e161942ffd0d13860759e4760d",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/6ffb8a41e60f024abd35ff47e08628354d6efd0e",
+                "reference": "6ffb8a41e60f024abd35ff47e08628354d6efd0e",
                 "shasum": ""
             },
             "require": {
-                "illuminate/bus": "~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/database": "~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/pipeline": "~5.5.0|~5.6.0|~5.7.0",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0",
+                "illuminate/bus": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/console": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/pipeline": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "league/flysystem": "^1.0.8",
                 "maennchen/zipstream-php": "~0.4",
-                "php": "^7.1",
+                "php": "^7.2",
                 "spatie/image": "^1.4.0",
                 "spatie/pdf-to-image": "^1.2",
                 "spatie/temporary-directory": "^1.1"
@@ -3553,9 +3601,9 @@
                 "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-aws-s3-v3": "^1.0.13",
                 "mockery/mockery": "^1.0.0",
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^7.0",
-                "spatie/phpunit-snapshot-assertions": "^1.2"
+                "orchestra/testbench": "~3.8.0",
+                "phpunit/phpunit": "^8.0",
+                "spatie/phpunit-snapshot-assertions": "^2.0"
             },
             "suggest": {
                 "league/flysystem-aws-s3-v3": "Required to use AWS S3 file storage",
@@ -3598,31 +3646,31 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-01-05T14:06:46+00:00"
+            "time": "2019-02-27T09:31:55+00:00"
         },
         {
             "name": "spatie/laravel-tags",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-tags.git",
-                "reference": "05f25549c44d1eb909dfda8e45fa0896dc2df232"
+                "reference": "c904325521d320dbca177de6d7e218f422687f37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/05f25549c44d1eb909dfda8e45fa0896dc2df232",
-                "reference": "05f25549c44d1eb909dfda8e45fa0896dc2df232",
+                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/c904325521d320dbca177de6d7e218f422687f37",
+                "reference": "c904325521d320dbca177de6d7e218f422687f37",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.7.13",
+                "laravel/framework": "~5.7.13|~5.8",
                 "php": "^7.1",
                 "spatie/eloquent-sortable": "^3.4",
                 "spatie/laravel-translatable": "^3.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.7.0",
-                "phpunit/phpunit": "^7.4"
+                "orchestra/testbench": "~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^7.4|^8.0"
             },
             "type": "library",
             "extra": {
@@ -3655,30 +3703,30 @@
                 "laravel-tags",
                 "spatie"
             ],
-            "time": "2019-01-19T17:55:37+00:00"
+            "time": "2019-02-27T13:30:48+00:00"
         },
         {
             "name": "spatie/laravel-translatable",
-            "version": "3.1.2",
+            "version": "3.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-translatable.git",
-                "reference": "3d1eee0efa6a97032fb7f568da8f25c236307c88"
+                "reference": "bb022463072ee6fced9204453f99d42fc03ac9a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/3d1eee0efa6a97032fb7f568da8f25c236307c88",
-                "reference": "3d1eee0efa6a97032fb7f568da8f25c236307c88",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/bb022463072ee6fced9204453f99d42fc03ac9a4",
+                "reference": "bb022463072ee6fced9204453f99d42fc03ac9a4",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0",
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0",
                 "php": "^7.1"
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0",
-                "phpunit/phpunit": "^7.4"
+                "orchestra/testbench": "~3.5.0|~3.6.0|~3.7.0|~3.8.0",
+                "phpunit/phpunit": "^7.4|^8.0"
             },
             "type": "library",
             "extra": {
@@ -3727,7 +3775,7 @@
                 "spatie",
                 "translate"
             ],
-            "time": "2019-02-05T08:02:45+00:00"
+            "time": "2019-02-27T12:48:11+00:00"
         },
         {
             "name": "spatie/nova-tags-field",
@@ -5151,6 +5199,80 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "unisharp/laravel-filemanager",
+            "version": "v1.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/UniSharp/laravel-filemanager.git",
+                "reference": "aaf2764f26eb8dcc9356bea1e25010333c2e61f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/aaf2764f26eb8dcc9356bea1e25010333c2e61f4",
+                "reference": "aaf2764f26eb8dcc9356bea1e25010333c2e61f4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-exif": "*",
+                "ext-fileinfo": "*",
+                "illuminate/support": ">=4.2.0",
+                "intervention/image": "2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "phpspec/phpspec": "~2.1",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing."
+            },
+            "bin": [
+                "bin/debug"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "UniSharp\\LaravelFilemanager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Trevor Sawler",
+                    "email": "trevor.sawler@gmail.com"
+                },
+                {
+                    "name": "UniSharp Ltd.",
+                    "email": "unisharp-service@unisharp.com"
+                }
+            ],
+            "description": "A file upload/editor intended for use with Laravel 5 and CKEditor / TinyMCE",
+            "keywords": [
+                "CKEditor",
+                "file",
+                "filemanager",
+                "image",
+                "laravel",
+                "manager",
+                "tinymce",
+                "upload"
+            ],
+            "time": "2018-07-05T11:36:08+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v2.6.1",
             "source": {
@@ -5369,22 +5491,22 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
-            "version": "v3.2.2",
+            "version": "v3.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed"
+                "reference": "5fcba4cc8e92a230b13b99c1083fc22ba8a5c479"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/ba046deba51f3899963c7d09840bf623c4ebf5ed",
-                "reference": "ba046deba51f3899963c7d09840bf623c4ebf5ed",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/5fcba4cc8e92a230b13b99c1083fc22ba8a5c479",
+                "reference": "5fcba4cc8e92a230b13b99c1083fc22ba8a5c479",
                 "shasum": ""
             },
             "require": {
-                "illuminate/routing": "5.5.x|5.6.x|5.7.x",
-                "illuminate/session": "5.5.x|5.6.x|5.7.x",
-                "illuminate/support": "5.5.x|5.6.x|5.7.x",
+                "illuminate/routing": "5.5.x|5.6.x|5.7.x|5.8.x",
+                "illuminate/session": "5.5.x|5.6.x|5.7.x|5.8.x",
+                "illuminate/support": "5.5.x|5.6.x|5.7.x|5.8.x",
                 "maximebf/debugbar": "~1.15.0",
                 "php": ">=7.0",
                 "symfony/debug": "^3|^4",
@@ -5433,7 +5555,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2019-02-04T10:23:43+00:00"
+            "time": "2019-02-26T18:01:54+00:00"
         },
         {
             "name": "beyondcode/laravel-dump-server",
