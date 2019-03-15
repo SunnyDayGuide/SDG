@@ -19,5 +19,13 @@ class Logo extends Model implements HasMedia
         return $this->hasMany(Advertiser::class);
     }
 
+    /**
+     * Get the coupons that have this logo.
+     */
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
+    }
+
 
 }
