@@ -11,17 +11,6 @@ use DateTime;
 class AdvertiserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Advertiser  $advertiser
@@ -31,47 +20,47 @@ class AdvertiserController extends Controller
     {
         $logo = $advertiser->getFirstMedia('logo');
         $sliderImages = $advertiser->getMedia('slider');
+
         $locations = $advertiser->locations;
+
         $supercategories = $advertiser->supercategories;
         $subcategories = $advertiser->categories->where('parent_id', !null);
 
+        // for use in map icons
+        $primaryCategory = $advertiser->supercategories()
+            ->orderBy('categoriables.created_at')
+            ->first();
+
         $openingHours = $advertiser->fillHours();
-        $nextOpen = $openingHours->nextOpen(Carbon::now());
+        $hasHours = $this->hasHours($openingHours);
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'openingHours', 'nextOpen'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Advertiser  $advertiser
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Advertiser $advertiser)
+    public function hasHours($openingHours)
     {
-        //
+        if ($openingHours->isOpenOn('sunday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('monday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('tuesday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('wednesday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('thursday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('friday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('saturday')) {
+            return true;
+        } else return false;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Advertiser  $advertiser
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Advertiser $advertiser)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Advertiser  $advertiser
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Advertiser $advertiser)
-    {
-        //
-    }
 }
