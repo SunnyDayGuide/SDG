@@ -21,6 +21,9 @@ class Location extends Model
 	 */
 	public function getFullAddressAttribute()
 	{
+		if ($this->address_line_2) {
+			return "{$this->street_number} {$this->route}, {$this->address_line_2}, {$this->city}, {$this->state} {$this->postal_code}";
+		}
 	    return "{$this->street_number} {$this->route}, {$this->city}, {$this->state} {$this->postal_code}";
 	}
 
