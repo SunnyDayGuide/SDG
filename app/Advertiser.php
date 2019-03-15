@@ -106,7 +106,7 @@ class Advertiser extends Model implements HasMedia
     }
 
       /**
-     * An advertiser belongs to a logo.
+     * An advertiser has (belongs to) a logo.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

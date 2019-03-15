@@ -123,8 +123,8 @@ class Advertiser extends Resource
         ];
     }
 
-    /**
- * Get the address fields for the resource.
+ /**
+ * Get the hours fields for the resource.
  * Come back to the styling of this!!!
  *
  * @return array
