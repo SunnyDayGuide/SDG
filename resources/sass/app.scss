@@ -211,6 +211,12 @@ label {
   height: 250px;
 }
 
+#map {
+  height: 400px;
+  width: 100%;
+  background-color: grey;
+}
+
 /* ---- Special Chart CSS */
 .tide_charts_body {
   float: left;
