@@ -14,3 +14,4 @@ yarn-error.log
 .env
 .phpunit.result.cache
 /nova
+public/images/map_icons/Thumbs.db
