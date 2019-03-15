@@ -24,6 +24,7 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
+    "@defvayne23/svg-marker": "^0.8.1",
     "imagemin": "^6.0.0",
     "selectize": "^0.12.6",
     "vue-carousel": "^0.17.0"
