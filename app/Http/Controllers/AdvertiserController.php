@@ -22,6 +22,7 @@ class AdvertiserController extends Controller
         $sliderImages = $advertiser->getMedia('slider');
 
         $locations = $advertiser->locations;
+        $key = env('GOOGLE_MAP_API_KEY');
 
         $supercategories = $advertiser->supercategories;
         $subcategories = $advertiser->categories->where('parent_id', !null);
@@ -34,7 +35,7 @@ class AdvertiserController extends Controller
         $openingHours = $advertiser->fillHours();
         $hasHours = $this->hasHours($openingHours);
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key'));
     }
 
     public function hasHours($openingHours)

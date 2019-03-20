@@ -7,29 +7,84 @@
 </div> --}}
 <div id="map"></div>
 
-<script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: -25.344, lng: 131.036};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 4, center: uluru});
-  // The marker, positioned at Uluru
-  var marker = new google.maps.Marker({position: uluru, map: map});
-}
-    </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu9KFGLVdO8770mb5EjYFqbPB0nx6rEaA&callback=initMap">
-    </script>
+<script type="application/javascript">
 
-{{-- <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAu9KFGLVdO8770mb5EjYFqbPB0nx6rEaA&callback=initMap">
+  function initMap() {
+    // get locations from db
+    var locations = [
+    @foreach($locations as $location)
+    ['{{ $advertiser->name }}', {{ $location->latitude }}, {{ $location->longitude }}, {{ $loop->index }}],
+    @endforeach
+    ];
+
+    // set map options
+    var myOptions = {
+      zoom: 15,
+      mapTypeControl: false,
+      streetViewControl: false,
+      navigationControl: true,
+      styles: [
+      {
+        "featureType": "poi.business",
+        "elementType": "labels.text",
+        "stylers": [
+        {
+          "visibility": "off"
+        }
+        ]
+      }
+      ],
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    // draw map
+    var map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+    var infowindow = new google.maps.InfoWindow();
+
+    // set empty bound
+    var bounds = new google.maps.LatLngBounds();
+
+    // set markers
+    for (var i = 0; i < locations.length; i++) {
+      var location = locations[i];
+
+      var marker = new google.maps.Marker({
+        position: {lat: location[1], lng: location[2]},
+        map: map,
+        title: location[0],
+        zIndex: location[3]
+      });
+
+      // extend bounds to marker edge
+      bounds.extend(marker.position);
+
+      // info window
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+                infowindow.setContent(location[0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+
+    // fit map to combo of all marker bounds
+    map.fitBounds(bounds);
+
+    var listener = google.maps.event.addListener(map, "idle", function () {
+        google.maps.event.removeListener(listener);
+    });
+
+  }
 </script>
 
-<script src="{{ asset('js/SVGMarker.min.js') }}"></script> --}}
+<!--Load the API from the specified URL
+  * The async attribute allows the browser to render the page while the API loads
+  * The key parameter will contain your own API key (which is not needed for this tutorial)
+  * The callback parameter executes the initMap() function
+-->
+<script type="application/javascript" async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ $key }}&callback=initMap">
+</script>
+
+{{-- <script type="application/javascript" src="{{ asset('js/SVGMarker.min.js') }}"></script> --}}
