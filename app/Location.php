@@ -9,9 +9,9 @@ class Location extends Model
     /**
      * The advertsiers that belong to the location.
      */
-    public function advertisers()
+    public function advertiser()
     {
-        return $this->belongsToMany(Advertiser::class);
+        return $this->belongsTo(Advertiser::class);
     }
 
     /**

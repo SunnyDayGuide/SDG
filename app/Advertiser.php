@@ -102,7 +102,7 @@ class Advertiser extends Model implements HasMedia
      */
     public function locations()
     {
-        return $this->belongsToMany(Location::class)->withTimestamps();
+        return $this->hasMany(Location::class);
     }
 
       /**

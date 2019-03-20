@@ -5,7 +5,7 @@ namespace App\Nova;
 use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
 use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
@@ -65,7 +65,7 @@ class Location extends Resource
             ID::make()->sortable(),
             $this->googleaddressFields(),
             Text::make('Phone Number', 'telephone'),
-            BelongsToMany::make('Advertisers'),
+            BelongsTo::make('Advertiser'),
         ];
     }
 

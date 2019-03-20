@@ -27,8 +27,11 @@ class CreateLocationsTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('telephone')->nullable();
+            $table->unsignedInteger('advertiser_id');
 
             $table->timestamps();
+
+            $table->foreign('advertiser_id')->references('id')->on('advertisers')->onDelete('cascade');
         });
     }
 
