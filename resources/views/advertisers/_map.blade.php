@@ -6,89 +6,43 @@
 	</div>
 </div> --}}
 
-{{-- <div id="mapContainer">
-  <div id="map"></div>
-</div>
-<a href="">Expand Map</a> --}}
-
-<div class="wrap-collapsible">
-  <input id="collapsible" class="toggle" type="checkbox">
-  <label for="collapsible" class="lbl-toggle">Expand Map</label>
-  <div class="collapsible-content">
-    <div id="map"></div>
-  </div>
-</div>
-
+ <div id="map"></div>
 
 <script type="application/javascript">
-
   function initMap() {
-    // get locations from db
-    var locations = [
-    @foreach($locations as $location)
-    ['{{ $advertiser->name }}', {{ $location->latitude }}, {{ $location->longitude }}, {{ $loop->index }}],
-    @endforeach
-    ];
+        var lat = {{ $singleLocation->latitude }};
+        var lng = {{ $singleLocation->longitude }};
+        var myLatLng = {lat, lng};
 
-    // set map options
-    var myOptions = {
-      zoom: 15,
-      mapTypeControl: false,
-      streetViewControl: false,
-      navigationControl: true,
-      styles: [
-      {
-        "featureType": "poi.business",
-        "elementType": "labels.text",
-        "stylers": [
-        {
-          "visibility": "off"
-        }
-        ]
-      }
-      ],
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-
-    // draw map
-    var map = new google.maps.Map(document.getElementById('map'), myOptions);
-
-    var infowindow = new google.maps.InfoWindow();
-
-    // set empty bound
-    var bounds = new google.maps.LatLngBounds();
-
-    // set markers
-    for (var i = 0; i < locations.length; i++) {
-      var location = locations[i];
-
-      var marker = new google.maps.Marker({
-        position: {lat: location[1], lng: location[2]},
-        map: map,
-        title: location[0],
-        zIndex: location[3]
-      });
-
-      // extend bounds to marker edge
-      bounds.extend(marker.position);
-
-      // info window
-      google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function () {
-                infowindow.setContent(location[0]);
-                infowindow.open(map, marker);
+        var myOptions = {
+          zoom: 15,
+          center: myLatLng,
+          mapTypeControl: false,
+          streetViewControl: false,
+          navigationControl: true,
+          styles: [
+          {
+            "featureType": "poi.business",
+            "elementType": "labels.text",
+            "stylers": [
+            {
+              "visibility": "off"
             }
-        })(marker, i));
-    }
+            ]
+          }
+          ],
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
 
-    // fit map to combo of all marker bounds
-    map.fitBounds(bounds);
+        var map = new google.maps.Map(document.getElementById('map'), myOptions);
 
-    var listener = google.maps.event.addListener(map, "idle", function () {
-        google.maps.event.removeListener(listener);
-    });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
 
-  }
 </script>
 
 <!--Load the API from the specified URL

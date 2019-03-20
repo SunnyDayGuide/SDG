@@ -32,10 +32,12 @@ class AdvertiserController extends Controller
             ->orderBy('categoriables.created_at')
             ->first();
 
+        $singleLocation = $advertiser->locations()->first();
+
         $openingHours = $advertiser->fillHours();
         $hasHours = $this->hasHours($openingHours);
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation'));
     }
 
     public function hasHours($openingHours)

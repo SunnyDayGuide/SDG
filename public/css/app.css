@@ -11022,12 +11022,6 @@ a.text-highlight:focus {
   font-family: "Roboto", sans-serif;
 }
 
-#map {
-  height: 500px;
-  width: 100%;
-  background-color: grey;
-}
-
 .wrap-collapsible input[type=checkbox] {
   display: none;
 }
@@ -11056,13 +11050,13 @@ a.text-highlight:focus {
   transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
 }
 
-.collapsible-content {
-  height: 200px;
+#map {
+  height: 250px;
   overflow: hidden;
   transition: height 0.25s ease-in-out;
 }
 
-.toggle:checked + .lbl-toggle + .collapsible-content {
+.toggle:checked + .lbl-toggle + #map {
   height: 500px;
 }
 

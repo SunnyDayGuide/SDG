@@ -131,7 +131,8 @@
 		</div> <!-- End Row -->
 
 		<!-- Map -->
-		@includeWhen(count($locations) > 0, 'advertisers._map')
+		@includeWhen(count($locations) == 1, 'advertisers._map')
+		@includeWhen(count($locations) > 1, 'advertisers._map2')
 
 		<!-- Locations -->
 		<div class="row my-2">
