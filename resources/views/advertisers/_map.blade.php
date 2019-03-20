@@ -5,7 +5,20 @@
 		</div>
 	</div>
 </div> --}}
-<div id="map"></div>
+
+{{-- <div id="mapContainer">
+  <div id="map"></div>
+</div>
+<a href="">Expand Map</a> --}}
+
+<div class="wrap-collapsible">
+  <input id="collapsible" class="toggle" type="checkbox">
+  <label for="collapsible" class="lbl-toggle">Expand Map</label>
+  <div class="collapsible-content">
+    <div id="map"></div>
+  </div>
+</div>
+
 
 <script type="application/javascript">
 
@@ -88,3 +101,4 @@ src="https://maps.googleapis.com/maps/api/js?key={{ $key }}&callback=initMap">
 </script>
 
 {{-- <script type="application/javascript" src="{{ asset('js/SVGMarker.min.js') }}"></script> --}}
+

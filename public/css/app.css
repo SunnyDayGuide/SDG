@@ -10979,6 +10979,98 @@ a.text-highlight:focus {
   }
 }
 
+.social .social-item {
+  font-size: 1rem;
+  padding: 6px 8px;
+  margin-right: 0.25rem;
+}
+
+.social .social-item.fb {
+  padding: 6px 12px;
+}
+
+.social .social-item.yt {
+  padding: 6px 7px;
+}
+
+.social .social-item.ig {
+  padding: 6px 9px;
+}
+
+.advertiser-cat {
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  margin-left: 1rem;
+}
+
+.btn.tags {
+  padding: 0 0.5rem;
+}
+
+.scrollarea {
+  max-height: 260px;
+  overflow-y: scroll;
+}
+
+.locations a {
+  color: #656565;
+}
+
+.tollfree {
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  background-color: grey;
+}
+
+.wrap-collapsible input[type=checkbox] {
+  display: none;
+}
+
+.lbl-toggle {
+  display: block;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: right;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle::before {
+  content: " ";
+  display: inline-block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: 0.7rem;
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+}
+
+.collapsible-content {
+  height: 200px;
+  overflow: hidden;
+  transition: height 0.25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  height: 500px;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  -webkit-transform: rotate(90deg) translateX(-3px);
+          transform: rotate(90deg) translateX(-3px);
+}
+
 .content-wrapper {
   min-height: 100vh;
 }
@@ -11110,59 +11202,6 @@ label {
   font-weight: 500;
   border-radius: 0;
   background-color: #C6C6C6;
-}
-
-.social .social-item {
-  font-size: 1rem;
-  padding: 6px 8px;
-  margin-right: 0.25rem;
-}
-
-.social .social-item.fb {
-  padding: 6px 12px;
-}
-
-.social .social-item.yt {
-  padding: 6px 7px;
-}
-
-.social .social-item.ig {
-  padding: 6px 9px;
-}
-
-.advertiser-cat {
-  font-size: 1.125rem;
-  font-weight: 700;
-  font-family: "Roboto", sans-serif;
-  margin-left: 1rem;
-}
-
-.btn.tags {
-  padding: 0 0.5rem;
-}
-
-.scrollarea {
-  max-height: 260px;
-  overflow-y: scroll;
-}
-
-.locations a {
-  color: #656565;
-}
-
-.tollfree {
-  font-weight: 700;
-  font-family: "Roboto", sans-serif;
-}
-
-.map {
-  height: 250px;
-}
-
-#map {
-  height: 200px;
-  width: 100%;
-  background-color: grey;
 }
 
 /* ---- Special Chart CSS */

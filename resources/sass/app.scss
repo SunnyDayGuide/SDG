@@ -10,6 +10,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Partials
+@import 'advprofiles';
+
 .content-wrapper {
   min-height: 100vh;
 }
@@ -162,60 +165,8 @@ label {
 	background-color: $light;
 }
 
-// Profile Pages
-.social {
-  .social-item {
-    font-size: 1rem;
-    padding: 6px 8px;
-    margin-right: .25rem;
-  }
-  .social-item.fb {
-    padding: 6px 12px;
-  }
-  .social-item.yt {
-    padding: 6px 7px;
-  }
-  .social-item.ig {
-    padding: 6px 9px;
-  }
-}
 
-.advertiser-cat {
-  font-size: 1.125rem;
-  font-weight: $font-weight-bold;
-  font-family: $font-family-sans-serif-reg;
-  margin-left: 1rem;
-}
 
-.btn.tags {
-  padding: 0 0.5rem;
-}
-
-.scrollarea {
-  max-height: 260px;
-  overflow-y: scroll;
-}
-
-.locations {
-  a {
-    color: $body-color;
-  }
-}
-
-.tollfree {
-  font-weight: $font-weight-bold;
-  font-family: $font-family-sans-serif-reg;
-}
-
-.map {
-  height: 250px;
-}
-
-#map {
-  height: 200px;
-  width: 100%;
-  background-color: grey;
-}
 
 /* ---- Special Chart CSS */
 .tide_charts_body {
