@@ -2,8 +2,10 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Logo extends Resource
@@ -20,7 +22,7 @@ class Logo extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
@@ -28,7 +30,7 @@ class Logo extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'name',
     ];
 
     /**
@@ -49,6 +51,11 @@ class Logo extends Resource
     {
         return [
             ID::make()->sortable(),
+            Text::make('Logo Name', 'name'),
+            Images::make('Logo', 'logo')
+            ->withResponsiveImages()
+            ->thumbnail('thumb')
+            ->rules('required'),
         ];
     }
 

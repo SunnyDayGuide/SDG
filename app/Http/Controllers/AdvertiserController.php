@@ -18,7 +18,8 @@ class AdvertiserController extends Controller
      */
     public function show(Market $market, Advertiser $advertiser)
     {
-        $logo = $advertiser->getFirstMedia('logo');
+        // $logo = $advertiser->getFirstMedia('logo');
+        $logo = $advertiser->logo->getFirstMedia('logo');
         $sliderImages = $advertiser->getMedia('slider');
 
         $locations = $advertiser->locations;
@@ -37,7 +38,9 @@ class AdvertiserController extends Controller
         $openingHours = $advertiser->fillHours();
         $hasHours = $this->hasHours($openingHours);
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation'));
+        $coupons = $advertiser->coupons;
+
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons'));
     }
 
     public function hasHours($openingHours)

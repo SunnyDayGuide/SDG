@@ -56,7 +56,6 @@ class Advertiser extends Resource
      * @var string
      */
     public static $group = 'Places';
-    /**
 
     /**
      * Get the fields displayed by the resource.
@@ -98,9 +97,10 @@ class Advertiser extends Resource
             Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
 
             Heading::make('Images'),
-            Images::make('Logo', 'logo')
-                ->thumbnail('full')
-                ->hideFromIndex(), 
+            // Images::make('Logo', 'logo')
+            //     ->thumbnail('full')
+            //     ->hideFromIndex(),
+            BelongsTo::make('Logo')->searchable(), 
 
             Images::make('Slider Images', 'slider')
                 ->customPropertiesFields([
@@ -118,6 +118,7 @@ class Advertiser extends Resource
 
             HasMany::make('Locations'),
             MorphToMany::make('Categories'),
+            HasMany::make('Coupons'),
             HasMany::make('Events'),
             HasMany::make('Articles'),
         ];
@@ -132,49 +133,41 @@ class Advertiser extends Resource
 protected function hoursFields()
 {
     return [
-        Heading::make('Business Hours')->hideFromDetail(),
+        Heading::make('Business Hours')->onlyOnForms(),
 
         JSON::make('Hours', [
-            Time::make('Mon. Open', 'monday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Mon. Close', 'monday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+            Time::make('Mon. Open', 'monday->hours->start')->format('h:mm a'),
+            Time::make('Mon. Close', 'monday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'monday->data'),
-            Time::make('Tue. Open', 'tuesday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Tue. Close', 'tuesday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+
+            Time::make('Tue. Open', 'tuesday->hours->start')->format('h:mm a'),
+            Time::make('Tue. Close', 'tuesday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'tuesday->data'),
-            Time::make('Wed. Open', 'wednesday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Wed. Close', 'wednesday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+
+            Time::make('Wed. Open', 'wednesday->hours->start')->format('h:mm a'),
+            Time::make('Wed. Close', 'wednesday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'wednesday->data'),
-            Time::make('Thu. Open', 'thursday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Thu. Close', 'thursday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+
+            Time::make('Thu. Open', 'thursday->hours->start')->format('h:mm a'),
+            Time::make('Thu. Close', 'thursday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'thursday->data'),
-            Time::make('Fri. Open', 'friday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Fri. Close', 'friday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+
+            Time::make('Fri. Open', 'friday->hours->start')->format('h:mm a'),
+            Time::make('Fri. Close', 'friday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'friday->data'),
-            Time::make('Sat. Open', 'saturday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Sat. Close', 'saturday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+
+            Time::make('Sat. Open', 'saturday->hours->start')->format('h:mm a'),
+            Time::make('Sat. Close', 'saturday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'saturday->data'),
-            Time::make('Sun. Open', 'sunday->hours->start')
-                ->format('h:mm a')->hideFromIndex(),
-            Time::make('Sun. Close', 'sunday->hours->end')
-                ->format('h:mm a')->hideFromIndex(),
+            
+            Time::make('Sun. Open', 'sunday->hours->start')->format('h:mm a'),
+            Time::make('Sun. Close', 'sunday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'sunday->data'),
         ])->fieldClasses('flex flex-wrap items-start w-full')
           ->childConfig([
             'labelClasses' => 'flex w-1/6 items-start px-6 py-6',
             'fieldClasses' => 'flex w-auto items-start px-6 py-6'
-          ]),
+          ])->onlyOnForms(),
     ];
 }
 
