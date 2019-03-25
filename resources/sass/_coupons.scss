@@ -23,14 +23,16 @@
 	background-color: $primary;
 	color: white;
 	font-size: 2.5rem;
+	line-height: 1;
 	font-weight: $font-weight-bold;
 	font-family: $font-family-sans-serif-reg;
 	text-transform: uppercase;
-    padding: .25rem;
-    margin-bottom: .25rem;
+    padding: .5rem;
+    margin-bottom: .5rem;
 }
 .suboffer {
 	font-size: 1.75rem;
+	line-height: 1;
 	font-weight: $font-weight-bold;
     color: $advertisers;
     text-transform: uppercase;
@@ -38,8 +40,8 @@
 .disclaimer {
 	font-weight: $font-weight-light;
 	margin-bottom: .75rem;
-	line-height: 1.2;
 	font-size: .8rem;
+	line-height: 1.2;
 }
 .promo-code {
 	font-weight: $font-weight-bold;
@@ -52,5 +54,5 @@
 	background-color: lighten($light, 10);
 	margin: -1em;
 	line-height: 1.2;
-	padding: .5em;
+	padding: .75em;
 }

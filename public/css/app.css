@@ -11380,15 +11380,17 @@ h2 {
   background-color: #154270;
   color: white;
   font-size: 2.5rem;
+  line-height: 1;
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
-  padding: 0.25rem;
-  margin-bottom: 0.25rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .suboffer {
   font-size: 1.75rem;
+  line-height: 1;
   font-weight: 700;
   color: #B5D45F;
   text-transform: uppercase;
@@ -11397,8 +11399,8 @@ h2 {
 .disclaimer {
   font-weight: 300;
   margin-bottom: 0.75rem;
-  line-height: 1.2;
   font-size: 0.8rem;
+  line-height: 1.2;
 }
 
 .promo-code {
@@ -11413,7 +11415,7 @@ h2 {
   background-color: #e0e0e0;
   margin: -1em;
   line-height: 1.2;
-  padding: 0.5em;
+  padding: 0.75em;
 }
 
 /* ---- Tide Charts */
