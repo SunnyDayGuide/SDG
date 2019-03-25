@@ -2,8 +2,17 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
+use App\Nova\Filters\Category;
+use App\Nova\Filters\Market;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Coupon extends Resource
@@ -28,8 +37,15 @@ class Coupon extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id','offer','suboffer',
     ];
+
+    /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Places';
 
     /**
      * Get the fields displayed by the resource.
@@ -40,7 +56,28 @@ class Coupon extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->sortable()->hideFromIndex(),
+            BelongsTo::make('Market')->rules('required')->sortable(),
+            Select::make('Category', 'category_id')->options([
+                '1' => 'Activities',
+                '2' => 'Dining',
+                '3' => 'Shopping',
+                '4' => 'Entertainment',
+                '5' => 'Accommodations',
+            ])->displayUsingLabels()->rules('required')->sortable(),
+            Text::make('Offer')->rules('required'),
+            Text::make('Suboffer'),
+            Textarea::make('Disclaimer'),
+            Text::make('Promo Code')->hideFromIndex(),
+            Text::make('Barcode')->hideFromIndex(),
+            Select::make('Barcode Type')->options(Config::get('coupons.barcode_types'))
+                ->displayUsingLabels()->hideFromIndex(),
+            Boolean::make('Active')->sortable(),
+            BelongsTo::make('Logo')->searchable(),
+            // Images::make('Logo', 'logo')
+            //     ->thumbnail('full')
+            //     ->hideFromIndex(),
+            BelongsToMany::make('Advertisers')->searchable(),
         ];
     }
 
@@ -63,7 +100,10 @@ class Coupon extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Market,
+            new Category,
+        ];
     }
 
     /**

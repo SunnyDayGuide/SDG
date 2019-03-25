@@ -168,14 +168,8 @@
 		<!-- Coupons -->
 		<div class="row my-3 my-md-5" id="coupons">
 			<div class="col-md-8 offset-md-2">
-				<div class="p-3 mb-4 bg-advertiser">
-					<h2 class="text-white">Coupon Block</h2>
-					<p class="text-white">Lorem leberkas consectetur, quis labore in in cupidatat strip steak excepteur. T-bone tri-tip alcatra venison proident. Beef andouille frankfurter anim velit. Capicola deserunt cillum tempor incididunt ut.</p>
-				</div>
-				<div class="p-3 mb-4 bg-advertiser">
-					<h2 class="text-white">Coupon Block</h2>
-					<p class="text-white">Lorem leberkas consectetur, quis labore in in cupidatat strip steak excepteur. T-bone tri-tip alcatra venison proident. Beef andouille frankfurter anim velit. Capicola deserunt cillum tempor incididunt ut.</p>
-				</div>
+				<div class="text-uppercase print"><a href="#"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print all coupons</a></div>
+				@include('advertisers._coupon')
 			</div>
 		</div>
 

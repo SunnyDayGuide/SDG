@@ -116,6 +116,14 @@ class Advertiser extends Model implements HasMedia
     }
 
     /**
+     * The coupons that belong to the advertiser.
+     */
+    public function coupons()
+    {
+        return $this->belongsToMany(Coupon::class);
+    }
+
+    /**
      * The articles that belong an advertiser.
      */
     public function articles()
@@ -199,6 +207,7 @@ class Advertiser extends Model implements HasMedia
                 ->withResponsiveImages();
         });
 
+        // may not need this anymore. Keep for now.
         $this
         ->addMediaCollection('logo')
         ->singleFile()

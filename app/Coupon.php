@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Milon\Barcode\DNS1D;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
@@ -44,6 +45,14 @@ class Coupon extends Model implements HasMedia
     	return $this->belongsTo(Category::class)->where('parent_id', !null);
     }
 
+    /**
+     * The advertisers that belong to the coupon.
+     */
+    public function advertisers()
+    {
+        return $this->belongsToMany(Advertiser::class);
+    }
+
      /**
      * A coupon has (belongs to) a logo.
      *
@@ -52,6 +61,29 @@ class Coupon extends Model implements HasMedia
     public function logo()
     {
     	return $this->belongsTo(Logo::class);
+    }
+
+        /**
+     * Register the media collections.
+     *
+     * @return array
+     */
+    public function registerMediaCollections()
+    {
+        // may not need this anymore. Keep for now.
+        $this
+        ->addMediaCollection('logo')
+        ->singleFile()
+        ->registerMediaConversions(function (Media $media) {
+            $this->addMediaConversion('full')
+            ->withResponsiveImages();
+        });
+    }
+
+    public function getBarcodeSVGAttribute()
+    {
+        $code = DNS1D::getBarcodeSVG($this->barcode, $this->barcode_type, 2,50, 'black', true);
+        return $code;
     }
 
 }

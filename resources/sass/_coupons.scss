@@ -1,0 +1,56 @@
+.print {
+	a {
+	    color: $body-color;
+	  }
+}
+
+.coupon-container {
+	border: 4px dashed $primary;
+	padding: .5em;
+	margin: .6em 0;
+	text-align: center;
+
+	.logo {
+		text-align: center;
+		margin: .75em;
+
+		img {
+			width: 200px;
+		}		
+	}
+}
+.offer {
+	background-color: $primary;
+	color: white;
+	font-size: 2.5rem;
+	font-weight: $font-weight-bold;
+	font-family: $font-family-sans-serif-reg;
+	text-transform: uppercase;
+    padding: .25rem;
+    margin-bottom: .25rem;
+}
+.suboffer {
+	font-size: 1.75rem;
+	font-weight: $font-weight-bold;
+    color: $advertisers;
+    text-transform: uppercase;
+}
+.disclaimer {
+	font-weight: $font-weight-light;
+	margin-bottom: .75rem;
+	line-height: 1.2;
+	font-size: .8rem;
+}
+.promo-code {
+	font-weight: $font-weight-bold;
+	background-color: $body-color;
+	color: white;
+	padding: .25rem .5rem;
+	margin-left: .5rem;
+}
+.coupon-footer {
+	background-color: lighten($light, 10);
+	margin: -1em;
+	line-height: 1.2;
+	padding: .5em;
+}
