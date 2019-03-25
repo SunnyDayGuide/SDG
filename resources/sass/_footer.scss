@@ -1,0 +1,14 @@
+.footer {
+    // position: fixed;
+    // bottom: 0;
+    width: 100%;
+    height: 400px;
+    line-height: 60px;
+    padding: 2rem;
+    background-color: $navy;
+
+    h4 {
+    	color: $white;
+    	border-bottom: 1px solid $white;
+    }
+}

@@ -1,0 +1,32 @@
+.navbar {
+	min-height: 93px;
+	background-color: $indigo;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-bottom: 8px solid $green;
+
+  .bucket-list {
+    background-color: $green;
+    height: 100%;
+    padding: 1rem;
+
+    .nav-link {
+      color: $primary;
+    }
+  }
+}
+
+.navbar-brand {
+	width: 180px;
+	padding: 0;
+}
+.nav-link {
+	font-size: 1.25rem;
+	text-transform: uppercase;
+}
+
+@include media-breakpoint-up(lg) {
+  .dropdown:hover>.dropdown-menu {
+	  display: block;
+	}
+}

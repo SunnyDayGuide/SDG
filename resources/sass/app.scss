@@ -11,7 +11,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Partials
+@import 'nav';
+@import 'type';
 @import 'advprofiles';
+@import 'coupons';
+@import 'charts';
+@import 'footer';
 
 .content-wrapper {
   min-height: 100vh;
@@ -21,69 +26,9 @@ header {
 	margin-bottom: 85px;
 }
 
-h1 {
-  color: $highlight;
-}
-
-h2 {
-  color: $primary;
-  font-weight: $font-weight-normal;
-}
-
-.navbar {
-	min-height: 93px;
-	background-color: $indigo;
-	padding-top: 0;
-	padding-bottom: 0;
-	border-bottom: 8px solid $green;
-
-  .bucket-list {
-    background-color: $green;
-    height: 100%;
-    padding: 1rem;
-
-    .nav-link {
-      color: $primary;
-    }
-  }
-}
-
-.navbar-brand {
-	width: 180px;
-	padding: 0;
-}
-.nav-link {
-	font-size: 1.25rem;
-	text-transform: uppercase;
-}
-
-@include media-breakpoint-up(lg) {
-  .dropdown:hover>.dropdown-menu {
-	  display: block;
-	}
-}
-
-
-.footer {
-    // position: fixed;
-    // bottom: 0;
-    width: 100%;
-    height: 400px;
-    line-height: 60px;
-    padding: 2rem;
-    background-color: $navy;
-
-    h4 {
-    	color: $white;
-    	border-bottom: 1px solid $white;
-    }
-}
-
 label {
 	font-weight: $font-weight-medium;
 }
-
-// fonts etc 
 
 .card-title h5 {
 	font-size: 1.5rem;
@@ -168,31 +113,7 @@ label {
 
 
 
-/* ---- Special Chart CSS */
-.tide_charts_body {
-  float: left;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 1px solid #bbb;
-  margin: .35em;
-  width: 250px;
-  text-align: center;
-}
-.tideCharts .tide_charts_body td, .tide_charts_body td {
-  border-top: 1px solid #ddd;
-  padding: 4px 6px;
-  border-right: 1px solid #ddd;
-}
-.tideCharts .tide_charts_body th, .tide_charts_body th {
-  padding: 4px 8px;
-  background-color: #336699;
-	color: #FFF;
-	font-weight: bold;
-	font-size: 1.15rem;
-}
-.tide_charts_body tbody tr:nth-child(even) td, .tide_charts_body thead td {
-  background-color: #eee;
-}
+
 
 .article-slider .carousel-item img {
   width: 100%;
