@@ -24,10 +24,21 @@
 			</div>
 		</div> <!-- End Row -->
 
-		<div class="row featured">
+		<div class="row featured my-3">
 			<div class="col-md-12">
 				<h2>Featured {{ $category->name }}</h2>
 				@foreach($featured as $advertiser)
+					<div>
+						<h3><a href="{{ $advertiser->path() }}">{{ $advertiser->name }}</a></h3>
+					</div>
+				@endforeach
+			</div>
+		</div>
+
+		<div class="row my-3">
+			<div class="col-md-12">
+				<h2>{{ $category->name }} Listings</h2>
+				@foreach($advertisers as $advertiser)
 					<div>
 						<h3><a href="{{ $advertiser->path() }}">{{ $advertiser->name }}</a></h3>
 					</div>
