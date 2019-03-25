@@ -11388,6 +11388,12 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+@media (max-width: 1200px) {
+  .offer {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+}
+
 .suboffer {
   font-size: 1.75rem;
   line-height: 1;
@@ -11396,10 +11402,16 @@ h2 {
   text-transform: uppercase;
 }
 
+@media (max-width: 1200px) {
+  .suboffer {
+    font-size: calc(1.3rem + 0.6vw);
+  }
+}
+
 .disclaimer {
   font-weight: 300;
   margin-bottom: 0.75rem;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   line-height: 1.2;
 }
 

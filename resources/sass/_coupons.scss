@@ -22,7 +22,7 @@
 .offer {
 	background-color: $primary;
 	color: white;
-	font-size: 2.5rem;
+	@include font-size($h1-font-size);
 	line-height: 1;
 	font-weight: $font-weight-bold;
 	font-family: $font-family-sans-serif-reg;
@@ -31,7 +31,7 @@
     margin-bottom: .5rem;
 }
 .suboffer {
-	font-size: 1.75rem;
+	@include font-size($h3-font-size);
 	line-height: 1;
 	font-weight: $font-weight-bold;
     color: $advertisers;
@@ -40,7 +40,7 @@
 .disclaimer {
 	font-weight: $font-weight-light;
 	margin-bottom: .75rem;
-	font-size: .8rem;
+	@include font-size($font-size-sm);
 	line-height: 1.2;
 }
 .promo-code {

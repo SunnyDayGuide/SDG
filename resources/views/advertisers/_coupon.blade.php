@@ -23,7 +23,7 @@
 	
 	<div class="mt-4 d-flex justify-content-between coupon-footer">
 		<div class="text-uppercase print"><a href="#"><i class="fas fa-umbrella-beach fa-lg fa-fw mr-2" aria-hidden="true"></i>Bucket</a></div>
-		<div class="text-uppercase">Print or show this {{ $market->brand->name }} on your phone</div>
+		<div class="text-uppercase">Print or show this {{ $market->brand->name }} coupon on your phone</div>
 		<div class="text-uppercase print"><a href="#"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print</a></div>
 	</div>
 </div>
