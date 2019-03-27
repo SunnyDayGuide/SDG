@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Scopes\MarketScope;
+use Illuminate\Support\Str;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
@@ -17,8 +18,8 @@ abstract class Resource extends NovaResource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->withoutGlobalScope(MarketScope::class);
-        return $query;
+        // $query->withoutGlobalScope(MarketScope::class);
+        // return $query;
     }
 
     /**
@@ -57,8 +58,18 @@ abstract class Resource extends NovaResource
      */
     public static function relatableQuery(NovaRequest $request, $query)
     {
-        return parent::relatableQuery($request, $query)
-            ->withoutGlobalScope(MarketScope::class);
+        // Create the filter method name
+        $method = 'relatable' . Str::plural(class_basename(get_called_class())) . 'Filter';
+
+        // Get the called resource instance
+        $resource = $request->newResource();
+
+        // Check if the filter method exists
+        if (method_exists($resource, $method)) {
+            $query = $resource->{$method}($request, $query);
+        }
+
+        return parent::relatableQuery($request, $query);
     }
 
 }
