@@ -57,6 +57,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
 	
 	Route::get('events', 'EventController@index')->name('events');
+	Route::get('coupons', 'CouponController@index')->name('coupons');
 
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 

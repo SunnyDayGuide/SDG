@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Advertiser;
 use App\Event;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -115,6 +116,16 @@ class Market extends Model
     public function users()
     {
         $this->belongsToMany(User::class, 'user_market');
+    }
+
+    public function advertisers()
+    {   
+        return $this->hasMany(Advertiser::class);
+    }
+
+    public function coupons()
+    {   
+        return $this->hasMany(Coupon::class);
     }
 
 

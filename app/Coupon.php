@@ -36,13 +36,13 @@ class Coupon extends Model implements HasMedia
     }
 
     /**
-     * A coupon belongs to a market.
+     * A coupon belongs to a category.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category()
     {
-    	return $this->belongsTo(Category::class)->where('parent_id', !null);
+    	return $this->belongsTo(Category::class);
     }
 
     /**

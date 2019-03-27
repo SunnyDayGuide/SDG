@@ -4,6 +4,7 @@ namespace App;
 
 use App\Advertiser;
 use App\Article;
+use App\Coupon;
 use App\Event;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -77,6 +78,11 @@ class Category extends Model
     public function advertisers()
     {
         return $this->morphedByMany(Advertiser::class, 'categoriable');
+    }
+
+    public function coupons()
+    {
+        return $this->hasMany(Coupon::class);
     }
 
     public function events()
