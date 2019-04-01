@@ -35,9 +35,8 @@ class CategoryController extends Controller
             ->where('market_id', $market->id)
             ->get();  
 
-        $featured = $category->advertisers()
-            ->where('market_id', $market->id)
-            ->ofType('3')->get();
+        $premierAdvertisers = $category->advertisers()
+            ->where('market_id', $market->id)->premier()->get();
 
         // TO-DO: display the related events
         $events = $category->events()
@@ -46,7 +45,7 @@ class CategoryController extends Controller
             ->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories', 'featured'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories', 'premierAdvertisers'));
     }
 
      /**
