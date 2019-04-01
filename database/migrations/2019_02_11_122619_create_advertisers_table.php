@@ -29,6 +29,7 @@ class CreateAdvertisersTable extends Migration
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
             $table->string('pinterest')->nullable();
+            $table->jsonb('hours')->nullable();
             $table->boolean('active')->default(true);
             $table->unsignedInteger('level_id');
             $table->unsignedInteger('logo_id')->nullable();
@@ -46,7 +47,7 @@ class CreateAdvertisersTable extends Migration
 
             $table->foreign('logo_id')
                 ->references('id')
-                ->on('levels')
+                ->on('logos')
                 ->onDelete('set null');
         });
     }

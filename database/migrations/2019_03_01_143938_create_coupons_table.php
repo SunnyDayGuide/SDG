@@ -22,6 +22,7 @@ class CreateCouponsTable extends Migration
             $table->text('disclaimer')->nullable();
             $table->string('promo_code')->nullable();
             $table->string('barcode')->nullable();
+            $table->text('barcode_type')->nullable();
             $table->unsignedInteger('logo_id')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamps();
