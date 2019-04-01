@@ -23,7 +23,7 @@ class Coupon extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'media', 'category'];
+    protected $with = ['market', 'media', 'category', 'advertisers'];
 
     /**
      * A coupon belongs to a market.
@@ -61,6 +61,17 @@ class Coupon extends Model implements HasMedia
     public function logo()
     {
     	return $this->belongsTo(Logo::class);
+    }
+
+    /**
+     * Scope a query to only include active coupons.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 
         /**

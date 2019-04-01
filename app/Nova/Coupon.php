@@ -66,7 +66,7 @@ class Coupon extends Resource
                 '5' => 'Accommodations',
             ])->displayUsingLabels()->rules('required')->sortable(),
             Text::make('Offer')->rules('required'),
-            Text::make('Suboffer'),
+            Text::make('Suboffer')->hideFromIndex(),
             Textarea::make('Disclaimer'),
             Text::make('Promo Code')->hideFromIndex(),
             Text::make('Barcode')->hideFromIndex(),
