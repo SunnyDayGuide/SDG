@@ -21,16 +21,16 @@
                             @foreach ($market->categories as $category)
                             <a href="{{ $market->path().'/'.$category->slug }}" class="dropdown-item">{{ $category->name }}</a>
                                 <ul>
-                                @foreach ($category->children as $subcategory)
-                                <li><a href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a></li>
-                                @endforeach
+                                    @foreach ($category->children as $subcategory)
+                                    <li><a href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a></li>
+                                    @endforeach
                                 </ul>
                             @endforeach
                         </div>
                     </li> 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Coupons</a>
+                        <a class="nav-link" href="{{ route('coupons', $market) }}">Coupons</a>
                     </li>
 
                     <li class="nav-item">

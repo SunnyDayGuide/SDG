@@ -1,112 +1,35 @@
 @extends('layouts.app')
 
+@section('jumbotron')
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-4">{{ $market->name }}, {{ $market->state->name }} Coupons</h1>
+			<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+			<hr class="my-4">
+			<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+			<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+		</div>
+	</div>
+@endsection
+
 @section('content')
 
-<div class="search p-5">
+{{-- <div class="search p-5">
 	<h2 class="m-auto text-center">This is the search box</h2>
 	<button class="btn btn-primary">Search</button>
-</div>
+</div> --}}
 
+<div class="container my-5">
 
-<div class="container mt-5">
-
-	<div>
-		<div>
-			<h1>{{ $market->name }}, {{ $market->state->name }} Coupons</h1>
-		</div>
-	</div> <!-- End Row -->
-
-	<div>
-		@foreach ($advertisers as $advertiser)
-			@foreach($advertiser->coupons->where('category_id', 1) as $coupon)
-			<div class="bg-advertiser my-3 p-4">
-				@if(null !== $advertiser->getFirstMedia('slider'))
-				<div class="card-img-top">
-					<a href="{{ $advertiser->path() }}">
-						@include('partials._images', ['item' => $advertiser])
-					</a>
-				</div>
-				@endif
-				<div><strong>{{ $advertiser->name }}</strong></div>
-				<div>{{ $coupon->offer }}</div>
-				<div>{{ $coupon->suboffer }}</div>
-				<div>{{ $coupon->category->name }}</div>
-			</div>
-			@endforeach			
-		@endforeach
+	<div class="content">
+		<p>Ready to start saving money on your next Outer Banks vacation? Our coupons are conveniently divided into three categories: Activities, Dining, and Shopping. Download each section below or select ALL COUPONS above to print them all. Use the listings on this page to see all of our great deals and make the most of your vacation!</p>
 	</div>
 
-	<section>
-		<div>
-			<h2>Activities</h2>
-				@foreach ($activities as $coupon)
-					@foreach($coupon->advertisers as $advertiser)
-					<div class="bg-advertiser my-3 p-4">
-						@if(null !== $advertiser->getFirstMedia('slider'))
-						<div class="card-img-top">
-							<a href="{{ $advertiser->path() }}">
-								@include('partials._images', ['item' => $advertiser])
-							</a>
-						</div>
-						@endif
-						<div><strong>{{ $advertiser->name }}</strong></div>
-						<div>{{ $advertiser->market->name }}</div>
-						<div>{{ $coupon->offer }}</div>
-						<div>{{ $coupon->suboffer }}</div>
-						<div>{{ $coupon->market->name }}</div>
-					</div>	
-					@endforeach			
-				@endforeach
-		</div> <!-- End Row-->
-	</section>
+	@include('coupons._category', ['category' => 'activities'])
+	@include('coupons._category', ['category' => 'dining'])
+	@include('coupons._category', ['category' => 'shopping'])
+	@include('coupons._category', ['category' => 'entertainment'])
 
-	<section>
-		<div>
-			<h2>Dining</h2>
-				@foreach ($dining as $coupon)
-					@foreach($coupon->advertisers as $advertiser)
-					<div class="bg-advertiser my-3 p-4">
-						@if(null !== $advertiser->getFirstMedia('slider'))
-						<div class="card-img-top">
-							<a href="{{ $advertiser->path() }}">
-								@include('partials._images', ['item' => $advertiser])
-							</a>
-						</div>
-						@endif
-						<div><strong>{{ $advertiser->name }}</strong></div>
-						<div>Advertiser Market: {{ $advertiser->market->name }}</div>
-						<div>{{ $coupon->offer }}</div>
-						<div>{{ $coupon->suboffer }}</div>
-						<div>{{ $coupon->market->name }}</div>
-					</div>	
-					@endforeach			
-				@endforeach
-		</div> <!-- End Row-->
-	</section>
-
-	<section>
-		<div>
-			<h2>Shopping</h2>
-				@foreach ($shopping as $coupon)
-					@foreach($coupon->advertisers as $advertiser)
-					<div class="bg-advertiser my-3 p-4">
-						@if(null !== $advertiser->getFirstMedia('slider'))
-						<div class="card-img-top">
-							<a href="{{ $advertiser->path() }}">
-								@include('partials._images', ['item' => $advertiser])
-							</a>
-						</div>
-						@endif
-						<div><strong>{{ $advertiser->name }}</strong></div>
-						<div>Advertiser Market: {{ $advertiser->market->name }}</div>
-						<div>{{ $coupon->offer }}</div>
-						<div>{{ $coupon->suboffer }}</div>
-						<div>{{ $coupon->market->name }}</div>
-					</div>	
-					@endforeach			
-				@endforeach
-		</div> <!-- End Row-->
-	</section>
 
 </div> <!-- End Content Container -->
 
