@@ -17,6 +17,7 @@ $factory->define(App\Advertiser::class, function (Faker $faker) {
         'instagram' => $faker->optional()->url,
         'youtube' => $faker->optional()->url,
         'pinterest' => $faker->optional()->url,
+        'logo_id' => $faker->numberBetween($min = 1, $max = 20),
         'active' => $faker->boolean($chanceOfGettingTrue = 90),
         'level_id' => $faker->numberBetween($min = 1, $max = 3),
     ];
