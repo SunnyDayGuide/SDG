@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Category;
 use App\Nova\Filters\Market;
+use App\Nova\Filters\SingleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Laravel\Nova\Fields\BelongsTo;
@@ -56,7 +56,7 @@ class Coupon extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable()->hideFromIndex(),
+            ID::make()->sortable(),
             BelongsTo::make('Market')->rules('required')->sortable(),
             Select::make('Category', 'category_id')->options([
                 '1' => 'Activities',
@@ -117,7 +117,7 @@ class Coupon extends Resource
     {
         return [
             new Market,
-            new Category,
+            new SingleCategory,
         ];
     }
 
