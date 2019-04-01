@@ -12,10 +12,6 @@
 	<h2 class="m-auto text-center">This is the search box</h2>
 </div>
 
-<example-component></example-component>
-
-
-
 <div class="container mt-5">
 
 	<div>
