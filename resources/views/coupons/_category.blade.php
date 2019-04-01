@@ -1,3 +1,4 @@
+@if(!${ $category }->isEmpty())
 <section class="coupon-section" id="{{ $category }}">
 	<h2>{{ ucwords($category) }}</h2>
 	<!-- Featured & Premier Advertisers -->
@@ -31,3 +32,4 @@
 	</div>
 
 </section>
+@endif
