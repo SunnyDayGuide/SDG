@@ -16,7 +16,7 @@ class CouponController extends Controller
      */
     public function index(Market $market)
     {
-        $coupons = Coupon::where('market_id', $market->id)->active()->get();
+        $coupons = Coupon::where('market_id', $market->id)->active()->inRandomOrder()->get();
 
         $activities = $coupons->where('category_id', 1);
 
