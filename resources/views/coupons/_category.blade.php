@@ -12,13 +12,7 @@
 		</div> <!-- End Card Deck-->
 	</div> <!-- End Row-->
 
-	<section class="ads">
-		<div class="row justify-content-center">
-			<div class="col-8">
-				<img src="http://placehold.it/706x213" alt="advertisement" class="img-fluid">
-			</div>
-		</div>
-	</section>
+	@include('banners._zone1')
 
 	<!-- Standard Advertisers -->
 	<div class="row justify-content-center">
