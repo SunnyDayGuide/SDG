@@ -11492,6 +11492,63 @@ h2 {
   text-align: center;
 }
 
+/* print styles */
+
+.print-container {
+  margin: 2rem;
+}
+
+.print-container .coupon-container {
+  border: 4px dashed black;
+  margin: 0.6em;
+}
+
+.print-container .offer {
+  background-color: white;
+  color: #154270;
+}
+
+.print-container .suboffer {
+  color: #656565;
+}
+
+.print-container .disclaimer {
+  color: #656565;
+}
+
+.print-container .print {
+  color: black;
+}
+
+@media print {
+  html,
+  body {
+    height: 99%;
+  }
+
+  .offer {
+    background-color: none;
+    color: black;
+  }
+
+  .suboffer {
+    color: black;
+  }
+
+  .disclaimer {
+    color: black;
+  }
+
+  .promo-code {
+    font-weight: 700;
+    color: black;
+  }
+
+  .print {
+    color: black;
+  }
+}
+
 /* ---- Tide Charts */
 
 .tide_charts_body {

@@ -63,6 +63,9 @@ Route::prefix('destinations/{market}')->group(function () {
 
 	Route::get('places/{advertiser}', 'AdvertiserController@show')->name('advertisers.show');
 
+	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
+	Route::get('places/{advertiser}/print/{coupon}', 'PrintController@singleCoupon')->name('print.single');
+
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
 	Route::get('{category}/{subcategory}', 'CategoryController@subcategories')->name('subcategories.show');
 

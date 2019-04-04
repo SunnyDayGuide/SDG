@@ -168,7 +168,7 @@
 		<!-- Coupons -->
 		<div class="row my-3 my-md-5" id="coupons">
 			<div class="col-md-8 offset-md-2">
-				<div class="text-uppercase print"><a href="#"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print all coupons</a></div>
+				<div class="text-uppercase print"><a href="{{ route('print.all', [$market, $advertiser]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print all coupons</a></div>
 				@include('advertisers._coupon')
 			</div>
 		</div>

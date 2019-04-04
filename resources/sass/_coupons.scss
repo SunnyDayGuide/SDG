@@ -115,3 +115,49 @@
 		text-align: center;
 	}
 }
+
+/* print styles */
+.print-container {
+	margin: 2rem;
+
+	.coupon-container {
+		border: 4px dashed black;
+		margin: .6em;
+	}
+
+	.offer {
+		background-color: white;
+		color: $primary;
+	}
+	.suboffer {
+		color: $body-color;
+	}
+	.disclaimer {
+		color: $body-color;
+	}
+	.print {
+		color: black;
+	}
+}
+@media print {
+	html, body {
+		height: 99%;
+	}
+	.offer {
+		background-color: none;
+		color: black;
+	}
+	.suboffer {
+		color: black;
+	}
+	.disclaimer {
+		color: black;
+	}
+	.promo-code {
+		font-weight: $font-weight-bold;
+		color: black;
+	}
+	.print {
+		color: black;
+	}
+}
