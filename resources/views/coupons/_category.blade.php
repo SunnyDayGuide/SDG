@@ -18,7 +18,7 @@
 	<div class="row justify-content-center">
 		<div class="col-8">
 			@foreach (${ $category } as $coupon)
-			@foreach($coupon->advertisers()->standard()->get() as $advertiser)
+			@foreach($coupon->advertisers->where('level_id', 1) as $advertiser)
 			@include('coupons._listing')
 			@endforeach	
 			@endforeach

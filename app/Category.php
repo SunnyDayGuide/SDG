@@ -22,6 +22,13 @@ class Category extends Model
     protected $guarded = [];
 
     /**
+     * The relationships to always eager-load.
+     *
+     * @var array
+     */
+    protected $with = ['children'];
+
+    /**
      * Get the route key name for Laravel.
      *
      * @return string

@@ -23,7 +23,7 @@ class Coupon extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'media', 'category', 'advertisers'];
+    protected $with = ['market', 'category', 'advertisers'];
 
     /**
      * A coupon belongs to a market.
@@ -42,7 +42,7 @@ class Coupon extends Model implements HasMedia
      */
     public function category()
     {
-    	return $this->belongsTo(Category::class);
+    	return $this->belongsTo(Category::class)->where('parent_id', null);
     }
 
     /**
@@ -79,17 +79,17 @@ class Coupon extends Model implements HasMedia
      *
      * @return array
      */
-    public function registerMediaCollections()
-    {
-        // may not need this anymore. Keep for now.
-        $this
-        ->addMediaCollection('logo')
-        ->singleFile()
-        ->registerMediaConversions(function (Media $media) {
-            $this->addMediaConversion('full')
-            ->withResponsiveImages();
-        });
-    }
+    // public function registerMediaCollections()
+    // {
+    //     // may not need this anymore. Keep for now.
+    //     $this
+    //     ->addMediaCollection('logo')
+    //     ->singleFile()
+    //     ->registerMediaConversions(function (Media $media) {
+    //         $this->addMediaConversion('full')
+    //         ->withResponsiveImages();
+    //     });
+    // }
 
     public function getBarcodeSVGAttribute()
     {
