@@ -11270,6 +11270,24 @@ h2 {
   font-weight: 400;
 }
 
+.card-title h5 {
+  font-size: 1.5rem;
+}
+
+.card-footer {
+  background-color: #fff;
+  border-top: none;
+}
+
+.overlay img {
+  background-color: rgba(255, 255, 255, 0);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.overlay:hover img {
+  opacity: 0.75;
+}
+
 .social .social-item {
   font-size: 1rem;
   padding: 6px 8px;
@@ -11432,66 +11450,6 @@ h2 {
   padding: 0.75em;
 }
 
-/* Coupon page */
-
-.coupon-section .card-body {
-  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
-}
-
-.coupon-section .card-advertiser {
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
-.coupon-section .card-offer {
-  color: #B5D45F;
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: bolder;
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-}
-
-@media (max-width: 1200px) {
-  .coupon-section .card-offer {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
-
-.coupon-section .card-suboffer {
-  font-size: 1.25rem;
-  line-height: 1;
-}
-
-.coupon-section .premier-tab {
-  position: absolute;
-  top: 10px;
-  right: -1px;
-  background-color: #FF6F61;
-  color: white;
-  text-align: right;
-  font-size: 1.5rem;
-  line-height: 1;
-  font-weight: 700;
-  padding: 0.25rem 1rem;
-}
-
-.coupon-section .overlay img {
-  background-color: rgba(255, 255, 255, 0);
-  transition: opacity 0.3s ease-in-out;
-}
-
-.coupon-section .overlay:hover img {
-  opacity: 0.85;
-}
-
-.coupon-section .coupon-list-item {
-  border-bottom: 2px dashed #C6C6C6;
-  padding: 1rem 0;
-  text-align: center;
-}
-
 /* print styles */
 
 .print-container {
@@ -11548,6 +11506,122 @@ h2 {
     color: black;
   }
 }
+
+/* Coupon page */
+
+.coupon-section .card-body {
+  padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+}
+
+.coupon-section .card-advertiser {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.coupon-section .card-offer {
+  color: #B5D45F;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 1200px) {
+  .coupon-section .card-offer {
+    font-size: calc(1.325rem + 0.9vw);
+  }
+}
+
+.coupon-section .card-suboffer {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.coupon-section .premier-tab {
+  position: absolute;
+  top: 10px;
+  right: -1px;
+  background-color: #FF6F61;
+  color: white;
+  text-align: right;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+}
+
+.coupon-section .coupon-list-item {
+  border-bottom: 2px dashed #C6C6C6;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.coupon-section .coupon-list-item a {
+  display: block;
+}
+
+.coupon-section .coupon-list-item a:hover {
+  background-color: #e3efc3;
+  margin: -1rem 0;
+  padding: 1rem 0;
+}
+
+.article-slider img,
+.article-slider .carousel-item img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.tripIdeas .card-title,
+.tripIdeas .card-title a {
+  color: #60A3D9;
+  font-weight: 700;
+}
+
+.advSpotlights {
+  background-color: #d1e49b;
+  padding: 2rem 0;
+}
+
+.advSpotlights h2 {
+  color: #154270;
+}
+
+.advSpotlights .card {
+  border: none;
+}
+
+.advSpotlights .card-title,
+.advSpotlights .card-title a {
+  color: #B5D45F;
+  font-weight: 700;
+}
+
+.visitorInfo h5 a {
+  color: #60A3D9;
+  font-weight: 700;
+}
+
+.visitorInfo .media .image {
+  width: 35%;
+}
+
+.visitorInfo .stacked-cards {
+  padding-bottom: 1rem;
+}
+
+.visitorInfo .stacked-cards .card-img {
+  width: 33%;
+}
+
+/* Card Carousel */
+
+/* Tablet and up */
+
+/* Desktop and up */
 
 /* ---- Tide Charts */
 
@@ -11607,52 +11681,6 @@ label {
   font-weight: 500;
 }
 
-.card-title h5 {
-  font-size: 1.5rem;
-}
-
-.tripIdeas .card-title,
-.tripIdeas .card-title a {
-  color: #60A3D9;
-  font-weight: 700;
-}
-
-.advSpotlights {
-  background-color: #d1e49b;
-  padding: 2rem 0;
-}
-
-.advSpotlights h2 {
-  color: #154270;
-}
-
-.advSpotlights .card {
-  border: none;
-}
-
-.advSpotlights .card-title,
-.advSpotlights .card-title a {
-  color: #B5D45F;
-  font-weight: 700;
-}
-
-.visitorInfo h5 a {
-  color: #60A3D9;
-  font-weight: 700;
-}
-
-.visitorInfo .media .image {
-  width: 35%;
-}
-
-.visitorInfo .stacked-cards {
-  padding-bottom: 1rem;
-}
-
-.visitorInfo .stacked-cards .card-img {
-  width: 33%;
-}
-
 .search {
   background-color: #bfdaf0;
 }
@@ -11661,24 +11689,9 @@ label {
   margin: 4rem 0;
 }
 
-.card-footer {
-  background-color: #fff;
-  border-top: none;
-}
-
 .tags {
   font-weight: 500;
   border-radius: 0;
   background-color: #C6C6C6;
 }
-
-.article-slider .carousel-item img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-/* Card Carousel */
-
-/* Tablet and up */
 
