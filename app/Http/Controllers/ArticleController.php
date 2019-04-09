@@ -50,10 +50,10 @@ class ArticleController extends Controller
      */
     public function show(Market $market, Article $article)
     {
-        $sliderImages = $article->getMedia('slider');
-        $slider = $article->getFirstMedia('slider');
+        $slides = $article->getMedia('slider');
+        $image = $article->getFirstMedia('slider');
 
-        return view('articles.show', compact('article', 'market', 'slider', 'sliderImages'));
+        return view('articles.show', compact('article', 'market', 'image', 'slides'));
     }
 
     /**

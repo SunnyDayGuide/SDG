@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div>
-	<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+<div class="article-slider w-100">
+	{{-- If there is more than one image, render a slider --}}
+	@if($slides->count() > 1)
+	<div id="slider" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
-			@foreach($sliderImages as $image)
-		      <li data-target="#carouselIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
+			@foreach($slides as $slide)
+		      <li data-target="#slider" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
 		   @endforeach
 		</ol>
 		<div class="carousel-inner" role="listbox">
-			@foreach($sliderImages as $image)
+			@foreach($slides as $slide)
 				<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-					{{ $image('full') }}
+					{{ $slide('full') }}
 				</div>
 			@endforeach
 		</div>
 	</div>
+
+	{{-- Otherwise just spit out a single image --}}
+	@else
+	{{ $image }}
+
+	@endif
+
 </div>
 @endsection
 
@@ -40,10 +49,10 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				{{-- <img class="img-fluid mb-2" src="{{ asset($article->image) }}" alt=""> --}}
 				<div class="fr-view">{!! $article->content !!}</div>
 			</div> <!-- End Collumn -->
 		</div> <!-- End Row -->
+		
 		<div class="row mt-3">
 			<div class="col">
 				<div class="alert alert-editorial feedback">
