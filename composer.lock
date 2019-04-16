@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74289a82652970354be88d1d253bf4f3",
+    "content-hash": "84e4126dab73c0c194db18c7a3ede01a",
     "packages": [
         {
             "name": "64robots/nova-fields",
-            "version": "0.6.8",
+            "version": "0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/64robots/nova-fields.git",
-                "reference": "8cc64ef27ba43008a3162f786e269ff30528648c"
+                "reference": "829eefcb5dfe7e60dc818f1e2511f99836e11c7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/64robots/nova-fields/zipball/8cc64ef27ba43008a3162f786e269ff30528648c",
-                "reference": "8cc64ef27ba43008a3162f786e269ff30528648c",
+                "url": "https://api.github.com/repos/64robots/nova-fields/zipball/829eefcb5dfe7e60dc818f1e2511f99836e11c7e",
+                "reference": "829eefcb5dfe7e60dc818f1e2511f99836e11c7e",
                 "shasum": ""
             },
             "require": {
@@ -45,7 +45,7 @@
                 "laravel",
                 "nova"
             ],
-            "time": "2019-02-07T13:10:50+00:00"
+            "time": "2019-04-01T07:47:45+00:00"
         },
         {
             "name": "adrianmejias/laravel-states",
