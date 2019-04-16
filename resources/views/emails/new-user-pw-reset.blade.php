@@ -5,7 +5,7 @@ Your login email is: {{ $user->email }}
 
 Please follow the link below to set your password
 
-@component('mail::button', ['url' => url(route('password.reset', $token))])
+@component('mail::button', ['url' => url(route('password.reset', ['token' => $token]))])
 Set Password
 @endcomponent
 
