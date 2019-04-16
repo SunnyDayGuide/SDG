@@ -8,7 +8,7 @@ $factory->define(App\Location::class, function (Faker $faker) {
         'street_number' => $faker->buildingNumber,
         'route' => $faker->streetName,
         'address_line_1' => $faker->address,
-        'address_line_2' => $faker->secondaryAddress,
+        'address_line_2' => $faker->optional()->secondaryAddress,
         'city' => $faker->city,
         'state' => $faker->stateAbbr,
         'postal_code' => $faker->postcode,

@@ -7,7 +7,7 @@ $factory->define(App\Advertiser::class, function (Faker $faker) {
         'market_id' => $faker->numberBetween($min = 1, $max = 11),
         'name' => $faker->company,
         'write_up' => '<p>'. $faker->realText($maxNbChars = 400, $indexSize = 2). '</p>',
-        'toll_free' => $faker->tollFreePhoneNumber,
+        'toll_free' => $faker->optional()->tollFreePhoneNumber,
         'website_url' => $faker->optional()->url,
         'ticket_url' => $faker->optional()->url,
         'booking_url' => $faker->optional()->url,
