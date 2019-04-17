@@ -14,7 +14,7 @@
 						<h1>{{ $advertiser->name }}</h1>
 
 						<!-- Web & social buttons -->
-						<div class="d-md-flex align-items-center"> 
+						<div class="d-md-flex flex-wrap align-items-center"> 
 							<div class="web-buttons mr-3 mb-2 mb-md-0">
 								<a class="btn btn-advertiser text-white mr-1" href="#map" role="button">Map</a>
 								<a class="btn btn-advertiser text-white mr-1" href="#coupons" role="button">Coupons</a>
@@ -53,7 +53,7 @@
 						</div> <!-- End Web & social buttons -->
 						
 					</div>
-					<div class="w-25 ml-auto d-none d-md-block">{{ $logo }}</div>
+					<div class="w-25 ml-3 d-none d-md-block">{{ $logo }}</div>
 				</div>
 
 				<!-- Carousel -->
@@ -132,7 +132,7 @@
 					<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 					@endforeach
 					@foreach($menus as $menu)
-					<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+					<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 					@endforeach
 				</div>
 
