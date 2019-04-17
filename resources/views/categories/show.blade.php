@@ -24,6 +24,7 @@
 			</div>
 		</div> <!-- End Row -->
 
+		@if($premierAdvertisers->count() > 0)
 		<div class="row featured my-3">
 			<div class="col-md-12">
 				<h2>Featured {{ $category->name }}</h2>
@@ -34,6 +35,7 @@
 				@endforeach
 			</div>
 		</div>
+		@endif
 
 		<div class="row my-3">
 			<div class="col-md-12">
