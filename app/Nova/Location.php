@@ -65,7 +65,7 @@ class Location extends Resource
             ID::make()->sortable(),
             $this->googleaddressFields(),
             Text::make('Phone Number', 'telephone'),
-            BelongsTo::make('Advertiser'),
+            BelongsTo::make('Advertiser')->exceptOnForms(),
         ];
     }
 
