@@ -9,6 +9,7 @@ use App\Level;
 use App\Location;
 use App\Logo;
 use App\Market;
+use App\Menu;
 use App\Traits\Categoriable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -121,6 +122,24 @@ class Advertiser extends Model implements HasMedia
     public function coupons()
     {
         return $this->belongsToMany(Coupon::class);
+    }
+
+    /**
+     * The ads in which this advertiser appears.
+     */
+    public function ads()
+    {
+        return $this->belongsToMany(Ad::class, 'advertiser_pdf', 'advertiser_id', 'pdf_id')
+            ->where('type', 'ad')->withTimestamps();
+    }
+
+    /**
+     * The menus in which this advertiser appears.
+     */
+    public function menus()
+    {
+        return $this->belongsToMany(Menu::class, 'advertiser_pdf', 'advertiser_id', 'pdf_id')
+            ->where('type', 'menu')->withTimestamps();
     }
 
     /**

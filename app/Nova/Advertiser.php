@@ -117,8 +117,10 @@ class Advertiser extends Resource
             HasMany::make('Locations'),
             MorphToMany::make('Categories'),
             HasMany::make('Coupons'),
-            HasMany::make('Events'),
+            HasMany::make('Ads'),
+            HasMany::make('Menus'),
             HasMany::make('Articles'),
+            HasMany::make('Events'),
         ];
     }
 

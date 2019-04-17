@@ -126,6 +126,16 @@
 					</div>
 				@endif
 
+				<!-- Ads and Menus -->
+				<div class="my-4">
+					@foreach($ads as $ad)
+					<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+					@endforeach
+					@foreach($menus as $menu)
+					<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+					@endforeach
+				</div>
+
 
 			</div>
 		</div> <!-- End Row -->

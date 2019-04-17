@@ -39,8 +39,10 @@ class AdvertiserController extends Controller
         $hasHours = $this->hasHours($openingHours);
 
         $coupons = $advertiser->coupons;
+        $ads = $advertiser->ads;
+        $menus = $advertiser->menus;
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus'));
     }
 
     public function hasHours($openingHours)
