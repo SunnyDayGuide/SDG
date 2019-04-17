@@ -11509,6 +11509,12 @@ h2 {
 
 /* Coupon page */
 
+.pdf-download {
+  font-size: 1rem;
+  font-family: "Roboto Condensed", sans-serif;
+  margin-left: 1rem;
+}
+
 .coupon-section .card-body {
   padding: 0.5rem 0.75rem 0.75rem 0.75rem;
 }
