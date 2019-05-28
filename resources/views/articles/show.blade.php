@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="article-slider w-100">
+<div class="slider w-100">
 	{{-- If there is more than one image, render a slider --}}
 	@if($slides->count() > 1)
 	<div id="slider" class="carousel slide" data-ride="carousel">

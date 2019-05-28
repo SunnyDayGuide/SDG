@@ -1,0 +1,33 @@
+.slider {
+	position: relative;
+
+	img, .carousel-item img {
+		min-height: 200px;
+		width: 100%;
+		object-fit: cover;
+	}
+	.title {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+		// background-color: rgba($primary,.8);
+		background-color: $primary;
+		margin: 0;
+
+		h1 {
+			text-align: right;
+			padding: .75rem 0;
+			color: white;
+			font-size: 3rem;
+		}
+
+		@include media-breakpoint-down(md) {
+			h1 {
+				padding: .25rem 0 0 0;
+				font-size: 1.5rem;
+			}
+		}
+
+	}
+}

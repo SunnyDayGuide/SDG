@@ -11228,7 +11228,6 @@ a.text-highlight:focus {
 }
 
 .navbar {
-  min-height: 93px;
   background-color: #154270;
   padding-top: 0;
   padding-bottom: 0;
@@ -11286,6 +11285,41 @@ h2 {
 
 .overlay:hover img {
   opacity: 0.75;
+}
+
+.slider {
+  position: relative;
+}
+
+.slider img,
+.slider .carousel-item img {
+  min-height: 200px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.slider .title {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: #154270;
+  margin: 0;
+}
+
+.slider .title h1 {
+  text-align: right;
+  padding: 0.75rem 0;
+  color: white;
+  font-size: 3rem;
+}
+
+@media (max-width: 991.98px) {
+  .slider .title h1 {
+    padding: 0.25rem 0 0 0;
+    font-size: 1.5rem;
+  }
 }
 
 .social .social-item {
@@ -11572,13 +11606,6 @@ h2 {
   background-color: #e3efc3;
   margin: -1rem 0;
   padding: 1rem 0;
-}
-
-.article-slider img,
-.article-slider .carousel-item img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .tripIdeas .card-title,

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="article-slider w-100">
+<div class="slider w-100">
 	@include('articles._slider', ['items' => $featured, 'profile' => 'full'])
 </div>
 @endsection
