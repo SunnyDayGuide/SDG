@@ -1,9 +1,30 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
-                <img src="{{ asset($market->brand->logo) }}" alt="{{ $market->brand->name }}" class="img-fluid">
-            </a>
+            <!-- Desktop Logos -->
+            <div class="d-none d-md-block">
+                <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
+                    @if($market->code == 'SM')
+                    <img src="{{ asset('images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @elseif($market->code == 'CG')
+                    <img src="{{ asset('images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @else
+                    <img src="{{ asset('images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @endif
+                </a>
+            </div>
+             <!-- Mobile Logos -->
+            <div class="d-md-none d-sm-block">
+                <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
+                    @if($market->code == 'SM')
+                    <img src="{{ asset('images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @elseif($market->code == 'CG')
+                    <img src="{{ asset('images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @else
+                    <img src="{{ asset('images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    @endif
+                </a>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
