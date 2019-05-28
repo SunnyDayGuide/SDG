@@ -16,6 +16,8 @@ class CouponController extends Controller
      */
     public function index(Market $market)
     {
+        $page = $market->pages()->where('slug', 'coupons')->first();
+        $mainImage = $page->getFirstMedia('slider');
         // $coupons = Coupon::where('market_id', $market->id)->active()->inRandomOrder()->get();
         $coupons = $market->coupons()->active()->inRandomOrder()->get();
 
@@ -27,7 +29,7 @@ class CouponController extends Controller
 
         $entertainment = $coupons->where('category_id', 4);
 
-        return view('coupons.index', compact('market', 'activities', 'dining', 'shopping', 'entertainment'));
+        return view('coupons.index', compact('market', 'page', 'mainImage', 'activities', 'dining', 'shopping', 'entertainment'));
     }
 
 
