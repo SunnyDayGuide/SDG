@@ -4,6 +4,7 @@ namespace App;
 
 use App\Advertiser;
 use App\Event;
+use App\Page;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -74,6 +75,11 @@ class Market extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function pages()
+    {   
+        return $this->hasMany(Page::class);
     }
 
     function categories() 
