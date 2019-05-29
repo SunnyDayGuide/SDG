@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\FreemailType;
 use App\Nova\Filters\Market;
+use Bissolli\NovaPhoneField\PhoneNumber;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Http\Request;
@@ -101,7 +102,9 @@ protected function contactFields()
         Text::make('Contact Email')
             ->rules('email', 'max:255')
             ->hideFromIndex(),
-        Text::make('Contact Phone')->hideFromIndex(),
+        PhoneNumber::make('Contact Phone')
+            ->onlyCountries('US')
+            ->withCustomFormats('###-###-####')->onlyCustomFormats(),
         Text::make('Ext')->hideFromIndex(),
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Bissolli\NovaPhoneField\PhoneNumber;
 use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
 use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
 use Illuminate\Http\Request;
@@ -64,7 +65,9 @@ class Location extends Resource
         return [
             ID::make()->sortable(),
             $this->googleaddressFields(),
-            Text::make('Phone Number', 'telephone'),
+            PhoneNumber::make('Phone Number', 'telephone')
+            ->onlyCountries('US')
+            ->withCustomFormats('###-###-####')->onlyCustomFormats(),
             BelongsTo::make('Advertiser')->exceptOnForms(),
         ];
     }
