@@ -16,6 +16,10 @@
   }
 }
 
+.write-up {
+  font-family: $font-family-sans-serif-reg;
+}
+
 .advertiser-cat {
   font-size: 1.125rem;
   font-weight: $font-weight-bold;
@@ -25,6 +29,23 @@
 
 .btn.tags {
   padding: 0 0.5rem;
+}
+
+.info {
+  font-family: $font-family-sans-serif-reg;
+
+  h4 {
+    font-size: 1.75rem;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    color: $primary;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.amenity, .day {
+  font-weight: $font-weight-bold;
+  padding-right: .5rem;
 }
 
 .scrollarea {

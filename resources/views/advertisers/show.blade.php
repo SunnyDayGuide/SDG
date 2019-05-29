@@ -90,7 +90,7 @@
 				</div>
 				
 				<!-- Write Up -->
-				<div class="fr-view">{!! $advertiser->write_up !!}</div>
+				<div class="fr-view write-up">{!! $advertiser->write_up !!}</div>
 
 				<div class="my-3">
 					@foreach($advertiser->tags as $tag)
@@ -98,44 +98,45 @@
 					@endforeach
 				</div>
 
-				<!-- Hours -->
-				@if($hasHours)
-					@include('advertisers._hours')
-				@endif
-				
-				@if($advertiser->categories->contains(2))
-					<!-- Restaurant Info -->
-					<div class="tab">
-						<h4>Restaurant Info</h4>
-						<div class="row">
-							<div class="col-md-6">
-								<ul>
-									<li>Some amenity here</li>
-									<li>Some amenity here</li>
-									<li>Some amenity here</li>
-								</ul>
-							</div>
-							<div class="col-md-6">
-								<ul>
-									<li>Some amenity here</li>
-									<li>Some amenity here</li>
-									<li>Some amenity here</li>
-								</ul>
-							</div>
-						</div>
+				<div class="row info my-4">
+					<!-- Business Info -->
+					<div class="col-md-6 mb-4">
+						<h4>More Business Info</h4>
+						<ul class="list-unstyled">
+							<li>Some amenity here</li>
+							<li>Some amenity here</li>
+							<li>Some amenity here</li>
+						</ul>
+						@foreach($ads as $ad)
+							<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+						@endforeach
 					</div>
-				@endif
 
-				<!-- Ads and Menus -->
-				<div class="my-4">
-					@foreach($ads as $ad)
-					<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
-					@endforeach
-					@foreach($menus as $menu)
-					<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
-					@endforeach
+					<!-- Hours -->
+					<div class="col-md-6 mb-4 hours">
+						@if($hasHours)
+							@include('advertisers._hours')
+						@endif
+					</div>
+
+					<!-- Restaurant Info -->
+					@if($advertiser->categories->contains(2))
+					<div class="col-md-6">
+						<h4>Restaurant Info</h4>
+						<ul class="list-unstyled">
+							<li>Some amenity here</li>
+							<li>Some amenity here</li>
+							<li>Some amenity here</li>
+						</ul>
+
+						@foreach($menus as $menu)
+							<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+						@endforeach
+
+					</div>
+					@endif
+
 				</div>
-
 
 			</div>
 		</div> <!-- End Row -->
