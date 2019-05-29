@@ -4,6 +4,7 @@
 <div class="slider w-100">
 	@include('articles._slider', ['items' => $featured, 'profile' => 'full'])
 </div>
+
 @endsection
 
 @section('content')
@@ -15,8 +16,9 @@
 <div class="container mt-5">
 
 	<div>
-		<div>
-			<h1>{{ $market->name }}, {{ $market->state->name }} Articles</h1>
+		<div class="content">
+			<h1>{{ $page->title }}</h1>
+			<div class="fr-view">{!! $page->content !!}</div>
 		</div>
 	</div> <!-- End Row -->
 

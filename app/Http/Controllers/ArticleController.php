@@ -19,6 +19,8 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
+        $page = $market->pages()->where('slug', 'articles')->first();
+
         $featured = $this->getArticles($market)
             ->where('featured', true)
             ->latest('publish_date')
@@ -39,7 +41,7 @@ class ArticleController extends Controller
             ->orderBy('title', 'asc')
             ->get();
 
-        return view('articles.index', compact('market', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
+        return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
 
     /**
