@@ -11300,26 +11300,32 @@ h2 {
 }
 
 .slider .title {
-  position: absolute;
-  bottom: 0;
-  right: 0;
   width: 100%;
-  background-color: #154270;
-  margin: 0;
+  background-color: rgba(33, 37, 41, 0.8);
+  border-top: 8px solid #FF6F61;
+  padding: 0.75rem 0;
+  margin: 1rem auto;
 }
 
-.slider .title h1 {
-  text-align: right;
-  padding: 0.75rem 0;
+.slider .title h4 {
+  margin: 0.75rem 0;
   color: white;
-  font-size: 3rem;
 }
 
 @media (max-width: 991.98px) {
-  .slider .title h1 {
-    padding: 0.25rem 0 0 0;
-    font-size: 1.5rem;
+  .slider .title {
+    padding: 0.25rem 0;
   }
+
+  .slider .title h4 {
+    margin: 0.5rem 0;
+  }
+}
+
+.slider .carousel-indicators li {
+  border-radius: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .social .social-item {
@@ -11340,6 +11346,10 @@ h2 {
   padding: 6px 9px;
 }
 
+.write-up {
+  font-family: "Roboto", sans-serif;
+}
+
 .advertiser-cat {
   font-size: 1.125rem;
   font-weight: 700;
@@ -11349,6 +11359,24 @@ h2 {
 
 .btn.tags {
   padding: 0 0.5rem;
+}
+
+.info {
+  font-family: "Roboto", sans-serif;
+}
+
+.info h4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #154270;
+  margin-bottom: 0.25rem;
+}
+
+.amenity,
+.day {
+  font-weight: 700;
+  padding-right: 0.5rem;
 }
 
 .scrollarea {
@@ -11720,6 +11748,10 @@ label {
 
 .ads {
   margin: 4rem 0;
+}
+
+.btn {
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .tags {
