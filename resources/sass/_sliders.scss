@@ -6,28 +6,37 @@
 		width: 100%;
 		object-fit: cover;
 	}
-	.title {
-		position: absolute;
-		bottom: 0;
-		right: 0;
-		width: 100%;
-		// background-color: rgba($primary,.8);
-		background-color: $primary;
-		margin: 0;
 
-		h1 {
-			text-align: right;
-			padding: .75rem 0;
+	.title {
+		width: 100%;
+		background-color: rgba($gray-900,.8);
+		border-top: 8px solid $highlight;
+		padding: .75rem 0;
+		margin: 1rem auto;
+
+		h4 {
+			margin: .75rem 0;
 			color: white;
-			font-size: 3rem;
 		}
 
 		@include media-breakpoint-down(md) {
-			h1 {
-				padding: .25rem 0 0 0;
-				font-size: 1.5rem;
+			padding: .25rem 0;
+
+			h4 {
+				margin: .5rem 0;
 			}
 		}
 
+	}
+
+	.carousel-caption {
+	    // bottom: 10%;
+	}
+
+	.carousel-indicators li {
+	    border-radius: 12px;
+	    width: 12px;
+	    height: 12px;
+	    // background-color: $blue-light;
 	}
 }

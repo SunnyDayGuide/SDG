@@ -15,14 +15,23 @@ foreach ($items as $item) {
 	<div class="carousel-inner" role="listbox">
 		@foreach($items as $item)
 			<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-				@php
-				$image = $item->getFirstMedia($collectionName)
-				@endphp
-				{{ $image($profile) }}
-				<div class="carousel-caption d-none d-md-block">
-					<h1>{{ $item->title }}</h1>
-					<p>{{ $item->excerpt }}</p>
-				</div>
+
+				<a href="{{ $item->path() }}">
+					@php
+					$image = $item->getFirstMedia($collectionName)
+					@endphp
+					{{ $image($profile) }}
+
+					<div class="carousel-caption">
+						<div class="title">
+							<div>
+								<h4>{{ $item->title }}</h4>
+								<p class="d-none d-md-block">{{ $item->excerpt }}</p>
+							</div>
+						</div>
+					</div>
+				</a>
+
 			</div>
 		@endforeach
 	</div>
