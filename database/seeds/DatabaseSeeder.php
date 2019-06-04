@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
             CountriesSeeder::class,
             StatesSeeder::class,
             BrandsTableSeeder::class,
-            CategoriesTableSeeder::class,
+            // CategoriesTableSeeder::class,
             MarketsTableSeeder::class,
-            MarketCategoryTableSeeder::class,
+            // MarketCategoryTableSeeder::class,
             ArticleTypesTableSeeder::class,
             DepartmentsTableSeeder::class,
             FreemailTypesTableSeeder::class

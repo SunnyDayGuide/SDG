@@ -16,10 +16,10 @@ class CategoriesTableSeeder extends Seeder
         DB::table('categories')->truncate();
         Schema::enableForeignKeyConstraints(); 
 
-        Category::create(['name' => 'Attractions & Activities']);
-        Category::create(['name' => 'Restaurants']);
-        Category::create(['name' => 'Shopping']);
-        Category::create(['name' => 'Entertainment']);
-        Category::create(['name' => 'Accommodations']);
+        Category::create(['name' => 'Attractions & Activities', 'parent_id' => NULL]);
+        Category::create(['name' => 'Restaurants', 'parent_id' => NULL]);
+        Category::create(['name' => 'Shopping', 'parent_id' => NULL]);
+        Category::create(['name' => 'Entertainment', 'parent_id' => NULL]);
+        Category::create(['name' => 'Accommodations', 'parent_id' => NULL]);
     }
 }

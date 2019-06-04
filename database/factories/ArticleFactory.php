@@ -10,7 +10,6 @@ $factory->define(App\Article::class, function (Faker $faker) {
         'article_type_id' => $faker->numberBetween($min = 1, $max = 3),
         'title' => $faker->sentence,
         'author' => $faker->name,
-        'image' => $faker->imageUrl($width = 564, $height = 320, 'cats'),
         'content' => '<p>'.$faker->paragraph.'</p>',
         'excerpt' => $faker->sentence,
         'rating' => 0,
