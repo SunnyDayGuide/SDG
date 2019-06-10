@@ -9,9 +9,7 @@
 
 @section('content')
 
-<div class="search p-5">
-	<h2 class="m-auto text-center">This is the search box</h2>
-</div>
+@include('partials._search')
 
 <div class="container mt-5">
 
@@ -30,7 +28,7 @@
 		</div>
 
 		<div class="row article-cards">
-			<div class="card-deck mx-md-0">
+			<div class="card-deck w-100 mx-md-0">
 				@foreach ($tripIdeas as $article)
 					@include('articles._card')
 				@endforeach

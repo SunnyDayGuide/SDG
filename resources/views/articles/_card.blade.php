@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 mb-3 px-md-0">
+<div class="col-lg-4 col-md-6 mb-md-4 mb-3 px-md-0">
 	<a href="{{ $article->path() }}" class="overlay text-reset text-decoration-none">
 		<div class="card h-100">
 			@if(null !== $article->getFirstMedia('slider'))

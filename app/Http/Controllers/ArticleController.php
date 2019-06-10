@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Market;
-use App\ArticleType;
 use App\Article;
+use App\ArticleType;
+use App\Category;
+use App\Market;
 use Carbon\Carbon;
-
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
@@ -68,6 +68,46 @@ class ArticleController extends Controller
     {
         return $market->articles()
             ->published();
+    }
+
+    public function search(Request $request, Market $market)
+    {
+        $page = $market->pages()->where('slug', 'articles')->first();
+
+        $featured = $this->getArticles($market)
+            ->where('featured', true)
+            ->latest('publish_date')
+            ->get();
+
+         if ($request->has('q')) {
+                $search = request('q');
+
+                $articles = Article::search($search)
+                    ->get();
+
+                if (request()->expectsJson()) {
+                    return $articles;
+                }
+            }  
+          
+          // if ($request->has('category')) {
+          //       $category = request('category');
+                     
+          //       $articles = Article::whereHas('categories', function ($query) use ($category) {
+          //           $query->where([
+          //               'category_id' => $category
+          //           ]);
+          //       })->get();
+
+          //       if (request()->expectsJson()) {
+          //           return $articles;
+          //       }
+          //   }     
+
+        $articles = $articles->where('market_id', $market->id);
+
+        return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
+
     }
 
     public function rate(Market $market, Article $article)

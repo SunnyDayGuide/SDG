@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -27,6 +28,7 @@ class Article extends Model implements HasMedia
     use Sluggable;
     use HasTags;
     use HasMediaTrait;
+    use Searchable;
     
      /**
      * The "booting" method of the model.
@@ -36,6 +38,12 @@ class Article extends Model implements HasMedia
     protected static function boot()
     {
         parent::boot();
+
+        // static::saved(function ($model) {
+        //     $model->categories->filter(function ($item) {
+        //         return $item->shouldBeSearchable();
+        //     })->searchable();
+        // });
 
         // static::addGlobalScope(new MarketScope);
 
@@ -65,6 +73,13 @@ class Article extends Model implements HasMedia
      */
     protected $with = ['articleType', 'market', 'media', 'tags'];
 
+    /**
+     * All of the relationships to be touched.
+     *
+     * @var array
+     */
+    protected $touches = ['categories'];
+
 	protected $dates = [
 	    'created_at',
 	    'updated_at',
@@ -90,6 +105,19 @@ class Article extends Model implements HasMedia
     public function path()
     {
         return $this->market->path() . "/articles/{$this->slug}";
+    }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+
+        // $array = $this->transform($array);
+
+        $array['categories'] = $this->categories->map(function ($data) {
+            return $data['name'];
+        })->toArray();
+
+        return $array;
     }
 
     /**
