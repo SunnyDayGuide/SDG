@@ -11684,6 +11684,107 @@ h2 {
 
 /* Desktop and up */
 
+.article-title {
+  font-size: 4rem;
+}
+
+@media (max-width: 991.98px) {
+  .article-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 991.98px) and (max-width: 1200px) {
+  .article-title {
+    font-size: calc(1.375rem + 1.5vw);
+  }
+}
+
+.excerpt {
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.content h2 {
+  font-weight: 700;
+  color: #60A3D9;
+  font-size: 1.9rem;
+}
+
+blockquote,
+.content .fr-view blockquote {
+  display: block;
+  border-width: 4px 0;
+  border-style: solid;
+  border-color: #C6C6C6;
+  font-family: "Raleway", sans-serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #656565;
+  margin: 3rem 12%;
+  padding: 1.5em 0 0.5em;
+  padding-bottom: 0;
+  position: relative;
+  text-align: center;
+}
+
+blockquote:before {
+  content: "\201C" "\201D";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #fff;
+  width: 6rem;
+  height: 2rem;
+  font: 6em/0.95em "PT Sans", sans-serif;
+  color: #FF6F61;
+  text-align: center;
+}
+
+.content .fr-view span.fr-img-caption.fr-dii.fr-fir {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.content .fr-view span.fr-img-caption.fr-dii.fr-fil {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+  .content .fr-view span.fr-img-caption.fr-dii.fr-fir {
+    margin: 30px;
+    margin-right: -16.6666666667%;
+  }
+
+  .content .fr-view span.fr-img-caption.fr-dii.fr-fil {
+    margin: 30px;
+    margin-left: -16.6666666667%;
+  }
+
+  .content .fr-view span.fr-img-caption.fr-dii {
+    margin-right: 0;
+  }
+}
+
+.content .fr-view .fr-img-caption .fr-img-wrap > span {
+  padding: 10px;
+  font-size: 14px;
+  font-weight: initial;
+  box-sizing: border-box;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+  -ms-filter: "alpha(Opacity=0)";
+  width: 100%;
+  text-align: left;
+  background-color: #C6C6C6;
+  color: white;
+}
+
 /* ---- Tide Charts */
 
 .tide_charts_body {

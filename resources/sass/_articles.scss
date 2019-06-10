@@ -175,5 +175,97 @@
     // }
   }
 
-  // ARTICLE SHOW PAGE
+// ARTICLE SHOW PAGE
+.article-title {
+    font-size: 4rem;
+
+    @include media-breakpoint-down(md) {
+        @include font-size($h1-font-size);
+    }
+}
+.excerpt {
+    font-size: 1.2rem;
+    font-weight: $font-weight-bold;
+    font-style: italic;
+}
+
+.content h2 {
+    font-weight: $font-weight-bold;
+    color: $blue;
+    font-size: 1.9rem;
+}
+
+blockquote, .content .fr-view blockquote {
+    display: block;
+    border-width: 4px 0;
+    border-style: solid;
+    border-color: $light;
+    font-family: $headings-font-family;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: $body-color;
+    margin: 3rem 12%;
+    padding: 1.5em 0 0.5em;
+    padding-bottom: 0;
+    position: relative;
+    text-align: center;
+}
+blockquote:before {
+    content: '\201C' '\201D';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 6rem;
+    height: 2rem;
+    font: 6em/.95em 'PT Sans', sans-serif;
+    color: $highlight;
+    text-align: center;
+}
+
+// FROALA IMAGEOVERRIDES
+.content .fr-view span.fr-img-caption.fr-dii.fr-fir {
+    margin-top: $grid-gutter-width / 2;
+    margin-bottom: $grid-gutter-width / 2;
+}
+
+.content .fr-view span.fr-img-caption.fr-dii.fr-fil {
+    margin-top: $grid-gutter-width / 2;
+    margin-bottom: $grid-gutter-width / 2;
+}
+
+@include media-breakpoint-up(md) {
+    .content .fr-view span.fr-img-caption.fr-dii.fr-fir {
+        margin: $grid-gutter-width;
+        margin-right: -16.6666666667%;
+    }
+
+    .content .fr-view span.fr-img-caption.fr-dii.fr-fil {
+        margin: $grid-gutter-width;
+        margin-left: -16.6666666667%;
+    }
+
+    .content .fr-view span.fr-img-caption.fr-dii {
+        margin-right: 0; 
+    }
+}
+
+.content .fr-view .fr-img-caption .fr-img-wrap>span {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: initial;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-opacity: 1;
+    -moz-opacity: 1;
+    opacity: 1;
+    -ms-filter: "alpha(Opacity=0)";
+    width: 100%;
+    text-align: left;
+    background-color: $light;
+    color: white;
+}
+
 

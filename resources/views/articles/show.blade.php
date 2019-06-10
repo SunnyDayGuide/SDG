@@ -32,25 +32,33 @@
 
 	<div class="container mt-5">
 		<div class="row">
-			<div class="col-12">
-				<h2>{{ $article->market->name }} {{ $article->articleType->name }}</h2>
-				<h1>{{ $article->title }}</h1>
-				<h5>by {{ $article->author }} on {{ $article->publish_date->toFormattedDateString() }}</h5>
-			</div>
-		</div> <!-- End Row -->
+			<div class="col-md-8 offset-md-2">
 
-		<div class="row mb-4">
-			<div class="col">
-				@foreach($article->tags as $tag)
-					<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="badge badge-secondary">{{ $tag->name }}</a>
-				@endforeach
-			</div>
-		</div>
+				<div class="header mb-4">
+					<h1 class="article-title">{{ $article->title }}</h1>
+					<div class="meta">
+						@if($article->author)
+						<div class="meta-byline">by {{ $article->author }}</div>
+						@endif
+						<time class="meta-time">{{ $article->publish_date->format('F j, Y g:ia') }}</time>
+					</div>
+				</div>
+				
+				<div class="excerpt mb-4">
+					{{ $article->excerpt }}
+				</div>
 
-		<div class="row">
-			<div class="col-md-8">
-				<div class="fr-view">{!! $article->content !!}</div>
-			</div> <!-- End Collumn -->
+				<div class="content mb-4">
+					<div class="fr-view">{!! $article->content !!}</div>
+				</div>
+
+				<div>
+					@foreach($article->tags as $tag)
+						<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
+					@endforeach
+				</div>
+
+			</div> <!-- End Column -->
 		</div> <!-- End Row -->
 		
 		<div class="row mt-3">

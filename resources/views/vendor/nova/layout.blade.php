@@ -13,6 +13,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('app.css', 'vendor/nova') }}">
 
+    <!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
+    <link href="{{ asset('css/vendor/froala_styles.min.css') }}" rel="stylesheet" type="text/css" />
+
     <!-- Tool Styles -->
     @foreach(Nova::availableStyles(request()) as $name => $path)
         <link rel="stylesheet" href="/nova-api/styles/{{ $name }}">
