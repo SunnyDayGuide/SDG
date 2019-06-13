@@ -26,12 +26,12 @@ trait Categoriable {
     /**
      * Get just the model's subcategories (Waterports, Food & Drink).
      */
-    // public function subcategories()
-    // {
-    //     return $this->morphToMany(Category::class, 'categoriable')
-    //         ->where('parent_id', !null)
-    //         ->withTimestamps();
-    // }
+    public function subcategories()
+    {
+        return $this->morphToMany(Category::class, 'categoriable')
+            ->whereNotNull('parent_id')
+            ->withTimestamps();
+    }
 
      /**
      * Get just the model's SUPER categories (Act, Dining, Shop).
@@ -39,7 +39,7 @@ trait Categoriable {
     public function supercategories()
     {
         return $this->morphToMany(Category::class, 'categoriable')
-            ->where('parent_id', null)
+            ->whereNull('parent_id')
             ->withTimestamps();
     }
 
