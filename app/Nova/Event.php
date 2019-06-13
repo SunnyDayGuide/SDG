@@ -7,6 +7,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Fourstacks\NovaCheckboxes\Checkboxes;
+use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -91,7 +92,7 @@ class Event extends Resource
             Time::make('Start Time')->format('h:mm a')->hideFromIndex(),
             Time::make('End Time')->format('h:mm a')->hideFromIndex(),
 
-            Textarea::make('Description')->hideFromIndex(),
+            Froala::make('Description')->hideFromIndex(),
             Textarea::make('Location')->hideFromIndex(),
             Text::make('Phone Number', 'phone')->hideFromIndex(),
             Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
