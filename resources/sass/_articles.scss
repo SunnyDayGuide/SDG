@@ -176,23 +176,42 @@
   }
 
 // ARTICLE SHOW PAGE
+.storytype {
+    font-weight: $font-weight-bold;
+    font-size: $h4-font-size;
+    text-transform: uppercase;
+    color: $light;
+
+    @include media-breakpoint-down(md) {
+        @include font-size($h5-font-size);
+    }
+}
+.meta-time {
+    margin-right: 1rem;
+}
 .article-title {
     font-size: 4rem;
 
     @include media-breakpoint-down(md) {
-        @include font-size($h1-font-size);
+        font-size: 3rem;
     }
 }
 .excerpt {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    line-height: 1.2;
     font-weight: $font-weight-bold;
     font-style: italic;
+    color: $light;
 }
 
 .content h2 {
     font-weight: $font-weight-bold;
     color: $blue;
     font-size: 1.9rem;
+    margin-top: 2rem;
+}
+.content h3 {
+    @include font-size($h4-font-size);
 }
 
 blockquote, .content .fr-view blockquote {
