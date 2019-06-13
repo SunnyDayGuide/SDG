@@ -14,6 +14,17 @@ class Category extends Model
 {
     use Sluggable;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($model) {
+            $model->articles->filter(function ($item) {
+                return $item->shouldBeSearchable();
+            })->searchable();
+        });
+    }
+
 	/**
      * Don't auto-apply mass assignment protection.
      *

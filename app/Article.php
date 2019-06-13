@@ -39,12 +39,6 @@ class Article extends Model implements HasMedia
     {
         parent::boot();
 
-        // static::saved(function ($model) {
-        //     $model->categories->filter(function ($item) {
-        //         return $item->shouldBeSearchable();
-        //     })->searchable();
-        // });
-
         // static::addGlobalScope(new MarketScope);
 
         // static::addGlobalScope('published', function ($builder) {
@@ -71,7 +65,7 @@ class Article extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['articleType', 'market', 'media', 'tags'];
+    protected $with = ['articleType', 'market', 'tags', 'categories:id,name'];
 
     /**
      * All of the relationships to be touched.
@@ -108,17 +102,21 @@ class Article extends Model implements HasMedia
     }
 
     public function toSearchableArray()
-    {
-        $array = $this->toArray();
+{
+    $array = $this->toArray();
 
-        // $array = $this->transform($array);
+    $array = $this->transform($array);
 
-        $array['categories'] = $this->categories->map(function ($data) {
-            return $data['name'];
-        })->toArray();
+    $array['categories'] = $this->categories->map(function ($data) {
+        return $data['name'];
+    })->toArray();
 
-        return $array;
-    }
+    $array['tags'] = $this->tags->map(function ($data) {
+        return $data['name'];
+    })->toArray();
+
+    return $array;
+}
 
     /**
      * An article belongs to a market.

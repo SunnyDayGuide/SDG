@@ -9,6 +9,7 @@
         "64robots/nova-fields": "^0.7.0",
         "adrianmejias/laravel-states": "^1.2",
         "algolia/algoliasearch-client-php": "^2.2",
+        "algolia/scout-extended": "^1.6",
         "bissolli/nova-phone-field": "^0.0.1",
         "ckeditor/ckeditor": "dev-full/4.11.x",
         "cviebrock/eloquent-sluggable": "^4.6",
