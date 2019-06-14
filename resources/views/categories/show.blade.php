@@ -15,15 +15,6 @@
 
 		<hr>
 
-		<div class="row mt-5 bg-light">
-			<div class="col-md-12">
-				<h2>Related Articles</h2>
-				<div class="row">
-					@include('articles._featured')
-				</div>
-			</div>
-		</div> <!-- End Row -->
-
 		@if($premierAdvertisers->count() > 0)
 		<div class="row featured my-3">
 			<div class="col-md-12">
@@ -49,5 +40,24 @@
 		</div>
 
 	</div>
+
+		<!-- Related Articles Section -->
+	<section class="panel related-articles mt-5">
+		<div class="container">
+
+			<div class="border-bottom border-white mb-3 w-100">
+				<h2>You May Also Be Interested In</h2>
+			</div>
+
+			<div class="row article-cards">
+				<div class="card-deck w-100 mx-md-0">
+					@foreach ($articles as $article)
+						@include('articles._card')
+					@endforeach
+				</div> <!-- End Card Deck-->
+			</div> <!-- End Row-->			
+
+		</div>
+	</section> <!-- End Related Articles Section -->
 
 @endsection

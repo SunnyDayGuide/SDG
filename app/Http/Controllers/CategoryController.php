@@ -25,9 +25,8 @@ class CategoryController extends Controller
 
         // display the related articles
         $articles = $category->articles()
-            ->with('tags')
             ->where('market_id', $market->id)
-            ->get();     
+            ->take(3)->get();     
 
         // TO-DO: display the related advertisers
         $advertisers = $category->advertisers()
