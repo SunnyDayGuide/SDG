@@ -102,21 +102,21 @@ class Article extends Model implements HasMedia
     }
 
     public function toSearchableArray()
-{
-    $array = $this->toArray();
+    {
+        $array = $this->toArray();
 
-    $array = $this->transform($array);
+        $array = $this->transform($array);
 
-    $array['categories'] = $this->categories->map(function ($data) {
-        return $data['name'];
-    })->toArray();
+        $array['categories'] = $this->categories->map(function ($data) {
+            return $data['name'];
+        })->toArray();
 
-    $array['tags'] = $this->tags->map(function ($data) {
-        return $data['name'];
-    })->toArray();
+        $array['tags'] = $this->tags->map(function ($data) {
+            return $data['name'];
+        })->toArray();
 
-    return $array;
-}
+        return $array;
+    }
 
     /**
      * An article belongs to a market.
@@ -165,12 +165,43 @@ class Article extends Model implements HasMedia
     /**
      * Scope a query to only include published articles.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param $market
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopePublished($query)
     {
         return $query->where('publish_date', '<=', Carbon::now());
+    }
+
+     /**
+     * Include articles related to current article.
+     *
+     * @param  App\Market $market
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function getRelatedArticles(Market $market)
+    {
+      $tag_ids = $this->tags()->pluck('id');
+      $category_ids = $this->subcategories()->pluck('id');
+
+      $articles = $this->whereHas('tags', function($q) use ($tag_ids) {
+        $q->whereIn('id', $tag_ids);
+      })
+      ->orwhereHas('subcategories', function($q) use ($category_ids) {
+        $q->whereIn('id', $category_ids);
+      })
+      ->get();
+
+      $relatedArticles = $articles
+        ->except($this->id)
+        ->where('market_id', $market->id);
+
+      if ($relatedArticles->count() >= 3) {
+        return $relatedArticles;
+      } else {
+        return $relatedArticles;
+      }
+
     }
 
     /**

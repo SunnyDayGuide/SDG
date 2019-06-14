@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertiser;
 use App\Article;
 use App\ArticleType;
 use App\Category;
@@ -19,29 +20,29 @@ class ArticleController extends Controller
      */
     public function index(Market $market)
     {
-        $page = $market->pages()->where('slug', 'articles')->first();
+      $page = $market->pages()->where('slug', 'articles')->first();
 
-        $featured = $this->getArticles($market)
-            ->where('featured', true)
-            ->latest('publish_date')
-            ->get();
+      $featured = $this->getArticles($market)
+      ->where('featured', true)
+      ->latest('publish_date')
+      ->get();
 
-        $tripIdeas = $this->getArticles($market)
-            ->where('article_type_id', 1)
-            ->latest('publish_date')
-            ->paginate(6);
+      $tripIdeas = $this->getArticles($market)
+      ->where('article_type_id', 1)
+      ->latest('publish_date')
+      ->paginate(6);
 
-        $visitorInfos = $this->getArticles($market)
-            ->where('article_type_id', 2)
-            ->latest('publish_date')
-            ->get();
+      $visitorInfos = $this->getArticles($market)
+      ->where('article_type_id', 2)
+      ->latest('publish_date')
+      ->get();
 
-        $advSpotlights = $this->getArticles($market)
-            ->where('article_type_id', 3)
-            ->orderBy('title', 'asc')
-            ->get();
+      $advSpotlights = $this->getArticles($market)
+      ->where('article_type_id', 3)
+      ->orderBy('title', 'asc')
+      ->get();
 
-        return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
+      return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
 
     /**
@@ -52,10 +53,16 @@ class ArticleController extends Controller
      */
     public function show(Market $market, Article $article)
     {
-        $slides = $article->getMedia('slider');
-        $image = $article->getFirstMedia('slider');
+      $slides = $article->getMedia('slider');
+      $image = $article->getFirstMedia('slider');
 
-        return view('articles.show', compact('article', 'market', 'image', 'slides'));
+      $premierAdvertisers = Advertiser::where('market_id', $market->id)
+      ->premier()->get()->random(3);
+
+      $relatedArticles = $article->getRelatedArticles($market)
+        ->sortByDesc('publish_date'); 
+
+      return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
     }
 
     /**
@@ -66,33 +73,33 @@ class ArticleController extends Controller
      */
     public static function getArticles(Market $market)
     {
-        return $market->articles()
-            ->published();
+      return $market->articles()
+      ->published();
     }
 
     public function search(Request $request, Market $market)
     {
-        $page = $market->pages()->where('slug', 'articles')->first();
+      $page = $market->pages()->where('slug', 'articles')->first();
 
-        $featured = $this->getArticles($market)
-            ->where('featured', true)
-            ->latest('publish_date')
-            ->get();
+      $featured = $this->getArticles($market)
+      ->where('featured', true)
+      ->latest('publish_date')
+      ->get();
 
-         if ($request->has('q')) {
-                $search = request('q');
+      if ($request->has('q')) {
+        $search = request('q');
 
-                $articles = Article::search($search)
-                    ->get();
+        $articles = Article::search($search)
+        ->get();
 
-                if (request()->expectsJson()) {
-                    return $articles;
-                }
-            }  
-          
+        if (request()->expectsJson()) {
+          return $articles;
+        }
+      }  
+
           // if ($request->has('category')) {
           //       $category = request('category');
-                     
+
           //       $articles = Article::whereHas('categories', function ($query) use ($category) {
           //           $query->where([
           //               'category_id' => $category
@@ -104,24 +111,24 @@ class ArticleController extends Controller
           //       }
           //   }     
 
-        $articles = $articles->where('market_id', $market->id);
+      $articles = $articles->where('market_id', $market->id);
 
-        return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
+      return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
 
     }
 
     public function rate(Market $market, Article $article)
     {
-        $article->gainRating();
+      $article->gainRating();
 
-        return back();
+      return back();
     }
 
     public function rateno(Market $market, Article $article)
     {
-        $article->loseRating();
-        
-        return back();
+      $article->loseRating();
+
+      return back();
     }
 
-}
+  }

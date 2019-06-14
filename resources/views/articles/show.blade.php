@@ -29,18 +29,25 @@
 @endsection
 
 @section('content')
-
-	<div class="container mt-5">
+	
+	<!-- Main Content Section -->
+	<section class="container mt-3 mt-md-5">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
 
 				<div class="header mb-4">
+					<div class="storytype">
+						{{ $article->market->name }} {{ $article->articleType->name }}
+					</div>
 					<h1 class="article-title">{{ $article->title }}</h1>
 					<div class="meta">
 						@if($article->author)
 						<div class="meta-byline">by {{ $article->author }}</div>
 						@endif
 						<time class="meta-time">{{ $article->publish_date->format('F j, Y g:ia') }}</time>
+						@foreach($article->tags as $tag)
+							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
+						@endforeach
 					</div>
 				</div>
 				
@@ -50,12 +57,6 @@
 
 				<div class="content mb-4">
 					<div class="fr-view">{!! $article->content !!}</div>
-				</div>
-
-				<div>
-					@foreach($article->tags as $tag)
-						<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-					@endforeach
 				</div>
 
 			</div> <!-- End Column -->
@@ -86,6 +87,45 @@
 
 			</div>
 		</div>
-	</div>
+
+	</section>  <!-- End Main Content -->
+
+	<!-- Premier Advertiser Section -->
+	<section class="panel premier-advertisers mt-5">
+		<div class="container">
+
+			<div class="border-bottom border-white mb-3 w-100">
+				<h2>{{ $market->name }} Highlights</h2>
+			</div>
+
+			<div class="row article-cards">
+				<div class="card-deck w-100 mx-md-0">
+					{{-- @foreach ($premierAdvertisers as $advertiser)
+						@include('panels._advertisers')
+					@endforeach --}}
+				</div> <!-- End Card Deck-->
+			</div> <!-- End Row-->
+
+		</div>
+	</section> <!-- End Premier Advertiser Section -->
+	
+	<!-- Related Articles Section -->
+	<section class="panel related-articles mt-5">
+		<div class="container">
+
+			<div class="border-bottom border-white mb-3 w-100">
+				<h2>You May Also Be Interested In</h2>
+			</div>
+
+			<div class="row article-cards">
+				<div class="card-deck w-100 mx-md-0">
+					@foreach ($relatedArticles as $relatedArticle)
+						@include('panels._articles')
+					@endforeach
+				</div> <!-- End Card Deck-->
+			</div> <!-- End Row-->			
+
+		</div>
+	</section> <!-- End Related Articles Section -->
 
 @endsection

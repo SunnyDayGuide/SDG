@@ -1,0 +1,31 @@
+.panel {
+	padding: 2rem 0;
+
+	h2 {
+		color: $primary;
+	}
+
+	.card {
+		border: none;
+	}
+
+	.card-title, .card-title a {
+		font-weight: $font-weight-bold;
+	}
+}
+
+.premier-advertisers {
+	background-color: $green-light;
+
+	.card-title, .card-title a {
+		color: $advertisers;
+	}
+}
+
+.related-articles {
+	background-color: $blue-light;
+
+	.card-title, .card-title a {
+		color: $editorial;
+	}
+}
