@@ -15,6 +15,7 @@
 @import 'type';
 @import 'cards';
 @import 'sliders';
+@import 'panels';
 @import 'advprofiles';
 @import 'coupons';
 @import 'articles';
@@ -47,6 +48,8 @@ label {
 	font-weight: $font-weight-medium;
 	border-radius: 0;
 	background-color: $light;
+	position: relative;
+	z-index: 2;
 }
 
 

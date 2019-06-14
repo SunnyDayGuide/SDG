@@ -11276,6 +11276,7 @@ h2 {
 .card-footer {
   background-color: #fff;
   border-top: none;
+  z-index: 1070;
 }
 
 .overlay img {
@@ -11326,6 +11327,41 @@ h2 {
   border-radius: 12px;
   width: 12px;
   height: 12px;
+}
+
+.panel {
+  padding: 2rem 0;
+}
+
+.panel h2 {
+  color: #154270;
+}
+
+.panel .card {
+  border: none;
+}
+
+.panel .card-title,
+.panel .card-title a {
+  font-weight: 700;
+}
+
+.premier-advertisers {
+  background-color: #d1e49b;
+}
+
+.premier-advertisers .card-title,
+.premier-advertisers .card-title a {
+  color: #B5D45F;
+}
+
+.related-articles {
+  background-color: #bfdaf0;
+}
+
+.related-articles .card-title,
+.related-articles .card-title a {
+  color: #60A3D9;
 }
 
 .social .social-item {
@@ -11684,32 +11720,56 @@ h2 {
 
 /* Desktop and up */
 
+.storytype {
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  color: #C6C6C6;
+}
+
+@media (max-width: 991.98px) {
+  .storytype {
+    font-size: 1.25rem;
+  }
+}
+
+.meta-time {
+  margin-right: 1rem;
+}
+
 .article-title {
   font-size: 4rem;
 }
 
 @media (max-width: 991.98px) {
   .article-title {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 991.98px) and (max-width: 1200px) {
-  .article-title {
-    font-size: calc(1.375rem + 1.5vw);
+    font-size: 3rem;
   }
 }
 
 .excerpt {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
   font-weight: 700;
   font-style: italic;
+  color: #C6C6C6;
 }
 
 .content h2 {
   font-weight: 700;
   color: #60A3D9;
   font-size: 1.9rem;
+  margin-top: 2rem;
+}
+
+.content h3 {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .content h3 {
+    font-size: calc(1.275rem + 0.3vw);
+  }
 }
 
 blockquote,
@@ -11859,5 +11919,7 @@ label {
   font-weight: 500;
   border-radius: 0;
   background-color: #C6C6C6;
+  position: relative;
+  z-index: 2;
 }
 

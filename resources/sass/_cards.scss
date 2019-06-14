@@ -5,6 +5,7 @@
 .card-footer {
   background-color: $card-bg;
   border-top: none;
+  z-index: $zindex-tooltip;
 }
 
 .overlay img {
