@@ -1,4 +1,4 @@
-<div class="search p-5">
+<div class="search p-3 p-md-5">
 	<h2 class="mb-3 text-center">Search {{ $page->title }}</h2>
 	<div class="container mx-auto text-center">
 		<form method="GET" action="{{ route('articles.search', $market->slug) }}">
