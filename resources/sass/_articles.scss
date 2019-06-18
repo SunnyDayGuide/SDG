@@ -30,34 +30,28 @@
 }
 
 .visitorInfo {
-		h2 {
-		// color: $primary;
-	}
-
-  h5 a {
-    color: $editorial;
-    font-weight: $font-weight-bold;
-  }
-
-  .media .image {
-    width: 35%;
-  }
-
-	.stacked-cards {
-		// border-bottom: 1px solid $editorial;
-		padding-bottom: 1rem;
-
-    .card-img {
-      width: 33%;
-      // margin-right: .25rem;
-      // float:left;
+    h5 {
+        color: $editorial;
+        font-weight: $font-weight-bold;
     }
-	}
+
+    .media .image {
+        width: 35%;
+    }
+
+    .stacked-cards {
+    	padding-bottom: 1rem;
+
+        .card-img {
+            width: 33%;
+        }
+    }
+
 }
 
-  /* Card Carousel */
-  /* Tablet and up */
-  @media screen and (min-width: 768px) {
+/* Card Carousel */
+/* Tablet and up */
+@media screen and (min-width: 768px) {
     // #advCarousel {
     //   .carousel-inner .active,
     //   .carousel-inner .active+.carousel-item {
@@ -110,11 +104,11 @@
     //     visibility: visible;
     //   }
     // }
-  }
+}
 
-  /* Desktop and up */
+/* Desktop and up */
 
-  @media screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
     // #advCarousel {
     //   .carousel-inner .active,
     //   .carousel-inner .active+.carousel-item,
@@ -173,7 +167,7 @@
     //     visibility: visible;
     //   }
     // }
-  }
+}
 
 // ARTICLE SHOW PAGE
 .storytype {
