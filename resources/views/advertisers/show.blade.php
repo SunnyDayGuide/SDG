@@ -34,19 +34,19 @@
 
 							<div class="social">
 								@if($advertiser->facebook)
-									<a href="{{ $advertiser->facebook }}" class="rounded-circle bg-light text-white social-item fb" aria-label="View {{ $advertiser->name }} Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+									<a href="{{ $advertiser->facebook }}" target="_blank" class="rounded-circle bg-light text-white social-item fb" aria-label="View {{ $advertiser->name }} Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->instagram)
-									<a href="{{ $advertiser->instagram }}" class="rounded-circle bg-light text-white social-item ig" aria-label="View {{ $advertiser->name }} Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+									<a href="{{ $advertiser->instagram }}" target="_blank" class="rounded-circle bg-light text-white social-item ig" aria-label="View {{ $advertiser->name }} Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->twitter)
-									<a href="{{ $advertiser->twitter }}" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Twitter feed"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+									<a href="{{ $advertiser->twitter }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Twitter feed"><i class="fab fa-twitter" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->youtube)
-									<a href="{{ $advertiser->youtube }}" class="rounded-circle bg-light text-white social-item yt" aria-label="View {{ $advertiser->name }} YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+									<a href="{{ $advertiser->youtube }}" target="_blank" class="rounded-circle bg-light text-white social-item yt" aria-label="View {{ $advertiser->name }} YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->pinterest)
-									<a href="{{ $advertiser->pinterest }}" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Pinterest feed"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+									<a href="{{ $advertiser->pinterest }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Pinterest feed"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
 								@endif
 							</div>
 
@@ -177,12 +177,14 @@
 		</div>
 
 		<!-- Coupons -->
+		@if($advertiser->coupons->count() > 0)
 		<div class="row my-3 my-md-5" id="coupons">
 			<div class="col-md-8 offset-md-2">
 				<div class="text-uppercase print"><a href="{{ route('print.all', [$market, $advertiser]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print all coupons</a></div>
 				@include('advertisers._coupon')
 			</div>
 		</div>
+		@endif
 
 	</div> <!-- End Main Content Div -->
 
