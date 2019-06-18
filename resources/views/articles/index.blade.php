@@ -59,25 +59,7 @@
 		<div class="row">
 			<div class="col-md-9">
 				@foreach ($visitorInfos as $article)
-				<div class="media border-bottom border-light mb-3 pb-3">
-					<div class="image mr-3 overlay">
-						<a href="{{ $article->path() }}" class="overlay text-reset text-decoration-none">
-							@include('partials._images', ['item' => $article, 'profile' => 'sm-card'])
-						</a>
-					</div>
-					<div class="media-body">
-						<h5 class="mt-0"><a href="{{ $article->path() }}">{{ $article->title }}</a></h5>
-						<p>{{ $article->excerpt }}</p>
-
-						@if ($article->tags->count())
-						<div>
-							@foreach($article->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-							@endforeach
-						</div>
-						@endif
-					</div>
-				</div>
+				@include('articles._cardh')
 				@endforeach
 			</div>
 
