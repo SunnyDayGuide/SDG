@@ -11266,7 +11266,7 @@ h1 {
 
 h2 {
   color: #154270;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .card-title h5 {
@@ -11276,7 +11276,6 @@ h2 {
 .card-footer {
   background-color: #fff;
   border-top: none;
-  z-index: 1070;
 }
 
 .overlay img {
@@ -11366,7 +11365,7 @@ h2 {
 
 .social .social-item {
   font-size: 1rem;
-  padding: 6px 8px;
+  padding: 6px 8.5px;
   margin-right: 0.25rem;
 }
 
@@ -11375,11 +11374,11 @@ h2 {
 }
 
 .social .social-item.yt {
-  padding: 6px 7px;
+  padding: 6px 7.5px;
 }
 
 .social .social-item.ig {
-  padding: 6px 9px;
+  padding: 6px 10px;
 }
 
 .write-up {
@@ -11880,15 +11879,52 @@ blockquote:before {
 
 .footer {
   width: 100%;
-  height: 400px;
-  line-height: 60px;
-  padding: 2rem;
+  padding: 2rem 0.5rem;
   background-color: #154270;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.footer li {
+  margin-bottom: 0.75rem;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #bfdaf0;
+}
+
+.footer hr {
+  border-top: 1px solid #fff;
 }
 
 .footer h4 {
   color: #fff;
+  font-size: 1.25rem;
   border-bottom: 1px solid #fff;
+}
+
+.footer .footer-guide {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.footer .footer-guide img {
+  margin-bottom: 1rem;
+}
+
+.footer .social a {
+  background-color: #fff;
+  color: #154270;
+}
+
+.footer .social a:hover {
+  background-color: #bfdaf0;
 }
 
 .content-wrapper {
