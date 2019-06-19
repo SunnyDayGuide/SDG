@@ -5,6 +5,7 @@
 .card-footer {
   background-color: $card-bg;
   border-top: none;
+  padding-top: 0;
 }
 
 .overlay img {
@@ -16,4 +17,9 @@
 }
 .overlay:hover img {
     opacity: .75;
+}
+
+.media-footer {
+	position: relative;
+	bottom: 0;
 }
