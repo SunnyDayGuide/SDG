@@ -43,7 +43,7 @@ class Advertiser extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'media'];
+    protected $with = ['market', 'media', 'articles', 'logo', 'level'];
 
 	protected $dates = [
 	    'created_at',
