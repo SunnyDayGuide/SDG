@@ -137,8 +137,22 @@ class Article extends Resource
                 ->hideFromIndex(),
 
             MorphToMany::make('Categories')->searchable(),
-            BelongsToMany::make('Advertisers')->searchable(),
+            BelongsToMany::make('Advertisers'),
         ];
+    }
+
+    /**
+     * Make just the ad's market's advertisers available for the request.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return array
+     */
+    public function relatableAdvertisersFilter(NovaRequest $request, $query)
+    {
+        $resource = $this->findorFail($request->resourceId);
+        $market = $resource->market_id;
+
+        return $query->where('market_id', $market);
     }
 
     /**
