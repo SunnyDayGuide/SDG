@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -173,6 +174,11 @@ class Article extends Model implements HasMedia
         return $query->where('publish_date', '<=', Carbon::now());
     }
 
+    public function getBlurbAttribute()
+    {
+        return Str::limit($this->excerpt, 125, '...');
+    }
+
      /**
      * Include articles related to current article.
      *
@@ -326,7 +332,5 @@ class Article extends Model implements HasMedia
         $this->addMediaCollection('inset');
 
     }
-
-
 
 }

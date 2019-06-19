@@ -6,14 +6,17 @@
             <a href="{{ $article->path() }}" class="stretched-link text-reset text-decoration-none">
               <h5>{{ $article->title }}</h5>
             </a>
-            <p>{{ $article->excerpt }}</p>
+            <p>{{ $article->blurb }}</p>
 
             @if ($article->tags->count())
-            <div>
+            <div class="media-footer">
               @foreach($article->tags as $tag)
               <a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
               @endforeach
             </div>
             @endif
+
           </div>
+
+
         </div>

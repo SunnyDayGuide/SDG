@@ -30,7 +30,7 @@ class ArticleController extends Controller
       $tripIdeas = $this->getArticles($market)
       ->where('article_type_id', 1)
       ->latest('publish_date')
-      ->paginate(6);
+      ->paginate(30);
 
       $visitorInfos = $this->getArticles($market)
       ->where('article_type_id', 2)
