@@ -42,7 +42,7 @@
 								<a href="{{ route('market.home', 'branson') }}">Branson, MO</a>
 							</li>
 							<li>
-								<a href="{{ route('market.home', 'rehoboth') }}">Delaware Coast, DE</a>
+								<a href="{{ route('market.home', 'delaware-beaches') }}">Delaware Coast, DE</a>
 							</li>
 							<li>
 								<a href="{{ route('market.home', 'hatteras-ocracoke') }}">Hatteras-Ocracoke, NC</a>
@@ -61,10 +61,10 @@
 					<div class="col-6 mb-4">
 						<ul class="list-unstyled footer-nav">
 							<li>
-								<a href="{{ route('market.home', 'sanibel-captiva') }}">Sanibel-Captiva & Fort Meyers Beach, FL</a>
+								<a href="{{ route('market.home', 'sanibel-captiva') }}">Sanibel-Captiva & Fort Myers Beach, FL</a>
 							</li>
 							<li>
-								<a href="{{ route('market.home', 'sarasota') }}">Sarasota-Bradenton, FL</a>
+								<a href="{{ route('market.home', 'sarasota-bradenton') }}">Sarasota-Bradenton, FL</a>
 							</li>
 							<li>
 								<a href="{{ route('market.home', 'smoky-mountains') }}">Smoky Mountains, TN</a>
