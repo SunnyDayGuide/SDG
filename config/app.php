@@ -222,4 +222,7 @@ return [
 
     ],
 
+    'date_format' => 'm/d/Y',
+    'date_format_js' => 'mm/dd/yy',
+
 ];

@@ -11742,6 +11742,17 @@ h2 {
   font-weight: 500;
 }
 
+fieldset {
+  margin-bottom: 1rem;
+}
+
+legend {
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+  color: #B5D45F;
+  border-bottom: 1px solid #656565;
+}
+
 .card-title h5 {
   font-size: 1.5rem;
 }

@@ -21,6 +21,8 @@
     <!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
     <link href="{{ asset('css/vendor/froala_styles.min.css') }}" rel="stylesheet" type="text/css" />
 
+    @yield('styles')
+
 </head>
 <body>
     <div id="app">

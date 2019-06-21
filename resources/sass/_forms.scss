@@ -1,0 +1,10 @@
+fieldset {
+	margin-bottom: 1rem;
+}
+
+legend {
+	font-weight: $font-weight-bold;
+	font-family: $headings-font-family;
+	color: $advertisers;
+	border-bottom: 1px solid $dark; 
+}
