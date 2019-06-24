@@ -29,6 +29,7 @@
 			<p>* Indicates a required field</p>
 			<form method="POST" action="{{ route('leads.store', $market->slug) }}">
 				@csrf
+				<input type="hidden" name="request_type" value="guide-request">
 				<fieldset>
 					<legend>Your Information</legend>
 					<div class="form-row">

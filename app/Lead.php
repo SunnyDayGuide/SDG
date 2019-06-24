@@ -3,8 +3,8 @@
 namespace App;
 
 use App\Market;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Lead extends Model
 {
@@ -21,6 +21,7 @@ class Lead extends Model
     protected $dates = [
 	    'created_at',
 	    'updated_at',
+        'visit_date',
 	];
 
 	 /**
@@ -51,9 +52,13 @@ class Lead extends Model
         ];
     }
 
+     /**
+     * Mutator to save proper date format to MySQL
+     */
+    // From https://laraveldaily.com/how-to-change-date-format-in-laravel-and-jquery-ui-datepicker/
     public function setVisitDateAttribute($input)
     {
-        $this->attributes['visit_date'] = 
+        $this->attributes['visit_date'] = empty($input) ? null : 
           Carbon::createFromFormat(config('app.date_format'), $input)->format('Y-m-d');
     }
 

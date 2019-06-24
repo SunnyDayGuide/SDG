@@ -47,6 +47,11 @@ class LeadController extends Controller
      */
     public function store(Request $request, Market $market)
     {
+        if (request('request_type') == 'guide-request') {
+            $type = Lead::GUIDE_DOWNLOAD_TYPE;
+        } else 
+        $type = Lead::INFORMATION_REQUEST_TYPE;
+
         request()->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -60,7 +65,7 @@ class LeadController extends Controller
 
         $lead = Lead::create([
             'market_id' => $market->id,
-            'request_type' => 'guide request',
+            'request_type' => $type,
             'first_name' => request('first_name'),
             'last_name' => request('last_name'),
             'email' => request('email'),

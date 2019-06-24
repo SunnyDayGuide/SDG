@@ -222,6 +222,14 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Date formats
+    |--------------------------------------------------------------------------
+    |
+    | From https://laraveldaily.com/how-to-change-date-format-in-laravel-and-jquery-ui-datepicker/
+    |
+    */
     'date_format' => 'm/d/Y',
     'date_format_js' => 'mm/dd/yy',
 
