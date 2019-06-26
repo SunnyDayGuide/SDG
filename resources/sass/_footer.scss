@@ -4,7 +4,7 @@
     background-color: $navy;
     color: $white;
     // color: lighten($blue, 30);
-    line-height: 1.3;
+    // line-height: 1.3;
 
     li {
         margin-bottom: .75rem;
@@ -41,17 +41,26 @@
         }
     }
 
+    .social {
+        font-size: 1.35rem; 
+    }
+
     .social a {
-        background-color: $white;
-        color: $primary;
+        margin-right: .35rem;
+        color: $white;
     }
 
     .social a:hover {
-        background-color: $blue-light;
+        color: $blue-light;
     }
 
-    @include media-breakpoint-down(md) {
-        font-size: .85rem;
+    @include media-breakpoint-down(xs) {
+        // font-size: .85rem;
+        // line-height: 1.2;
     }
 
+}
+
+.copyright {
+    color: $primary;
 }
