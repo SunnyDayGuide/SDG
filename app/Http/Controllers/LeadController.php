@@ -16,31 +16,27 @@ class LeadController extends Controller
         $path = Request::capture()->path();
         $group = strtolower(explode("/", $path)[2]);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Lead.
      *
      * @return \Illuminate\Http\Response
      */
     public function create(Market $market)
     {
+        // grab path to determine whether we are processing a guide reqiest or a generic request for information.
+        // Goes to same form, different page
         $path = Request::capture()->path();
         $group = strtolower(explode("/", $path)[2]);
 
-        return view($group.'.create', compact('market', 'group'));
+        $page = $market->pages()->where('slug', $group)->first();
+        $mainImage = $page->getFirstMedia('slider');
+
+        return view($group.'.create', compact('market', 'group', 'page', 'mainImage'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Lead in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -50,9 +46,9 @@ class LeadController extends Controller
         if (request('request_type') == 'guide-request') {
             $type = Lead::GUIDE_DOWNLOAD_TYPE;
         } else 
-        $type = Lead::INFORMATION_REQUEST_TYPE;
+            $type = Lead::INFORMATION_REQUEST_TYPE;
 
-        request()->validate([
+        $validatedData = $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email',
@@ -66,65 +62,36 @@ class LeadController extends Controller
         $lead = Lead::create([
             'market_id' => $market->id,
             'request_type' => $type,
-            'first_name' => request('first_name'),
-            'last_name' => request('last_name'),
-            'email' => request('email'),
-            'postal_code' => request('postal_code'),
-            'visit_date' => request('visit_date'),
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'email' => $validatedData['email'],
+            'postal_code' => $validatedData['postal_code'],
+            'visit_date' => $validatedData['visit_date'],
             'visit_length' => request('visit_length'),
             'num_adults' => request('num_adults'),
             'num_children' => request('num_children'),
             'interests' => request('interests'),
-            'cookie_consent' => request('cookie_consent'),
-            'freemail_consent' => request('freemail_consent'),
-            'sdg_consent' => request('sdg_consent')
+            'cookie_consent' => $validatedData['cookie_consent'],
+            'freemail_consent' => $validatedData['freemail_consent'],
+            'sdg_consent' => $validatedData['sdg_consent']
         ]);
 
-        return $lead;
+        if ($type == 'Guide Download') {
+            return redirect()->route('vacation-guide.show', compact('market'));
+        }
+            
+        return redirect()->route('request-information.show', compact('market'));
     }
 
-    /**
+     /**
      * Display the specified resource.
      *
-     * @param  \App\Lead  $lead
+     * @param  \App\VacationGuide  $vacationGuide
      * @return \Illuminate\Http\Response
      */
-    public function show(Lead $lead)
+    public function show(Market $market)
     {
-        //
+        return view('request-information.thanks', compact('market'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Lead  $lead
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Lead $lead)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Lead  $lead
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Lead $lead)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Lead  $lead
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Lead $lead)
-    {
-        //
-    }
 }

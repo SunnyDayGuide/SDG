@@ -47,7 +47,7 @@ class VacationGuideController extends Controller
      */
     public function show(Market $market, VacationGuide $vacationGuide)
     {
-        return view('vacation-guide.create', compact('market'));
+        return view('vacation-guide.show', compact('market'));
     }
 
     /**
