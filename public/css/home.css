@@ -1,0 +1,78 @@
+html,
+body,
+header,
+#intro {
+  height: 100vh;
+}
+
+#intro {
+  background: url("/images/home/sdg-home-main-beach-family.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.home header {
+  margin-bottom: 0;
+}
+
+.view .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+}
+
+#intro .navbar {
+  background-color: transparent;
+  border: none;
+}
+
+.home-nav {
+  background-color: #154270;
+  border-bottom: 8px solid #B5D45F;
+}
+
+.home-nav .nav-link {
+  font-size: 1.35rem;
+  padding-left: 0;
+}
+
+.home-nav a {
+  color: white;
+}
+
+.home-nav .dropdown-menu {
+  background-color: #B5D45F;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  padding: 0.75rem 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.35rem;
+}
+
+.home-nav .dropdown-item {
+  font-weight: 500;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 3rem;
+}
+
+.home-nav .dropdown-item:hover,
+.home-nav .dropdown-item:focus {
+  color: #154270;
+  text-decoration: none;
+  background-color: #d1e49b;
+  font-weight: 700;
+}
+
+.dropdown-toggle::after {
+  display: none;
+  margin-left: 0;
+  border: none;
+}
+
