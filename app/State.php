@@ -23,4 +23,9 @@ class State extends Model
         return $this::find([9,12,25,30,38,48,50,55,]);
     }
 
+    public function getAbbrAttribute()
+    {
+        return $this->iso_3166_2;
+    }
+
 }
