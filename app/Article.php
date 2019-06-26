@@ -174,6 +174,32 @@ class Article extends Model implements HasMedia
         return $query->where('publish_date', '<=', Carbon::now());
     }
 
+
+     /**
+     * Scope a query to only include featured articles.
+     *
+     * @param $market
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured', true);
+    }
+
+
+    /**
+     * Scope a query to only include articles of a given market.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByMarket($query, $market)
+    {
+        return $query->where('market_id', $market->id);
+    }
+
+
     public function getBlurbAttribute()
     {
         return Str::limit($this->excerpt, 125, '...');
@@ -208,18 +234,6 @@ class Article extends Model implements HasMedia
         return $relatedArticles;
       }
 
-    }
-
-    /**
-     * Scope a query to only include articles of a given market.
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $type
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeByMarket($query, $market)
-    {
-        return $query->where('market_id', $market->id);
     }
 
     /**
