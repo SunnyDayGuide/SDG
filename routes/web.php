@@ -61,9 +61,11 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::get('coupons', 'CouponController@index')->name('coupons');
 
 	Route::get('vacation-guide', 'LeadController@create')->name('vacation-guide.create');
+	Route::get('request-information', 'LeadController@create')->name('request-information.create');
 	Route::post('leads', 'LeadController@store')->name('leads.store');
 
 	Route::get('vacation-guide/view', 'VacationGuideController@show')->name('vacation-guide.show');
+	Route::get('request-information/thanks', 'LeadController@show')->name('request-information.show');
 
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 
