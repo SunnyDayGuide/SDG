@@ -11817,6 +11817,65 @@ legend {
   height: 12px;
 }
 
+.page-header {
+  position: relative;
+}
+
+.page-header .main-image img {
+  min-height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.page-header .title-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  color: #fff;
+  text-align: center;
+}
+
+.page-header .title {
+  background-color: rgba(33, 37, 41, 0.7);
+  padding: 0.75rem 0;
+}
+
+.page-header .title h1 {
+  color: #fff;
+  text-align: left;
+}
+
+@media (max-width: 991.98px) {
+  .page-header .title {
+    padding: 0.25rem 0;
+  }
+}
+
+.page-header .image-overlay {
+  position: absolute;
+  right: 12.5%;
+  top: 30px;
+  bottom: 30px;
+  z-index: 11;
+  width: 300px;
+}
+
+@media (max-width: 767.98px) {
+  .page-header .image-overlay {
+    width: 110px;
+    right: 0;
+    top: 15px;
+    bottom: 15px;
+  }
+}
+
+.page-header .image-overlay img {
+  width: 100%;
+  object-fit: cover;
+}
+
 .panel {
   padding: 2rem 0;
 }
@@ -11967,7 +12026,7 @@ legend {
 }
 
 .coupon-container {
-  border: 4px dashed #154270;
+  border: 4px dashed #C6C6C6;
   padding: 0.5em;
   margin: 0.6em 0;
   text-align: center;
@@ -12365,7 +12424,6 @@ blockquote:before {
   padding: 2rem 0.5rem;
   background-color: #154270;
   color: #fff;
-  line-height: 1.3;
 }
 
 .footer li {
@@ -12401,19 +12459,145 @@ blockquote:before {
   margin-bottom: 0.25rem;
 }
 
+.footer .social {
+  font-size: 1.35rem;
+}
+
 .footer .social a {
-  background-color: #fff;
-  color: #154270;
+  margin-right: 0.35rem;
+  color: #fff;
 }
 
 .footer .social a:hover {
-  background-color: #bfdaf0;
+  color: #bfdaf0;
 }
 
-@media (max-width: 991.98px) {
-  .footer {
-    font-size: 0.85rem;
+.copyright {
+  color: #154270;
+}
+
+html.home,
+.home body,
+.home header,
+#intro {
+  height: 100vh;
+}
+
+#intro {
+  background: url("/images/home/sdg-home-main-beach-family.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.home header {
+  margin-bottom: 0;
+}
+
+.view .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+}
+
+#intro .navbar {
+  background-color: transparent;
+  border: none;
+}
+
+@media (max-width: 767.98px) {
+  #intro .navbar {
+    background-color: #154270;
+    padding-left: 0;
+    padding-right: 0;
   }
+}
+
+.home-nav {
+  background-color: #154270;
+  border-bottom: 8px solid #B5D45F;
+}
+
+@media (max-width: 767.98px) {
+  .home-nav {
+    background-color: #B5D45F;
+    border-bottom: 8px solid #154270;
+  }
+}
+
+.home-nav .nav-link {
+  font-size: 1.35rem;
+  padding-left: 0;
+}
+
+@media (max-width: 767.98px) {
+  .home-nav .nav-link {
+    font-size: 1.25rem;
+    text-align: center;
+  }
+}
+
+.home-nav a {
+  color: white;
+}
+
+.home-nav .dropdown-menu {
+  background-color: #B5D45F;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  padding: 0.75rem 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.35rem;
+}
+
+.home-nav .dropdown-item {
+  font-weight: 500;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 3rem;
+}
+
+.home-nav .dropdown-item:hover,
+.home-nav .dropdown-item:focus {
+  color: #154270;
+  text-decoration: none;
+  background-color: #d1e49b;
+  font-weight: 700;
+}
+
+.dropdown-toggle::after {
+  display: none;
+  margin-left: 0;
+  border: none;
+}
+
+.card-columns {
+  -webkit-column-gap: 0;
+          column-gap: 0;
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .card-columns {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns {
+    -webkit-column-count: 3;
+            column-count: 3;
+  }
+}
+
+.card-columns .card {
+  border: none;
+  margin-bottom: 0;
 }
 
 .content-wrapper {

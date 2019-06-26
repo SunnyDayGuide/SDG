@@ -32,33 +32,14 @@ $theme-colors: (
   "advertiser": $advertisers,
   "highlight" : $highlight,
 );
-
-// Sky Blue: #60A3D9
-// Sky Blue Screen: #A0C8E8
-// Lime: #B5D45F
-// Lime Screen: #D3E59F
-// Dark Grey: #656565
-// Light Grey: #C6C6C6
-
-// Grid columns
-// $grid-gutter-width: 30px;
-
-// Grid containers
-//
-// Define the maximum width of `.container` for different screen sizes.
-
-// $container-max-widths: (
-//   sm: 540px,
-//   md: 720px,
-//   lg: 960px,
-//   xl: 1348px
-// );
  
 // Body
 $body-color: $dark;
 
 // Fonts
 $font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
 $font-weight-black: 900;
 
 // Navs

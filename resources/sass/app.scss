@@ -16,12 +16,14 @@
 @import 'forms';
 @import 'cards';
 @import 'sliders';
+@import 'headers';
 @import 'panels';
 @import 'advprofiles';
 @import 'coupons';
 @import 'articles';
 @import 'charts';
 @import 'footer';
+@import '_home';
 
 .content-wrapper {
   min-height: 100vh;
@@ -52,6 +54,7 @@ label {
 	position: relative;
 	z-index: 2;
 }
+
 
 
 
