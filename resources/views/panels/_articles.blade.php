@@ -14,7 +14,7 @@
 			@if ($relatedArticle->tags->count())
 			<div class="card-footer">
 				@foreach($relatedArticle->tags as $tag)
-				<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
+				<a href="{{ $relatedArticle->market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 				@endforeach
 			</div>
 			@endif

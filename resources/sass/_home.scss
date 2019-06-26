@@ -14,7 +14,7 @@ html.home,
 }
 
 .home header {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .view .mask {
@@ -41,52 +41,52 @@ html.home,
   }
 
  .home-nav {
- 	background-color: $primary;
- 	border-bottom: 8px solid $green;
+    background-color: $primary;
+    border-bottom: 8px solid $green;
 
     @include media-breakpoint-down(sm) {
         background-color: $green;
         border-bottom: 8px solid $primary;
     }
 
- 	.nav-link {
-	    font-size: 1.35rem;
-	    padding-left: 0;
+    .nav-link {
+        font-size: 1.35rem;
+        padding-left: 0;
 
         @include media-breakpoint-down(sm) {
             font-size: 1.25rem;
             text-align: center;
         }
 
-	}
+    }
 
- 	a {
- 		color: white;
- 	}
+    a {
+        color: white;
+    }
 
- 	.dropdown-menu {
- 		background-color: $green;
- 		width: 100%;
- 		border-radius: 0;
- 		border: none;
- 		padding: 0.75rem 0;
- 		font-family: $headings-font-family;
- 		font-size: 1.35rem;
- 	}
+    .dropdown-menu {
+        background-color: $green;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        padding: 0.75rem 0;
+        font-family: $headings-font-family;
+        font-size: 1.35rem;
+    }
 
- 	.dropdown-item {
- 		font-weight: $font-weight-medium;
- 		margin-top: .5rem;
- 		margin-bottom: .5rem;
- 		padding-left: 3rem;
- 	}
+    .dropdown-item {
+        font-weight: $font-weight-medium;
+        margin-top: .5rem;
+        margin-bottom: .5rem;
+        padding-left: 3rem;
+    }
 
- 	.dropdown-item:hover, .dropdown-item:focus {
-	    color: $primary;
-	    text-decoration: none;
-	    background-color: $green-light;
-	    font-weight: $font-weight-bold;
-	}
+    .dropdown-item:hover, .dropdown-item:focus {
+        color: $primary;
+        text-decoration: none;
+        background-color: $green-light;
+        font-weight: $font-weight-bold;
+    }
  }
 .dropdown-toggle::after {
     display: none;

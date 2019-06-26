@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Article;
 use App\Market;
+use Illuminate\Http\Request;
 
 
 class PageController extends Controller
@@ -12,9 +13,9 @@ class PageController extends Controller
     {
         // this eager loads ALL markets with their categories
         $markets = Market::with('categories')->get();
+
+        $relatedArticles = Article::featured()->latest()->take(6)->get();
  
-        // this eager loads only markets that HAVE categories
-        // $markets = Market::has('categories')->get();
-        return view('home', compact('markets'));
+        return view('home', compact('markets', 'relatedArticles'));
     }
 }

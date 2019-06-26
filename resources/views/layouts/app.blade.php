@@ -16,7 +16,7 @@
     <link href="{{ asset('vendor/slick/slick.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/slick/slick-theme.css') }}" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
 
     <!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
     <link href="{{ asset('css/vendor/froala_styles.min.css') }}" rel="stylesheet" type="text/css" />
