@@ -16,8 +16,12 @@
 						<!-- Web & social buttons -->
 						<div class="d-md-flex flex-wrap align-items-center"> 
 							<div class="web-buttons mr-3 mb-2 mb-md-0">
-								<a class="btn btn-advertiser text-white mr-1" href="#map" role="button">Map</a>
+								@if(count($advertiser->locations) > 0)
+								<a class="btn btn-advertiser text-white mr-1" href="#show-map" role="button">Map</a>
+								@endif
+								@if(count($advertiser->coupons) > 0)
 								<a class="btn btn-advertiser text-white mr-1" href="#coupons" role="button">Coupons</a>
+								@endif
 								@if($advertiser->website_url)
 									<a class="btn btn-advertiser text-white" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
 								@endif
@@ -66,7 +70,7 @@
 					<div class="carousel-inner" role="listbox">
 						@foreach($sliderImages as $image)
 						<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-							{{ $image('full') }}
+							{{ $cover('full') }}
 						</div>
 						@endforeach
 					</div>
@@ -142,8 +146,16 @@
 		</div> <!-- End Row -->
 
 		<!-- Map -->
-		@includeWhen(count($locations) == 1, 'advertisers._map')
-		@includeWhen(count($locations) > 1, 'advertisers._map2')
+		<!-- Come back here and do straight up embed for one location partial -->
+		@if(count($locations) > 0)
+		<div class="map-container">
+			<button id="show-map" class="vh-center btn btn-lg btn-primary">Show Map</button>
+			<div class="placeholder bg-light">
+				<img src="" alt="" class="img-fluid">
+			</div>
+		</div>
+		<div id="map" style="display: none;"></div>
+		@endif
 
 		<!-- Locations -->
 		<div class="row my-2">
@@ -190,4 +202,9 @@
 
 </div>
 
+@endsection
+
+@section('scripts')
+@includeWhen(count($locations) == 1, 'advertisers._map')
+@includeWhen(count($locations) > 1, 'advertisers._map2')
 @endsection

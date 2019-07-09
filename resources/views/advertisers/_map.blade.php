@@ -5,10 +5,11 @@
 		</div>
 	</div>
 </div> --}}
-
- <div id="map"></div>
+ {{-- <div id="map"></div> --}}
 
 <script type="application/javascript">
+  var showMap = $('#show-map');
+
   function initMap() {
         var lat = {{ $singleLocation->latitude }};
         var lng = {{ $singleLocation->longitude }};
@@ -43,6 +44,10 @@
         });
       }
 
+      $(document).ready(function(){
+          $('#show-map').on('click',initMap)
+      });
+
 </script>
 
 <!--Load the API from the specified URL
@@ -51,7 +56,7 @@
   * The callback parameter executes the initMap() function
 -->
 <script type="application/javascript" async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ $key }}&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key={{ $key }}">
 </script>
 
 {{-- <script type="application/javascript" src="{{ asset('js/SVGMarker.min.js') }}"></script> --}}

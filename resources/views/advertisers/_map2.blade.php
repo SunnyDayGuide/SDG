@@ -11,18 +11,21 @@
 </div>
 <a href="">Expand Map</a> --}}
 
-<div class="wrap-collapsible">
+{{-- <div class="wrap-collapsible">
   <input id="collapsible" class="toggle" type="checkbox">
   <label for="collapsible" class="lbl-toggle">Expand Map</label>
   <div class="collapsible-content" id="map">
   </div>
 </div>
-
+ --}}
 
 <script type="application/javascript">
 
+  var showMap = $('#show-map');
+  var placeholder = $('.placeholder');
+
   function initMap() {
-    var collapseBtn = document.getElementById('collapsible');
+    // var collapseBtn = document.getElementById('collapsible');
 
     // get locations from db
     var locations = [
@@ -89,11 +92,24 @@
     //     google.maps.event.removeListener(listener);
     // });
 
-    google.maps.event.addDomListener(collapseBtn, 'click', function() {
-          map.setZoom(10);
-    });
+    // google.maps.event.addDomListener(collapseBtn, 'click', function() {
+    //       map.setZoom(10);
+    // });
 
   }
+
+  // Toggle placeholder & button off and map div on
+  $("#show-map").click(function() {
+    $(".map-container").toggle();
+    $("#map").toggle();
+  });
+
+  // NOW initialize the Map
+    $(document).ready(function() {
+      $('#show-map').on('click',initMap)
+  });
+
+
 </script>
 
 <!--Load the API from the specified URL
@@ -102,7 +118,7 @@
   * The callback parameter executes the initMap() function
 -->
 <script type="application/javascript" async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ $key }}&callback=initMap">
+src="https://maps.googleapis.com/maps/api/js?key={{ $key }}">
 </script>
 
 {{-- <script type="application/javascript" src="{{ asset('js/SVGMarker.min.js') }}"></script> --}}
