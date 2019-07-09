@@ -5,6 +5,7 @@ fieldset {
 legend {
 	font-weight: $font-weight-bold;
 	font-family: $headings-font-family;
+	line-height: 1.2;
 	color: $advertisers;
 	border-bottom: 1px solid $dark; 
 }

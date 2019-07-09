@@ -11749,6 +11749,7 @@ fieldset {
 legend {
   font-weight: 700;
   font-family: "Raleway", sans-serif;
+  line-height: 1.2;
   color: #B5D45F;
   border-bottom: 1px solid #656565;
 }
@@ -11974,6 +11975,18 @@ legend {
 .tollfree {
   font-weight: 700;
   font-family: "Roboto", sans-serif;
+}
+
+.map-container {
+  height: 250px;
+  width: 100%;
+  position: relative;
+}
+
+.placeholder {
+  height: 100%;
+  background: url("/images/home/sdg-home-main-beach-family.jpg") no-repeat center center scroll;
+  background-size: cover;
 }
 
 .wrap-collapsible input[type=checkbox] {
@@ -12419,6 +12432,60 @@ blockquote:before {
   background-color: #eee;
 }
 
+.guide-banner {
+  width: 100%;
+  padding: 0 0.5rem;
+  min-height: 300px;
+}
+
+.guide-banner .buttons-container {
+  min-height: 300px;
+}
+
+.guide-banner .btn {
+  border: 2px solid #154270;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 3rem;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #154270;
+  line-height: 1;
+  padding: 1rem;
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .guide-banner .btn {
+    font-size: 2rem;
+  }
+}
+
+.guide-banner .btn:hover {
+  background-color: white;
+}
+
+.guide-banner .btn-guide {
+  padding-left: 25%;
+  width: 95%;
+  margin-left: 1rem;
+}
+
+.guide-banner .footer-guide img {
+  z-index: 1000;
+  float: left;
+  position: absolute;
+  top: -36px;
+  left: 40px;
+  width: 25%;
+}
+
+@media (max-width: 767.98px) {
+  .guide-banner .footer-guide img {
+    top: 0;
+    left: 20px;
+    width: 20%;
+  }
+}
+
 .footer {
   width: 100%;
   padding: 2rem 0.5rem;
@@ -12447,6 +12514,10 @@ blockquote:before {
   color: #fff;
   font-size: 1.25rem;
   border-bottom: 1px solid #fff;
+}
+
+.footer .category-nav {
+  line-height: 1;
 }
 
 .footer .footer-guide {
@@ -12551,8 +12622,15 @@ html.home,
   border-radius: 0;
   border: none;
   padding: 0.75rem 0;
+  margin-top: -0.5rem;
   font-family: "Raleway", sans-serif;
   font-size: 1.35rem;
+}
+
+@media (max-width: 767.98px) {
+  .home-nav .dropdown-menu {
+    height: 100vh;
+  }
 }
 
 .home-nav .dropdown-item {
@@ -12630,5 +12708,14 @@ label {
   background-color: #C6C6C6;
   position: relative;
   z-index: 2;
+}
+
+.vh-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 

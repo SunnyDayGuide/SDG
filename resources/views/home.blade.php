@@ -33,7 +33,7 @@
             <!--Navbar-->
             <nav class="navbar row d-flex flex-column flex-md-row justify-content-between mt-md-5">
               <!-- Desktop Logos -->
-              <div class="logo-wrapper col-6 col-md-3 mb-2 mb-md-0">
+              <div class="logo-wrapper col-6 col-md-4 col-lg-3 mb-2 mb-md-0">
                 <div class="d-none d-md-block">
                   <a class="navbar-brand mr-4 clearfix w-100" href="{{ url('/') }}">
                     <img src="{{ asset('images/main/SDG-header-logo.svg') }}" alt="Sunny Day Guide logo" class="img-fluid">
