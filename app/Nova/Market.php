@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -110,6 +111,12 @@ class Market extends Resource
 
             Text::make('Cities')
                 ->hideFromIndex(),
+
+            Images::make('Guide Cover', 'cover')
+                ->withResponsiveImages()
+                ->conversion('full')
+                ->thumbnail('small')
+                ->fullSize(),
 
             BelongsTo::make('Brand')->hideFromIndex(),
 

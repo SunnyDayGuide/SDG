@@ -31,8 +31,9 @@ class LeadController extends Controller
 
         $page = $market->pages()->where('slug', $group)->first();
         $mainImage = $page->getFirstMedia('slider');
+        $cover = $market->getFirstMedia('cover');
 
-        return view($group.'.create', compact('market', 'group', 'page', 'mainImage'));
+        return view($group.'.create', compact('market', 'group', 'page', 'mainImage', 'cover'));
     }
 
     /**

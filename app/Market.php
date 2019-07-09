@@ -8,10 +8,15 @@ use App\Page;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 use Storage;
 
-class Market extends Model
+class Market extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     /**
      * Don't auto-apply mass assignment protection.
      *
@@ -146,5 +151,34 @@ class Market extends Model
             ->where('featured', 1)
             ->with('tags');
     }
+
+        /**
+     * Register the media collections.
+     *
+     * @return array
+     */
+    public function registerMediaCollections()
+    {
+        $this
+        ->addMediaCollection('cover')
+        ->singleFile()
+        ->registerMediaConversions(function (Media $media) {
+            
+            $this->addMediaConversion('full')
+                ->width(600)
+                ->height(934)
+                ->withResponsiveImages();
+
+            $this
+                ->addMediaConversion('small')
+                ->width(300)
+                ->height(467)
+                ->withResponsiveImages();
+        });
+
+    }
+
+
+
 
 }

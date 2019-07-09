@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Market;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
@@ -102,7 +103,9 @@ class Page extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            new Market,
+        ];
     }
 
     /**

@@ -5,37 +5,23 @@
 
 @endsection
 
-@section('jumbotron')
-<div class="page-header w-100">
-	<div class="container overlay-container position-relative">
-		<div class="col-3 offset-9">
-			<div class="image-overlay">
-				<img src="{{ asset('images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}">
-			</div>
-		</div>
-	</div>
-	<div class="title-container">
-		<div class="title">
-			<div class="container">
-				<div class="col-md-7 pl-0">
-					<h1>{{ $page->title }}</h1>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="main-image">
-		{{ $mainImage }}
-	</div>
-</div>
-@endsection
-
 @section('content')
+<div class="container pt-3 pt-md-5">
+    <article class="row">
+        <div class="col">
+            <h1 class="display-4 mb-3">{{ $page->title }}</h1>
+            <div class="image-wrapper float-right col-6 col-md-4 ml-2 ml-md-4 pr-0 text-right">
+{{--                 <img src="{{ asset('images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+ --}}                {{ $cover('full') }}
+            </div>
+            <div>
+                <div class="fr-view">{!! $page->content !!}</div>
+            </div>
+        </div>
+    </article>
+</div>
 <div class="container mt-3 mt-md-5 mb-5">
-	<div class="content">
-		<div class="fr-view">{!! $page->content !!}</div>
-	</div>
-
-	<h4 class="rounded bg-editorial text-white text-center my-4 p-3">Fill out this form to get a digital copy of {{ $market->brand->name }} and start planning your dream vacation to {{ $market->name }} today!</h4>
+	<h3 class="rounded bg-editorial text-white text-center my-4 p-3">Fill out the form below to get a digital copy of {{ $market->brand->name }} and start planning your dream vacation to {{ $market->name }} today!</h3>
 
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
