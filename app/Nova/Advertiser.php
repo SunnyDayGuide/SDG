@@ -68,6 +68,10 @@ class Advertiser extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required'),
+            Text::make('Slug')
+                ->hideWhenCreating()
+                ->hideFromIndex()
+                ->rules('required'),
 
             BelongsTo::make('Market'),
             BelongsTo::make('Display Level', 'level', 'App\Nova\Level'),

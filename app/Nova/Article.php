@@ -86,6 +86,10 @@ class Article extends Resource
             Text::make('Title')
                 ->sortable()
                 ->rules('required'),
+            Text::make('Slug')
+                ->hideWhenCreating()
+                ->hideFromIndex()
+                ->rules('required'),
             Froala::make('Content')
                 ->withFiles('trix')
                 ->rules('required'),
