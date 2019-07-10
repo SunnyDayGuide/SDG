@@ -1,14 +1,28 @@
 <div class="card-columns">
-  <div class="card text-white overlay text-left">
-    <img src="{{ asset('images/home/branson-inset.jpg') }}" class="card-img" alt="...">
-    <div class="card-img-overlay">
-      <a href="{{ route('market.home', 'branson') }}" class="stretched-link text-reset text-decoration-none">
-        <h3 class="card-title">Go BIG Time in Branson!</h3>
-      </a>
-      <p class="card-text">This is one short blurb about Branson. Could be more? Let's intro the area!</p>
+  <div class="flip-card card text-white text-left" style="height: 240px;">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{{ asset('images/home/branson-inset.jpg') }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <a href="{{ route('market.home', 'branson') }}" class="stretched-link text-reset text-decoration-none">
+            <h3 class="card-title">Go BIG Time in Branson!</h3>
+          </a>
+          <p class="card-text">This is one short blurb about Branson. Could be more? Let's intro the area!</p>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        {{-- <img src="{{ asset('images/home/branson-inset.jpg') }}" class="card-img" alt="..."> --}}
+        <div class="card-img-overlay">
+          <a href="{{ route('market.home', 'branson') }}" class="stretched-link text-reset text-decoration-none">
+            <h3 class="card-title">OHHHH YEAHHHHH</h3>
+          </a>
+          <p class="card-text">Architect & Engineer</p> 
+          <p class="card-text">We love that guy</p>
+        </div>
+      </div>
     </div>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/outer-banks-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'outer-banks') }}" class="stretched-link text-reset text-decoration-none">
@@ -36,7 +50,7 @@
       </footer>
     </blockquote>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/sarasota-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <p class="card-text">Enjoy the Tropical Beaches of the</p>
@@ -45,7 +59,7 @@
       </a>
     </div>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/ocracoke-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'hatteras-ocracoke') }}" class="stretched-link text-reset text-decoration-none">
@@ -64,7 +78,7 @@
       </footer>
     </blockquote>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/virginia-beach-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'virginia-beach') }}" class="stretched-link text-reset text-decoration-none">
@@ -73,7 +87,7 @@
       <p class="card-text">This is one short blurb about VaBeach. Could be more? Let's intro the area! #VBStrong</p>
     </div>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/delaware-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'delaware-beaches') }}" class="stretched-link text-reset text-decoration-none">
@@ -82,16 +96,30 @@
       <p class="card-text">This is one short blurb about Rehoboth, etc. Could be more? Let's intro the area!</p>
     </div>
   </div>
-   <div class="card text-white overlay text-left">
-    <img src="{{ asset('images/home/williamsburg2-inset.jpg') }}" class="card-img" alt="...">
-    <div class="card-img-overlay d-flex flex-column justify-content-end">
-      <a href="{{ route('market.home', 'williamsburg') }}" class="stretched-link text-reset text-decoration-none">
-        <h3 class="card-title">Virginia's Historic Triangle</h3>
-      </a>
-      <p class="card-text">This is one short blurb about Williamsburg. Could be more? Let's intro the area!</p>
+  <div class="flip-card card text-white text-left" style="height: 455px;">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <img src="{{ asset('images/home/williamsburg2-inset.jpg') }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <a href="{{ route('market.home', 'williamsburg') }}" class="stretched-link text-reset text-decoration-none">
+            <h3 class="card-title">Virginia's Historic Triangle</h3>
+          </a>
+          <p class="card-text">This is one short blurb about Williamsburg. Could be more? Let's intro the area!</p>
+        </div>
+      </div>
+      <div class="flip-card-back">
+        <img src="{{ asset('images/home/williamsburg2-inset.jpg') }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <a href="{{ route('market.home', 'williamsburg') }}" class="stretched-link text-reset text-decoration-none">
+            <h3 class="card-title">Get JIGGY with it</h3>
+          </a>
+          <p class="card-text">Architect & Engineer</p> 
+          <p class="card-text">We love that guy</p>
+        </div>
+      </div>
     </div>
   </div>
-   <div class="card text-white overlay text-left">
+  <div class="card text-white overlay text-left">
     <img src="{{ asset('images/home/smoky-mountains-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'smoky-mountains') }}" class="stretched-link text-reset text-decoration-none">
@@ -128,4 +156,5 @@
       </footer>
     </blockquote>
   </div>
+
 </div>
