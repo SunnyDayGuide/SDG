@@ -19,6 +19,7 @@ class CreateLeadsTable extends Migration
             $table->string('request_type');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('full_name');
             $table->string('email');
             $table->string('postal_code')->nullable();
             $table->date('visit_date')->nullable();

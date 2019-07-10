@@ -18,6 +18,15 @@ class Lead extends Model
      */
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($lead) {
+            $lead->full_name = $lead->first_name . ' ' . $lead->last_name;
+        });
+    }
+
     protected $dates = [
 	    'created_at',
 	    'updated_at',
