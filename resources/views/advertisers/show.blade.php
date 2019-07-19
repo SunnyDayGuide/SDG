@@ -70,7 +70,7 @@
 					<div class="carousel-inner" role="listbox">
 						@foreach($sliderImages as $image)
 						<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-							{{ $cover('full') }}
+							{{ $image('full') }}
 						</div>
 						@endforeach
 					</div>

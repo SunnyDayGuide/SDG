@@ -30,6 +30,8 @@ class CreateLeadsTable extends Migration
             $table->boolean('cookie_consent');
             $table->boolean('freemail_consent')->default(false);
             $table->boolean('sdg_consent')->default(false);
+            $table->timestamp('sdg_export')->nullable();
+            $table->timestamp('freemail_export')->nullable();
 
             $table->timestamps();
 
