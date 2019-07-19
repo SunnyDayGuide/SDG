@@ -12,6 +12,7 @@
 
 // Partials
 @import 'nav';
+@import 'nav2';
 @import 'type';
 @import 'forms';
 @import 'cards';
@@ -27,10 +28,6 @@
 
 .content-wrapper {
   min-height: 100vh;
-}
-
-header {
-	margin-bottom: 85px;
 }
 
 label {

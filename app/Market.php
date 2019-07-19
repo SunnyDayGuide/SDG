@@ -6,6 +6,7 @@ use App\Advertiser;
 use App\Event;
 use App\Page;
 use App\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -94,19 +95,16 @@ class Market extends Model implements HasMedia
         ->withTimestamps();
     }
 
-    /**
-     * Get all of the subcategories for the market.
-     */
-    public function sub_categories()
+    // determines what MAIN categories show up in the top navigation
+    public function navCategories()
     {
-        return $this->hasManyThrough(
-            Subcategory::class,
-            Category::class,
-            'country_id', // Foreign key on users table...
-            'parent_id', // Foreign key on posts table...
-            'id', // Local key on countries table...
-            'id' // Local key on users table...
-        );
+        return $this->categories()
+            ->whereNull('parent_id')
+            ->whereNotIn('category_id', [5])
+            ->whereHas('advertisers', function (Builder $query) {
+                $query->where('market_id', $this->id);
+            })
+            ->with('navSubcategories');
     }
 
     public function articles()

@@ -9,6 +9,8 @@ use App\Event;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class Category extends Model
 {
@@ -86,6 +88,24 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    // determines what subcategories show up in the top navigation
+    public function navSubcategories()
+    {
+        // grab route parameters to determine what market we are in.
+        $currentRoute = Route::current();
+        $params = $currentRoute->parameters;
+
+        $market = $params['market']['id'];
+
+        $subcategories = $this->children()->whereHas('advertisers', function (Builder $query) use ($market) {
+                $query->where('market_id', $market);
+            })
+            ->withCount('advertisers')
+            ->orderBy('advertisers_count', 'desc');
+
+            return $subcategories->take(28);
     }
 
     public function articles()

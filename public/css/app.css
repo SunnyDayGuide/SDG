@@ -11727,9 +11727,99 @@ a.text-highlight:focus {
   text-transform: uppercase;
 }
 
-@media (min-width: 992px) {
-  .dropdown:hover > .dropdown-menu {
-    display: block;
+.navbar {
+  background-color: #154270;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 8px solid #B5D45F;
+}
+
+.navbar .bucket-list {
+  background-color: #B5D45F;
+  height: 100%;
+  padding: 1rem;
+}
+
+.navbar .bucket-list .nav-link {
+  color: #154270;
+}
+
+.navbar-brand {
+  width: 180px;
+  padding: 0;
+}
+
+.nav-link {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+}
+
+.megamenu {
+  position: static;
+}
+
+.megamenu .megamenu-heading {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+}
+
+.megamenu .megamenu-heading a:hover {
+  text-decoration: none;
+  color: #656565;
+}
+
+.megamenu .dropdown-menu {
+  background: none;
+  border: none;
+  width: 100%;
+}
+
+.megamenu .dropdown-menu .nav-link {
+  font-size: 1rem;
+  color: #656565;
+  text-transform: none;
+}
+
+.megamenu .bag-fields {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  width: 100%;
+}
+
+.megamenu .bag-field {
+  width: 50%;
+  box-sizing: border-box;
+  background-clip: content-box;
+}
+
+.megamenu .guide-link {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #FF6F61;
+  font-size: 1.45rem;
+}
+
+.megamenu .guide-link a {
+  color: #FF6F61;
+}
+
+.megamenu .guide-link a:hover {
+  text-decoration: none;
+  color: #656565;
+}
+
+@media (min-width: 768px) {
+  .megamenu .nav-guide {
+    position: absolute;
+    top: calc(-25% - 1px);
+    right: 0;
+    -webkit-clip-path: inset(0 0 25% 0);
+            clip-path: inset(0 0 25% 0);
   }
 }
 
@@ -12655,7 +12745,7 @@ html.home,
   font-weight: 700;
 }
 
-.dropdown-toggle::after {
+.home-nav .dropdown-toggle::after {
   display: none;
   margin-left: 0;
   border: none;
@@ -12729,10 +12819,6 @@ html.home,
 
 .content-wrapper {
   min-height: 100vh;
-}
-
-header {
-  margin-bottom: 85px;
 }
 
 label {

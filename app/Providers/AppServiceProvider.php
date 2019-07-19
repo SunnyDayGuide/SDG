@@ -18,12 +18,9 @@ class AppServiceProvider extends ServiceProvider
         \View::composer('*', function ($view) {
             $markets = \Cache::rememberForever('markets', function () {
                 return Market::all();
-            });
-            $categories = \Cache::rememberForever('categories', function () {
-                return Category::whereNull('parent_id')->with('children')->get();
-            });
+            });            
 
-            $view->with(compact('markets', 'categories'));
+            $view->with(compact('markets'));
         });
     }
 

@@ -92,11 +92,12 @@ html.home,
         background-color: $green-light;
         font-weight: $font-weight-bold;
     }
-}
-.dropdown-toggle::after {
-    display: none;
-    margin-left: 0;
-    border: none;
+    .dropdown-toggle::after {
+        display: none;
+        margin-left: 0;
+        border: none;
+    }
+
 }
 
 // Home Page Card Columns
