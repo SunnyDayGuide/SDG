@@ -11754,6 +11754,22 @@ a.text-highlight:focus {
   text-transform: uppercase;
 }
 
+.btn-nav {
+  font-family: "Raleway", sans-serif !important;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.btn-nav :hover {
+  color: #fff !important;
+}
+
+.more {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .megamenu {
   position: static;
 }
@@ -11761,14 +11777,19 @@ a.text-highlight:focus {
 .megamenu .megamenu-heading {
   text-transform: uppercase;
   font-weight: 700;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
   font-family: "Raleway", sans-serif;
-  font-size: 1rem;
+  font-size: 1.15rem;
 }
 
 .megamenu .megamenu-heading a:hover {
   text-decoration: none;
   color: #656565;
+}
+
+.megamenu .megamenu-subheading {
+  font-size: 1rem;
+  padding: 0.35rem 0;
 }
 
 .megamenu .dropdown-menu {
@@ -11783,15 +11804,16 @@ a.text-highlight:focus {
   text-transform: none;
 }
 
-.megamenu .bag-fields {
+.megamenu .subcategories {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-wrap: wrap;
           flex-wrap: wrap;
   width: 100%;
+  margin-bottom: 0.5rem;
 }
 
-.megamenu .bag-field {
+.megamenu .subcategory {
   width: 50%;
   box-sizing: border-box;
   background-clip: content-box;
@@ -11814,12 +11836,12 @@ a.text-highlight:focus {
 }
 
 @media (min-width: 768px) {
-  .megamenu .nav-guide {
+  .megamenu .nav-guide img {
     position: absolute;
-    top: calc(-25% - 1px);
-    right: 0;
-    -webkit-clip-path: inset(0 0 25% 0);
-            clip-path: inset(0 0 25% 0);
+    top: calc(-25% + 3px);
+    left: 1rem;
+    -webkit-clip-path: inset(0 0 calc(25% + 1rem) 0);
+            clip-path: inset(0 0 calc(25% + 1rem) 0);
   }
 }
 

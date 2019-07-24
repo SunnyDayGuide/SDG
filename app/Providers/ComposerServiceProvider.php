@@ -24,8 +24,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(
-            'partials._nav3', 'App\Http\ViewComposers\NavigationViewComposer'
-        );
+        View::composer('partials._nav3', 'App\Http\ViewComposers\NavigationViewComposer');
     }
 }

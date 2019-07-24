@@ -100,7 +100,7 @@ class Market extends Model implements HasMedia
     {
         return $this->categories()
             ->whereNull('parent_id')
-            ->whereNotIn('category_id', [5])
+            ->whereNotIn('category_id', [5])   // NOT lodging 
             ->whereHas('advertisers', function (Builder $query) {
                 $query->where('market_id', $this->id);
             })
@@ -173,6 +173,8 @@ class Market extends Model implements HasMedia
                 ->height(467)
                 ->withResponsiveImages();
         });
+
+        $this->addMediaCollection('navImage')->singleFile();
 
     }
 

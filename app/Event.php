@@ -176,6 +176,27 @@ class Event extends Model implements HasMedia
         return $this->end_date;
     }
 
+        /**
+     * Get the events's date range.
+     *
+     * @return string
+     */
+    public function getNavRangeAttribute()
+    {
+        $start = Carbon::parse($this->start_date)->format('n/j');
+        $end = Carbon::parse($this->end_date)->format('n/j');
+
+        if ($this->end_date == $this->start_date) {
+            $dates = "{$start}";
+        } elseif ($this->end_date === null) {
+            $dates = "{$start}";
+        } else {
+            $dates = "{$start} - {$end}";
+        }
+
+        return $dates;
+    }
+
 
 
 }

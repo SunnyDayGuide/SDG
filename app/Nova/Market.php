@@ -118,6 +118,10 @@ class Market extends Resource
                 ->thumbnail('small')
                 ->fullSize(),
 
+            Images::make('Nav Inset', 'navImage')
+                ->withResponsiveImages()
+                ->fullSize(),
+
             BelongsTo::make('Brand')->hideFromIndex(),
 
             BelongsToMany::make('Categories')

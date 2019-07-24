@@ -99,13 +99,16 @@ class Category extends Model
 
         $market = $params['market']['id'];
 
+        // only take subcategories that HAVE advertisers, then sort by how many advertisers a subcat has
         $subcategories = $this->children()->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market);
             })
-            ->withCount('advertisers')
+            ->withCount(['advertisers' => function ($query) use ($market) {
+                 $query->where('market_id', $market);
+            }])
             ->orderBy('advertisers_count', 'desc');
 
-            return $subcategories->take(28);
+            return $subcategories;
     }
 
     public function articles()
