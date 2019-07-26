@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Algolia\ScoutExtended\Splitters\HtmlSplitter;
 use App\Advertiser;
 use App\Category;
 use App\CustomTag;
@@ -46,6 +47,8 @@ class Article extends Model implements HasMedia
         //     $builder->where('publish_date', '>=', Carbon::now());
         // });
     }
+
+
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -99,9 +102,15 @@ class Article extends Model implements HasMedia
      */
     public function path()
     {
-        return $this->market->path() . "/articles/{$this->slug}";
+        $type = Str::slug($this->articleType->name, '-');
+        return $this->market->path() . "/{$type}/{$this->slug}";
     }
 
+    /**
+     * Get array to send to Algolia that includes just the cat/tag name and nothing else on those models.
+     *
+     * @return array
+     */
     public function toSearchableArray()
     {
         $array = $this->toArray();
@@ -117,6 +126,17 @@ class Article extends Model implements HasMedia
         })->toArray();
 
         return $array;
+    }
+
+    /**
+     * Splits the given value.
+     *
+     * @param  string $value
+     * @return array
+     */
+    public function splitContent($value)
+    {
+        return HtmlSplitter::class;
     }
 
     /**
@@ -269,6 +289,16 @@ class Article extends Model implements HasMedia
     }
 
     /**
+     * @param \Cocur\Slugify\Slugify $engine
+     * @param string $attribute
+     * @return \Cocur\Slugify\Slugify
+     */
+    public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
+        $engine->addRule('\'', '');
+        return $engine;
+    }
+
+    /**
      * The slug is generated for as article from it's title, but the slug is scoped to the market. 
      * So a BR can have an article with the same title as CG, but both will have the same slug.
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -296,30 +326,8 @@ class Article extends Model implements HasMedia
             ->orderBy('order_column');
     }
 
-
-
     /**
-     * Register the conversions that should be performed.
-     *
-     * @return array
-     */
-    public function registerMediaConversions(Media $media = null)
-    {
-        // $this->addMediaConversion('full')
-        //     ->withResponsiveImages();
-
-        // $this->addMediaConversion('cropped')
-        //     ->crop(Manipulations::CROP_CENTER, 900, 480)
-        //     ->withResponsiveImages();
-
-        // $this->addMediaConversion('card')
-        //     ->crop(Manipulations::CROP_CENTER, 426, 227)
-        //     ->withResponsiveImages();
-
-    }
-
-    /**
-     * Register the collections.
+     * Register the media collections.
      *
      * @return array
      */
