@@ -39,7 +39,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $with = ['children'];
+    // protected $with = ['children'];
 
     /**
      * Get the route key name for Laravel.
