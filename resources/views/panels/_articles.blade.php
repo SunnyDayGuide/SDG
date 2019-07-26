@@ -7,8 +7,8 @@
 			@endif
 
 			<div class="card-body">
-				<a href="{{ $relatedArticle->path() }}" class="stretched-link text-reset text-decoration-none"><h5 class="card-title">{{ $relatedArticle->title }}</h5>
-				<p class="card-text">{{ $relatedArticle->excerpt }}</p>
+				<a href="{{ $relatedArticle->path() }}" class="stretched-link text-reset text-decoration-none"><h5 class="card-title">{{ $relatedArticle->title }}</h5></a>
+				<p class="card-text">{{ $relatedArticle->blurb }}</p>
 			</div>
 
 			@if ($relatedArticle->tags->count())
