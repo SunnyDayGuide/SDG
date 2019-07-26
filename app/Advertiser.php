@@ -172,6 +172,16 @@ class Advertiser extends Model implements HasMedia
         ];
     }
 
+     /**
+     * @param \Cocur\Slugify\Slugify $engine
+     * @param string $attribute
+     * @return \Cocur\Slugify\Slugify
+     */
+    public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
+        $engine->addRule('\'', '');
+        return $engine;
+    }
+
     /**
      * The slug is generated for as article from it's title, but the slug is scoped to the market. 
      * So a BR can have an article with the same title as CG, but both will have the same slug.
