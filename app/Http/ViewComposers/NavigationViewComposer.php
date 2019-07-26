@@ -22,7 +22,7 @@ class NavigationViewComposer
     	$navCategories =  $this->market->navCategories;
 
         $navArticles =  $this->market->getFeaturedArticles()->where('article_type_id', 1)->take(4)->get();
-        
+
         $featuredArticle = $navArticles->first();
 
         $navEvents =  $this->market->events()->current()->active()

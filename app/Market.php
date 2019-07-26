@@ -30,7 +30,7 @@ class Market extends Model implements HasMedia
      * Categories should load because of navigation
      * @var array
      */
-    // protected $with = ['articles'];
+    // protected $with = ['categories'];
 
     /**
      * Get the route key name for Laravel.
@@ -98,12 +98,18 @@ class Market extends Model implements HasMedia
     // determines what MAIN categories show up in the top navigation
     public function navCategories()
     {
+        // return $this->categories()
+        //     ->whereNull('parent_id')
+        //     ->whereNotIn('category_id', [5])   // NOT lodging 
+        //     ->whereHas('advertisers', function (Builder $query) {
+        //         $query->where('market_id', $this->id);
+        //     })
+        //     ->with('navSubcategories');
+
+        // to get the categories regardless of if they have advertisers or not     
         return $this->categories()
             ->whereNull('parent_id')
-            ->whereNotIn('category_id', [5])   // NOT lodging 
-            ->whereHas('advertisers', function (Builder $query) {
-                $query->where('market_id', $this->id);
-            })
+            ->whereNotIn('category_id', [5])   // NOT lodging  
             ->with('navSubcategories');
     }
 

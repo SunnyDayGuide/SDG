@@ -3,7 +3,7 @@
 	background-color: $primary;
 	padding-top: 0;
 	padding-bottom: 0;
-	border-bottom: 8px solid $green;
+	// border-bottom: 8px solid $green;
 
 	.bucket-list {
 		background-color: $green;
@@ -12,6 +12,22 @@
 
 		.nav-link {
 			color: $primary;
+		}
+	}
+}
+
+#branding {
+	height: 60px;
+	display: flex;
+	align-items: center;
+
+	@include media-breakpoint-up(md) {
+		height: 78px;
+	}
+
+	@include media-breakpoint-down(sm) {
+		img {
+			height: 60px;
 		}
 	}
 }
@@ -88,6 +104,10 @@
 		background-clip:content-box;
 	}
 
+	.megamenu-bottom {
+		min-height: 120px;
+	}
+
 	.guide-link {
 		text-transform: uppercase;
 		font-weight: $font-weight-bold;
@@ -113,5 +133,37 @@
 		}
 	}
 
+
+
+}
+
+// Top Bar
+.navbar-top {
+	// background-color: #eee; 
+	background-color: $editorial-lt;
+
+	.nav-link {
+		text-transform: none;
+		font-size: 1rem;
+	}
+
+	.dropdown-item:hover, .dropdown-item:focus {
+	    color: $white;
+	    background-color: $green;
+	}
+}
+
+.nav-market {
+	font-family: $headings-font-family;
+	color: $primary;
+	font-weight: $font-weight-bold;
+
+	.market-name {
+		text-transform: uppercase;
+	}
+
+	.cities {
+		font-size: .9rem;
+	}
 }
 

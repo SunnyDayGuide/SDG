@@ -122,11 +122,23 @@ blockquote:before {
 .content .fr-view span.fr-img-caption.fr-dii.fr-fir {
     margin-top: $grid-gutter-width / 2;
     margin-bottom: $grid-gutter-width / 2;
+    width: 338px;
+
+    @include media-breakpoint-down(sm) {
+        float: none;
+        width: 100%;
+    }
 }
 
 .content .fr-view span.fr-img-caption.fr-dii.fr-fil {
     margin-top: $grid-gutter-width / 2;
     margin-bottom: $grid-gutter-width / 2;
+    width: 338px;
+
+    @include media-breakpoint-down(sm) {
+        float: none;
+        width: 100%;
+    }
 }
 
 @include media-breakpoint-up(md) {

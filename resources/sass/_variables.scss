@@ -25,12 +25,14 @@ $indigo: $navy;
 
 $primary: $navy;
 $editorial: $blue;
+$editorial-lt: $blue-light;
 $advertisers: $green;
 
 $theme-colors: (
   "editorial": $editorial,
   "advertiser": $advertisers,
   "highlight" : $highlight,
+  "editorial-lt": $editorial-lt,
 );
  
 // Body
