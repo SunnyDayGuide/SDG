@@ -51,8 +51,31 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Market $market, Article $article)
+    public function show(Market $market, $type, Article $article)
     {
+      $type = $article->convert_to_slug($article->articleType->name);
+      $slides = $article->getMedia('slider');
+      $image = $article->getFirstMedia('slider');
+
+      $premierAdvertisers = Advertiser::where('market_id', $market->id)
+      ->premier()->get()->random(3);
+
+      $relatedArticles = $article->getRelatedArticles($market)
+        ->sortByDesc('publish_date'); 
+
+      return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function tideCharts(Market $market)
+    {
+      $article = $market->articles()->where('slug', 'tide-charts')->first();
+
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 

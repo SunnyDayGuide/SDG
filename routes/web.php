@@ -53,12 +53,12 @@ Route::prefix('destinations/{market}')->group(function () {
 
     Route::get('articles', 'ArticleController@index')->name('articles');
 	Route::get('articles/search', 'ArticleController@search')->name('articles.search');
-	Route::get('articles/{article}', 'ArticleController@show')->name('articles.show');
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
 	
 	Route::get('events', 'EventController@index')->name('events');
 	Route::get('coupons', 'CouponController@index')->name('coupons');
+	Route::get('tide-charts', 'ArticleController@tideCharts')->name('tide-charts');
 
 	Route::get('vacation-guide', 'LeadController@create')->name('vacation-guide.create');
 	Route::get('request-information', 'LeadController@create')->name('request-information.create');
@@ -76,6 +76,9 @@ Route::prefix('destinations/{market}')->group(function () {
 
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
 	Route::get('{category}/{subcategory}', 'CategoryController@subcategories')->name('subcategories.show');
+
+	Route::get('{type}/{article}', 'ArticleController@show')->name('articles.show');
+
 
 });
 
