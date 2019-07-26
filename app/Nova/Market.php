@@ -102,7 +102,10 @@ class Market extends Resource
                 ->creationRules('unique:markets,slug')
                 ->updateRules('unique:markets,slug,{{resourceId}}'),    
 
-            Text::make('Long/Alternate Name', 'name_alt')
+            Text::make('Alternate Name', 'name_alt')
+                ->hideFromIndex(),
+
+            Text::make('Long Name', 'name_long')
                 ->hideFromIndex(),
 
             BelongsTo::make('State')
