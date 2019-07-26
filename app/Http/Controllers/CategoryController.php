@@ -55,8 +55,12 @@ class CategoryController extends Controller
      * @param  Category $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function subcategories(Market $market, Category $category, Category $subcategory)
+    public function subcategories(Market $market, Category $category, $subcategory)
     {
+        $subcategory = Category::where('slug', $subcategory)
+            ->where('parent_id', $category->id)
+            ->first();
+
         // get the market category lead page info
         $lead = $this->getMarketCategory($market, $category);
 
@@ -66,13 +70,15 @@ class CategoryController extends Controller
             ->where('market_id', $market->id)
             ->get();     
 
-        // TO-DO: display the related advertisers
-        $advertisers = $category->advertisers()
+        // display the related advertisers
+        $advertisers = $subcategory->advertisers()
             ->with('tags')
             ->where('market_id', $market->id)
             ->get();  
 
-        $premierAdvertisers = $category->advertisers()
+        // dd($advertisers);
+
+        $premierAdvertisers = $subcategory->advertisers()
             ->where('market_id', $market->id)->premier()->get();
 
         // TO-DO: display the related events
