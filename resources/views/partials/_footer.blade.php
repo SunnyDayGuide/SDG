@@ -6,7 +6,7 @@
 				<div class="col-6 col-md-2 ml-0 mb-4 mb-md-0">
 					<div class="footer-guide overlay">
 						<a href="{{ route('vacation-guide.create', $market->slug) }}">
-							<img src="{{ asset('images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+							{{ $market->getFirstMedia('cover') }}
 							<div>
 								View a Free Guide
 							</div>

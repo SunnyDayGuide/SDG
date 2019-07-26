@@ -4,7 +4,7 @@
 			<div class="col-md-6">
 				<div class="row d-flex align-items-center position-relative footer-guide">
 					<div class="col-4">
-						<img src="{{ asset('images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+						{{ $market->getFirstMedia('cover') }}
 					</div>
 					<div class="col-8">
 						<a class="btn" href="{{ route('vacation-guide.create', $market->slug) }}">FREE Digital Vacation Guide</a>
