@@ -13,7 +13,8 @@
 									<a href="{{ $market->path().'/'.$category->slug }}">{{ $category->name }}</a>
 								</div>
 								<ul class="list-unstyled subcategories">
-									@foreach ($category->navSubcategories->take(7)->sortBy('name') as $subcategory)
+									{{-- @foreach ($category->navSubcategories->take(7)->sortBy('name') as $subcategory) --}}
+									@foreach ($category->navSubcategories->sortBy('name') as $subcategory)
 									<li class="nav-item subcategory"><a href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}" class="nav-link text-small pb-0">{{ $subcategory->name }} - {{ $subcategory->advertisers_count }}</a></li>
 									@endforeach
 									<li class="nav-item subcategory"><a href="{{ $market->path().'/'.$category->slug }}" class="btn-nav btn btn-sm btn-light text-white ml-1 mt-2 more">More</a></li>

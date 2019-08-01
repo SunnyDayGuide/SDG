@@ -51,8 +51,6 @@ Route::prefix('admin')
 Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
 
-    Route::get('articles', 'ArticleController@index')->name('articles');
-	Route::get('articles/search', 'ArticleController@search')->name('articles.search');
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
 	
