@@ -37,7 +37,8 @@ class Category extends Filter
      */
     public function options(Request $request)
     {
-        $categories = \App\Category::where('parent_id', null)->get();
+        // $categories = \App\Category::where('parent_id', null)->get();
+        $categories = \App\Category::all();
         return $categories->pluck('id', 'name')->all();
     }
 }
