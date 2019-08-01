@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Article;
+use App\Category;
 use App\CustomTag;
 use App\Event;
 use App\Level;
@@ -10,7 +11,9 @@ use App\Location;
 use App\Logo;
 use App\Market;
 use App\Menu;
+use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
+use App\Traits\Marketable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +30,7 @@ class Advertiser extends Model implements HasMedia
 {
     use SoftDeletes;
     use Categoriable;
+    use Marketable;
     use Sluggable;
     use HasTags;
     use HasMediaTrait;
@@ -76,16 +80,6 @@ class Advertiser extends Model implements HasMedia
     public function path()
     {
         return $this->market->path() . "/places/{$this->slug}";
-    }
-
-   /**
-     * An advertiser belongs to a market.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function market()
-    {
-    	return $this->belongsTo(Market::class);
     }
 
       /**
@@ -179,6 +173,7 @@ class Advertiser extends Model implements HasMedia
      */
     public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
         $engine->addRule('\'', '');
+        $engine->addRule('’', '');
         return $engine;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
 use Milon\Barcode\DNS1D;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -10,6 +11,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class Coupon extends Model implements HasMedia
 {
 	use HasMediaTrait;
+    use Marketable;
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -24,16 +26,6 @@ class Coupon extends Model implements HasMedia
      * @var array
      */
     protected $with = ['market', 'category', 'advertisers'];
-
-    /**
-     * A coupon belongs to a market.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function market()
-    {
-    	return $this->belongsTo(Market::class);
-    }
 
     /**
      * A coupon belongs to a category.

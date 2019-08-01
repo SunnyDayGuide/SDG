@@ -5,6 +5,7 @@ namespace App;
 use App\Market;
 use App\Recurrence;
 use App\Traits\Categoriable;
+use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -19,6 +20,7 @@ class Event extends Model implements HasMedia
 {
     use SoftDeletes;
     use Categoriable;
+    use Marketable;
     use HasTags;
     use HasMediaTrait;
 
@@ -82,16 +84,6 @@ class Event extends Model implements HasMedia
     public function scopeActive($query)
     {
         return $query->where('active', true);
-    }
-
-    /**
-     * An article belongs to a market.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function market()
-    {
-    	return $this->belongsTo(Market::class);
     }
 
     /**

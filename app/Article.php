@@ -9,6 +9,7 @@ use App\CustomTag;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
+use App\Traits\Marketable;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
@@ -27,6 +28,7 @@ class Article extends Model implements HasMedia
 {
     use SoftDeletes;
     use Categoriable;
+    use Marketable;
     use Sluggable;
     use HasTags;
     use HasMediaTrait;
@@ -137,16 +139,6 @@ class Article extends Model implements HasMedia
     public function splitContent($value)
     {
         return HtmlSplitter::class;
-    }
-
-    /**
-     * An article belongs to a market.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function market()
-    {
-    	return $this->belongsTo(Market::class);
     }
 
     /**
