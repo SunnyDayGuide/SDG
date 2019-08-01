@@ -2,13 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertiser;
 use App\Article;
 use App\Category;
+use App\Event;
 use App\Market;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Market $market)
+    {
+        $markets = Market::pluck('name', 'slug');
+        
+        $categories =  $market->navCategories;
+
+        return view('categories.index', compact('market', 'markets', 'categories'));
+    }
+
+    public function all()
+    {
+        $categories = Category::whereNull('parent_id')->get();
+        return view('categories.all', compact('categories'));
+    }
+
     /**
      * Show the Market Category Lead Page.
      *
@@ -23,24 +46,26 @@ class CategoryController extends Controller
 
         $subcategories = $category->children;
 
+        $categoryIds = $category->children()->pluck('id');
+        $categoryIds[] = $category->getKey();
+        // dd($categoryIds);
+
         // display the related articles
-        $articles = $category->articles()
-            ->where('market_id', $market->id)
+        $articles = Article::categorized($category)
+            ->marketed($market)
             ->take(3)->get();     
 
-        // TO-DO: display the related advertisers
-        $advertisers = $category->advertisers()
-            ->with('tags')
-            ->where('market_id', $market->id)
-            ->get();  
+        // display the related advertisers
+        $advertisers = Advertiser::categorized($category)
+            ->with('tags')->marketed($market)->get();
 
-        $premierAdvertisers = $category->advertisers()
-            ->where('market_id', $market->id)->premier()->get();
+        $premierAdvertisers = Advertiser::categorized($category)
+            ->with('tags')->marketed($market)
+            ->premier()->get();
 
         // TO-DO: display the related events
-        $events = $category->events()
-            ->with('tags')
-            ->where('market_id', $market->id)
+        $events = Event::categorized($category)
+            ->with('tags')->marketed($market)
             ->get();  
         
         //show the lead page
@@ -91,6 +116,5 @@ class CategoryController extends Controller
     {
         return $market->categories()->find($category->id);
     }
-
 
 }
