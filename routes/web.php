@@ -15,6 +15,8 @@ Auth::routes();
 
 // Home Page route
 Route::get('/', 'PageController@home')->name('home');
+Route::get('categories', 'CategoryController@all');
+Route::get('categories/{market}', 'CategoryController@index')->name('category-list');
 
 // Admin Dashboard Routes
 Route::prefix('admin')
@@ -51,6 +53,8 @@ Route::prefix('admin')
 Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
 
+    Route::get('trip-ideas', 'ArticleController@index')->name('articles');
+	Route::get('trip-ideas/search', 'ArticleController@search')->name('articles.search');
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
 	
