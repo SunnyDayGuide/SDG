@@ -9,6 +9,7 @@ use App\Category;
 use App\Market;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -51,9 +52,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Market $market, $type, Article $article)
+    public function show(Market $market, Article $article)
     {
-      $type = $article->convert_to_slug($article->articleType->name);
+      $type = Str::slug($article->articleType->name, '-');
+      // $type = $article->convert_to_slug($article->articleType->name);
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 

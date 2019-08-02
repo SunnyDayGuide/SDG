@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class ArticleType extends Model
 {
@@ -12,6 +13,16 @@ class ArticleType extends Model
      * @var array
      */
     protected $guarded = [];
+
+     /**
+     * Get the route key name.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
 
     /**

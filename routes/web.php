@@ -15,6 +15,8 @@ Auth::routes();
 
 // Home Page route
 Route::get('/', 'PageController@home')->name('home');
+
+// Temporary routes for generating category advertiser lists
 Route::get('categories', 'CategoryController@all');
 Route::get('categories/{market}', 'CategoryController@index')->name('category-list');
 
@@ -53,34 +55,46 @@ Route::prefix('admin')
 Route::prefix('destinations/{market}')->group(function () {
 	Route::get('/', 'MarketController@show')->name('market.home');
 
+	/*
+	|--------------------------------------------------------------------------
+	| Article Routes
+	|--------------------------------------------------------------------------
+	| Explicit here with article type slugs. If we add a new article type, we will need to add a new route
+	| If we change the article type's name, we should also update the route 
+	*/
     Route::get('trip-ideas', 'ArticleController@index')->name('articles');
 	Route::get('trip-ideas/search', 'ArticleController@search')->name('articles.search');
-	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
-	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
-	
-	Route::get('events', 'EventController@index')->name('events');
-	Route::get('coupons', 'CouponController@index')->name('coupons');
+	Route::get('trip-ideas/{article}', 'ArticleController@show')->name('articles.show');
+	Route::get('visitor-info/{article}', 'ArticleController@show')->name('articles.show');
+	Route::get('advertiser-spotlights/{article}', 'ArticleController@show')->name('articles.show');
 	Route::get('tide-charts', 'ArticleController@tideCharts')->name('tide-charts');
 
+	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
+	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');
+	// Route::patch('articles/{article}/rateno', 'ArticleRatingController@store')->name('articles.rate');
+	
+	// Other Page Routes
+	Route::get('events', 'EventController@index')->name('events');
+	Route::get('coupons', 'CouponController@index')->name('coupons');
+
+	// Lead Generating Routes
 	Route::get('vacation-guide', 'LeadController@create')->name('vacation-guide.create');
+	Route::get('vacation-guide/view', 'VacationGuideController@show')->name('vacation-guide.show');
 	Route::get('request-information', 'LeadController@create')->name('request-information.create');
+	Route::get('request-information/thanks', 'LeadController@show')->name('request-information.show');
 	Route::post('leads', 'LeadController@store')->name('leads.store');
 
-	Route::get('vacation-guide/view', 'VacationGuideController@show')->name('vacation-guide.show');
-	Route::get('request-information/thanks', 'LeadController@show')->name('request-information.show');
-
+	// Tag Routes
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 
+	// Advertiser Routes
 	Route::get('places/{advertiser}', 'AdvertiserController@show')->name('advertisers.show');
-
 	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
 	Route::get('places/{advertiser}/print/{coupon}', 'PrintController@singleCoupon')->name('print.single');
 
+	// Category Routes - leave last for parameters
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
-	Route::get('{category}/{subcategory}', 'CategoryController@subcategories')->name('subcategories.show');
-
-	Route::get('{type}/{article}', 'ArticleController@show')->name('articles.show');
-
+	Route::get('{category}/{subcategory}', 'SubcategoryController@show')->name('subcategories.show');
 
 });
 
