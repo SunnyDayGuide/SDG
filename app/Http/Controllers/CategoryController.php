@@ -42,74 +42,35 @@ class CategoryController extends Controller
     public function show(Market $market, Category $category)
     {
         // get the market category lead page info
-        $lead = $this->getMarketCategory($market, $category);
+        $page = $this->getMarketCategory($market, $category);
 
-        $subcategories = $category->children;
+        $subcategories = $category->children()->pluck('name', 'id');
 
         $categoryIds = $category->children()->pluck('id');
         $categoryIds[] = $category->getKey();
-        // dd($categoryIds);
 
         // display the related articles
         $articles = Article::categorized($category)
-            ->marketed($market)
+            ->where('market_id', $market->id)
             ->take(3)->get();     
 
         // display the related advertisers
         $advertisers = Advertiser::categorized($category)
-            ->with('tags')->marketed($market)->get();
+            ->where('market_id', $market->id)->get();
 
         $premierAdvertisers = Advertiser::categorized($category)
-            ->with('tags')->marketed($market)
+            ->with('tags')->where('market_id', $market->id)
             ->premier()->get();
-
-        // TO-DO: display the related events
-        $events = Event::categorized($category)
-            ->with('tags')->marketed($market)
-            ->get();  
-        
-        //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'lead', 'category', 'subcategories', 'premierAdvertisers'));
-    }
-
-     /**
-     * Show the Market SubCategory Page.
-     *
-     * @param  Market $market
-     * @param  Category $category
-     * @param  Category $subcategory
-     * @return \Illuminate\Http\Response
-     */
-    public function subcategories(Market $market, Category $category, $subcategory)
-    {
-        $subcategory = Category::where('slug', $subcategory)
-            ->where('parent_id', $category->id)
-            ->first();
-
-        // get the market category lead page info
-        $lead = $this->getMarketCategory($market, $category);
-
-        // display the related articles
-        $articles = $subcategory->articles()
-            ->with('tags')
-            ->where('market_id', $market->id)
-            ->get();     
-
-        // display the related advertisers
-        $advertisers = $subcategory->advertisers()
-            ->with('tags')
-            ->where('market_id', $market->id)
-            ->get();  
 
         // dd($advertisers);
 
-        $premierAdvertisers = $subcategory->advertisers()
-            ->where('market_id', $market->id)->premier()->get();
-
         // TO-DO: display the related events
+        $events = Event::categorized($category)
+            ->with('tags')->where('market_id', $market->id)
+            ->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'lead', 'category', 'subcategory', 'advertisers', 'premierAdvertisers'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers'));
     }
 
     protected function getMarketCategory(Market $market, Category $category)

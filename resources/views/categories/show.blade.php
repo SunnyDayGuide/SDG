@@ -4,11 +4,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1>{{ $lead->pivot->title }}</h1>
+				<h1>{{ $page->pivot->title }}</h1>
 				{{-- <h2>{{ $subcategory->name }}</h2> --}}
-				<img src="{{ asset($lead->pivot->image) }}" class="img-fluid" alt="{{ $lead->pivot->title }}">
+				<img src="{{ asset($page->pivot->image) }}" class="img-fluid" alt="{{ $page->pivot->title }}">
 				<div class="mt-4">
-					<p>{{ $lead->pivot->body }}</p>
+					<p>{{ $page->pivot->body }}</p>
 				</div>
 			</div>	
 		</div> <!-- End Row -->
