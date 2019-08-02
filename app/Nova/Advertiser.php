@@ -77,51 +77,51 @@ class Advertiser extends Resource
             BelongsTo::make('Display Level', 'level', 'App\Nova\Level'),
             Boolean::make('Active')->sortable(),
 
-            // Heading::make('Basic Info')->hideFromDetail(),
-            // Froala::make('Write Up', 'write_up')
-            //     ->rules('required'),
+            Heading::make('Basic Info')->hideFromDetail(),
+            Froala::make('Write Up', 'write_up')
+                ->rules('required'),
 
-            // Text::make('Toll Free Phone Number', 'toll_free')->hideFromIndex(),
+            Text::make('Toll Free Phone Number', 'toll_free')->hideFromIndex(),
 
-            // Tags::make('Tags')->hideFromIndex(),
+            Tags::make('Tags')->hideFromIndex(),
 
-            // Heading::make('URLs'),
-            // Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
-            // Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
-            // Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
-            // Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
+            Heading::make('URLs'),
+            Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
+            Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
+            Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
+            Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
 
-            // Heading::make('Social Media'),
-            // Text::make('Facebook')->rules('nullable')->hideFromIndex(),
-            // Text::make('Twitter')->rules('nullable')->hideFromIndex(),
-            // Text::make('Instagram')->rules('nullable')->hideFromIndex(),
-            // Text::make('YouTube', 'youtube')->rules('nullable')->hideFromIndex(),
-            // Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
+            Heading::make('Social Media'),
+            Text::make('Facebook')->rules('nullable')->hideFromIndex(),
+            Text::make('Twitter')->rules('nullable')->hideFromIndex(),
+            Text::make('Instagram')->rules('nullable')->hideFromIndex(),
+            Text::make('YouTube', 'youtube')->rules('nullable')->hideFromIndex(),
+            Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
 
-            // Heading::make('Images'),
-            // BelongsTo::make('Logo')->searchable(), 
+            Heading::make('Images'),
+            BelongsTo::make('Logo')->searchable(), 
 
-            // Images::make('Slider Images', 'slider')
-            //     ->customPropertiesFields([
-            //             Text::make('Credit'),
-            //             Textarea::make('Caption'),
-            //         ])
-            //     ->conversion('full')
-            //     ->conversionOnView('card')
-            //     ->thumbnail('sm-card')
-            //     ->multiple()
-            //     ->fullSize()    
-            //     ->hideFromIndex(),
+            Images::make('Slider Images', 'slider')
+                ->customPropertiesFields([
+                        Text::make('Credit'),
+                        Textarea::make('Caption'),
+                    ])
+                ->conversion('full')
+                ->conversionOnView('card')
+                ->thumbnail('sm-card')
+                ->multiple()
+                ->fullSize()    
+                ->hideFromIndex(),
 
-            // new Panel('Business Hours', $this->hoursFields()),
+            new Panel('Business Hours', $this->hoursFields()),
 
-            // HasMany::make('Locations'),
+            HasMany::make('Locations'),
             MorphToMany::make('Categories'),
-            // HasMany::make('Coupons'),
-            // HasMany::make('Ads'),
-            // HasMany::make('Menus'),
-            // HasMany::make('Articles'),
-            // HasMany::make('Events'),
+            HasMany::make('Coupons'),
+            HasMany::make('Ads'),
+            HasMany::make('Menus'),
+            HasMany::make('Articles'),
+            HasMany::make('Events'),
         ];
     }
 
