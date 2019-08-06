@@ -19,8 +19,6 @@ class AdvertiserController extends Controller
      */
     public function show(Market $market, Advertiser $advertiser)
     {
-        // $advertiser = Advertiser::with('categories.parent')->findOrFail($advertiser->id);
-
         // $logo = $advertiser->getFirstMedia('logo');
         if ($advertiser->logo) {
             $logo = $advertiser->logo->getFirstMedia('logo');
@@ -31,16 +29,7 @@ class AdvertiserController extends Controller
         $locations = $advertiser->locations;
         $key = env('GOOGLE_MAP_API_KEY');
 
-        $subcategories = $advertiser->subcategories;
-        $supercategories = $advertiser->supercategories;
-
-        // $subcategories = $advertiser->subcategories->groupBy(function($item) {
-        //     return $item->parent->name;
-        // });
-
-        $subcategories = $advertiser->subcategories()->get()->groupBy('parent_id');
-
-        $categories = $advertiser->categories->groupBy('parent_id');
+        $categories = $advertiser->subcategories()->get()->groupBy('parent_id');
 
         // for use in map icons
         $primaryCategory = $advertiser->supercategories()
@@ -56,7 +45,7 @@ class AdvertiserController extends Controller
         $ads = $advertiser->ads;
         $menus = $advertiser->menus;
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus', 'categories'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'categories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus'));
     }
 
     public function hasHours($openingHours)

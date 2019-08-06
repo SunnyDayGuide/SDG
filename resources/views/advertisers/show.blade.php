@@ -80,11 +80,11 @@
 
 				<!-- Category Breadcrumbs -->
 				<div class="d-flex flex-wrap align-items-baseline justify-content-end mb-2 mb-md-3">
-					@foreach ($subcategories as $parent_id => $subcategories_list)
-					@if($subcategories_list->first()->parent)
+					@foreach ($categories as $parent_id => $subcategories)
+					@if($subcategories->first()->parent)
 					<div class="mb-1 mb-md-0 ml-md-2">
-						<a href="{{ $market->path().'/'.$subcategories_list->first()->parent->slug }}" class="text-decoration-none advertiser-cat mr-1">{{ $subcategories_list->first()->parent->name }}</a>
-						@foreach ($subcategories_list as $subcategory)
+						<a href="{{ $market->path().'/'.$subcategories->first()->parent->slug }}" class="text-decoration-none advertiser-cat mr-1">{{ $subcategories->first()->parent->name }}</a>
+						@foreach ($subcategories as $subcategory)
 						<a href="{{ $market->path().'/'.$subcategory->parent->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a>{{ $loop->last ? '' : ' / ' }}
 						@endforeach
 					</div>
