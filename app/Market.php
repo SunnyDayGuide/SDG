@@ -88,9 +88,17 @@ class Market extends Model implements HasMedia
         return $this->hasMany(Page::class);
     }
 
+    // function categories() 
+    // {
+    //     return $this->belongsToMany(Category::class, 'market_category')
+    //     ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
+    //     ->withTimestamps();
+    // }
+
     function categories() 
     {
         return $this->belongsToMany(Category::class, 'market_category')
+        ->using('\App\MarketCategory')
         ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
         ->withTimestamps();
     }

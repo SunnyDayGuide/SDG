@@ -76,6 +76,7 @@ class Category extends Model
    public function markets() 
    {
         return $this->belongsToMany(Market::class, 'market_category')
+        ->using('\App\MarketCategory')
         ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
         ->withTimestamps();
     }
