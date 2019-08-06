@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Category;
+use App\Market;
 use Illuminate\Database\Eloquent\Builder;
 
 trait Categoriable {
@@ -45,11 +46,12 @@ trait Categoriable {
     }
 
     /**
-     * A recursive scope to include all models that are related to a parent category via its children
+     * A recursive scope to include all models in a market that are related to a category via its children
      * ie: Activities list includes all Act subcats without having to attach the Act category to the model
+     * This also works for subcategories! 
      */
-    public function scopeCategorized($query, Category $category=null) {
-        if ( is_null($category) ) return $query->with('categories');
+        public function scopeCategorized($query, Category $category=null, Market $market=null) {
+        if ( is_null($category) || is_null($market) ) return $query->with('categories', 'market');
 
         // get subcat ids
         $categoryIds = $category->children()->pluck('id');
@@ -57,7 +59,8 @@ trait Categoriable {
         // add current cat id to the array
         $categoryIds[] = $category->getKey();
 
-        return $this->whereHas('categories', function (Builder $query) use ($categoryIds) {
+        return $this->where('market_id', $market->id)
+            ->whereHas('categories', function (Builder $query) use ($categoryIds) {
                 $query->whereIn('category_id', $categoryIds);
             });
     }

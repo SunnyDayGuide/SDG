@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Advertiser;
+use App\Article;
 use App\Category;
+use App\Event;
 use App\Market;
 use Illuminate\Http\Request;
 
@@ -26,26 +29,21 @@ class SubcategoryController extends Controller
         $page = $this->getMarketCategory($market, $category);
 
         // display the related articles
-        $articles = $subcategory->articles()
-            ->with('tags')
-            ->where('market_id', $market->id)
-            ->get();     
+        $articles = Article::categorized($subcategory, $market)
+            ->take(3)->get();      
 
         // display the related advertisers
-        $advertisers = $subcategory->advertisers()
-            ->with('tags')
-            ->where('market_id', $market->id)
-            ->get();  
+        $advertisers = Advertiser::categorized($subcategory, $market)->get();  
 
-        // dd($advertisers);
-
-        $premierAdvertisers = $subcategory->advertisers()
-            ->where('market_id', $market->id)->premier()->get();
+        $premierAdvertisers = Advertiser::categorized($subcategory, $market)
+            ->with('tags')->premier()->get();
 
         // TO-DO: display the related events
+        $events = Event::categorized($subcategory, $market)
+            ->with('tags')->get();
         
         //show the subcategory page
-        return view('categories.show', compact('market', 'articles', 'page', 'category', 'subcategory', 'advertisers', 'premierAdvertisers'));
+        return view('categories.show', compact('market', 'articles', 'page', 'category', 'subcategory', 'advertisers', 'premierAdvertisers', 'events'));
     }
 
     protected function getMarketCategory(Market $market, Category $category)

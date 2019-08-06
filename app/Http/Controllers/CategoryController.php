@@ -50,24 +50,18 @@ class CategoryController extends Controller
         $categoryIds[] = $category->getKey();
 
         // display the related articles
-        $articles = Article::categorized($category)
-            ->where('market_id', $market->id)
+        $articles = Article::categorized($category, $market)
             ->take(3)->get();     
 
         // display the related advertisers
-        $advertisers = Advertiser::categorized($category)
-            ->where('market_id', $market->id)->get();
+        $advertisers = Advertiser::categorized($category, $market)->get();
 
-        $premierAdvertisers = Advertiser::categorized($category)
-            ->with('tags')->where('market_id', $market->id)
-            ->premier()->get();
+        $premierAdvertisers = Advertiser::categorized($category, $market)
+            ->with('tags')->premier()->get();
 
-        // dd($advertisers);
-
-        // TO-DO: display the related events
-        $events = Event::categorized($category)
-            ->with('tags')->where('market_id', $market->id)
-            ->get();  
+        // display the related events
+        $events = Event::categorized($category, $market)
+            ->with('tags')->get();  
         
         //show the lead page
         return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers'));
