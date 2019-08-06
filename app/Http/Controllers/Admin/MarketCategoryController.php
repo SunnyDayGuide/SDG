@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Market;
-use App\Category;
+use App\MarketCategory;
+use Illuminate\Http\Request;
 use Storage;
 
 class MarketCategoryController extends Controller
@@ -65,6 +66,10 @@ class MarketCategoryController extends Controller
         ];
 
         $market->categories()->attach($categoryId, $attributes);
+
+        $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
+
+        $marketCategory->addMedia(request()->file('image'))->toMediaCollection('slider');
 
         return redirect()->route('admin.markets.edit', $market->id);
     }
@@ -126,6 +131,10 @@ class MarketCategoryController extends Controller
         ];
 
         $market->categories()->updateExistingPivot($categoryId, $attributes);
+
+        $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
+
+        $marketCategory->addMedia(request()->file('image'))->toMediaCollection('slider');
 
         return redirect()->route('admin.markets.edit', $market->id);
     }

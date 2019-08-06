@@ -7,6 +7,7 @@ use App\Article;
 use App\Category;
 use App\Event;
 use App\Market;
+use App\MarketCategory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,11 @@ class CategoryController extends Controller
     public function show(Market $market, Category $category)
     {
         // get the market category lead page info
-        $page = $this->getMarketCategory($market, $category);
+        $page = MarketCategory::where('category_id', $category->id)->where('market_id', $market->id)->first();
+
+        $image = $page->getFirstMedia('slider');
+
+        // $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
 
         $subcategories = $category->children()->pluck('name', 'id');
 
@@ -64,12 +69,13 @@ class CategoryController extends Controller
             ->with('tags')->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'image'));
     }
 
     protected function getMarketCategory(Market $market, Category $category)
     {
-        return $market->categories()->find($category->id);
+        return MarketCategory::where('category_id', $category->id)->where('market_id', $market->id)->first();
+        // return $market->categories()->find($category->id);
     }
 
 }
