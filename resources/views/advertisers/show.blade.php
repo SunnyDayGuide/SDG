@@ -23,41 +23,43 @@
 								<a class="btn btn-advertiser text-white mr-1" href="#coupons" role="button">Coupons</a>
 								@endif
 								@if($advertiser->website_url)
-									<a class="btn btn-advertiser text-white" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
+								<a class="btn btn-advertiser text-white" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
 								@endif
 								@if($advertiser->ticket_url)
-									<a class="btn btn-advertiser text-white" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
+								<a class="btn btn-advertiser text-white" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
 								@endif
 								@if($advertiser->reservation_url)
-									<a class="btn btn-advertiser text-white" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
+								<a class="btn btn-advertiser text-white" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
 								@endif
 								@if($advertiser->booking_url)
-									<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
+								<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 								@endif
 							</div>
 
 							<div class="social">
 								@if($advertiser->facebook)
-									<a href="{{ $advertiser->facebook }}" target="_blank" class="rounded-circle bg-light text-white social-item fb" aria-label="View {{ $advertiser->name }} Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+								<a href="{{ $advertiser->facebook }}" target="_blank" class="rounded-circle bg-light text-white social-item fb" aria-label="View {{ $advertiser->name }} Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->instagram)
-									<a href="{{ $advertiser->instagram }}" target="_blank" class="rounded-circle bg-light text-white social-item ig" aria-label="View {{ $advertiser->name }} Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+								<a href="{{ $advertiser->instagram }}" target="_blank" class="rounded-circle bg-light text-white social-item ig" aria-label="View {{ $advertiser->name }} Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->twitter)
-									<a href="{{ $advertiser->twitter }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Twitter feed"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+								<a href="{{ $advertiser->twitter }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Twitter feed"><i class="fab fa-twitter" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->youtube)
-									<a href="{{ $advertiser->youtube }}" target="_blank" class="rounded-circle bg-light text-white social-item yt" aria-label="View {{ $advertiser->name }} YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+								<a href="{{ $advertiser->youtube }}" target="_blank" class="rounded-circle bg-light text-white social-item yt" aria-label="View {{ $advertiser->name }} YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
 								@endif
 								@if($advertiser->pinterest)
-									<a href="{{ $advertiser->pinterest }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Pinterest feed"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+								<a href="{{ $advertiser->pinterest }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Pinterest feed"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
 								@endif
 							</div>
 
 						</div> <!-- End Web & social buttons -->
 						
 					</div>
+					@if($advertiser->logo)
 					<div class="w-25 ml-3 d-none d-md-block">{{ $logo }}</div>
+					@endif
 				</div>
 
 				<!-- Carousel -->
@@ -76,21 +78,18 @@
 					</div>
 				</div>
 
-				<!-- Categories / tags -->
+				<!-- Category Breadcrumbs -->
 				<div class="d-flex flex-wrap align-items-baseline justify-content-end mb-2 mb-md-3">
-						@foreach($supercategories as $category)
-						<div class="mb-1 mb-md-0 ml-md-2">
-							<a href="{{ $market->path().'/'.$category->slug }}" class="text-decoration-none advertiser-cat mr-1">{{ $category->name }}</a>
-							@foreach ($subcategories->where('parent_id', $category->id) as $subcategory)
-                                <a href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a>{{ $loop->last ? '' : ' / ' }}
-                            @endforeach
-                        </div>
+					@foreach ($subcategories as $parent_id => $subcategories_list)
+					@if($subcategories_list->first()->parent)
+					<div class="mb-1 mb-md-0 ml-md-2">
+						<a href="{{ $market->path().'/'.$subcategories_list->first()->parent->slug }}" class="text-decoration-none advertiser-cat mr-1">{{ $subcategories_list->first()->parent->name }}</a>
+						@foreach ($subcategories_list as $subcategory)
+						<a href="{{ $market->path().'/'.$subcategory->parent->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a>{{ $loop->last ? '' : ' / ' }}
 						@endforeach
-					{{-- <div class="ml-3">
-						@foreach($advertiser->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white ml-2 tags">{{ $tag->name }}</a>
-						@endforeach
-					</div> --}}
+					</div>
+					@endif
+					@endforeach
 				</div>
 				
 				<!-- Write Up -->
@@ -98,7 +97,7 @@
 
 				<div class="my-3">
 					@foreach($advertiser->tags as $tag)
-						<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
+					<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 					@endforeach
 				</div>
 
@@ -112,14 +111,14 @@
 							<li>Some amenity here</li>
 						</ul>
 						@foreach($ads as $ad)
-							<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+						<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 						@endforeach
 					</div>
 
 					<!-- Hours -->
 					<div class="col-md-6 mb-4 hours">
 						@if($hasHours)
-							@include('advertisers._hours')
+						@include('advertisers._hours')
 						@endif
 					</div>
 
@@ -134,7 +133,7 @@
 						</ul>
 
 						@foreach($menus as $menu)
-							<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+						<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 						@endforeach
 
 					</div>
@@ -162,20 +161,20 @@
 			<div class="col-md-8 offset-md-2 locations">
 				<div class="scrollarea">
 					@foreach($locations as $location)
-						<div class="d-md-flex justify-content-between border-bottom border-light my-4">
-							<div class="flex-grow-1 py-1">
-								<a href="{{ $location->directions }}" target="_blank" aria-label="Get directions to {{ $advertiser->name }}">
-									<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->full_address }}
-								</a>
-							</div>
-							@isset($location->telephone)
-							<div class="py-1">
-								<a href="tel:{{ $location->telephone }}" aria-label="Call {{ $advertiser->name }}">
-									<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->telephone }}
-								</a>
-							</div>
-							@endisset
+					<div class="d-md-flex justify-content-between border-bottom border-light my-4">
+						<div class="flex-grow-1 py-1">
+							<a href="{{ $location->directions }}" target="_blank" aria-label="Get directions to {{ $advertiser->name }}">
+								<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->full_address }}
+							</a>
 						</div>
+						@isset($location->telephone)
+						<div class="py-1">
+							<a href="tel:{{ $location->telephone }}" aria-label="Call {{ $advertiser->name }}">
+								<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->telephone }}
+							</a>
+						</div>
+						@endisset
+					</div>
 					@endforeach
 				</div>
 				@isset($advertiser->toll_free)

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Advertiser;
+use App\Category;
 use App\Market;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use DateTime;
 
 class AdvertiserController extends Controller
 {
@@ -18,15 +19,28 @@ class AdvertiserController extends Controller
      */
     public function show(Market $market, Advertiser $advertiser)
     {
+        // $advertiser = Advertiser::with('categories.parent')->findOrFail($advertiser->id);
+
         // $logo = $advertiser->getFirstMedia('logo');
-        $logo = $advertiser->logo->getFirstMedia('logo');
+        if ($advertiser->logo) {
+            $logo = $advertiser->logo->getFirstMedia('logo');
+        } else $logo = null;
+        
         $sliderImages = $advertiser->getMedia('slider');
 
         $locations = $advertiser->locations;
         $key = env('GOOGLE_MAP_API_KEY');
 
+        $subcategories = $advertiser->subcategories;
         $supercategories = $advertiser->supercategories;
-        $subcategories = $advertiser->categories->where('parent_id', !null);
+
+        // $subcategories = $advertiser->subcategories->groupBy(function($item) {
+        //     return $item->parent->name;
+        // });
+
+        $subcategories = $advertiser->subcategories()->get()->groupBy('parent_id');
+
+        $categories = $advertiser->categories->groupBy('parent_id');
 
         // for use in map icons
         $primaryCategory = $advertiser->supercategories()
@@ -42,7 +56,7 @@ class AdvertiserController extends Controller
         $ads = $advertiser->ads;
         $menus = $advertiser->menus;
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'supercategories', 'subcategories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus', 'categories'));
     }
 
     public function hasHours($openingHours)
