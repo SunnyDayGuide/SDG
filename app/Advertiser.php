@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -47,7 +48,7 @@ class Advertiser extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'media', 'articles', 'logo', 'level'];
+    protected $with = ['market', 'media'];
 
 	protected $dates = [
 	    'created_at',
@@ -222,7 +223,7 @@ class Advertiser extends Model implements HasMedia
 
             $this
                 ->addMediaConversion('card')
-                ->crop(Manipulations::CROP_CENTER, 522, 278)
+                ->crop(Manipulations::CROP_CENTER, 558, 297)
                 ->withResponsiveImages();
 
             $this
@@ -316,6 +317,18 @@ class Advertiser extends Model implements HasMedia
         $openingHours = (new OpeningHours)->fill($schedule);
 
         return $openingHours;
+    }
+
+    public function getBlurbAttribute()
+    {
+        $blurb = Str::replaceFirst('<p>', '', $this->write_up);
+        return Str::words($blurb, 10, '...');
+    }
+
+    public function getBlurbLongAttribute()
+    {
+        $blurb = Str::replaceFirst('<p>', '', $this->write_up);
+        return Str::limit($blurb, 125, '...');
     }
 
 

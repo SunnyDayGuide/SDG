@@ -94,6 +94,7 @@ Route::prefix('destinations/{market}')->group(function () {
 
 	// Category Routes - leave last for parameters
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
+	Route::get('{category}/search', 'CategoryController@search')->name('categories.search');
 	Route::get('{category}/{subcategory}', 'SubcategoryController@show')->name('subcategories.show');
 
 });

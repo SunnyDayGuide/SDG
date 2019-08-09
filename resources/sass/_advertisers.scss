@@ -1,0 +1,51 @@
+.coupon-legend {
+	font-size: 1rem;
+}
+
+.coupon-icon {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: $advertisers;
+    text-align: right;
+    font-size: $h3-font-size;
+    line-height: 1;
+    font-weight: $font-weight-bold;
+}
+
+.filler-card {
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+.advertisers {
+	@include media-breakpoint-up(md) {
+	  .card-deck .card {
+	    margin-right: .75rem;
+	    margin-left: .75rem;
+	  }
+	}
+	.card {
+		// border: none;
+	}
+
+	.card-body, .card-footer {
+		padding: .75rem;
+	}
+
+	.card-text {
+		margin-bottom: 0;
+	}
+
+	.card-title, .card-title a {
+		color: $advertisers;
+		font-weight: $font-weight-bold;
+		font-size: 1.2rem;
+	}
+
+	.coupon-icon {
+	    top: 8px;
+	    right: 0;
+	    font-size: $h4-font-size;
+	}
+}

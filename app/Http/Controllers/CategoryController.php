@@ -45,6 +45,7 @@ class CategoryController extends Controller
         // get the market category lead page info
         $page = MarketCategory::where('category_id', $category->id)->where('market_id', $market->id)->first();
 
+        $slides = $page->getMedia('slider');
         $image = $page->getFirstMedia('slider');
 
         // $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
@@ -69,7 +70,33 @@ class CategoryController extends Controller
             ->with('tags')->get();  
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'image'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'slides', 'image'));
+    }
+
+    public function search(Request $request, Market $market, Category $category)
+    {
+      $page = $market->pages()->where('slug', 'articles')->first();
+
+      $featured = $this->getArticles($market)
+      ->where('featured', true)
+      ->latest('publish_date')
+      ->get();
+
+      if ($request->has('q')) {
+        $search = request('q');
+
+        $articles = Article::search($search)
+        ->get();
+
+        if (request()->expectsJson()) {
+          return $articles;
+        }
+      }    
+
+      $articles = $articles->where('market_id', $market->id);
+
+      return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
+
     }
 
     protected function getMarketCategory(Market $market, Category $category)

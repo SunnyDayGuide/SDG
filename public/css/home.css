@@ -33,7 +33,7 @@ header,
 
 .home-nav {
   background-color: #154270;
-  border-bottom: 8px solid #B5D45F;
+  border-bottom: 8px solid #add33b;
 }
 
 .home-nav .nav-link {
@@ -46,7 +46,7 @@ header,
 }
 
 .home-nav .dropdown-menu {
-  background-color: #B5D45F;
+  background-color: #add33b;
   width: 100%;
   border-radius: 0;
   border: none;
@@ -66,7 +66,7 @@ header,
 .home-nav .dropdown-item:focus {
   color: #154270;
   text-decoration: none;
-  background-color: #d1e49b;
+  background-color: #d5e99b;
   font-weight: 700;
 }
 

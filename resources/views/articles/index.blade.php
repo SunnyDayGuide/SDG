@@ -9,7 +9,7 @@
 
 @section('content')
 
-@include('partials._search')
+@include('articles._search')
 
 <div class="container mt-5">
 
