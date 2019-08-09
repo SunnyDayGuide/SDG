@@ -128,9 +128,9 @@ class Market extends Resource
             BelongsTo::make('Brand')->hideFromIndex(),
 
             BelongsToMany::make('Categories')
-                ->fields(function ($model) {
-                    $market = $this->slug;
-                    $imagePath = 'images/' . $market . '/leads';
+                ->fields(function () {
+                    // $market = $this->slug;
+                    // $imagePath = 'images/' . $market . '/leads';
 
                     return [
                         Text::make('Title')
@@ -138,12 +138,24 @@ class Market extends Resource
 
                         Trix::make('Body'),
 
-                        Image::make('Image')
-                            ->disk('public')
-                            ->path($imagePath)
-                            ->storeAs(function (Request $request) {
-                                return $request->image->getClientOriginalName();
-                            }),
+                        Images::make('Slider Images', 'slider')
+                            ->customPropertiesFields([
+                                    Text::make('Credit'),
+                                    Textarea::make('Caption'),
+                                ])
+                            ->conversion('full')
+                            ->conversionOnView('card')
+                            ->thumbnail('sm-card')
+                            ->multiple()
+                            ->fullSize()    
+                            ->hideFromIndex(),
+
+                        // Image::make('Image')
+                        //     ->disk('public')
+                        //     ->path($imagePath)
+                        //     ->storeAs(function (Request $request) {
+                        //         return $request->image->getClientOriginalName();
+                        //     }),
 
                         Textarea::make('Meta Title')
                             ->withMeta(['extraAttributes' => [
