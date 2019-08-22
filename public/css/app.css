@@ -11885,6 +11885,28 @@ a.text-editorial-lt:focus {
   color: #154270;
 }
 
+.weather {
+  font-weight: 400;
+  text-align: center;
+  color: #fff;
+  font-size: 1.75rem;
+}
+
+.weather .city {
+  font-size: 1rem;
+}
+
+.weather .temp .wi-degrees {
+  font-size: 2rem;
+  line-height: 2;
+  padding-left: 0.05rem;
+}
+
+.icon {
+  float: left;
+  margin-right: 0.5rem;
+}
+
 #branding {
   height: 60px;
   display: -webkit-flex;
@@ -12037,6 +12059,83 @@ a.text-editorial-lt:focus {
 
 .nav-market .cities {
   font-size: 0.9rem;
+}
+
+.mobile-nav .no-sub {
+  margin-left: 22px;
+}
+
+.mobile-nav .dropdown-toggle::after {
+  display: none;
+}
+
+.mobile-nav .dropdown-toggle::before {
+  border: 0.125rem solid currentColor;
+  border-top: 0;
+  border-left: 0;
+  content: "";
+  display: inline-block;
+  height: 0.75rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 0.75rem;
+  margin-right: 0.5rem;
+  vertical-align: 0.25rem;
+}
+
+.mobile-nav .show .dropdown-toggle::before {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+  vertical-align: -0.1rem;
+}
+
+.mobile-nav .menu-group-primary > .dropdown > .dropdown-toggle {
+  padding-bottom: 0.75rem;
+  padding-top: 0.75rem;
+}
+
+.mobile-nav .dropdown-toggle:not([aria-expanded=true])::after {
+  background-color: #fff;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 0.0625rem;
+  left: 1.125rem;
+  right: -2rem;
+  position: absolute;
+  border: none;
+  margin-left: 0;
+}
+
+.mobile-nav .dropdown-menu {
+  padding: 0.5rem 0;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #bfdaf0;
+  text-align: left;
+  list-style: none;
+  background-color: #11355b;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.mobile-nav .dropdown-menu .dropdown-item {
+  color: #bfdaf0;
+}
+
+.mobile-nav .dropdown-menu .category-home {
+  padding-left: 0.75rem;
+}
+
+.mobile-nav .dropdown-menu .subcategory-item {
+  padding-left: 2.5rem;
+}
+
+.mobile-nav .menu-item-title {
+  font-size: 1.35rem;
 }
 
 h1 {
