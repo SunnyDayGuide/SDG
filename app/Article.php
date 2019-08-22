@@ -280,13 +280,14 @@ class Article extends Model implements HasMedia
         ];
     }
 
-    /**
+     /**
      * @param \Cocur\Slugify\Slugify $engine
      * @param string $attribute
      * @return \Cocur\Slugify\Slugify
      */
     public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
         $engine->addRule('\'', '');
+        $engine->addRule('’', '');
         return $engine;
     }
 
