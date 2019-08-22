@@ -16,6 +16,29 @@
 	}
 }
 
+.weather {
+	font-weight: $font-weight-normal;
+	text-align: center;
+    color: $white;
+    font-size: 1.75rem;
+
+    .city {
+    	font-size: 1rem;
+    }
+
+    .temp .wi-degrees {
+		font-size: 2rem;
+		line-height: 2;
+		padding-left: .05rem;
+    }
+
+}
+
+.icon {
+	float: left;
+    margin-right: .5rem;
+}
+
 #branding {
 	height: 60px;
 	display: flex;
@@ -133,8 +156,6 @@
 		}
 	}
 
-
-
 }
 
 // Top Bar
@@ -165,5 +186,87 @@
 	.cities {
 		font-size: .9rem;
 	}
+}
+
+// Mobile Only
+.mobile-nav {
+	.no-sub {
+		margin-left: 22px;
+	}
+
+	.dropdown-toggle::after {
+	    display: none;
+	}
+
+	.dropdown-toggle::before {
+	    border: 0.125rem solid currentColor;
+	    border-top: 0;
+	    border-left: 0;
+	    content: '';
+	    display: inline-block;
+	    height: 0.75rem;
+	    -webkit-transform: rotate(45deg);
+	    transform: rotate(45deg);
+	    width: 0.75rem;
+	    margin-right: .5rem;
+	    vertical-align: .25rem;
+	}
+
+	.show .dropdown-toggle::before {
+		transform: rotate(-135deg);
+		vertical-align: -.1rem;
+	}
+
+	.menu-group-primary>.dropdown>.dropdown-toggle {
+	    padding-bottom: .75rem;
+	    padding-top: .75rem;
+	}
+
+	.dropdown-toggle:not([aria-expanded='true'])::after {
+	    background-color: $white;
+	    bottom: 0;
+	    content: '';
+	    display: block;
+	    height: 0.0625rem;
+	    left: 1.125rem;
+	    right: -2rem;
+	    position: absolute;
+	    border: none;
+	    margin-left: 0;
+	}
+
+	.dropdown-menu {
+	    padding: 0.5rem 0;
+	    margin-left: -1rem;
+	    margin-right: -1rem;
+	    margin-top: 0;
+	    font-size: 1.25rem;
+	    color: $blue-light;
+	    text-align: left;
+	    list-style: none;
+	    background-color: darken($primary, 5);
+	    border: none;
+	    border-radius: 0;
+	    overflow: hidden;
+
+	    .dropdown-item {
+	    	color: $blue-light;
+	    	// padding-left: 1rem;
+	    }
+
+	    .category-home {
+			padding-left: .75rem;
+		}
+
+		.subcategory-item {
+			padding-left: 2.5rem;
+		}
+	}
+
+	.menu-item-title {
+		font-size: 1.35rem;
+	}
+
+
 }
 

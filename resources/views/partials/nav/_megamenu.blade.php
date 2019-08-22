@@ -1,4 +1,4 @@
-<li class="nav-item dropdown megamenu">
+<li class="nav-item dropdown megamenu px-3">
 	<a class="nav-link dropdown-toggle" id="megamenu" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Plan Your Trip</a>
 	<div aria-labelledby="megamenu" class="dropdown-menu border-0 p-0 m-0">
 		<div class="container">

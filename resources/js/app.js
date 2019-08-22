@@ -19,7 +19,7 @@ require('selectize');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('nav-weather', require('./components/NavWeatherComponent.vue').default);
 
 const app = new Vue({
     el: '#app'

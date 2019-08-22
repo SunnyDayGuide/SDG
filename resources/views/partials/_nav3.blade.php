@@ -41,35 +41,29 @@
                     <!-- Megamenu-->
                     @include('partials.nav._megamenu')
 
-                    <li class="nav-item">
+                    <li class="nav-item px-3">
                         <a class="nav-link" href="{{ route('coupons', $market) }}">Coupons</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item px-3">
                         <a class="nav-link" href="{{ route('events', $market) }}">Events</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item px-3">
                         <a class="nav-link" href="{{ route('articles', $market) }}">Trip Ideas</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Weather Widget</a>
-                    </li>
-
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto d-none d-md-flex">
+                    <nav-weather weather-city="{{ $market->weatherId }}"></nav-weather>
+
                     <li class="align-self-center bucket-list">
                         <a href="#">Bucket List</a>
                     </li>
                 </ul>
 
-                <!-- Mobile -->
-                <ul class="navbar-nav d-md-none">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('articles', $market) }}">Trip Ideas</a></li>
-                </ul>
+                @include('partials.nav._mobile')
 
             </div> <!-- End #navbarContent -->
 
