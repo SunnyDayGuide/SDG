@@ -192,7 +192,30 @@ class Market extends Model implements HasMedia
 
     }
 
+    public function getWeatherIdAttribute()
+    {
+        if ($this->code === 'BR') {
+            $weatherId = '4378219';
+        } elseif ($this->code === 'CG') {
+            $weatherId = '4793846';
+        } elseif ($this->code === 'GS') {
+            $weatherId = '4588718';
+        } elseif ($this->code === 'HO') {
+            $weatherId = '4458391';
+        } elseif ($this->code === 'OB') {
+            $weatherId = '4474505';
+        } elseif ($this->code === 'OC') {
+            $weatherId = '4364312';
+        } elseif ($this->code === 'SA') {
+            $weatherId = '4172131';
+        } elseif ($this->code === 'SC') {
+            $weatherId = '4172052';
+        } elseif ($this->code === 'SM') {
+            $weatherId = '4649251';
+        } else $weatherId = '4791259';   // VB
 
+        return $weatherId;
+    }
 
 
 }

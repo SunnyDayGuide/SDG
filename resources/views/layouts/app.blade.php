@@ -15,6 +15,7 @@
 
     <link href="{{ asset('vendor/slick/slick.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/slick/slick-theme.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/weather-icons/css/weather-icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
 
