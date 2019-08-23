@@ -32,10 +32,10 @@
 
 @include('categories._search')
 
-<div class="container mt-5">
+<div class="container my-3 my-md-5">
 	<div>
 		<div class="content">
-			<h1>{{ $page->title }}</h1>
+			<h1 class="display-4">{{ $market->name }} {{ $page->title }}</h1>
 			<div class="fr-view">{!! $page->body !!}</div>
 		</div>
 	</div> <!-- End Row -->
