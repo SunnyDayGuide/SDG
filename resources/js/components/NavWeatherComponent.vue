@@ -1,9 +1,9 @@
 <template>
     <li class="nav-item pr-4 weather">
-        <div class="condition align-middle">
+        <a v-bind:href="route" class="condition align-middle">
             <i v-bind:class="weather.icon" class="wi"></i>
             <span class="temp">{{ weather.temperature }}<i class="wi wi-degrees"></i></span>
-        </div>
+        </a>
     </li>
 </template>
 
@@ -15,7 +15,7 @@ export default {
         weatherCity: {
             type: String,
         },
-        marketName: {
+        route: {
             type: String,
         },
     },

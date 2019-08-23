@@ -33,7 +33,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     weatherCity: {
       type: String
     },
-    marketName: {
+    route: {
       type: String
     }
   },
@@ -111,14 +111,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", { staticClass: "nav-item pr-4 weather" }, [
-    _c("div", { staticClass: "condition align-middle" }, [
-      _c("i", { staticClass: "wi", class: _vm.weather.icon }),
-      _vm._v(" "),
-      _c("span", { staticClass: "temp" }, [
-        _vm._v(_vm._s(_vm.weather.temperature)),
-        _c("i", { staticClass: "wi wi-degrees" })
-      ])
-    ])
+    _c(
+      "a",
+      { staticClass: "condition align-middle", attrs: { href: _vm.route } },
+      [
+        _c("i", { staticClass: "wi", class: _vm.weather.icon }),
+        _vm._v(" "),
+        _c("span", { staticClass: "temp" }, [
+          _vm._v(_vm._s(_vm.weather.temperature)),
+          _c("i", { staticClass: "wi wi-degrees" })
+        ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

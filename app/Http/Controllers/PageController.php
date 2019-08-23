@@ -18,4 +18,16 @@ class PageController extends Controller
  
         return view('home', compact('markets', 'relatedArticles'));
     }
+
+    public function weather(Market $market)
+    {
+    	$page = $market->pages()->where('slug', 'weather')->first();
+    	$mainImage = $page->getFirstMedia('slider');
+
+    	$forecast = $market->getForecast();
+
+    	return view('pages.weather', compact('market', 'page', 'mainImage', 'forecast'));
+    }
+
 }
+

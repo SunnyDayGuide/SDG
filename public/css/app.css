@@ -11892,8 +11892,14 @@ a.text-editorial-lt:focus {
   font-size: 1.75rem;
 }
 
-.weather .city {
-  font-size: 1rem;
+.weather a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.weather a:hover {
+  text-decoration: none;
+  color: #add33b;
 }
 
 .weather .temp .wi-degrees {

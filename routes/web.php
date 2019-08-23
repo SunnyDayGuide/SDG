@@ -76,6 +76,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	// Other Page Routes
 	Route::get('events', 'EventController@index')->name('events');
 	Route::get('coupons', 'CouponController@index')->name('coupons');
+	Route::get('weather', 'PageController@weather')->name('weather');
 
 	// Lead Generating Routes
 	Route::get('vacation-guide', 'LeadController@create')->name('vacation-guide.create');

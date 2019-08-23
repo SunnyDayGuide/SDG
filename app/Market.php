@@ -164,7 +164,7 @@ class Market extends Model implements HasMedia
             ->with('tags');
     }
 
-        /**
+    /**
      * Register the media collections.
      *
      * @return array
@@ -192,6 +192,11 @@ class Market extends Model implements HasMedia
 
     }
 
+     /**
+     * Get the ID for the weather widget in the nav
+     *
+     * @return string
+     */
     public function getWeatherIdAttribute()
     {
         if ($this->code === 'BR') {
@@ -206,6 +211,8 @@ class Market extends Model implements HasMedia
             $weatherId = '4474505';
         } elseif ($this->code === 'OC') {
             $weatherId = '4364312';
+        } elseif ($this->code === 'RH') {
+            $weatherId = '4144284';
         } elseif ($this->code === 'SA') {
             $weatherId = '4172131';
         } elseif ($this->code === 'SC') {
@@ -215,6 +222,59 @@ class Market extends Model implements HasMedia
         } else $weatherId = '4791259';   // VB
 
         return $weatherId;
+    }
+
+    /**
+     * Get the code for the weather widget on the weather page
+     *
+     * @return string
+     */
+    public function getForecast()
+    {
+        if ($this->code === 'BR') {
+            $uid = "36d64n93d22";
+            $slug = "branson";
+            $data1 = "BRANSON";
+        } elseif ($this->code === 'CG') {
+            $uid = "37d27n76d71";
+            $slug = "williamsburg";
+            $data1 = "WILLIAMSBURG";
+        } elseif ($this->code === 'GS') {
+            $uid = "33d69n78d89";
+            $slug = "myrtle-beach";
+            $data1 = "MYRTLE BEACH";
+        } elseif ($this->code === 'HO') {
+            $uid = "35d22n75d69";
+            $slug = "hatteras";
+            $data1 = "HATTERAS";
+        } elseif ($this->code === 'OB') {
+            $uid = "35d96n75d62";
+            $slug = "nags-head";
+            $data1 = "NAGS HEAD";
+        } elseif ($this->code === 'OC') {
+            $uid = "38d34n75d08";
+            $slug = "ocean-city";
+            $data1 = "OCEAN CITY";
+        } elseif ($this->code === 'SA') {
+            $uid = "27d34n82d53";
+            $slug = "sarasota";
+            $data1 = "SARASOTA";
+        } elseif ($this->code === 'SC') {
+            $uid = "26d45n82d02";
+            $slug = "sanibel";
+            $data1 = "SANIBEL";
+        } elseif ($this->code === 'SM') {
+            $uid = "35d71n83d51";
+            $slug = "gatlinburg";
+            $data1 = "GATLINBURG";
+        } else { $uid = "36d85n75d98";
+            $slug = "virginia-beach";
+            $data1 = "VIRGINIA BEACH"; 
+            }
+
+        $forecast = "<a class='weatherwidget-io' href='https://forecast7.com/en/".$uid."/".$slug."/?unit=us' data-label_1='".$data1."' data-label_2='7-DAY FORECAST' data-font='Roboto' data-theme='pure' >CURRENT WEATHER AND FORECAST</a>";
+
+        return $forecast;
     }
 
 

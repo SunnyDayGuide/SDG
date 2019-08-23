@@ -56,7 +56,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto d-none d-md-flex">
-                    <nav-weather weather-city="{{ $market->weatherId }}"></nav-weather>
+                    <nav-weather weather-city="{{ $market->weatherId }}" route="{{ route('weather', $market) }}"></nav-weather>
 
                     <li class="align-self-center bucket-list">
                         <a href="#">Bucket List</a>
