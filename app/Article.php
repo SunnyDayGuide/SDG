@@ -131,7 +131,7 @@ class Article extends Model implements HasMedia
     }
 
     /**
-     * Splits the given value.
+     * Splits the given value. TURN THIS OFF TO UPDATE CATEGORIES FOR NOW
      *
      * @param  string $value
      * @return array
