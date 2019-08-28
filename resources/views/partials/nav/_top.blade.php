@@ -1,12 +1,14 @@
-<div class="navbar-top">
+<div class="navbar-top d-none d-md-block">
     <div class="container">
         <div class="d-flex align-items-center justify-content-between">
             <!-- Left Side Of Navbar -->
             <div class="nav-market">
-                <span class="market-name">{{ $market->name_long }}</span>
-                @if($market->cities)
-                <span class="cities d-none d-md-inline"> - {{ $market->cities }}</span> 
-                @endif
+                <a class="text-reset" href="{{ route('market.home', $market->slug) }}">
+                    <span class="market-name">{{ $market->name_long }}</span>
+                    @if($market->cities)
+                    <span class="cities d-none d-md-inline"> - {{ $market->cities }}</span> 
+                    @endif
+                </a>
             </div>
             
             <!-- Right Side Of Navbar -->
