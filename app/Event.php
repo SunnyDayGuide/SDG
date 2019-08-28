@@ -113,6 +113,11 @@ class Event extends Model implements HasMedia
 	                ->addMediaConversion('card')
 	                ->crop(Manipulations::CROP_CENTER, 246, 131)
 	                ->withResponsiveImages();
+
+                $this
+                    ->addMediaConversion('overlay-card')
+                    ->crop(Manipulations::CROP_CENTER, 275, 295)
+                    ->withResponsiveImages();
 	        });
 	}
 

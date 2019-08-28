@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Advertiser;
 use App\Market;
+use Illuminate\Http\Request;
 
 class MarketController extends Controller
 {
@@ -30,9 +31,24 @@ class MarketController extends Controller
      */
     public function show(Market $market)
     {
-        $articles = $market->getFeaturedArticles()->where('article_type_id', 1)->take(3)->get();
+        $sliderImages = $market->getMedia('home');
 
-        return view('markets.show', compact('market', 'articles'));
+        $premierAdvertisers = Advertiser::where('market_id', $market->id)
+            ->premier()->get();
+
+        // $articles = $market->getFeaturedArticles()->where('article_type_id', 1)->take(3)->get();
+        $articles = $market->articles()->featured()->tripIdeas()->take(3)->get();
+
+        $popularArticles = $market->articles()->orderBy('rating', 'desc')->skip(1)->take(3)->get();
+        $mostPopular = $market->articles()->orderBy('rating', 'desc')->first();
+
+        $latestArticles = $market->articles()->tripIdeas()->latest()->skip(1)->take(3)->get();
+        $latestArticle = $market->articles()->tripIdeas()->latest()->first();
+
+        $events = $market->events()->current()->active()->get();
+
+        // return view('markets.show', compact('market', 'sliderImages', 'articles'));
+        return view('markets.'.$market->code, compact('market', 'sliderImages', 'premierAdvertisers', 'latestArticles', 'latestArticle', 'events'));
     }
 
 }

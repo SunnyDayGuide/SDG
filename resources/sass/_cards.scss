@@ -1,11 +1,15 @@
-.card-title h5 {
-	font-size: 1.5rem;
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-title, .card-title a {
+    font-weight: $font-weight-bold;
 }
 
 .card-footer {
-  background-color: $card-bg;
-  border-top: none;
-  padding-top: 0;
+    background-color: $card-bg;
+    border-top: none;
+    padding-top: 0;
 }
 
 .overlay img {
@@ -20,6 +24,54 @@
 }
 
 .media-footer {
-	position: relative;
-	bottom: 0;
+    position: relative;
+    bottom: 0;
+}
+
+.card-article {
+    .card-title, .card-title a {
+        color: $editorial;
+    }
+}
+
+.card-advertiser {
+    .card-title, .card-title a {
+        color: $advertisers;
+    }
+}
+
+.primary-article {
+    .card-title {
+        font-size: 1.75rem;
+    }
+}
+
+.panel {
+    .card {
+        border: none;
+    }
+}
+
+.market-home {
+    .card {
+        border: none;
+    }
+    
+    @include media-breakpoint-down(sm) {
+        .card::after, .card-h::after {
+            content: "";
+            clear: both;
+            display: block;
+            height: 8px;
+            margin-top: 10px;
+            margin-left: -1rem;
+            margin-right: -1rem;
+            background: lighten($light, 15);
+            min-width: 416px;
+        }
+
+        .card-h {
+            margin-top: 20px;
+        }
+    }
 }
