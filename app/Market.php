@@ -188,6 +188,16 @@ class Market extends Model implements HasMedia
                 ->withResponsiveImages();
         });
 
+        $this
+        ->addMediaCollection('home')
+        ->registerMediaConversions(function (Media $media) {
+            
+            $this->addMediaConversion('full')
+                ->width(1440)
+                ->height(900)
+                ->withResponsiveImages();
+        });
+
         $this->addMediaCollection('navImage')->singleFile();
 
     }
