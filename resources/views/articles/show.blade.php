@@ -91,14 +91,14 @@
 	</section>  <!-- End Main Content -->
 
 	<!-- Premier Advertiser Section -->
-	<section class="panel premier-advertisers mt-5">
+	<section class="panel panel-advertisers mt-5">
 		<div class="container">
 
 			<div class="border-bottom border-white mb-3 w-100">
 				<h2>{{ $market->name }} Highlights</h2>
 			</div>
 
-			<div class="row article-cards">
+			<div class="row">
 				<div class="card-deck w-100 mx-md-0">
 					@foreach ($premierAdvertisers as $advertiser)
 						@include('panels._advertisers')
@@ -110,14 +110,14 @@
 	</section> <!-- End Premier Advertiser Section -->
 	
 	<!-- Related Articles Section -->
-	<section class="panel related-articles mt-5">
+	<section class="panel panel-articles mt-5">
 		<div class="container">
 
 			<div class="border-bottom border-white mb-3 w-100">
 				<h2>You May Also Be Interested In</h2>
 			</div>
 
-			<div class="row article-cards">
+			<div class="row">
 				<div class="card-deck w-100 mx-md-0">
 					@foreach ($relatedArticles as $relatedArticle)
 						@include('panels._articles')

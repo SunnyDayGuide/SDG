@@ -1,6 +1,6 @@
 @foreach ($articles as $article)
 <div class="col-lg-4 card-deck">
-	<div class="card mb-4">
+	<div class="card card-article mb-4">
 		<img class="card-img-top" src="{{ asset($article->image) }}" alt="">
 		<div class="card-body">
 			<h5 class="card-title">{{ $article->title }}</h2>

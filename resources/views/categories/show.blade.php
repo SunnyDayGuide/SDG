@@ -43,7 +43,7 @@
 
 
 @if(!$premierAdvertisers->isEmpty())
-<section id="premierAdvertisers" class="panel premier-advertisers mt-5">
+<section id="premierAdvertisers" class="panel panel-advertisers mt-5">
 	<div class="container">
 		<div class="d-md-flex justify-content-between border-bottom border-white mb-3">
 			<h2>Featured {{ $category->name }}</h2>
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 
-		<div class="row article-cards">
+		<div class="row">
 			<div class="card-deck w-100 mx-md-0">
 				@foreach ($premierAdvertisers as $premierAdvertiser)
 				@include('advertisers._card', ['item' => $premierAdvertiser, 'column' => 'col-md-6', 'profile' => 'full'])
@@ -126,7 +126,7 @@
 </section>
 
 <!-- Related Articles Section -->
-<section class="panel related-articles mt-5">
+<section class="panel panel-articles mt-5">
 	<div class="container">
 
 		<div class="border-bottom border-white mb-3 w-100">

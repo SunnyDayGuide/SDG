@@ -1,5 +1,5 @@
 <div class="{{ $column }} mb-md-4 mb-3 px-md-0">
-	<div class="card h-100 overlay">
+	<div class="card card-advertiser h-100 overlay">
 	@if(null !== $item->getFirstMedia('slider'))
 	<div class="card-img-top">
 		@include('partials._images', ['item' => $item, 'profile' => $profile])
