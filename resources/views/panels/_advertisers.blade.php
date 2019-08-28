@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-md-6 mb-md-4 mb-3 px-md-0">
 	<a href="{{ $advertiser->path() }}" class="overlay text-reset text-decoration-none">
-		<div class="card h-100">
+		<div class="card card-advertiser h-100">
 			@if(null !== $advertiser->getFirstMedia('slider'))
 			<div class="card-img-top">
 				@include('partials._images', ['item' => $advertiser])
@@ -8,8 +8,8 @@
 			@endif
 
 			<div class="card-body">
-				<h5 class="card-title">{{ $advertiser->title }}</h5>
-				<p class="card-text">{{ $advertiser->excerpt }}</p>
+				<h5 class="card-title">{{ $advertiser->name }}</h5>
+				<p class="card-text">{{ $advertiser->blurb }}</p>
 			</div>
 
 			@if ($advertiser->tags->count())

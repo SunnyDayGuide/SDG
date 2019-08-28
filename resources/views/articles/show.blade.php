@@ -100,9 +100,9 @@
 
 			<div class="row article-cards">
 				<div class="card-deck w-100 mx-md-0">
-					{{-- @foreach ($premierAdvertisers as $advertiser)
+					@foreach ($premierAdvertisers as $advertiser)
 						@include('panels._advertisers')
-					@endforeach --}}
+					@endforeach
 				</div> <!-- End Card Deck-->
 			</div> <!-- End Row-->
 
