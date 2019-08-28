@@ -58,8 +58,17 @@
                 <ul class="navbar-nav ml-auto d-none d-md-flex">
                     <nav-weather weather-city="{{ $market->weatherId }}" route="{{ route('weather', $market) }}"></nav-weather>
 
-                    <li class="align-self-center bucket-list">
-                        <a href="#">Bucket List</a>
+                    <li class="align-self-center bucket-list-container" style="display:block">
+                            <div class="bucket-list-wrapper">
+                                <div class="bucket-tab">
+                                    <a href="#" class="bucket-content text-reset text-decoration-none">
+                                        <div class="bucket-text text-center">Bucket List</div>
+                                        <div class="bucket-icon"><span class="bucket-items">45</span></div>
+
+                                    </a>
+                                </div>
+                                
+                            </div>
                     </li>
                 </ul>
 

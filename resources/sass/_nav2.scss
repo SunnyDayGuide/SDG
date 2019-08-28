@@ -4,45 +4,97 @@
 	padding-top: 0;
 	padding-bottom: 0;
 	// border-bottom: 8px solid $green;
-
-	.bucket-list {
-		background-color: $green;
-		height: 100%;
-		padding: 1rem;
-
-		.nav-link {
-			color: $primary;
-		}
+	
+	.nav-link {
+		color: $primary;
 	}
 }
+
+@include media-breakpoint-up(md) {
+	.bucket-list-container {
+		position: relative;
+		top: 0;
+		right: 0;
+		height: 78px;
+		overflow: visible;
+	}
+
+	.bucket-list-container .bucket-list-wrapper {
+		width: 100%;
+		height: 150px;
+		z-index: 1000;
+	}
+
+	.bucket-list-container .bucket-tab {
+		position: relative;
+		display: block;
+		width: 143px;
+		height: 150px;
+		text-align: center;
+		background: url("/images/main/bucket-tab.png") no-repeat center center;
+		-webkit-background-size: 100%, 100%;
+		background-size: 100%, 100%;
+		z-index: 500;
+		padding: 1rem;
+	}
+
+	.bucket-tab {
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.bucket-text {
+		color: $primary;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+	}
+
+	.bucket-icon {
+		background: url("/images/main/bucket-icon.svg") no-repeat center center;
+		width: 57px;
+		height: 64px;
+		position: absolute;
+		bottom: 35px;
+		left: 42px;
+	}
+
+	.bucket-items {
+		display: block;
+		color: $white;
+		font-weight: $font-weight-bold;
+		font-size: 1.5rem;
+		line-height: 3.75;
+	}
+}
+
 
 .weather {
 	font-weight: $font-weight-normal;
 	text-align: center;
-    color: $white;
-    font-size: 1.75rem;
+	color: $white;
+	font-size: 1.75rem;
 
-    a {
-    	text-decoration: none;
-    	color: $white;
-    }
+	a {
+		text-decoration: none;
+		color: $white;
+	}
 
-    a:hover {
-    	text-decoration: none;
-    	color: $green;
-    }
+	a:hover {
+		text-decoration: none;
+		color: $green;
+	}
 
-    .temp .wi-degrees {
+	.temp .wi-degrees {
 		font-size: 2rem;
 		line-height: 2;
 		padding-left: .05rem;
-    }
+	}
 
 }
 
 .icon {
 	float: left;
-    margin-right: .5rem;
+	margin-right: .5rem;
 }
 
 #branding {
@@ -103,10 +155,10 @@
 		}
 	}
 
-	 .megamenu-subheading {
+	.megamenu-subheading {
 		font-size: 1rem;
 		padding: .35rem 0;
-	 }
+	}
 
 	.dropdown-menu {
 		background: none;
@@ -175,17 +227,23 @@
 	}
 
 	.dropdown-item:hover, .dropdown-item:focus {
-	    color: $white;
-	    background-color: $green;
+		color: $white;
+		background-color: $green;
 	}
 }
 
 .nav-market {
 	font-family: $headings-font-family;
 	color: $primary;
-	font-weight: $font-weight-bold;
+
+	@include media-breakpoint-down(sm) {
+		color: $blue-light;
+		font-size: 1.25rem;
+		padding-top: .75rem;
+	}
 
 	.market-name {
+		font-weight: $font-weight-bold;
 		text-transform: uppercase;
 	}
 
@@ -196,26 +254,28 @@
 
 // Mobile Only
 .mobile-nav {
+	min-height: 100vh;
+	
 	.no-sub {
 		margin-left: 22px;
 	}
 
 	.dropdown-toggle::after {
-	    display: none;
+		display: none;
 	}
 
 	.dropdown-toggle::before {
-	    border: 0.125rem solid currentColor;
-	    border-top: 0;
-	    border-left: 0;
-	    content: '';
-	    display: inline-block;
-	    height: 0.75rem;
-	    -webkit-transform: rotate(45deg);
-	    transform: rotate(45deg);
-	    width: 0.75rem;
-	    margin-right: .5rem;
-	    vertical-align: .25rem;
+		border: 0.125rem solid currentColor;
+		border-top: 0;
+		border-left: 0;
+		content: '';
+		display: inline-block;
+		height: 0.75rem;
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+		width: 0.75rem;
+		margin-right: .5rem;
+		vertical-align: .25rem;
 	}
 
 	.show .dropdown-toggle::before {
@@ -224,49 +284,49 @@
 	}
 
 	.menu-group-primary>.dropdown>.dropdown-toggle {
-	    padding-bottom: .75rem;
-	    padding-top: .75rem;
+		padding-bottom: .75rem;
+		padding-top: .75rem;
 	}
 
 	.dropdown-toggle:not([aria-expanded='true'])::after {
-	    background-color: $white;
-	    bottom: 0;
-	    content: '';
-	    display: block;
-	    height: 0.0625rem;
-	    left: 1.125rem;
-	    right: -2rem;
-	    position: absolute;
-	    border: none;
-	    margin-left: 0;
+		background-color: $white;
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 0.0625rem;
+		left: 1.125rem;
+		right: -2rem;
+		position: absolute;
+		border: none;
+		margin-left: 0;
 	}
 
 	.dropdown-menu {
-	    padding: 0.5rem 0;
-	    margin-left: -1rem;
-	    margin-right: -1rem;
-	    margin-top: 0;
-	    font-size: 1.25rem;
-	    color: $blue-light;
-	    text-align: left;
-	    list-style: none;
-	    background-color: darken($primary, 5);
-	    border: none;
-	    border-radius: 0;
-	    overflow: hidden;
+		padding: 0.5rem 0;
+		margin-left: -1rem;
+		margin-right: -1rem;
+		margin-top: 0;
+		font-size: 1.25rem;
+		color: $blue-light;
+		text-align: left;
+		list-style: none;
+		background-color: darken($primary, 5);
+		border: none;
+		border-radius: 0;
+		overflow: hidden;
 
-	    .dropdown-item {
-	    	color: $blue-light;
+		.dropdown-item {
+			color: $blue-light;
 	    	// padding-left: 1rem;
 	    }
 
 	    .category-home {
-			padding-left: .75rem;
-		}
+	    	padding-left: .75rem;
+	    }
 
-		.subcategory-item {
-			padding-left: 2.5rem;
-		}
+	    .subcategory-item {
+	    	padding-left: 2.5rem;
+	    }
 	}
 
 	.menu-item-title {
