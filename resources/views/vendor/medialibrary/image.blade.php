@@ -1,1 +1,1 @@
-<img{!! $attributeString !!} src="{{ $media->getUrl($conversion) }}" alt="{{ $media->name }}" class="img-fluid">
+<img{!! $attributeString !!} src="{{ $media->getUrl($conversion) }}" alt="{{ $media->name }}">

@@ -1,0 +1,1 @@
+<img{!! $attributeString !!} class="img-fluid" srcset="{{ $media->getSrcset($conversion) }}" src="{{ $media->getUrl($conversion) }}" width="{{ $width }}">
