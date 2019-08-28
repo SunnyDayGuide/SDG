@@ -28,12 +28,14 @@ $primary: $navy;
 $editorial: $blue;
 $editorial-lt: $blue-light;
 $advertisers: $green;
+$advertisers-lt: $green-light;
 
 $theme-colors: (
   "editorial": $editorial,
   "advertiser": $advertisers,
   "highlight" : $highlight,
   "editorial-lt": $editorial-lt,
+  "advertisers-lt": $advertisers-lt,
 );
  
 // Body
