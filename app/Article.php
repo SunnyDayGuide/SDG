@@ -198,6 +198,17 @@ class Article extends Model implements HasMedia
         return $query->where('featured', true);
     }
 
+    /**
+     * Scope a query to only include Trip Idea articles.
+     *
+     * @param $market
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeTripIdeas($query)
+    {
+        return $query->where('article_type_id', 1);
+    }
+
 
     /**
      * Scope a query to only include articles of a given market.
