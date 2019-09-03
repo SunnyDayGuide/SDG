@@ -12424,6 +12424,14 @@ legend {
   opacity: 0.75;
 }
 
+.overlay-dark img {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.overlay-dark:hover img {
+  opacity: 0.25;
+}
+
 .media-footer {
   position: relative;
   bottom: 0;
