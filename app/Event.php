@@ -43,6 +43,7 @@ class Event extends Model implements HasMedia
         'rrule' => 'array',
         'dtstart' => 'datetime:Y-m-d',
         'until' => 'datetime:Y-m-d',
+        'start_time' => 'time:g:ia',
         // 'rrule->bysetpos' => 'array',
     ];
 
@@ -193,7 +194,5 @@ class Event extends Model implements HasMedia
 
         return $dates;
     }
-
-
 
 }
