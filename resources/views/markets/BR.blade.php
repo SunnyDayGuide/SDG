@@ -17,7 +17,7 @@
 				</div>
 
 				<div class="content mb-4">
-					<div class="fr-view">
+					<div>
 						<p>Welcome to Branson, Missouri! Everything you could want for a fabulous vacation can be found here—exciting activities, entertaining shows, gourmet meals, unique shopping opportunities, and even a dancing fountain.</p>
 						<p>The city is probably most famous for its many shows that are hosted in grand theaters with more seats available for spectators than in all of New York City. Bring your family and friends for a performance that will leave you laughing, singing, or even dancing in the aisles. You can choose to see magicians, comedians, concerts and tribute bands, or original acts and circus stunts.</p>
 						<p>But that’s not all Branson is famous for… Located in the foothills of the Ozarks and surrounded by Table Rock Lake and Lake Taneycomo, outdoor adventures await intrepid explorers. Ever visit a cave or go on a hunt for Bigfoot? Well, you can do that here! Maybe go hiking in the hills or zip-line over them—your choice! Plus there are many exciting things to do on the water including boat tours on yachts and paddleboats, paddleboarding, jet skiing, and so much more.</p>
@@ -29,7 +29,7 @@
 
 	</section>  <!-- End First Content -->
 
-	<!-- Categories Section -->
+	<!-- Featured Categories Section -->
 	<section class="my-3">
 		<h2 class="mb-0 font-weight-bold text-center bg-highlight text-white p-2">Discover {{ $market->name }} Blah blah blah</h2>
 		<div class="card-columns">
@@ -110,68 +110,17 @@
 
 	@include('banners._zone3')
 
-	<!-- Featured Section -->
-	<section class="my-3 my-md-5">
-		<h2>Featured Events</h2>
-
-		<div class="row no-gutters">
-
-			<div class="col-md-9">
-				<div class="row no-gutters">
-					@foreach($events as $event)
-					<div class="col-md-4 mx-0">
-						<div class="card overlay overlay-dark bg-dark text-white border-0">
-							@if(null !== $event->getFirstMedia('inset'))
-							@include('partials._images', ['collectionName' => 'inset', 'profile' => 'overlay-card', 'item' => $event])
-							@endif
-							<div class="card-img-overlay">
-								<p class="card-text">{{ $event->dateRange }}</p>
-								<h5 class="card-title">{{ $event->title }}</h5>
-
-								<p class="card-text"><i class="fas fa-map-marker-alt"></i> {{ $event->location }}</p>
-
-								@if($event->start_time)
-								<p class="card-text"><i class="far fa-clock"></i> {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->start_time)->format('g:ia') }}@if($event->end_time) - {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->end_time)->format('g:ia') }}@endif</p>
-								@endif
-
-							</div>
-						</div>
-					</div>
-					@endforeach
-				</div>
-			</div>
-
-			<div class="col-md-3">
-				<div class="bg-highlight h-100 p-2">
-					<p class="text-white">Calendar Here</p>
-					<a href="{{ route('events', $market) }}" class="btn btn-primary btn-nav mt-3">See All Events</a>
-				</div>
-			</div>
-
-		</div>
-	</section>
+	<!-- Featured Events Section -->
+	@include('markets._events')
+	<!-- End Featured Events Section -->
 
 </div>  <!-- End Container -->
 
 <!-- Premier Advertisers Section-->
 @if(!$premierAdvertisers->isEmpty())
-<section id="advSpotlights" class="panel panel-advertisers mt-5">
-	<div class="container">
-		<div class="border-bottom border-white mb-3 w-100">
-			<h2>Advertiser Spotlights</h2>
-		</div>
-
-		<div class="row">
-			<div class="card-deck w-100 mx-md-0 basic-slick">
-				@foreach ($premierAdvertisers as $advertiser)
-				@include('panels._advertisers')
-				@endforeach
-			</div> <!-- End Card Deck-->
-		</div> <!-- End Row-->
-
-	</div> 
-</section> 
-@endif  <!-- End Premier Advertisers Section-->
+@include('markets._advertisers')
+@endif  
+<!-- End Premier Advertisers Section-->
 
 
 @endsection
