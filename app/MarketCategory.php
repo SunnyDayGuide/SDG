@@ -20,6 +20,16 @@ class MarketCategory extends Pivot implements HasMedia
 	 */
 	public $incrementing = true;
 
+    public function market()
+    {
+        return $this->belongsTo('App\Market');
+    }
+    
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
 	 /**
      * Register the media collections.
      *

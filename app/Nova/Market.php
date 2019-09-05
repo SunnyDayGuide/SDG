@@ -127,54 +127,16 @@ class Market extends Resource
                 ->hideFromIndex(),
 
             BelongsTo::make('Brand')->hideFromIndex(),
-
-            BelongsToMany::make('Categories')
-                ->fields(function () {
-                    // $market = $this->slug;
-                    // $imagePath = 'images/' . $market . '/leads';
-
-                    return [
-                        Text::make('Title')
-                            ->rules('required', 'max:255'),
-
-                        Trix::make('Body'),
-
-                        Images::make('Slider Images', 'slider')
-                            ->customPropertiesFields([
-                                    Text::make('Credit'),
-                                    Textarea::make('Caption'),
-                                ])
-                            ->conversion('full')
-                            ->conversionOnView('card')
-                            ->thumbnail('sm-card')
-                            ->multiple()
-                            ->fullSize()    
-                            ->hideFromIndex(),
-
-                        // Image::make('Image')
-                        //     ->disk('public')
-                        //     ->path($imagePath)
-                        //     ->storeAs(function (Request $request) {
-                        //         return $request->image->getClientOriginalName();
-                        //     }),
-
-                        Textarea::make('Meta Title')
-                            ->withMeta(['extraAttributes' => [
-                                'placeholder' => 'Make it less than 60 characters']
-                            ]),
-
-                        Textarea::make('Meta Description')
-                            ->rules('max:200')
-                            ->withMeta(['extraAttributes' => [
-                                'placeholder' => 'Make it less than 200 characters']
-                            ]),
-                    ];
-                }),
-
-                HasMany::make('Articles'),
-
+            BelongsToMany::make('Categories'),
         ];
     }
+
+    /**
+     * The pagination per-page options configured for this resource.
+     *
+     * @return array
+     */
+    public static $perPageOptions = [50, 100, 150];
 
     /**
      * Get the cards available for the request.
