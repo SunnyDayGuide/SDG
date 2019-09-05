@@ -1,7 +1,7 @@
 <?php
 
 return [
-    /*
+   /*
     |--------------------------------------------------------------------------
     | Default Editor Options
     |--------------------------------------------------------------------------
@@ -14,21 +14,37 @@ return [
     */
 
     'options' => [
-        // 'key' => env('FROALA_KEY'),
+        //'key' => env('FROALA_KEY'),
+        //'iconsTemplate' => 'font_awesome_5',
+        //'tuiEnable' => true,
 
         'toolbarButtons' => [
-            'html', '|', 'paragraphFormat', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', 
-            '|', 
-            'fontSize', 'color', 'inlineClass', 'inlineStyle', 
-            '|', 
-            'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote',
-            '-', 'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', 
-            '|', 
-            'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', 
-            '|', 
-            'print', 'help',  
-            '|', 
-            'undo', 'redo', 'fullscreen', ],
+            [
+                'paragraphFormat', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript'
+            ],
+            [
+                'fontSize', 'color', 'inlineClass', 'inlineStyle'
+            ], 
+            [
+                'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote'
+            ],
+            [
+                'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable'
+            ], 
+            [
+                'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting'
+            ], 
+            [
+                'print', 'help'
+            ],  
+            [
+                'undo', 'redo', 'fullscreen'
+            ],
+            [
+                'html'
+            ]
+        ],
+
         'inlineStyles' => [
             'text-advertiser' => 'color: #B5D45F;',
         ]
