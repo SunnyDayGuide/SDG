@@ -211,6 +211,8 @@
 			top: calc(-25% + 3px);
 			left: 1rem;
 			clip-path: inset(0 0 calc(25% + 1rem) 0);
+			max-width: 100%; // from img-fluid
+		    height: auto;
 		}
 	}
 

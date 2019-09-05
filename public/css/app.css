@@ -12254,6 +12254,8 @@ a.text-advertisers-lt:focus {
     left: 1rem;
     -webkit-clip-path: inset(0 0 calc(25% + 1rem) 0);
             clip-path: inset(0 0 calc(25% + 1rem) 0);
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -12600,30 +12602,36 @@ legend {
   background-color: #bfdaf0;
 }
 
+.mkt-home {
+  position: relative;
+  display: inline-block;
+}
+
 .mkt-home img {
   height: calc(100vh - 119px);
 }
 
 .slider-header {
   position: absolute;
-  right: 10%;
-  bottom: 10%;
-  left: 10%;
   z-index: 10;
-  padding: 2rem;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 20%;
+  width: 60%;
   color: #fff;
-  text-align: left;
+  text-align: center;
 }
 
 .slider-header h1 {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   line-height: 1;
   text-shadow: 0 0 15px rgba(33, 37, 41, 0.8);
 }
 
 .slider-header h1 .name {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 900;
 }
 
