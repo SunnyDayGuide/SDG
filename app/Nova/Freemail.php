@@ -3,7 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Filters\FreemailType;
-use App\Nova\Filters\Market;
+use App\Nova\Filters\MarketFilter;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
@@ -129,7 +129,7 @@ protected function contactFields()
     public function filters(Request $request)
     {
         return [
-            new Market,
+            new MarketFilter,
             new FreemailType,
         ];
     }

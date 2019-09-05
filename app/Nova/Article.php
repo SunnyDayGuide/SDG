@@ -5,7 +5,7 @@ namespace App\Nova;
 use App\Nova\Filters\ArticleMarket;
 use App\Nova\Filters\ArticleStatus;
 use App\Nova\Filters\Category;
-use App\Nova\Filters\Market;
+use App\Nova\Filters\MarketFilter;
 use App\Scopes\MarketScope;
 use Carbon\Carbon;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -180,7 +180,7 @@ class Article extends Resource
     {
         return [
             new ArticleStatus,
-            new Market,
+            new MarketFilter,
             new Category,
         ];
     }

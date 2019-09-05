@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Market;
+use App\Nova\Filters\MarketFilter;
 use App\Nova\Filters\SingleCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -116,7 +116,7 @@ class Coupon extends Resource
     public function filters(Request $request)
     {
         return [
-            new Market,
+            new MarketFilter,
             new SingleCategory,
         ];
     }
