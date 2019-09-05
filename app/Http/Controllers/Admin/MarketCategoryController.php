@@ -69,6 +69,7 @@ class MarketCategoryController extends Controller
 
         $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
 
+        // new way with Media Library
         $marketCategory->addMedia(request()->file('image'))->toMediaCollection('slider');
 
         return redirect()->route('admin.markets.edit', $market->id);
@@ -134,6 +135,7 @@ class MarketCategoryController extends Controller
 
         $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
 
+        // new way with Media Library
         $marketCategory->addMedia(request()->file('image'))->toMediaCollection('slider');
 
         return redirect()->route('admin.markets.edit', $market->id);
