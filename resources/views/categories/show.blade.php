@@ -41,7 +41,7 @@
 	</div> <!-- End Row -->
 </div>
 
-
+<!--Premier Advertisers Section -->
 @if(!$premierAdvertisers->isEmpty())
 <section id="premierAdvertisers" class="panel panel-advertisers mt-5">
 	<div class="container">
@@ -58,7 +58,7 @@
 		<div class="row">
 			<div class="card-deck w-100 mx-md-0">
 				@foreach ($premierAdvertisers as $premierAdvertiser)
-				@include('advertisers._card', ['item' => $premierAdvertiser, 'column' => 'col-md-6', 'profile' => 'full'])
+				@include('advertisers._card', ['item' => $premierAdvertiser, 'column' => 'col-md-6', 'profile' => 'full', 'excerpt' => $premierAdvertiser->blurblong ])
 				@endforeach
 				@unless($premierAdvertisers->count() % 2 == 0)
 				<div class="col-md-6 mb-md-4 mb-3 px-md-0">
@@ -83,7 +83,9 @@
 	</div>
 </section>
 @endif
+<!--End Premier Advertisers Section -->
 
+<!--Regular Advertisers Section -->
 <section id="advertisers" class="container advertisers my-5">
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
@@ -100,7 +102,7 @@
 			<div class="row advertiser-cards">
 				<div class="card-deck w-100 mx-md-0">
 					@foreach ($advertisers as $advertiser)
-					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card'])
+					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->blurb])
 					@if($loop->iteration == 6)
 					@include('categories._subcat-panel')
 					@endif
@@ -124,6 +126,7 @@
 		</div>
 	</div>
 </section>
+<!--End Regular Advertisers Section -->
 
 <!-- Related Articles Section -->
 <section class="panel panel-articles mt-5">

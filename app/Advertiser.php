@@ -328,7 +328,8 @@ class Advertiser extends Model implements HasMedia
     public function getBlurbLongAttribute()
     {
         $blurb = Str::replaceFirst('<p>', '', $this->write_up);
-        return Str::limit($blurb, 125, '...');
+        // return Str::limit($blurb, 125, '...');
+        return Str::words($blurb, 20, '...');
     }
 
 

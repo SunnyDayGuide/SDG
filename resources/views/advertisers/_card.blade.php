@@ -10,11 +10,7 @@
 		<a href="{{ $item->path() }}" class="stretched-link text-reset text-decoration-none">
 			<h5 class="card-title">{{ $item->name }}</h5>
 		</a>
-		@if($item == $premierAdvertiser)
-		<p class="card-text">{{ $item->blurbLong }}</p>
-		@else
-		<p class="card-text">{{ $item->blurb }}</p>
-		@endif
+		<p class="card-text">{{ $excerpt }}</p>
 
 		@if($item->coupons->count())
 		<div class="coupon-icon">
