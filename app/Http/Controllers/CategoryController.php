@@ -48,9 +48,7 @@ class CategoryController extends Controller
         $slides = $page->getMedia('slider');
         $image = $page->getFirstMedia('slider');
 
-        // $marketCategory = MarketCategory::where('category_id', $categoryId)->where('market_id', $marketId)->first();
-
-        $subcategories = $category->children()->pluck('name', 'id');
+        $subcategories = $this->getSubcategories($market, $category);
 
         $categoryIds = $category->children()->pluck('id');
         $categoryIds[] = $category->getKey();
@@ -73,36 +71,24 @@ class CategoryController extends Controller
         return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'slides', 'image'));
     }
 
-    public function search(Request $request, Market $market, Category $category)
+    /**
+     * Get the category's subcats.
+     *
+     * @param  $market
+     * @param  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function getSubcategories($market, $category)
     {
-      $page = $market->pages()->where('slug', 'articles')->first();
+      $subcategories = $category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
+                $query->where('market_id', $market->id);
+            })
+            ->withCount(['advertisers' => function ($query) use ($market) {
+                 $query->where('market_id', $market->id);
+            }])
+            ->get();
 
-      $featured = $this->getArticles($market)
-      ->where('featured', true)
-      ->latest('publish_date')
-      ->get();
-
-      if ($request->has('q')) {
-        $search = request('q');
-
-        $articles = Article::search($search)
-        ->get();
-
-        if (request()->expectsJson()) {
-          return $articles;
-        }
-      }    
-
-      $articles = $articles->where('market_id', $market->id);
-
-      return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
-
-    }
-
-    protected function getMarketCategory(Market $market, Category $category)
-    {
-        return MarketCategory::where('category_id', $category->id)->where('market_id', $market->id)->first();
-        // return $market->categories()->find($category->id);
+        return $subcategories;
     }
 
 }

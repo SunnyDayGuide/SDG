@@ -35,7 +35,22 @@
 <div class="container my-3 my-md-5">
 	<div>
 		<div class="content">
-			<h1 class="display-4">{{ $market->name }} {{ $page->title }}</h1>
+			<div class="d-md-flex justify-content-between align-items-center">
+				<div class="page-title">
+					<h1 class="display-4">{{ $market->name }} {{ $page->title }}</h1>
+				</div>
+				<!-- Subcategories pulldown -->
+				<div class="dropdown">
+				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSubcategories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">See More {{ $category->name }}</a>
+
+				  <div class="dropdown-menu" aria-labelledby="dropdownSubcategories">
+				    @foreach ($subcategories->sortBy('name') as $subcategory)
+				    <a class="dropdown-item" href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a>
+				    @endforeach
+				  </div>
+				</div>
+
+			</div>
 			<div class="fr-view">{!! $page->body !!}</div>
 		</div>
 	</div> <!-- End Row -->

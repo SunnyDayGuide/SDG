@@ -6,8 +6,8 @@
 				<div class="form-group col-md-5">
 				  <select id="category" name="category" class="form-control">
 			        <option value>Category Search</option>
-			        @foreach($category->children->sortBy('name') as $category)
-					<option value="{{ $category->id }}">{{ $category->name }}</option>
+			        @foreach($subcategories->sortBy('name') as $subcategory)
+					<option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
 					@endforeach
 			      </select>
 				</div>
