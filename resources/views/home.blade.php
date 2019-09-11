@@ -65,21 +65,23 @@
               <div class="col-md-10 offset-md-1">
 
                 <!-- Heading -->
-                <h2 class="display-1 font-weight-bold text-primary pt-5 mb-2">Plan Your Ultimate Family Vacation!</h2>
+                <div class="jumbo-header">
+                  <h1 class="mb-5">Plan Your Ultimate Family Vacation!</h1>
 
-                <!-- Divider -->
-                <hr>
+                  <!-- Divider -->
+                  <hr>
 
-                <!-- Description -->
-                <h4 class="text-dark my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Deleniti
-                consequuntur.</h4>
+                  <!-- Description -->
+                  <h4 class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Deleniti
+                  consequuntur.</h4>
+                </div>
 
-              </div>
+              </div>  <!-- End Column -->
 
-            </div>
+            </div> <!-- End Row -->
 
-          </div>
+          </div> <!-- End Container -->
 
         </div>
 
