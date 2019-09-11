@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Filters\MarketFilter;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -65,13 +66,13 @@ class MarketCategory extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Market')->exceptOnForms(),
-            BelongsTo::make('Category')->exceptOnForms(),
+            BelongsTo::make('Market'),
+            BelongsTo::make('Category'),
 
             Text::make('Title')
                 ->rules('required', 'max:255'),
 
-            Trix::make('Body'),
+            Froala::make('Body'),
 
             Images::make('Slider Images', 'slider')
                 ->customPropertiesFields([

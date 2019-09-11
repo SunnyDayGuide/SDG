@@ -99,7 +99,7 @@ class Advertiser extends Resource
             Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
 
             Heading::make('Images'),
-            BelongsTo::make('Logo')->searchable(), 
+            BelongsTo::make('Logo')->searchable()->nullable(), 
 
             Images::make('Slider Images', 'slider')
                 ->customPropertiesFields([
