@@ -12402,6 +12402,13 @@ legend {
   border-bottom: 1px solid #656565;
 }
 
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid #C6C6C6;
+}
+
 .card-title {
   font-size: 1.25rem;
 }
@@ -12444,17 +12451,29 @@ legend {
   color: #60A3D9;
 }
 
+.card-advertiser .card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: #154270;
+  border-bottom: 4px solid #d5e99b;
+  color: #fff;
+}
+
 .card-advertiser .card-title,
 .card-advertiser .card-title a {
   color: #add33b;
 }
 
-.primary-article .card-title {
+.card-featured .card-header {
+  font-size: 1rem;
+}
+
+.card-featured .card-title {
   font-size: 1.75rem;
 }
 
-.panel .card {
-  border: none;
+.primary-article .card-title {
+  font-size: 1.75rem;
 }
 
 .market-home .card {
@@ -12527,6 +12546,48 @@ legend {
   height: 12px;
 }
 
+.sdg-slick .slick-dots {
+  bottom: -1.25rem;
+}
+
+@media (min-width: 768px) {
+  .sdg-slick .slick-dots {
+    bottom: -2.5rem;
+  }
+}
+
+.sdg-slick .slick-dots li {
+  width: 20px;
+  height: 20px;
+  margin: 0 2px;
+}
+
+.sdg-slick .slick-dots li button {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+}
+
+.sdg-slick .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #154270;
+}
+
+.sdg-slick .slick-dots li button:before {
+  font-size: 0.75rem;
+  width: 20px;
+  height: 20px;
+  content: "\2022";
+  opacity: 0.25;
+  color: #154270;
+}
+
+.panel-subcat .slick-prev:before,
+.panel-subcat .slick-next:before {
+  opacity: 1;
+  color: #154270;
+}
+
 .page-header {
   position: relative;
 }
@@ -12587,19 +12648,35 @@ legend {
 }
 
 .panel {
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 .panel h2 {
   color: #154270;
 }
 
+.panel-light {
+  background-color: #f6f6f7;
+}
+
+.panel-light .card {
+  border: none;
+}
+
 .panel-advertisers {
   background-color: #d5e99b;
 }
 
+.panel-advertisers .card {
+  border: none;
+}
+
 .panel-articles {
   background-color: #bfdaf0;
+}
+
+.panel-articles .card {
+  border: none;
 }
 
 .mkt-home {
@@ -12986,19 +13063,6 @@ legend {
   line-height: 1;
 }
 
-.coupon-section .premier-tab {
-  position: absolute;
-  top: 10px;
-  right: -1px;
-  background-color: #FF6F61;
-  color: white;
-  text-align: right;
-  font-size: 1.5rem;
-  line-height: 1;
-  font-weight: 700;
-  padding: 0.25rem 1rem;
-}
-
 .coupon-section .coupon-list-item {
   border-bottom: 2px dashed #C6C6C6;
   padding: 1rem 0;
@@ -13013,6 +13077,19 @@ legend {
   background-color: #d9eaa3;
   margin: -1rem 0;
   padding: 1rem 0;
+}
+
+.premier-tab {
+  position: absolute;
+  top: 10px;
+  right: -1px;
+  background-color: #FF6F61;
+  color: white;
+  text-align: right;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
 }
 
 .tripIdeas .card-title,
@@ -13362,6 +13439,16 @@ html.home,
   margin-bottom: 0;
 }
 
+.view:after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 300px;
+  z-index: 1;
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
 .view .mask {
   position: absolute;
   top: 0;
@@ -13402,6 +13489,7 @@ html.home,
 .home-nav .nav-link {
   font-size: 1.35rem;
   padding-left: 0;
+  color: #fff;
 }
 
 @media (max-width: 767.98px) {
@@ -13519,6 +13607,42 @@ html.home,
   height: calc(100% + .5rem);
 }
 
+.jumbo-header {
+  position: relative;
+  padding-bottom: 3.5rem;
+  z-index: 2;
+}
+
+.jumbo-header hr {
+  border: 1px solid #fff;
+}
+
+.jumbo-header h1 {
+  color: #fff;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 25px #212529;
+}
+
+@media (min-width: 768px) {
+  .jumbo-header h1 {
+    font-size: 6rem;
+  }
+}
+
+.jumbo-header h4 {
+  color: #fff;
+  text-shadow: 0 0 25px #212529;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .jumbo-header h4 {
+    font-size: 2rem;
+  }
+}
+
 .content-wrapper {
   min-height: 100vh;
 }
@@ -13554,5 +13678,18 @@ label {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.banner-ad {
+  background-color: #C6C6C6;
+  color: #fff;
+  padding: 2rem;
+  margin: 0 15px 15px 15px;
+}
+
+@media (min-width: 768px) {
+  .banner-ad {
+    margin: 15px 15px 15px 15px;
+  }
 }
 
