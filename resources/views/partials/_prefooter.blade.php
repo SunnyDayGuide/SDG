@@ -1,18 +1,16 @@
 <div class="guide-banner" style="background: url({{ asset('images/main/footer-banner-bkgrnd.jpg') }})  no-repeat center center; background-size: cover;">
 	<div class="container">
-		<div class="row justify-content-around align-items-center buttons-container py-5">
-			<div class="col-md-6">
-				<div class="row d-flex align-items-center position-relative footer-guide">
-					<div class="col-4">
-						{{ $market->getFirstMedia('cover') }}
-					</div>
-					<div class="col-8">
-						<a class="btn" href="{{ route('vacation-guide.create', $market->slug) }}">FREE Digital Vacation Guide</a>
-					</div>
+		<div class="row justify-content-around align-items-center buttons-container">
+			<div class="col-md-6 d-flex align-items-center h-100">
+				<div class="footer-guide p-2">
+					{{ $market->getFirstMedia('cover') }}
+					<a class="btn btn-guide" href="{{ route('vacation-guide.create', $market->slug) }}">FREE Digital Vacation Guide</a>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<a class="btn" href="{{ route('request-information.create', $market->slug) }}">Sign-up for Promotions & News</a>
+			<div class="col-md-6 d-flex align-items-center h-100">
+				<div class="p-2">
+					<a class="btn" href="{{ route('request-information.create', $market->slug) }}">Sign-up for Special Deals & News</a>
+				</div>
 			</div>
 		</div>
 	</div>

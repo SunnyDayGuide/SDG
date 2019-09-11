@@ -3,20 +3,20 @@
 		<div class="container">
 			<div class="row justify-content-between">
 
-				<div class="col-8 offset-2 col-md-3 offset-md-0 order-5 order-md-1 mx-auto mx-md-0 text-center text-md-left">
-					<a href="{{ route('home') }}">
-						<img src="{{ asset('images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
-					</a>
-					<address class="mt-4 pl-md-2">
-						800 Seahawk Circle, Suite 106<br>
-						Virginia Beach, Virginia 23452<br>
-						<strong>1-800-786-6932</strong>
-					</address>
+				<div class="col-6 col-md-2 ml-0 mb-4 mb-md-0">
+					<div class="footer-guide overlay">
+						<a href="{{ route('vacation-guide.create', $market->slug) }}">
+							{{ $market->getFirstMedia('cover') }}
+							<div>
+								View a Free Guide
+							</div>
+						</a>
+					</div>
 				</div>
 
-				<div class="col-md-2 order-1 order-md-2 mb-4 mb-md-0 text-center text-md-left">
+				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<h4 class="pb-2">{{ $market->name }}, {{ $market->state->iso_3166_2 }}</h4>
-					<ul class="list-unstyled footer-nav category-nav">
+					<ul class="list-unstyled footer-nav">
 						@foreach($market->categories as $category)
 						<li>
 							<a href="{{ $market->path().'/'.$category->slug }}">{{ $category->name }}</a>
@@ -27,14 +27,14 @@
 						@endif
 					</ul>
 					<hr>
-					<ul class="list-unstyled footer-nav category-nav">
+					<ul class="list-unstyled footer-nav">
 						<li><a href="{{ route('events', $market) }}">Events</a></li>
 						<li><a href="{{ route('coupons', $market) }}">Coupons</a></li>
 					</ul>
 
 				</div>
 
-				<div class="col-md-4 order-3 mb-4 mb-md-0">
+				<div class="col-md-4 mb-4 mb-md-0">
 					<h4 class="pb-2">Other Vacation Destinations</h4>
 					<div class="row">
 						<div class="col-6">
@@ -82,7 +82,7 @@
 
 				</div>
 
-				<div class="col-md-2 order-4 mr-0 mb-4 mb-md-0 text-center text-md-left">
+				<div class="col-md-2 mr-0 mb-4 mb-md-0">
 					<h4 class="pb-2">Connect With Us</h4>
 					<div class="social pb-4 pt-2">
 						<a href="{{ $market->brand->facebook }}" target="_blank" aria-label="View {{ $market->brand->name }}'s Facebook page"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a>	
@@ -96,8 +96,6 @@
 						<li><a href="https://sunnydaysolutions.com" target="_blank">Advertise</a></li>
 					</ul>
 				</div>
-
-
 
 			</div>
 		</div>

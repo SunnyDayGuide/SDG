@@ -34,8 +34,8 @@
             @yield('content')
         </main>
         
-        @include('partials._prefooter2')
-        @include('partials._footer2')
+        @include('partials._prefooter')
+        @include('partials._footer')
     </div>
 
 <!-- Scripts -->
