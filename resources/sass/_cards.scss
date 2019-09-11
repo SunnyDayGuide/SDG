@@ -1,3 +1,10 @@
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid #C6C6C6;
+}
+
 .card-title {
     font-size: 1.25rem;
 }
@@ -42,20 +49,31 @@
 }
 
 .card-advertiser {
+    .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: $primary;
+        border-bottom: 4px solid $advertisers-lt;
+        color: $white;
+    }
+
     .card-title, .card-title a {
         color: $advertisers;
+    }
+}
+
+.card-featured {
+    .card-header {
+        font-size: 1rem;
+    }
+    .card-title {
+        font-size: 1.75rem;
     }
 }
 
 .primary-article {
     .card-title {
         font-size: 1.75rem;
-    }
-}
-
-.panel {
-    .card {
-        border: none;
     }
 }
 

@@ -1,6 +1,28 @@
-<div class="container w-100">
+<div class="panel-subcat">
+	<div class="text-center mb-5">
+		<h2 class="font-weight-bold">Subcategories Heading</h2>
+		<h4>Some sort of Subcategory subheading text</h4>
+	</div>
 	<div class="row">
-		<div class="col-12 bg-primary py-5 mt-4 mb-5 text-white">I AM A SUBCAT PANEL</div>
+		<div class="card-deck w-100 mx-md-0 slick4 sdg-slick">
+			@foreach ($subcatImages as $subcatImage)
+			<div class="col-md-3 px-md-0">
+				<a href="{{ $market->path().'/'.$subcatImage->category->parent->slug.'/'.$subcatImage->category->slug }}">
+					<div class="card text-white overlay border-0">
+
+						@if(null !== $subcatImage->getFirstMedia('slider'))
+						@include('partials._images', ['collectionName' => 'slider', 'profile' => 'sm-card', 'item' => $subcatImage])
+						@endif
+
+						<div class="card-img-overlay d-flex flex-column justify-content-end px-0 pb-0">
+							<p class="h4 font-weight-bold mb-0 bg-highlight p-2">{{ $subcatImage->category->name }}</p>
+						</div>
+
+					</div>
+				</a>
+			</div>
+			@endforeach
+		</div> <!-- End Card Group-->
 	</div>
 </div>
 

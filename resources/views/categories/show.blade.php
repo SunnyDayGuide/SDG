@@ -30,34 +30,64 @@
 
 @section('content')
 
-@include('categories._search')
-
 <div class="container my-3 my-md-5">
-	<div>
-		<div class="content">
-			<div class="d-md-flex justify-content-between align-items-center">
-				<div class="page-title">
-					<h1 class="display-4">{{ $market->name }} {{ $page->title }}</h1>
-				</div>
-				<!-- Subcategories pulldown -->
-				<div class="dropdown">
-				  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownSubcategories" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">See More {{ $category->name }}</a>
-
-				  <div class="dropdown-menu" aria-labelledby="dropdownSubcategories">
-				    @foreach ($subcategories->sortBy('name') as $subcategory)
-				    <a class="dropdown-item" href="{{ $market->path().'/'.$category->slug.'/'.$subcategory->slug }}">{{ $subcategory->name }}</a>
-				    @endforeach
-				  </div>
-				</div>
-
+	<div class="content">
+		<div class="d-md-flex justify-content-between align-items-center">
+			<div class="page-title">
+				<h1 class="display-4">{{ $page->title }}</h1>
 			</div>
-			<div class="fr-view">{!! $page->body !!}</div>
+
 		</div>
-	</div> <!-- End Row -->
+		<div class="fr-view">
+			{!! $page->body !!}
+		</div>
+	</div>
 </div>
 
-<!--Premier Advertisers Section -->
-@if(!$premierAdvertisers->isEmpty())
+<!--Subcategories carousel Section -->
+<section id="main-panel" class="mt-5">
+	<div class="container">
+		@include('categories._subcat-panel')
+	</div>
+</section>
+<!--End Subcategories carousel Section -->
+
+<!-- Advertiser Listings Section -->
+<section class="panel panel-light mt-5">
+	<div class="container">
+	<div class="text-center">
+		<h2 class="font-weight-bold">Explore {{ $market->name }} {{ $category->name }}</h2>
+	</div>
+
+	@include('categories._search')
+
+	<div class="d-md-flex justify-content-end mb-3">
+		{{-- <h2>Featured {{ $category->name }}</h2> --}}
+		<div class="coupon-legend d-flex align-items-center">
+			<span class="fa-stack fa-sm">
+				<i class="fas fa-certificate fa-stack-2x"></i>
+				<i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+			</span><span class="py-1">= Has Coupon</span>
+		</div>
+	</div>
+
+
+	<!--Premier Advertisers Section -->
+	@if(!$premierAdvertisers->isEmpty())
+	@include('categories._advertisers-list-premier')
+	@endif
+	<!--End Premier Advertisers Section -->
+
+	<!--Regular Advertisers Section -->
+	@include('categories._advertisers-list')
+	<!--End Regular Advertisers Section -->
+
+	</div> <!-- End Container -->
+</section>
+<!-- End Advertiser Listings Section -->
+
+<!--OLD Premier Advertisers Section -->
+{{-- @if(!$premierAdvertisers->isEmpty())
 <section id="premierAdvertisers" class="panel panel-advertisers mt-5">
 	<div class="container">
 		<div class="d-md-flex justify-content-between border-bottom border-white mb-3">
@@ -76,7 +106,7 @@
 				@include('advertisers._card', ['item' => $premierAdvertiser, 'column' => 'col-md-6', 'profile' => 'full', 'excerpt' => $premierAdvertiser->blurblong ])
 				@endforeach
 				@unless($premierAdvertisers->count() % 2 == 0)
-				<div class="col-md-6 mb-md-4 mb-3 px-md-0">
+				<div class="col-md-6 mb-md-4 mb-3 px-md-0 d-none d-md-block">
 					<div class="filler-card">
 						<div class="list-group">
 							@foreach ($articles as $article)
@@ -97,54 +127,11 @@
 		</div> <!-- End Row-->
 	</div>
 </section>
-@endif
-<!--End Premier Advertisers Section -->
-
-<!--Regular Advertisers Section -->
-<section id="advertisers" class="container advertisers my-5">
-	<div class="row">
-		<div class="col-md-8 offset-md-2">
-			<div class="d-md-flex justify-content-between border-bottom border-advertisers mb-3">
-				<h2>{{ $category->name }} Listings</h2>
-				<div class="coupon-legend d-flex align-items-center">
-					<span class="fa-stack fa-sm">
-						<i class="fas fa-certificate fa-stack-2x"></i>
-						<i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-					</span><span class="py-1">= Listing has a Coupon</span>
-				</div>
-			</div>
-
-			<div class="row advertiser-cards">
-				<div class="card-deck w-100 mx-md-0">
-					@foreach ($advertisers as $advertiser)
-					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->blurb])
-					@if($loop->iteration == 6)
-					@include('categories._subcat-panel')
-					@endif
-					@if($loop->iteration % 15 == 0)
-						<div class="col-12 bg-light py-5 mt-4 mb-5 text-white">I AM A BANNER AD</div>
-					@endif
-					@endforeach
-					@unless($advertisers->count() % 3 == 0)
-					<div class="col mb-md-4 mb-3 px-md-0">
-						<div class="filler-card">
-							<div class="bg-light py-5 mt-4 mb-5 text-white">I AM A GOOGLE AD</div>
-						</div>
-					</div>
-					@endunless
-					@if($advertisers->count() < 6)
-						<div class="col-12 bg-light py-5 mt-4 mb-5 text-white">I AM A BANNER AD</div>
-					@endif
-
-				</div> <!-- End Card Deck-->
-			</div> <!-- End Cards Row-->
-		</div>
-	</div>
-</section>
-<!--End Regular Advertisers Section -->
+@endif --}}
+<!--End OLD Premier Advertisers Section -->
 
 <!-- Related Articles Section -->
-<section class="panel panel-articles mt-5">
+<section class="panel panel-articles">
 	<div class="container">
 
 		<div class="border-bottom border-white mb-3 w-100">
@@ -162,4 +149,8 @@
 	</div>
 </section> <!-- End Related Articles Section -->
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/functions.js') }}"/></script>
 @endsection

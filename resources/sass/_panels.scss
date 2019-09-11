@@ -1,15 +1,31 @@
 .panel {
-	padding: 2rem 0;
+	padding: 3rem 0;
 
 	h2 {
 		color: $primary;
 	}
 }
 
+.panel-light {
+	background-color: rgb(246, 246, 247);
+
+	.card {
+        border: none;
+    }
+}
+
 .panel-advertisers {
 	background-color: $advertisers-lt;
+
+	.card {
+        border: none;
+    }
 }
 
 .panel-articles {
 	background-color: $editorial-lt;
+
+	.card {
+        border: none;
+    }
 }

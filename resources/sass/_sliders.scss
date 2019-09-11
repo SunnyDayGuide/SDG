@@ -30,20 +30,58 @@
 	}
 
 	@include media-breakpoint-down(md) {
-			.carousel-caption {
-				right: 10%;
-				left: 10%;
-			}
+		.carousel-caption {
+			right: 10%;
+			left: 10%;
 		}
+	}
 
 }
 
 .carousel-indicators li {
-    border-radius: 12px;
-    width: 12px;
-    height: 12px;
+	border-radius: 12px;
+	width: 12px;
+	height: 12px;
     // background-color: $blue-light;
 }
 
 // SLICK OVERRIDES
+.sdg-slick {
+	.slick-dots {
+		bottom: -1.25rem; 
+
+		@include media-breakpoint-up(md) {
+			bottom: -2.5rem; 
+		}
+	}
+
+	.slick-dots li {
+		width: 20px;
+		height: 20px;
+		margin: 0 2px; 
+	}
+	.slick-dots li button {
+		width: 20px;
+		height: 20px;
+		padding: 5px;
+	}
+	.slick-dots li.slick-active button:before {
+		opacity: 1;
+		color: $primary;
+	}
+	.slick-dots li button:before {
+		font-size: .75rem;
+		width: 20px;
+		height: 20px;
+		content: '•';
+		opacity: .25;
+		color: $primary;
+	}
+}
+.panel-subcat {
+	.slick-prev:before, .slick-next:before {
+		opacity: 1;
+		color: $primary;
+	}
+}
 

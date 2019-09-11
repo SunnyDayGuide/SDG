@@ -49,6 +49,7 @@ class CategoryController extends Controller
         $image = $page->getFirstMedia('slider');
 
         $subcategories = $this->getSubcategories($market, $category);
+        $subcatImages = $this->getSubcatImages($market, $category);
 
         $categoryIds = $category->children()->pluck('id');
         $categoryIds[] = $category->getKey();
@@ -66,9 +67,11 @@ class CategoryController extends Controller
         // display the related events
         $events = Event::categorized($category, $market)
             ->with('tags')->get();  
+
+            // dd($subcatImages);
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'slides', 'image'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'subcategories', 'premierAdvertisers', 'slides', 'image', 'subcatImages'));
     }
 
     /**
@@ -80,15 +83,25 @@ class CategoryController extends Controller
      */
     public function getSubcategories($market, $category)
     {
-      $subcategories = $category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
+        $subcategories = $category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market->id);
-            })
-            ->withCount(['advertisers' => function ($query) use ($market) {
-                 $query->where('market_id', $market->id);
-            }])
-            ->get();
+            })->get();
 
         return $subcategories;
+    }
+
+    public function getSubcatImages($market, $category)
+    {
+        $subcatIds = collect($category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
+                $query->where('market_id', $market->id);
+            })->pluck('id'));
+
+        $mapped = $subcatIds->map(function ($item, $key) use ($market) {
+            return MarketCategory::where('category_id', $item)->where('market_id', $market->id)->first();
+        });
+
+       return $mapped;
+
     }
 
 }
