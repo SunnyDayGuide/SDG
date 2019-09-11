@@ -5,7 +5,7 @@
 		</div>
 
 		<div class="row">
-			<div class="card-deck w-100 mx-md-0 basic-slick">
+			<div class="card-deck w-100 mx-md-0 slick3 sdg-slick">
 				@foreach ($premierAdvertisers as $advertiser)
 				@include('panels._advertisers')
 				@endforeach

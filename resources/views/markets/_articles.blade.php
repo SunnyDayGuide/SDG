@@ -1,4 +1,4 @@
-<section class="my-3 my-md-5 market-home">
+<section class="my-3 my-md-5 panel market-home">
 
 	<div class="border-bottom border-white mb-3 w-100">
 		<h2 class="font-weight-bold text-center text-highlight">What's Hot in {{ $market->name }}</h2>
