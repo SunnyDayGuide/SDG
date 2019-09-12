@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Location extends Model
 {
@@ -22,9 +23,10 @@ class Location extends Model
 	public function getFullAddressAttribute()
 	{
 		if ($this->address_line_2) {
-			return "{$this->street_number} {$this->route}, {$this->address_line_2}, {$this->city}, {$this->state} {$this->postal_code}";
-		}
-	    return "{$this->street_number} {$this->route}, {$this->city}, {$this->state} {$this->postal_code}";
+			return "{$this->address_line_2}, {$this->city}, {$this->state} {$this->postal_code}";
+		} else
+		
+	     return Str::replaceFirst(', USA', '', $this->formatted_address);
 	}
 
 	public function getDirectionsAttribute()

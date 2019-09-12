@@ -202,6 +202,5 @@
 @endsection
 
 @section('scripts')
-@includeWhen(count($locations) == 1, 'advertisers._map')
-@includeWhen(count($locations) > 1, 'advertisers._map2')
+@include('advertisers._initMap')
 @endsection
