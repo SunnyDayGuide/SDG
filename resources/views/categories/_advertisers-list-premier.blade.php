@@ -1,11 +1,13 @@
 <div id="premierAdvertisers" class="mt-5">
 	@foreach ($premierAdvertisers as $premierAdvertiser)
-	<div class="card card-advertiser card-featured mb-4">
+	<div class="card card-advertiser card-featured overlay mb-4">
 		<div class="row no-gutters">
 			<div class="col-md-5">
 				@if(null !== $premierAdvertiser->getFirstMedia('slider'))
 				<div class="card-img">
-					@include('partials._images', ['item' => $premierAdvertiser])
+					<a href="{{ $premierAdvertiser->path() }}">
+						@include('partials._images', ['item' => $premierAdvertiser])
+					</a>
 				</div>
 				@endif
 			</div>
