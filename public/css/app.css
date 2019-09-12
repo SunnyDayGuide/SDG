@@ -12772,10 +12772,6 @@ legend {
   font-size: 1.5rem;
 }
 
-.info-window {
-  font-size: 1rem;
-}
-
 .social .social-item {
   font-size: 1rem;
   padding: 6px 8.5px;
@@ -12849,8 +12845,35 @@ legend {
 
 .placeholder {
   height: 100%;
-  background: url("/images/home/sdg-home-main-beach-family.jpg") no-repeat center center scroll;
+  background: url("/images/main/map-placeholder.png") no-repeat center center scroll;
   background-size: cover;
+}
+
+.info-window {
+  font-size: 1rem;
+}
+
+.map-button {
+  margin: 0;
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  -webkit-transform: translate(-47%, -50%);
+  transform: translate(-47%, -50%);
+  text-align: center;
+  font-family: "Raleway", sans-serif !important;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #154270;
+}
+
+.map-button a:hover {
+  text-decoration: none;
+}
+
+.map-button img {
+  width: 127px;
+  margin-bottom: 6px;
 }
 
 .wrap-collapsible input[type=checkbox] {

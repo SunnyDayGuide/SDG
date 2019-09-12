@@ -155,7 +155,10 @@
 	<!-- Come back here and do straight up embed for one location partial -->
 	@if(count($locations) > 0)
 	<div class="map-container">
-		<button id="show-map" class="vh-center btn btn-lg btn-primary">Show Map</button>
+		<button id="show-map" class="btn map-button">
+		<img src="{{ asset('images/main/map-button-graphic.svg') }}" alt="map button graphic">
+			<div>Show Map</div>
+		</button>
 		<div class="placeholder bg-light">
 			<img src="" alt="" class="img-fluid">
 		</div>
