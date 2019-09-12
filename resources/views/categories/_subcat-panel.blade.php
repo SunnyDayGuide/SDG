@@ -7,7 +7,7 @@
 		<div class="card-deck w-100 mx-md-0 slick4 sdg-slick">
 			@foreach ($subcatImages as $subcatImage)
 			<div class="col-md-3 px-md-0">
-				<a href="{{ $market->path().'/'.$subcatImage->category->parent->slug.'/'.$subcatImage->category->slug }}">
+				<a href="{{ $market->path().'/'.$category->slug.'/'.$subcatImage->category->slug }}">
 					<div class="card text-white overlay border-0">
 
 						@if(null !== $subcatImage->getFirstMedia('slider'))
