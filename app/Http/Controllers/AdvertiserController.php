@@ -23,7 +23,8 @@ class AdvertiserController extends Controller
             $logo = $advertiser->logo->getFirstMedia('logo');
         } else $logo = null;
         
-        $sliderImages = $advertiser->getMedia('slider');
+        $slides = $advertiser->getMedia('slider');
+        $image = $advertiser->getFirstMedia('slider');
 
         $locations = $advertiser->locations;
 
@@ -36,7 +37,7 @@ class AdvertiserController extends Controller
         $ads = $advertiser->ads;
         $menus = $advertiser->menus;
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'categories', 'openingHours', 'hasHours', 'coupons', 'ads', 'menus'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'slides', 'image', 'locations', 'categories', 'openingHours', 'hasHours', 'coupons', 'ads', 'menus'));
     }
 
 }

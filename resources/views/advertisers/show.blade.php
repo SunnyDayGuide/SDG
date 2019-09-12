@@ -60,22 +60,29 @@
 				<div class="w-25 ml-3 d-none d-md-block">{{ $logo }}</div>
 				@endif
 			</div>
-
+			
+			@if($slides->count() > 1)
 			<!-- Carousel -->
 			<div id="carouselIndicators" class="carousel slide mb-2" data-ride="carousel">
 				<ol class="carousel-indicators">
-					@foreach($sliderImages as $image)
+					@foreach($slides as $image)
 					<li data-target="#carouselIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
 					@endforeach
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					@foreach($sliderImages as $image)
+					@foreach($slides as $image)
 					<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
 						{{ $image('full') }}
 					</div>
 					@endforeach
 				</div>
 			</div>
+
+			{{-- Otherwise just spit out a single image --}}
+			@else
+			{{ $image('full') }}
+
+			@endif
 
 			<!-- Category Breadcrumbs -->
 			<div class="d-flex flex-wrap align-items-baseline justify-content-end mb-2 mb-md-3">
