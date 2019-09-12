@@ -19,7 +19,6 @@ class AdvertiserController extends Controller
      */
     public function show(Market $market, Advertiser $advertiser)
     {
-        // $logo = $advertiser->getFirstMedia('logo');
         if ($advertiser->logo) {
             $logo = $advertiser->logo->getFirstMedia('logo');
         } else $logo = null;
@@ -27,51 +26,17 @@ class AdvertiserController extends Controller
         $sliderImages = $advertiser->getMedia('slider');
 
         $locations = $advertiser->locations;
-        $key = env('GOOGLE_MAP_API_KEY');
 
         $categories = $advertiser->subcategories()->get()->groupBy('parent_id');
 
-        // for use in map icons
-        $primaryCategory = $advertiser->supercategories()
-            ->orderBy('categoriables.created_at')
-            ->first();
-
-        $singleLocation = $advertiser->locations()->first();
-
         $openingHours = $advertiser->fillHours();
-        $hasHours = $this->hasHours($openingHours);
+        $hasHours = $advertiser->hasHours($openingHours);
 
         $coupons = $advertiser->coupons;
         $ads = $advertiser->ads;
         $menus = $advertiser->menus;
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'categories', 'primaryCategory', 'openingHours', 'hasHours', 'key', 'singleLocation', 'coupons', 'ads', 'menus'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'sliderImages', 'locations', 'categories', 'openingHours', 'hasHours', 'coupons', 'ads', 'menus'));
     }
-
-    public function hasHours($openingHours)
-    {
-        if ($openingHours->isOpenOn('sunday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('monday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('tuesday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('wednesday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('thursday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('friday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('saturday')) {
-            return true;
-        } else return false;
-    }
-
 
 }

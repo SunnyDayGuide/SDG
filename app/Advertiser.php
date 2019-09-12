@@ -49,12 +49,13 @@ class Advertiser extends Model implements HasMedia
      * @var array
      */
     protected $with = ['market', 'media'];
+    protected $with = ['market'];
 
-	protected $dates = [
-	    'created_at',
-	    'updated_at',
-	    'deleted_at'
-	];
+    protected $dates = [
+       'created_at',
+       'updated_at',
+       'deleted_at'
+   ];
 
     /**
      * Attributes to cast.
@@ -68,8 +69,8 @@ class Advertiser extends Model implements HasMedia
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
+     public function getRouteKeyName()
+     {
         return 'slug';
     }
 
@@ -88,8 +89,8 @@ class Advertiser extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function level()
-    {
+      public function level()
+      {
         return $this->belongsTo(Level::class);
     }
 
@@ -106,10 +107,10 @@ class Advertiser extends Model implements HasMedia
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function logo()
-    {
-    	return $this->belongsTo(Logo::class);
-    }
+      public function logo()
+      {
+       return $this->belongsTo(Logo::class);
+   }
 
     /**
      * The coupons that belong to the advertiser.
@@ -125,7 +126,7 @@ class Advertiser extends Model implements HasMedia
     public function ads()
     {
         return $this->belongsToMany(Ad::class, 'advertiser_pdf', 'advertiser_id', 'pdf_id')
-            ->where('type', 'ad')->withTimestamps();
+        ->where('type', 'ad')->withTimestamps();
     }
 
     /**
@@ -134,7 +135,7 @@ class Advertiser extends Model implements HasMedia
     public function menus()
     {
         return $this->belongsToMany(Menu::class, 'advertiser_pdf', 'advertiser_id', 'pdf_id')
-            ->where('type', 'menu')->withTimestamps();
+        ->where('type', 'menu')->withTimestamps();
     }
 
     /**
@@ -172,7 +173,7 @@ class Advertiser extends Model implements HasMedia
      * @param string $attribute
      * @return \Cocur\Slugify\Slugify
      */
-    public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
+     public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
         $engine->addRule('\'', '');
         $engine->addRule('’', '');
         return $engine;
@@ -202,8 +203,8 @@ class Advertiser extends Model implements HasMedia
     public function tags(): MorphToMany
     {
         return $this
-            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
-            ->orderBy('order_column');
+        ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
+        ->orderBy('order_column');
     }
 
     /**
@@ -218,18 +219,18 @@ class Advertiser extends Model implements HasMedia
         ->registerMediaConversions(function (Media $media) {
             
             $this->addMediaConversion('full')
-                ->crop(Manipulations::CROP_CENTER, 730, 390)
-                ->withResponsiveImages();
+            ->crop(Manipulations::CROP_CENTER, 730, 390)
+            ->withResponsiveImages();
 
             $this
-                ->addMediaConversion('card')
-                ->crop(Manipulations::CROP_CENTER, 558, 297)
-                ->withResponsiveImages();
+            ->addMediaConversion('card')
+            ->crop(Manipulations::CROP_CENTER, 558, 297)
+            ->withResponsiveImages();
 
             $this
-                ->addMediaConversion('sm-card')
-                ->crop(Manipulations::CROP_CENTER, 217, 116)
-                ->withResponsiveImages();
+            ->addMediaConversion('sm-card')
+            ->crop(Manipulations::CROP_CENTER, 217, 116)
+            ->withResponsiveImages();
         });
 
         // may not need this anymore. Keep for now.
@@ -300,10 +301,10 @@ class Advertiser extends Model implements HasMedia
             if ($value['hours']['start']) {
                 $hours = [collect($value['hours'])->sort()->implode('-')];
             } else
-                $hours = [];
+            $hours = [];
             return $hours;
         });
-         
+        
         return $changed->all();
     }
 
@@ -317,6 +318,31 @@ class Advertiser extends Model implements HasMedia
         $openingHours = (new OpeningHours)->fill($schedule);
 
         return $openingHours;
+    }
+
+    public function hasHours($openingHours)
+    {
+        if ($openingHours->isOpenOn('sunday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('monday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('tuesday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('wednesday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('thursday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('friday')) {
+            return true;
+        }
+        if ($openingHours->isOpenOn('saturday')) {
+            return true;
+        } else return false;
     }
 
     public function getBlurbAttribute()
