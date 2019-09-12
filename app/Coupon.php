@@ -25,7 +25,7 @@ class Coupon extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'category', 'advertisers'];
+    protected $with = ['market', 'category', 'advertisers', 'logo'];
 
     /**
      * A coupon belongs to a category.
