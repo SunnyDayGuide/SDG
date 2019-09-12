@@ -22,26 +22,27 @@ class ArticleController extends Controller
     public function index(Market $market)
     {
       $page = $market->pages()->where('slug', 'articles')->first();
+      $articles = $this->getArticles($market);
 
-      $featured = $this->getArticles($market)
-      ->where('featured', true)
-      ->latest('publish_date')
-      ->get();
+      $featured = $articles
+        ->where('featured', true)
+        ->latest('publish_date')
+        ->get();
 
-      $tripIdeas = $this->getArticles($market)
-      ->where('article_type_id', 1)
-      ->latest('publish_date')
-      ->paginate(30);
+      $tripIdeas = $articles
+        ->where('article_type_id', 1)
+        ->latest('publish_date')
+        ->paginate(30);
 
-      $visitorInfos = $this->getArticles($market)
-      ->where('article_type_id', 2)
-      ->latest('publish_date')
-      ->get();
+      $visitorInfos = $articles
+        ->where('article_type_id', 2)
+        ->latest('publish_date')
+        ->get();
 
-      $advSpotlights = $this->getArticles($market)
-      ->where('article_type_id', 3)
-      ->orderBy('title', 'asc')
-      ->get();
+      $advSpotlights = $articles
+        ->where('article_type_id', 3)
+        ->orderBy('title', 'asc')
+        ->get();
 
       return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
@@ -98,8 +99,12 @@ class ArticleController extends Controller
      */
     public static function getArticles(Market $market)
     {
-      return $market->articles()
-      ->published();
+      return Article::marketed($market)
+        ->with('tags') 
+        ->published();
+
+      // return $market->articles()->with('tags') 
+      // ->published();
     }
 
     public function search(Request $request, Market $market)
