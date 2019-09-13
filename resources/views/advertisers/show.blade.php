@@ -13,43 +13,60 @@
 					<h1>{{ $advertiser->name }}</h1>
 
 					<!-- Web & social buttons -->
-					<div class="d-md-flex flex-wrap align-items-center"> 
+					<div class=""> 
 						<div class="web-buttons mr-3 mb-2 mb-md-0">
 							@if(count($advertiser->locations) > 0)
 							<a class="btn btn-advertiser text-white mr-1" href="#show-map" role="button">Map</a>
 							@endif
+
 							@if(count($advertiser->coupons) > 0)
 							<a class="btn btn-advertiser text-white mr-1" href="#coupons" role="button">Coupons</a>
 							@endif
+
 							@if($advertiser->website_url)
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
 							@endif
+
 							@if($advertiser->ticket_url)
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
 							@endif
+
 							@if($advertiser->reservation_url)
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
 							@endif
+
 							@if($advertiser->booking_url)
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 							@endif
 						</div>
 
-						<div class="social">
+						<div class="social mt-3">
 							@if($advertiser->facebook)
-							<a href="{{ $advertiser->facebook }}" target="_blank" class="rounded-circle bg-light text-white social-item fb" aria-label="View {{ $advertiser->name }} Facebook page"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+							<a href="{{ $advertiser->facebook }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Facebook page"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i></span></a>
 							@endif
+
 							@if($advertiser->instagram)
-							<a href="{{ $advertiser->instagram }}" target="_blank" class="rounded-circle bg-light text-white social-item ig" aria-label="View {{ $advertiser->name }} Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+							<a href="{{ $advertiser->instagram }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Instagram"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-instagram fa-stack-1x fa-inverse"></i></span></a>
 							@endif
+
 							@if($advertiser->twitter)
-							<a href="{{ $advertiser->twitter }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Twitter feed"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+							<a href="{{ $advertiser->twitter }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Twitter feed"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-twitter fa-stack-1x fa-inverse"></i></span></a>
 							@endif
+
 							@if($advertiser->youtube)
-							<a href="{{ $advertiser->youtube }}" target="_blank" class="rounded-circle bg-light text-white social-item yt" aria-label="View {{ $advertiser->name }} YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+							<a href="{{ $advertiser->youtube }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} YouTube channel"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-youtube fa-stack-1x fa-inverse"></i></span></a>
 							@endif
+
 							@if($advertiser->pinterest)
-							<a href="{{ $advertiser->pinterest }}" target="_blank" class="rounded-circle bg-light text-white social-item" aria-label="View {{ $advertiser->name }} Pinterest feed"><i class="fab fa-pinterest" aria-hidden="true"></i></a>
+							<a href="{{ $advertiser->pinterest }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Pinterest feed"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-pinterest fa-stack-1x fa-inverse"></i></span></a>
+							@endif
+
+							@if($advertiser->yelp)
+							<a href="{{ $advertiser->yelp }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Yelp Page"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-yelp fa-stack-1x fa-inverse"></i></span></a>
+							@endif
+
+							@if($advertiser->tripadvisor)
+							<a href="{{ $advertiser->tripadvisor }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} TripAdvisor Reviews"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-tripadvisor fa-stack-1x fa-inverse"></i></span></a>
 							@endif
 						</div>
 
@@ -57,10 +74,10 @@
 
 				</div>
 				@if($advertiser->logo)
-				<div class="w-25 ml-3 d-none d-md-block">{{ $logo }}</div>
+				<div class="header-logo ml-3 d-none d-md-block">{{ $logo }}</div>
 				@endif
 			</div>
-			
+
 			@if($slides->count() > 1)
 			<!-- Carousel -->
 			<div id="carouselIndicators" class="carousel slide mb-2" data-ride="carousel">
@@ -80,7 +97,9 @@
 
 			{{-- Otherwise just spit out a single image --}}
 			@else
+			<div class="mb-2">
 			{{ $image('full') }}
+			</div>
 
 			@endif
 
@@ -106,7 +125,7 @@
 				<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
 				@endforeach
 			</div>
-			
+
 			<!-- Attributes -->
 			<div class="row info my-4">
 				<!-- Business Info -->
@@ -156,7 +175,7 @@
 	@if(count($locations) > 0)
 	<div class="map-container">
 		<button id="show-map" class="btn map-button">
-		<img src="{{ asset('images/main/map-button-graphic.svg') }}" alt="map button graphic">
+			<img src="{{ asset('images/main/map-button-graphic.svg') }}" alt="map button graphic">
 			<div>Show Map</div>
 		</button>
 		<div class="placeholder bg-light">

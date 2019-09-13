@@ -97,6 +97,8 @@ class Advertiser extends Resource
             Text::make('Instagram')->rules('nullable')->hideFromIndex(),
             Text::make('YouTube', 'youtube')->rules('nullable')->hideFromIndex(),
             Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
+            Text::make('Yelp')->rules('nullable')->hideFromIndex(),
+            Text::make('TripAdvisor')->rules('nullable')->hideFromIndex(),
 
             Heading::make('Images'),
             BelongsTo::make('Logo')->searchable()->nullable(), 
@@ -181,7 +183,7 @@ protected function hoursFields()
      */
     public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
+        // return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
     }
 
     /**
