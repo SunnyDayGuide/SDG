@@ -19,7 +19,7 @@
 		@endif
 
 	</div>
-	<div class="logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
+	<div class="coupon-logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
 	
 	<div class="mt-4 d-flex justify-content-between coupon-footer">
 		<div class="text-uppercase print"><a href="#"><i class="fas fa-umbrella-beach fa-lg fa-fw mr-2" aria-hidden="true"></i>Bucket</a></div>

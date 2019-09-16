@@ -12773,25 +12773,21 @@ legend {
 }
 
 .social .social-item {
-  font-size: 1rem;
-  padding: 6px 8.5px;
-  margin-right: 0.25rem;
+  font-size: 0.5rem;
 }
 
-.social .social-item.fb {
-  padding: 6px 12px;
-}
-
-.social .social-item.yt {
-  padding: 6px 7.5px;
-}
-
-.social .social-item.ig {
-  padding: 6px 10px;
+.header-logo {
+  width: 190px;
 }
 
 .write-up {
   font-family: "Roboto", sans-serif;
+}
+
+.write-up h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-weight: 600;
 }
 
 .advertiser-cat {
@@ -12932,12 +12928,12 @@ legend {
   text-align: center;
 }
 
-.coupon-container .logo {
+.coupon-container .coupon-logo {
   text-align: center;
   margin: 0.75em;
 }
 
-.coupon-container .logo img {
+.coupon-container .coupon-logo img {
   width: 200px;
 }
 
