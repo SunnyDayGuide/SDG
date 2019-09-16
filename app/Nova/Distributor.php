@@ -2,29 +2,25 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Category;
+use App\Category;
 use App\Nova\Filters\MarketFilter;
-use App\Scopes\NotLodgingScope;
+use App\Scopes\LodgingScope;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Fourstacks\NovaCheckboxes\Checkboxes;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Panel;
-use Michielfb\Time\Time;
-use R64\NovaFields\JSON;
 use Spatie\TagsField\Tags;
 
-class Advertiser extends Resource
+class Distributor extends Resource
 {
     /**
      * The model the resource corresponds to.
@@ -54,7 +50,7 @@ class Advertiser extends Resource
      *
      * @var string
      */
-    public static $group = 'Places';
+    public static $group = 'Distribution';
 
     /**
      * Get the fields displayed by the resource.
@@ -88,8 +84,6 @@ class Advertiser extends Resource
 
             Heading::make('URLs'),
             Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
-            Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
-            Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
             Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
 
             Heading::make('Social Media'),
@@ -116,75 +110,14 @@ class Advertiser extends Resource
                 ->fullSize()    
                 ->hideFromIndex(),
 
-            new Panel('Business Hours', $this->hoursFields()),
-
             HasMany::make('Locations'),
+
             MorphToMany::make('Categories'),
             HasMany::make('Coupons'),
             HasMany::make('Ads'),
-            HasMany::make('Menus'),
             HasMany::make('Articles'),
             HasMany::make('Events'),
         ];
-    }
-
- /**
- * Get the hours fields for the resource.
- * Come back to the styling of this!!!
- *
- * @return array
- */
-protected function hoursFields()
-{
-    return [
-        Heading::make('Business Hours')->onlyOnForms(),
-
-        JSON::make('Hours', [
-            Time::make('Mon. Open', 'monday->hours->start')->format('h:mm a'),
-            Time::make('Mon. Close', 'monday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'monday->data'),
-
-            Time::make('Tue. Open', 'tuesday->hours->start')->format('h:mm a'),
-            Time::make('Tue. Close', 'tuesday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'tuesday->data'),
-
-            Time::make('Wed. Open', 'wednesday->hours->start')->format('h:mm a'),
-            Time::make('Wed. Close', 'wednesday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'wednesday->data'),
-
-            Time::make('Thu. Open', 'thursday->hours->start')->format('h:mm a'),
-            Time::make('Thu. Close', 'thursday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'thursday->data'),
-
-            Time::make('Fri. Open', 'friday->hours->start')->format('h:mm a'),
-            Time::make('Fri. Close', 'friday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'friday->data'),
-
-            Time::make('Sat. Open', 'saturday->hours->start')->format('h:mm a'),
-            Time::make('Sat. Close', 'saturday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'saturday->data'),
-            
-            Time::make('Sun. Open', 'sunday->hours->start')->format('h:mm a'),
-            Time::make('Sun. Close', 'sunday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'sunday->data'),
-        ])->fieldClasses('flex flex-wrap items-start w-full')
-          ->childConfig([
-            'labelClasses' => 'flex w-1/6 items-start px-6 py-6',
-            'fieldClasses' => 'flex w-auto items-start px-6 py-6'
-          ])->onlyOnForms(),
-    ];
-}
-
-    /**
-     * Return the location to redirect the user after creation.
-     *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
-     * @param \App\Nova\Resource $resource
-     * @return string
-     */
-    public static function redirectAfterCreate(NovaRequest $request, $resource)
-    {
-        // return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
     }
 
     /**
@@ -208,7 +141,6 @@ protected function hoursFields()
     {
         return [
             new MarketFilter,
-            new Category,
         ];
     }
 
@@ -236,7 +168,21 @@ protected function hoursFields()
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->withGlobalScope(NotLodgingScope::class, new NotLodgingScope());
+        $query->withGlobalScope(LodgingScope::class, new LodgingScope());
+    }
+
+     /**
+     * Make just lodging subcats available for the request.
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return array
+     */
+    public function relatableCategoriesFilter(NovaRequest $request, $query)
+    {
+        $categoryIds = Category::where('parent_id', 5)->pluck('id');
+        $categoryIds[] = 5;
+
+        return $query->whereIn('id', $categoryIds);
     }
 
 }
