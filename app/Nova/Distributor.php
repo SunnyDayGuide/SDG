@@ -10,6 +10,7 @@ use Fourstacks\NovaCheckboxes\Checkboxes;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Heading;
@@ -113,10 +114,10 @@ class Distributor extends Resource
             HasMany::make('Locations'),
 
             MorphToMany::make('Categories'),
-            HasMany::make('Coupons'),
-            HasMany::make('Ads'),
-            HasMany::make('Articles'),
-            HasMany::make('Events'),
+            BelongsToMany::make('Coupons'),
+            BelongsToMany::make('Ads'),
+            BelongsToMany::make('Articles'),
+            BelongsToMany::make('Events'),
         ];
     }
 
@@ -180,9 +181,36 @@ class Distributor extends Resource
     public function relatableCategoriesFilter(NovaRequest $request, $query)
     {
         $categoryIds = Category::where('parent_id', 5)->pluck('id');
-        $categoryIds[] = 5;
+        // $categoryIds[] = 5;
 
         return $query->whereIn('id', $categoryIds);
+    }
+
+    /**
+     * Return the location to redirect the user after update.
+     * In this case, to the detail page to add category & location
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
+     */
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        // return '/resources/'.static::uriKey();
+    }
+
+    /**
+     * Return the location to redirect the user after update.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
+     */
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        // return '/resources/'.static::uriKey();
     }
 
 }
