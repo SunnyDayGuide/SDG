@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowGadgetsTable extends Migration
+class CreateGadgetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShowGadgetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('show_gadgets', function (Blueprint $table) {
+        Schema::create('gadgets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('gadget_slug');
             $table->string('show_name');
@@ -27,6 +27,6 @@ class CreateShowGadgetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('show_gadgets');
+        Schema::dropIfExists('gadgets');
     }
 }

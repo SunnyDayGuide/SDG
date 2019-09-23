@@ -21,11 +21,11 @@ class CreateShowsTable extends Migration
             $table->string('toll_free')->nullable();
             $table->string('website_url')->nullable();
             $table->boolean('active')->default(true);
-            $table->unsignedBigInteger('theater_id');
-            $table->unsignedBigInteger('show_gadget_id');
+            $table->unsignedBigInteger('theater_id')->nullable();
+            $table->unsignedBigInteger('gadget_id')->nullable();
 
             $table->foreign('theater_id')->references('id')->on('theaters')->onDelete('cascade');
-            $table->foreign('show_gadget_id')->references('id')->on('show_gadgets')->onDelete('cascade');
+            $table->foreign('gadget_id')->references('id')->on('gadgets')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ use App\Logo;
 use App\Market;
 use App\Menu;
 use App\Scopes\MarketScope;
+use App\Show;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -108,8 +109,8 @@ class Advertiser extends Model implements HasMedia
      */
       public function logo()
       {
-       return $this->belongsTo(Logo::class);
-   }
+           return $this->belongsTo(Logo::class);
+       }
 
     /**
      * The coupons that belong to the advertiser.
@@ -151,6 +152,14 @@ class Advertiser extends Model implements HasMedia
     public function events()
     {
         return $this->belongsToMany(Event::class);
+    }
+
+    /**
+     * The shows that belong an advertiser.
+     */
+    public function shows()
+    {
+        return $this->belongsToMany(Show::class);
     }
 
     /**
