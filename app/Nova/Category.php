@@ -94,7 +94,6 @@ class Category extends Resource
 
             HasMany::make('Children', 'children', 'App\Nova\Category')
                 ->exceptOnForms(),
-
         ];
     }
 
