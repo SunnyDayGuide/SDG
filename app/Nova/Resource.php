@@ -79,11 +79,11 @@ abstract class Resource extends NovaResource
      * @param \App\Nova\Resource $resource
      * @return string
      */
-    public static function redirectAfterCreate(NovaRequest $request, $resource)
-    {
-        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
-        return '/resources/'.static::uriKey();
-    }
+    // public static function redirectAfterCreate(NovaRequest $request, $resource)
+    // {
+    //     return '/resources/'.static::uriKey().'/'.$resource->getKey();
+    //     return '/resources/'.static::uriKey();
+    // }
 
     /**
      * Return the location to redirect the user after update.
@@ -92,10 +92,10 @@ abstract class Resource extends NovaResource
      * @param \App\Nova\Resource $resource
      * @return string
      */
-    public static function redirectAfterUpdate(NovaRequest $request, $resource)
-    {
-        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
-        return '/resources/'.static::uriKey();
-    }
+    // public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    // {
+    //     return '/resources/'.static::uriKey().'/'.$resource->getKey();
+    //     return '/resources/'.static::uriKey();
+    // }
 
 }
