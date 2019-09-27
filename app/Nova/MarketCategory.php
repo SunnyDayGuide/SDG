@@ -52,7 +52,7 @@ class MarketCategory extends Resource
      */
     public static function label()
     {
-        return __('Category Pages');
+        return __('Market Category Pages');
     }
 
     /**

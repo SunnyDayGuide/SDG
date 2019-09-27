@@ -167,6 +167,13 @@ class Distributor extends Resource
         return [];
     }
 
+    /**
+     * Build an "index" query that ONLY includes Lodging advertisers/distributors.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public static function indexQuery(NovaRequest $request, $query)
     {
         $query->withGlobalScope(LodgingScope::class, new LodgingScope());
@@ -181,7 +188,6 @@ class Distributor extends Resource
     public function relatableCategoriesFilter(NovaRequest $request, $query)
     {
         $categoryIds = Category::where('parent_id', 5)->pluck('id');
-        // $categoryIds[] = 5;
 
         return $query->whereIn('id', $categoryIds);
     }

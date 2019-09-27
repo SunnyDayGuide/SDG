@@ -7,6 +7,7 @@ use App\Nova\Filters\MarketFilter;
 use App\Scopes\NotLodgingScope;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Froala\NovaFroalaField\Froala;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -235,6 +236,13 @@ protected function hoursFields()
         return [];
     }
 
+    /**
+     * Build an "index" query that does NOT include Lodging.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public static function indexQuery(NovaRequest $request, $query)
     {
         $query->withGlobalScope(NotLodgingScope::class, new NotLodgingScope());
@@ -248,23 +256,35 @@ protected function hoursFields()
      */
     public function relatableCategoriesFilter(NovaRequest $request, $query)
     {
-        // $resource = $request->findResourceOrFail();
+        $resource = $request->findResourceOrFail();
 
-        // $market = \App\Market::find($resource->market_id);
+        $market = \App\Market::find($resource->market_id);
+
+        // none of what is below works; come back to this.
+        // $categories = $market->navCategories()->pluck('id');
+
+        // $categories = $market->categories()
+        //     ->whereNull('parent_id')
+        //     ->whereNotIn('category_id', [5])   // NOT lodging  
+        //     ->with('navSubcategories');
 
         // $subcategoryIds = \App\Category::pluck('id');
+
+        // $subcategoryIds = \App\Category::whereHas('parent')->pluck('id');
 
         // $categoryIds = \App\MarketCategory::whereIn('category_id', $subcategoryIds)
         //     ->where('market_id', $resource->market_id)
         //     ->pluck('id');
 
-        // $categoryIds = \App\MarketCategory::whereHas('market', function ($query) use ($resource, $subcategoryIds) {
-        //         $query->where('market_id', $resource->market_id)
-        //         ->whereIn('category_id', $subcategoryIds);
-        //     })->pluck('id');
+        // $categoryIds = $subcategoryIds->map(function ($item, $key) use ($market) {
+        //     return \App\MarketCategory::where('category_id', $key)
+        //         ->where('market_id', $market->id)
+        //         ->first();
+        // })->pluck('id');
 
-        // return $query->has('parent')->whereIn('id', $categoryIds);
-
+        // return $query->whereIn('id', $categoryIds);
+        
+        // For now just grab subcats
         return $query->has('parent');
     }
 
