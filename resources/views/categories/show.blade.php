@@ -36,11 +36,15 @@
 			<div class="page-title">
 				<h1 class="display-4">{{ $page->title }}</h1>
 			</div>
-
 		</div>
+
 		<div class="fr-view">
 			{!! $page->body !!}
 		</div>
+
+		@if(($market->code == 'BR') && ($category->id == 4))
+		<a href="#show-schedule" class="btn btn-advertiser btn-lg text-white" role="button" aria-pressed="true">Jump to the Show Schedule</a>
+		@endif
 	</div>
 </div>
 
@@ -55,43 +59,14 @@
 <!-- Advertiser Listings Section -->
 <section class="panel panel-light mt-5">
 	<div class="container">
-	<div class="text-center">
-		<h2 class="font-weight-bold">Explore {{ $market->name }} {{ $category->name }}</h2>
-	</div>
-
-	@include('categories._search')
-
-	<div class="d-md-flex justify-content-end mb-3">
-		{{-- <h2>Featured {{ $category->name }}</h2> --}}
-		<div class="coupon-legend d-flex align-items-center">
-			<span class="fa-stack fa-sm">
-				<i class="fas fa-certificate fa-stack-2x"></i>
-				<i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-			</span><span class="py-1">= Has Coupon</span>
+		<div class="text-center">
+			<h2 class="font-weight-bold">Explore {{ $market->name }} {{ $category->name }}</h2>
 		</div>
-	</div>
 
+		@include('categories._search')
 
-	<!--Premier Advertisers Section -->
-	@if(!$premierAdvertisers->isEmpty())
-	@include('categories._advertisers-list-premier')
-	@endif
-	<!--End Premier Advertisers Section -->
-
-	<!--Regular Advertisers Section -->
-	@include('categories._advertisers-list')
-	<!--End Regular Advertisers Section -->
-
-	</div> <!-- End Container -->
-</section>
-<!-- End Advertiser Listings Section -->
-
-<!--OLD Premier Advertisers Section -->
-{{-- @if(!$premierAdvertisers->isEmpty())
-<section id="premierAdvertisers" class="panel panel-advertisers mt-5">
-	<div class="container">
-		<div class="d-md-flex justify-content-between border-bottom border-white mb-3">
-			<h2>Featured {{ $category->name }}</h2>
+		<div class="d-md-flex justify-content-end mb-3">
+			{{-- <h2>Featured {{ $category->name }}</h2> --}}
 			<div class="coupon-legend d-flex align-items-center">
 				<span class="fa-stack fa-sm">
 					<i class="fas fa-certificate fa-stack-2x"></i>
@@ -100,35 +75,61 @@
 			</div>
 		</div>
 
+
+		<!--Premier Advertisers Section -->
+		@if(!$premierAdvertisers->isEmpty())
+		@include('categories._advertisers-list-premier')
+		@endif
+		<!--End Premier Advertisers Section -->
+
+		<!--Regular Advertisers Section -->
+		@include('categories._advertisers-list')
+		<!--End Regular Advertisers Section -->
+
+	</div> <!-- End Container -->
+</section>
+<!-- End Advertiser Listings Section -->
+
+@if(($market->code == 'BR') && ($category->id == 4))
+<!-- Branson Show Schedule Section -->
+<section id="show-schedule" class="panel">
+	<div class="container">
+		<div class="">
+			<h2 class="text-center font-weight-bold">See the Latest Branson Show Schedules</h2>
+			<p>Bacon ipsum dolor amet kielbasa pancetta beef ribs bacon doner leberkas, tenderloin short loin corned beef venison ball tip pork loin flank. Beef ribs kevin burgdoggen, pork belly beef boudin biltong shank pastrami landjaeger. Tenderloin salami jerky porchetta, tongue swine ball tip cupim ground round. Corned beef jerky shankle, flank ball tip burgdoggen venison ham hock kevin doner. Ham hock chuck ball tip filet mignon, salami flank shoulder.</p>
+		</div>
 		<div class="row">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach ($premierAdvertisers as $premierAdvertiser)
-				@include('advertisers._card', ['item' => $premierAdvertiser, 'column' => 'col-md-6', 'profile' => 'full', 'excerpt' => $premierAdvertiser->blurblong ])
-				@endforeach
-				@unless($premierAdvertisers->count() % 2 == 0)
-				<div class="col-md-6 mb-md-4 mb-3 px-md-0 d-none d-md-block">
-					<div class="filler-card">
-						<div class="list-group">
-							@foreach ($articles as $article)
-							<a href="#" class="list-group-item list-group-item-action">
-								<div class="d-flex w-100 justify-content-between">
-									<h5 class="mb-1">{{ $article->title }}</h5>
-									<small>{{ $article->publish_date->diffForHumans() }}</small>
-								</div>
-								<p class="mb-1">{{ $article->blurb }}</p>
-								<small>Rating: {{ $article->rating }}</small>
-							</a>
-							@endforeach
+			<div class="col-md-8 offset-md-2">
+				<div class="list-group list-group-flush show-list mt-5">
+					@foreach($shows as $show)  
+					<a href="{{ $show->path() }}" class="list-group-item list-group-item-action show-item {{ $show->advertiser ? 'bg-advertisers-lt' : '' }}">
+						<span class="{{ $show->advertiser ? 'font-weight-bold' : '' }}">{{ $show->name }}</span>
+						<span class="small">@if($show->theater) - {{ $show->theater->name }}, @endif
+							{{ $show->local_phone }}</span>
+						@if($show->advertiser && $show->advertiser()->has('coupons'))
+						<div class="coupon-icon">
+							<span class="fa-stack fa-xs">
+								<i class="fas fa-certificate fa-stack-2x"></i>
+								<i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+							</span>
+						</div>
+						@endif
+					</a>
+					@if($loop->iteration % 20 == 0)
+					<div class="col-md-12 my-md-4 my-3 px-md-0">
+						<div class="banner-ad">
+							I AM A BANNER AD
 						</div>
 					</div>
+					@endif
+					@endforeach
 				</div>
-				@endunless
-			</div> <!-- End Card Deck-->
-		</div> <!-- End Row-->
+			</div>
+		</div>
 	</div>
 </section>
-@endif --}}
-<!--End OLD Premier Advertisers Section -->
+<!-- End Branson Show Schedule Section -->
+@endif
 
 <!-- Related Articles Section -->
 <section class="panel panel-articles">

@@ -1,0 +1,79 @@
+// Show List
+.show-list {
+	font-size: 1.2rem;
+
+	.coupon-icon {
+		font-size: 1.5rem;
+	}
+
+	.show-item {
+		// position: relative;
+		// margin-bottom: 1rem;
+	}
+}
+
+// Show Schedule
+.show-gadget {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+
+    #branson-calendar-widget-container {
+    	font-family: $font-family-sans-serif-reg !important;
+
+    	div {
+    		@include media-breakpoint-down(sm) {
+    			width: 48.5% !important;
+    			margin: .5% !important;
+    		}
+
+    		@include media-breakpoint-up(md) {
+    			width: 32% !important;
+    			margin: .5% !important;
+    		}
+    		
+    	}
+
+    	table {
+    		width: 100%;
+		    border: 1px solid $light !important;
+
+		    tbody {
+		    	tr:first-child td {
+		    		background: $primary !important;
+				    color: rgb(255, 255, 255);
+				    font-size: 12px;
+				    font-weight: bold;
+				    padding: 5px;
+				    border: 1px solid $primary !important;
+		    	}
+		    }
+    	}
+    }
+
+    #branson-calendar-widget-legend-container {
+    	margin: 1rem;
+
+    	table {
+    		width: 100% !important;
+		    border-spacing: 2px;
+		    border: 1px solid $light !important;
+		    text-align: center;
+		    color: rgb(0, 0, 0);
+		    background-color: rgb(255, 255, 255);
+
+		    tbody {
+		    	tr:first-child td {
+		    		font-size: 14px !important;
+		    		background: $light !important;
+				    border: 1px solid $light !important;
+		    	}
+		    }
+    	}
+    }
+}
+
+// This crazy style is to hide extra show schedule at the bottom of the page
+body > div#branson-calendar-widget-container, body > div#branson-calendar-widget-legend-container {
+	display: none !important;
+}

@@ -21,7 +21,7 @@ class Gadget extends Resource
      *
      * @var string
      */
-    public static $title = 'gadget_slug';
+    public static $title = 'show_name';
 
     /**
      * The columns that should be searched.
@@ -49,8 +49,8 @@ class Gadget extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Show Name'),
-            Text::make('Gadget Slug')
+            Text::make('Show Name')->sortable(),
+            Text::make('Gadget Slug')->sortable()
         ];
     }
 

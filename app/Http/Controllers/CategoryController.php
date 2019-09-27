@@ -8,6 +8,7 @@ use App\Category;
 use App\Event;
 use App\Market;
 use App\MarketCategory;
+use App\Show;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -51,28 +52,30 @@ class CategoryController extends Controller
         // $subcategories = $this->getSubcategories($market, $category);
         $subcatImages = $this->getSubcatImages($market, $category);
 
-        $categoryIds = $category->children()->pluck('id');
-        $categoryIds[] = $category->getKey();
-
         // display the related articles
         $articles = Article::categorized($category, $market)
             ->with('tags', 'categories')
             ->take(3)->get();     
 
         // display the related advertisers
-        $advertisers = Advertiser::categorized($category, $market)->with('tags', 'categories', 'coupons:id')->get();
+        $advertisers = Advertiser::categorized($category, $market)
+            ->with('tags', 'categories', 'coupons:id')
+            ->get()
+            ->sortBy('sortName');
 
         $premierAdvertisers = Advertiser::categorized($category, $market)
-            ->with('tags', 'categories', 'coupons:id')->premier()->get();
+            ->with('tags', 'categories', 'coupons:id')
+            ->premier()->get()
+            ->sortBy('sortName');
 
         // display the related events
         $events = Event::categorized($category, $market)
-            ->with('tags', 'categories')->get();  
+            ->with('tags', 'categories')->get();
 
-        // dd($category->children);
+        $shows = Show::where('active', true)->get()->sortBy('sortName');
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'premierAdvertisers', 'slides', 'image', 'subcatImages'));
+        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'premierAdvertisers', 'slides', 'image', 'subcatImages', 'shows'));
     }
 
     /**
@@ -95,7 +98,7 @@ class CategoryController extends Controller
     {
         $subcatIds = collect($category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market->id);
-            })->pluck('id'));
+            })->pluck('id', 'name'));
 
         $mapped = $subcatIds->map(function ($item, $key) use ($market) {
             return MarketCategory::where('category_id', $item)
@@ -105,7 +108,6 @@ class CategoryController extends Controller
         });
 
        return $mapped;
-
     }
 
 }

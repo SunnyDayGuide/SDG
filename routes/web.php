@@ -93,6 +93,9 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
 	Route::get('places/{advertiser}/print/{coupon}', 'PrintController@singleCoupon')->name('print.single');
 
+	Route::get('shows/{show}', 'ShowController@show')->name('shows.show');
+	// Route::get('shows/{show}', 'ShowController@show')->name('shows.show');
+
 	// Category Routes - leave last for parameters
 	Route::get('{category}', 'CategoryController@show')->name('categories.show');
 	Route::get('{category}/search', 'CategoryController@search')->name('categories.search');

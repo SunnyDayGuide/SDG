@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\GenerateSlugs;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
@@ -54,19 +55,23 @@ class Show extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name'),
+            Text::make('Name')->sortable(),
+            Text::make('Slug')
+                ->hideWhenCreating()
+                ->hideFromIndex()
+                ->rules('required'),
             Text::make('Theater FPO', 'theater_FPO')->readonly()->hideFromIndex(),
             BelongsTo::make('Theater')->nullable(),
             PhoneNumber::make('Local Phone')
-            ->onlyCountries('US')
-            ->withCustomFormats('###-###-####')->onlyCustomFormats()->hideFromIndex(),
+                ->onlyCountries('US')
+                ->withCustomFormats('###-###-####')->onlyCustomFormats()->hideFromIndex(),
             PhoneNumber::make('Toll Free')
-            ->onlyCountries('US')
-            ->withCustomFormats('###-###-####')->onlyCustomFormats()->hideFromIndex(),
+                ->onlyCountries('US')
+                ->withCustomFormats('###-###-####')->onlyCustomFormats()->hideFromIndex(),
             Text::make('Website', 'website_url')->hideFromIndex(),
             Boolean::make('Active'),
-            BelongsTo::make('Gadget'),
-            BelongsToMany::make('Advertisers')
+            BelongsTo::make('Gadget')->nullable(),
+            BelongsTo::make('Advertiser')->nullable()
         ];
     }
 
@@ -111,7 +116,7 @@ class Show extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [new Actions\GenerateSlugs];
     }
 
     /**

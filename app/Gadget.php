@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Gadget extends Model
 {
+	public $timestamps = false;
+	
     /**
      * Get the show that owns the gadget.
      */

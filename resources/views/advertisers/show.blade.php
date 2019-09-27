@@ -38,6 +38,10 @@
 							@if($advertiser->booking_url)
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 							@endif
+
+							@if($advertiser->shows)
+							<a class="btn btn-advertiser text-white" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
+							@endif
 						</div>
 
 						<div class="social mt-3">
@@ -226,10 +230,24 @@
 	</div>
 	@endif
 
+	@if($advertiser->shows)
+	<!-- Schedule -->
+	<div id="show-schedule" class="row my-4">
+		<div class="col-md-8 offset-md-2">
+			<script src="https://calendars.branson.com/js/2.1/calendar.js" type="application/javascript"></script>
+			@foreach($advertiser->shows as $show)
+			@include('show-schedule._schedule')
+			@endforeach
+		</div>
+	</div>
+	
+	@endif
+
 </div> <!-- End Main Content Div -->
 
 @endsection
 
 @section('scripts')
+
 @include('advertisers._initMap')
 @endsection

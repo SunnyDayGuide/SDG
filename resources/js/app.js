@@ -20,6 +20,7 @@ require('selectize');
  */
 
 Vue.component('nav-weather', require('./components/NavWeatherComponent.vue').default);
+Vue.component('show-schedule', require('./components/ShowScheduleComponent.vue').default);
 
 const app = new Vue({
     el: '#app'

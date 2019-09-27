@@ -12915,6 +12915,76 @@ legend {
           transform: rotate(90deg) translateX(-3px);
 }
 
+.show-list {
+  font-size: 1.2rem;
+}
+
+.show-list .coupon-icon {
+  font-size: 1.5rem;
+}
+
+.show-gadget {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.show-gadget #branson-calendar-widget-container {
+  font-family: "Roboto", sans-serif !important;
+}
+
+@media (max-width: 767.98px) {
+  .show-gadget #branson-calendar-widget-container div {
+    width: 48.5% !important;
+    margin: 0.5% !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .show-gadget #branson-calendar-widget-container div {
+    width: 32% !important;
+    margin: 0.5% !important;
+  }
+}
+
+.show-gadget #branson-calendar-widget-container table {
+  width: 100%;
+  border: 1px solid #C6C6C6 !important;
+}
+
+.show-gadget #branson-calendar-widget-container table tbody tr:first-child td {
+  background: #154270 !important;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+  border: 1px solid #154270 !important;
+}
+
+.show-gadget #branson-calendar-widget-legend-container {
+  margin: 1rem;
+}
+
+.show-gadget #branson-calendar-widget-legend-container table {
+  width: 100% !important;
+  border-spacing: 2px;
+  border: 1px solid #C6C6C6 !important;
+  text-align: center;
+  color: black;
+  background-color: white;
+}
+
+.show-gadget #branson-calendar-widget-legend-container table tbody tr:first-child td {
+  font-size: 14px !important;
+  background: #C6C6C6 !important;
+  border: 1px solid #C6C6C6 !important;
+}
+
+body > div#branson-calendar-widget-container,
+body > div#branson-calendar-widget-legend-container {
+  display: none !important;
+}
+
 /* Advertiser Coupon blocks */
 
 .print a {
