@@ -159,7 +159,7 @@ class Advertiser extends Model implements HasMedia
      */
     public function shows()
     {
-        return $this->belongsToMany(Show::class);
+        return $this->hasMany(Show::class);
     }
 
     /**
@@ -188,7 +188,7 @@ class Advertiser extends Model implements HasMedia
     }
 
     /**
-     * The slug is generated for as article from it's title, but the slug is scoped to the market. 
+     * The slug is generated for an advertiser from it's title, but the slug is scoped to the market. 
      * So a BR can have an article with the same title as CG, but both will have the same slug.
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param \Illuminate\Database\Eloquent\Model $model
@@ -364,6 +364,11 @@ class Advertiser extends Model implements HasMedia
         $blurb = Str::replaceFirst('<p>', '', $this->write_up);
         // return Str::limit($blurb, 125, '...');
         return Str::words($blurb, 20, '...');
+    }
+
+    public function getSortNameAttribute()
+    {
+        return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));
     }
 
 
