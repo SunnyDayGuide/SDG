@@ -5,6 +5,7 @@ namespace App\Nova;
 use App\Nova\Filters\Category;
 use App\Nova\Filters\MarketFilter;
 use App\Scopes\NotLodgingScope;
+use Bissolli\NovaPhoneField\PhoneNumber;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Database\Eloquent\Builder;
@@ -84,7 +85,10 @@ class Advertiser extends Resource
             Froala::make('Write Up', 'write_up')
                 ->rules('required'),
 
-            Text::make('Toll Free Phone Number', 'toll_free')->hideFromIndex(),
+            PhoneNumber::make('Toll Free Phone Number', 'toll_free')
+                ->onlyCountries('US')
+                ->withCustomFormats('###-###-####')->onlyCustomFormats()
+                ->hideFromIndex(),
 
             Tags::make('Tags')->hideFromIndex(),
 

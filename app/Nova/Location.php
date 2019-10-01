@@ -66,8 +66,8 @@ class Location extends Resource
             ID::make()->sortable(),
             $this->googleaddressFields(),
             PhoneNumber::make('Phone Number', 'telephone')
-            ->onlyCountries('US')
-            ->withCustomFormats('###-###-####')->onlyCustomFormats(),
+                ->onlyCountries('US')
+                ->withCustomFormats('###-###-####')->onlyCustomFormats(),
             BelongsTo::make('Advertiser')->exceptOnForms(),
         ];
     }
