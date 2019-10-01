@@ -26,7 +26,7 @@
 								@if($market->code == 'BR')
 								<div class="megamenu-heading"><a href="#">Show Schedule</a></div>
 								@endif
-								<div class="megamenu-heading"><a href="#">Places to Stay</a></div>
+								<div class="megamenu-heading"><a href="{{ $market->path() }}/accommodations">Places to Stay</a></div>
 								<div class="megamenu-heading"><a href="#">Local Info</a></div>
 								<div class="megamenu-heading"><a href="#">Tide Charts</a></div>
 							</div>
@@ -61,7 +61,7 @@
 								@if($market->code == 'BR')
 								<h6 class="megamenu-heading megamenu-subheading"><a href="#">Show Schedule</a></h6>
 								@endif
-								<h6 class="megamenu-heading megamenu-subheading"><a href="#">Places to Stay</a></h6>
+								<h6 class="megamenu-heading megamenu-subheading"><a href="{{ $market->path() }}/accommodations">Places to Stay</a></h6>
 								<h6 class="megamenu-heading megamenu-subheading"><a href="#">Local Info</a></h6>
 								
 								<h6 class="megamenu-heading megamenu-subheading"><a href="{{ route('tide-charts', $market) }}">Tide Charts</a></h6>

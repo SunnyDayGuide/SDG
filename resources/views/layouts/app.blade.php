@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        @include('partials._nav3')
+        @include('partials.nav._navbar')
 
         <main role="main" class="content-wrapper">
             @yield('jumbotron')
