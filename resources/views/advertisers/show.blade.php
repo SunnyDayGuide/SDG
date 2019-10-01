@@ -39,7 +39,7 @@
 							<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 							@endif
 
-							@if($advertiser->shows)
+							@if(count($advertiser->shows) > 0)
 							<a class="btn btn-advertiser text-white" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
 							@endif
 						</div>
@@ -230,7 +230,7 @@
 	</div>
 	@endif
 
-	@if($advertiser->shows)
+	@if(count($advertiser->shows) > 0)
 	<!-- Schedule -->
 	<div id="show-schedule" class="row my-4">
 		<div class="col-md-8 offset-md-2">
