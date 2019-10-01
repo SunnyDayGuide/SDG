@@ -10,7 +10,7 @@
 			<a href="{{ $item->path() }}" class="stretched-link text-reset text-decoration-none">
 				<h5 class="card-title">{{ $item->name }}</h5>
 			</a>
-			<p class="card-text">{{ $excerpt }}</p>
+			<p class="card-text">{!! $excerpt !!}</p>
 
 			@if($item->coupons->count())
 			<div class="coupon-icon">

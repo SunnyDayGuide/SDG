@@ -355,15 +355,12 @@ class Advertiser extends Model implements HasMedia
 
     public function getBlurbAttribute()
     {
-        $blurb = Str::replaceFirst('<p>', '', $this->write_up);
-        return Str::words($blurb, 10, '...');
+        return Str::words($this->write_up, 10, '...');
     }
 
     public function getBlurbLongAttribute()
     {
-        $blurb = Str::replaceFirst('<p>', '', $this->write_up);
-        // return Str::limit($blurb, 125, '...');
-        return Str::words($blurb, 20, '...');
+        return Str::limit($this->write_up, 170, '...');
     }
 
     public function getSortNameAttribute()

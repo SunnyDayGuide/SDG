@@ -17,7 +17,7 @@
 					<a href="{{ $premierAdvertiser->path() }}" class="stretched-link text-reset text-decoration-none">
 						<h5 class="card-title">{{ $premierAdvertiser->name }}</h5>
 					</a>
-					<p class="card-text">{{ $premierAdvertiser->blurbLong }}</p>
+					<p class="card-text">{!! $premierAdvertiser->blurbLong !!}</p>
 
 					@if($premierAdvertiser->coupons->count())
 					<div class="coupon-icon">
