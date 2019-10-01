@@ -53,9 +53,17 @@ class CategoryController extends Controller
         $subcatImages = $this->getSubcatImages($market, $category);
 
         // display the related articles
-        $articles = Article::categorized($category, $market)
+        $articleCount = count(Article::categorized($category, $market)->get());
+
+        if ($articleCount < 3) {
+           $articles = Article::marketed($market)
+            ->with('tags')
+            ->get()->random(3);
+        } else {
+            $articles = Article::categorized($category, $market)
             ->with('tags', 'categories')
-            ->take(3)->get();     
+            ->get()->random(3); 
+        }
 
         // display the related advertisers
         $advertisers = Advertiser::categorized($category, $market)
