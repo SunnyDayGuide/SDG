@@ -71,7 +71,7 @@ class Article extends Model implements HasMedia
      *
      * @var array
      */
-    protected $with = ['market', 'categories:id,name', 'media', 'articleType'];
+    protected $with = ['categories:id,name', 'media', 'articleType'];
 
     /**
      * All of the relationships to be touched.
