@@ -13786,3 +13786,27 @@ label {
   }
 }
 
+.empty-jumbo {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+}
+
+@media (min-width: 768px) {
+  .empty-jumbo {
+    min-height: 400px;
+  }
+}
+
+.gradient {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1e5799+0,7db9e8+100 */
+  background: #add33b;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #add33b 0%, #60A3D9 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#add33b", endColorstr="#60A3D9",GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */
+}
+
