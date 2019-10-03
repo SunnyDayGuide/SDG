@@ -108,11 +108,17 @@ class CategoryController extends Controller
                 $query->where('market_id', $market->id);
             })->pluck('id', 'name'));
 
+        // find the matching market category page or create one
+        // this is a prevent for breaking page if you assign an advertiser to a category where a page has not yet been created. 
+        // Come back to this. there has to be a better solution.
         $mapped = $subcatIds->map(function ($item, $key) use ($market) {
             return MarketCategory::where('category_id', $item)
                 ->where('market_id', $market->id)
                 ->with('media')
-                ->first();
+                ->firstOrCreate(
+                    ['market_id' => $market->id],
+                    ['category_id' => $item]
+                );
         });
 
        return $mapped;
