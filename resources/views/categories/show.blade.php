@@ -32,13 +32,11 @@
 
 <div class="container my-3 my-md-5">
 	<div class="content">
-		<div class="d-md-flex justify-content-between align-items-center">
-			<div class="page-title">
-				<h1 class="display-4">{{ $page->title }}</h1>
-			</div>
+		<div class="page-title">
+			<h1 class="display-4">{{ $page->title }}</h1>
 		</div>
 
-		<div class="fr-view">
+		<div class="fr-view page-body">
 			{!! $page->body !!}
 		</div>
 
