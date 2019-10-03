@@ -45,8 +45,15 @@ return [
             ]
         ],
 
+        'colorsBackground' => ['#C6C6C6', '#bfdaf0', '#d5e99b', 'REMOVE'],
+
+        'colorsText' => ['#FF6F61', '#154270', '#60A3D9', '#add33b', 'REMOVE'],
+
         'inlineStyles' => [
-            'text-advertiser' => 'color: #B5D45F;',
+            'text-advertiser' => 'color: #add33b;',
+            'text-primary' => 'color: #154270;',
+            'text-highlight' => 'color: #FF6F61;',
+            'text-editorial' => 'color: #60A3D9;',
         ]
     ],
 
