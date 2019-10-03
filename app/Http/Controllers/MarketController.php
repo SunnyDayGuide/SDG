@@ -45,7 +45,7 @@ class MarketController extends Controller
         $latestArticles = $market->articles()->tripIdeas()->latest()->skip(1)->take(3)->get();
         $latestArticle = $market->articles()->tripIdeas()->latest()->first();
 
-        $events = $market->events()->current()->active()->take(3)->get();
+        $events = $market->events()->current()->active()->get(); // could also do "events this week"
 
         // return view('markets.show', compact('market', 'sliderImages', 'articles'));
         return view('markets.'.$market->code, compact('market', 'sliderImages', 'premierAdvertisers', 'latestArticles', 'latestArticle', 'events'));

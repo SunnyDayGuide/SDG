@@ -31,7 +31,7 @@
 
 	<!-- Featured Categories Section -->
 	<section class="my-3">
-		<h2 class="mb-0 font-weight-bold text-center bg-highlight text-white p-2">Discover {{ $market->name }} Blah blah blah</h2>
+		<h2 class="mb-0 font-weight-bold text-center bg-highlight text-white p-2">Discover the best of {{ $market->name }}</h2>
 		<div class="card-columns">
 			<div class="card text-white overlay text-left">
 				<img src="{{ asset('images/branson/home/entertainment-inset.jpg') }}" class="card-img" alt="...">
