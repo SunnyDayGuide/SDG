@@ -218,6 +218,16 @@
 
 }
 
+.nav-articles {
+	ul li:first-of-type {
+		a {
+			font-weight: $font-weight-bold;
+			font-family: $headings-font-family;
+			line-height: 1;
+		}
+	}
+}
+
 // Top Bar
 .navbar-top {
 	// background-color: #eee; 

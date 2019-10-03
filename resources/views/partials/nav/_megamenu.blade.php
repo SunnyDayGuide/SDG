@@ -77,7 +77,9 @@
 						<div class="mb-2">
 							{{-- Temporary if statement. Remove for production. --}}
 							@if(count($navArticles) > 0)
+							<a href="{{ $featuredArticle->path() }}">
 							@include('partials._images', ['item' => $featuredArticle])
+							</a>
 							@endif
 						</div>
 						<ul class="list-unstyled ml-2">
