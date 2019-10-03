@@ -9,6 +9,7 @@ use App\CustomTag;
 use App\Helpers\WordPressContentFormatter;
 use App\Market;
 use App\Scopes\MarketScope;
+use App\Traits\Bannerable;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Carbon\Carbon;
@@ -34,14 +35,15 @@ class Article extends Model implements HasMedia
     use HasTags;
     use HasMediaTrait;
     use Searchable;
+    use Bannerable;
     
      /**
      * The "booting" method of the model.
      *
      * @return void
      */
-    protected static function boot()
-    {
+     protected static function boot()
+     {
         parent::boot();
 
         // static::addGlobalScope(new MarketScope);
@@ -63,16 +65,16 @@ class Article extends Model implements HasMedia
         /**
      * Attributes to cast.
      */
-    protected $casts = [
-        'featured' => 'boolean'
-    ];
+        protected $casts = [
+            'featured' => 'boolean'
+        ];
 
     /**
      * The relationships to always eager-load.
      *
      * @var array
      */
-    protected $with = ['categories:id,name', 'media', 'articleType'];
+    // protected $with = ['categories:id,name', 'media', 'articleType'];
 
     /**
      * All of the relationships to be touched.
@@ -81,20 +83,20 @@ class Article extends Model implements HasMedia
      */
     protected $touches = ['categories'];
 
-	protected $dates = [
-	    'created_at',
-	    'updated_at',
-	    'publish_date',
-        'deleted_at'
-	];
+    protected $dates = [
+       'created_at',
+       'updated_at',
+       'publish_date',
+       'deleted_at'
+   ];
 
      /**
      * Get the route key name.
      *
      * @return string
      */
-    public function getRouteKeyName()
-    {
+     public function getRouteKeyName()
+     {
         return 'slug';
     }
 
@@ -194,8 +196,8 @@ class Article extends Model implements HasMedia
      * @param $market
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFeatured($query)
-    {
+     public function scopeFeatured($query)
+     {
         return $query->where('featured', true);
     }
 
@@ -235,28 +237,28 @@ class Article extends Model implements HasMedia
      * @param  App\Market $market
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getRelatedArticles(Market $market)
-    {
-      $tag_ids = $this->tags()->pluck('id');
-      $category_ids = $this->subcategories()->pluck('id');
+     public function getRelatedArticles(Market $market)
+     {
+        $tag_ids = $this->tags()->pluck('id');
+        $category_ids = $this->subcategories()->pluck('id');
 
-      $articles = $this->whereHas('tags', function($q) use ($tag_ids) {
-        $q->whereIn('id', $tag_ids);
-      })
-      ->orwhereHas('subcategories', function($q) use ($category_ids) {
-        $q->whereIn('id', $category_ids);
-      })
-      ->get();
+        $articles = $this->whereHas('tags', function($q) use ($tag_ids) {
+            $q->whereIn('id', $tag_ids);
+        })
+          ->orwhereHas('subcategories', function($q) use ($category_ids) {
+            $q->whereIn('id', $category_ids);
+        })
+          ->get();
 
-      $relatedArticles = $articles
-        ->except($this->id)
-        ->where('market_id', $market->id);
+        $relatedArticles = $articles
+          ->except($this->id)
+          ->where('market_id', $market->id);
 
-      if ($relatedArticles->count() >= 3) {
-        return $relatedArticles;
-      } else {
-        return $relatedArticles;
-      }
+        if ($relatedArticles->count() >= 3) {
+            return $relatedArticles;
+        } else {
+            return $relatedArticles;
+        }
 
     }
 
@@ -297,7 +299,7 @@ class Article extends Model implements HasMedia
      * @param string $attribute
      * @return \Cocur\Slugify\Slugify
      */
-    public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
+     public function customizeSlugEngine(\Cocur\Slugify\Slugify $engine, $attribute) {
         $engine->addRule('\'', '');
         $engine->addRule('’', '');
         return $engine;
@@ -327,8 +329,8 @@ class Article extends Model implements HasMedia
     public function tags(): MorphToMany
     {
         return $this
-            ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
-            ->orderBy('order_column');
+        ->morphToMany(self::getTagClassName(), 'taggable', 'taggables', null, 'tag_id')
+        ->orderBy('order_column');
     }
 
     /**
@@ -341,19 +343,19 @@ class Article extends Model implements HasMedia
         $this
         ->addMediaCollection('slider')
         ->registerMediaConversions(function (Media $media) {
-            
+
             $this->addMediaConversion('full')
-                ->withResponsiveImages();
+            ->withResponsiveImages();
 
             $this
-                ->addMediaConversion('card')
-                ->crop(Manipulations::CROP_CENTER, 382, 203)
-                ->withResponsiveImages();
+            ->addMediaConversion('card')
+            ->crop(Manipulations::CROP_CENTER, 382, 203)
+            ->withResponsiveImages();
 
             $this
-                ->addMediaConversion('sm-card')
-                ->crop(Manipulations::CROP_CENTER, 317, 169)
-                ->withResponsiveImages();
+            ->addMediaConversion('sm-card')
+            ->crop(Manipulations::CROP_CENTER, 317, 169)
+            ->withResponsiveImages();
         });
 
         $this->addMediaCollection('inset');
@@ -369,4 +371,5 @@ class Article extends Model implements HasMedia
             return $content;
         }
     }
+
 }

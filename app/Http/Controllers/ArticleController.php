@@ -60,14 +60,20 @@ class ArticleController extends Controller
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 
+      $ad1 = $this->getBannerZone('1');
+      $ad2 = $this->getBannerZone('3');
+
+      $content = $article->insertAdCode($article->content, $ad1, $ad2);
+
       $premierAdvertisers = Advertiser::where('market_id', $market->id)
       ->premier()->get()->random(3);
 
       $relatedArticles = $article->getRelatedArticles($market)
         ->sortByDesc('publish_date'); 
 
-      return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
+      return view('articles.show', compact('article', 'content', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
     }
+
 
     /**
      * Display the specified resource.
@@ -159,6 +165,16 @@ class ArticleController extends Controller
       $article->loseRating();
 
       return back();
+    }
+
+    public function getBannerZone($zone)
+    {
+      return view('banners._zone'.$zone);
+    }
+
+    public function getPremierAds($premierAdvertisers)
+    {
+      return view('panels._advertisers', compact('premierAdvertisers'));
     }
 
   }

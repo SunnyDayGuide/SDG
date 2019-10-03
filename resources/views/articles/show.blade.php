@@ -57,6 +57,7 @@
 
 				<div class="content mb-4">
 					<div class="fr-view">{!! $article->content !!}</div>
+					<div class="fr-view">{!! $content !!}</div>
 				</div>
 
 			</div> <!-- End Column -->
