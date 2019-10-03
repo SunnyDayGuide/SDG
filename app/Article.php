@@ -6,6 +6,7 @@ use Algolia\ScoutExtended\Splitters\HtmlSplitter;
 use App\Advertiser;
 use App\Category;
 use App\CustomTag;
+use App\Helpers\WordPressContentFormatter;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
@@ -359,4 +360,13 @@ class Article extends Model implements HasMedia
 
     }
 
+    public function getFormattedContentAttribute()
+    {
+        $formatter = new WordPressContentFormatter;
+        if ($this->content) {
+            $content = $formatter->wptexturize($this->content);
+            $content = $formatter->wpautop($content);
+            return $content;
+        }
+    }
 }
