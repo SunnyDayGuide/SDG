@@ -5,6 +5,10 @@
   </div>
 
   <div class="media-body">
+    @if ($article->subcategories->count())
+    @include('categories._links', ['item' => $article])
+    @endif
+    
     <a href="{{ $article->path() }}" class="stretched-link text-reset text-decoration-none">
       <h5>{{ $article->title }}</h5>
     </a>

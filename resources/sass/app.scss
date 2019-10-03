@@ -47,12 +47,17 @@ label {
 .btn {
 	font-family: $font-family-sans-serif;
 }
-.tags {
+.tags-links {
 	font-weight: $font-weight-medium;
-	border-radius: 0;
-	background-color: $light;
 	position: relative;
 	z-index: 2;
+}
+
+.category-links {
+	line-height: 1.2;
+	position: relative;
+	z-index: 2;
+	margin-bottom: .5rem;
 }
 
 .vh-center {

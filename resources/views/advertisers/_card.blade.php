@@ -25,9 +25,7 @@
 
 		@if ($item->tags->count())
 		<div class="card-footer">
-			@foreach($item->tags as $tag)
-			<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-			@endforeach
+			@include('tags._links', ['item' => $item, 'color' => 'advertiser'])
 		</div>
 		@endif
 

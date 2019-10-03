@@ -45,9 +45,6 @@
 						<div class="meta-byline">by {{ $article->author }}</div>
 						@endif
 						<time class="meta-time">{{ $article->publish_date->format('F j, Y g:ia') }}</time>
-						@foreach($article->tags as $tag)
-							<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-						@endforeach
 					</div>
 				</div>
 				
@@ -56,9 +53,13 @@
 				</div>
 
 				<div class="content mb-4">
-					<div class="fr-view">{!! $article->content !!}</div>
 					<div class="fr-view">{!! $content !!}</div>
 				</div>
+
+
+				@if(!$article->tags->isEmpty())
+				@include('tags._links', ['item' => $article, 'color' => 'advertiser'])
+				@endif				
 
 			</div> <!-- End Column -->
 		</div> <!-- End Row -->

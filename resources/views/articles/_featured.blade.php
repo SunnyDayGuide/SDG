@@ -3,17 +3,20 @@
 	<div class="card card-article mb-4">
 		<img class="card-img-top" src="{{ asset($article->image) }}" alt="">
 		<div class="card-body">
-			<h5 class="card-title">{{ $article->title }}</h2>
+			@if ($article->subcategories->count())
+			@include('categories._links', ['item' => $article])
+			@endif
+
+			<h2 class="card-title">{{ $article->title }}</h2>
 			<p>Published: {{ $article->publish_date->diffForHumans() }}</p>
 			<p class="card-text">{{ $article->excerpt }}</p>
 			<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 			<p>{{ $article->market->name }} {{ $article->articleType->name }}</p>
 		</div> <!-- End Card Body-->
+		
 		@if ($article->tags->count())
 		<div class="card-footer">
-			@foreach($article->tags as $tag)
-			<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="badge badge-secondary">{{ $tag->name }}</a>
-			@endforeach
+			@include('tags._links', ['item' => $article, 'color' => 'advertiser'])
 		</div>
 		@endif
 	</div> <!-- End Card -->

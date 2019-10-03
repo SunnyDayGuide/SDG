@@ -7,19 +7,21 @@
 		@endif
 
 		<div class="card-body">
+			@if ($article->subcategories->count())
+			@include('categories._links', ['item' => $article])
+			@endif
+			
 			<a href="{{ $article->path() }}" class="stretched-link text-reset text-decoration-none">
 				<h5 class="card-title">{{ $article->title }}</h5>
 			</a>
 			<p class="card-text">{{ $article->blurb }}</p>
 		</div>
 
-		@if ($article->tags->count())
+		{{-- @if ($article->tags->count())
 		<div class="card-footer">
-			@foreach($article->tags as $tag)
-			<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-			@endforeach
+			@include('tags._links', ['item' => $article, 'color' => 'advertiser'])
 		</div>
-		@endif
+		@endif --}}
 
 	</div> <!-- End Card-->
 

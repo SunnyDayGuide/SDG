@@ -12259,6 +12259,12 @@ a.text-advertisers-lt:focus {
   }
 }
 
+.nav-articles ul li:first-of-type a {
+  font-weight: 700;
+  font-family: "Raleway", sans-serif;
+  line-height: 1;
+}
+
 .navbar-top {
   background-color: #bfdaf0;
 }
@@ -13756,12 +13762,17 @@ label {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.tags {
+.tags-links {
   font-weight: 500;
-  border-radius: 0;
-  background-color: #C6C6C6;
   position: relative;
   z-index: 2;
+}
+
+.category-links {
+  line-height: 1.2;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.5rem;
 }
 
 .vh-center {

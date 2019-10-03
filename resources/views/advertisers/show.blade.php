@@ -124,11 +124,10 @@
 			<!-- Write Up -->
 			<div class="fr-view write-up">{!! $advertiser->write_up !!}</div>
 
-			<div class="my-3">
-				@foreach($advertiser->tags as $tag)
-				<a href="{{ $market->path().'/tags/'.$tag->slug }}" class="btn btn-sm btn-light text-white mr-2 tags">{{ $tag->name }}</a>
-				@endforeach
-			</div>
+			@if(count($advertiser->tags) > 0)
+			<!-- Tags Links -->
+			@include('tags._links', ['item' => $advertiser, 'color' => 'advertiser'])
+			@endif
 
 			<!-- Attributes -->
 			<div class="row info my-4">
@@ -169,9 +168,21 @@
 				</div>
 				@endif
 
+				<!-- Related Articles -->
+				<div class="col-md-6 mb-4 hours">
+					@if(count($advertiser->articles) > 0)
+					<h4>Related:</h4>
+					<ul class="list-unstyled">
+						@foreach($advertiser->articles as $article)
+						<li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
+						@endforeach
+					</ul>
+					@endif
+				</div>
+
 			</div>
 
-		</div>
+		</div> <!-- End Column -->
 	</div> <!-- End Row -->
 
 	<!-- Map -->
@@ -196,14 +207,14 @@
 				@foreach($locations as $location)
 				<div class="d-md-flex justify-content-between border-bottom border-light my-4">
 					<div class="flex-grow-1 py-1">
-						<a href="{{ $location->directions }}" target="_blank" aria-label="Get directions to {{ $advertiser->name }}">
-							<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->full_address }}
+						<a href="{{ $location->directions }}" target="_blank" aria-label="Get directions to {{ $location->full_address }}">
+							<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" title="Get directions to {{ $location->full_address }}"></i>{{ $location->full_address }}
 						</a>
 					</div>
 					@isset($location->telephone)
 					<div class="py-1">
 						<a href="tel:{{ $location->telephone }}" aria-label="Call {{ $advertiser->name }}">
-							<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $location->telephone }}
+							<i class="fas fa-phone fa-lg fa-fw mr-2" title="Call {{ $advertiser->name }}"></i>{{ $location->telephone }}
 						</a>
 					</div>
 					@endisset
@@ -213,7 +224,7 @@
 			@isset($advertiser->toll_free)
 			<div class="tollfree text-md-right">
 				<p><a href="tel:{{ $advertiser->toll_free }}" aria-label="Call {{ $advertiser->name }}">
-					<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>Call Toll-Free: {{ $advertiser->toll_free }}
+					<i class="fas fa-phone fa-lg fa-fw mr-2" title="Call {{ $advertiser->name }}"></i>Call Toll-Free: {{ $advertiser->toll_free }}
 				</a></p>
 			</div>
 			@endisset
@@ -224,7 +235,7 @@
 	@if($advertiser->coupons->count() > 0)
 	<div class="row my-3 my-md-5" id="coupons">
 		<div class="col-md-8 offset-md-2">
-			<div class="text-uppercase print"><a href="{{ route('print.all', [$market, $advertiser]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print all coupons</a></div>
+			<div class="text-uppercase print"><a href="{{ route('print.all', [$market, $advertiser]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" title="Print all coupons"></i>Print all coupons</a></div>
 			@include('advertisers._coupon')
 		</div>
 	</div>
@@ -240,7 +251,6 @@
 			@endforeach
 		</div>
 	</div>
-	
 	@endif
 
 </div> <!-- End Main Content Div -->
