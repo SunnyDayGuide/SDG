@@ -34,10 +34,7 @@ class MarketController extends Controller
         $sliderImages = $market->getMedia('home');
 
         $premierAdvertisers = Advertiser::where('market_id', $market->id)
-            ->premier()->get();
-
-        // $articles = $market->getFeaturedArticles()->where('article_type_id', 1)->take(3)->get();
-        $articles = $market->articles()->featured()->tripIdeas()->take(3)->get();
+            ->premier()->inRandomOrder()->get();
 
         $popularArticles = $market->articles()->orderBy('rating', 'desc')->skip(1)->take(3)->get();
         $mostPopular = $market->articles()->orderBy('rating', 'desc')->first();
