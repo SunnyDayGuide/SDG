@@ -6,7 +6,6 @@
 
 	.card-title, .card-title a {
 		color: $editorial;
-		font-weight: $font-weight-bold;
 	}
 }
 
@@ -77,6 +76,15 @@
     font-weight: $font-weight-medium;
     font-style: italic;
     color: $light;
+}
+
+.content a {
+    text-decoration: underline;
+}
+
+.content a:hover {
+    color: $primary;
+    text-decoration: none;
 }
 
 .content h2 {

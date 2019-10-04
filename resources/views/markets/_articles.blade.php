@@ -15,7 +15,7 @@
 
 				<div class="card-body">
 					@include('categories._links', ['item' => $latestArticle])
-					<a href="{{ $latestArticle->path() }}" class="text-reset text-decoration-none">
+					<a href="{{ $latestArticle->path() }}" class="text-decoration-none">
 						<h5 class="card-title">{{ $latestArticle->title }}</h5>
 					</a>
 					<p class="card-text">{{ $latestArticle->excerpt }}</p>
@@ -39,7 +39,7 @@
 				<div class="col-md-6 position-static pl-md-0 d-flex flex-column">
 					<div class="card-body py-md-0">
 						@include('categories._links', ['item' => $article])
-						<h5 class="card-title mt-0"><a href="{{ $article->path() }}" class="text-reset text-decoration-none">{{ $article->title }}</a></h5>
+						<h5 class="card-title mt-0"><a href="{{ $article->path() }}" class="text-decoration-none">{{ $article->title }}</a></h5>
 						<p class="card-text d-md-none">{{ $article->blurb }}</p>
 					</div>
 

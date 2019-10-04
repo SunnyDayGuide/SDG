@@ -181,7 +181,7 @@ a {
 }
 
 a:hover {
-  color: #091c30;
+  color: #656565;
   text-decoration: underline;
 }
 
@@ -3870,7 +3870,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-link:hover {
-  color: #091c30;
+  color: #656565;
   text-decoration: underline;
 }
 
@@ -5832,7 +5832,7 @@ input[type=button].btn-block {
 
 .page-link:hover {
   z-index: 2;
-  color: #091c30;
+  color: #656565;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -12452,11 +12452,6 @@ legend {
   bottom: 0;
 }
 
-.card-article .card-title,
-.card-article .card-title a {
-  color: #60A3D9;
-}
-
 .card-advertiser .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
@@ -13194,7 +13189,6 @@ body > div#branson-calendar-widget-legend-container {
 .tripIdeas .card-title,
 .tripIdeas .card-title a {
   color: #60A3D9;
-  font-weight: 700;
 }
 
 .advSpotlights {
@@ -13266,6 +13260,15 @@ body > div#branson-calendar-widget-legend-container {
   font-weight: 500;
   font-style: italic;
   color: #C6C6C6;
+}
+
+.content a {
+  text-decoration: underline;
+}
+
+.content a:hover {
+  color: #154270;
+  text-decoration: none;
 }
 
 .content h2 {

@@ -11,7 +11,7 @@
 			@include('categories._links', ['item' => $article])
 			@endif
 			
-			<a href="{{ $article->path() }}" class="stretched-link text-reset text-decoration-none">
+			<a href="{{ $article->path() }}" class="stretched-link text-decoration-none">
 				<h5 class="card-title">{{ $article->title }}</h5>
 			</a>
 			<p class="card-text">{{ $article->blurb }}</p>
