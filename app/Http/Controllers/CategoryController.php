@@ -56,11 +56,11 @@ class CategoryController extends Controller
         $articleCount = count(Article::categorized($category, $market)->get());
 
         if ($articleCount < 3) {
-           $articles = Article::marketed($market)
+           $relatedArticles = Article::marketed($market)
             ->with('tags')
             ->get()->random(3);
         } else {
-            $articles = Article::categorized($category, $market)
+            $relatedArticles = Article::categorized($category, $market)
             ->with('tags', 'categories')
             ->get()->random(3); 
         }
@@ -83,7 +83,7 @@ class CategoryController extends Controller
         $shows = Show::where('active', true)->get()->sortBy('sortName');
         
         //show the lead page
-        return view('categories.show', compact('market', 'articles', 'advertisers', 'events', 'page', 'category', 'premierAdvertisers', 'slides', 'image', 'subcatImages', 'shows'));
+        return view('categories.show', compact('market', 'relatedArticles', 'advertisers', 'events', 'page', 'category', 'premierAdvertisers', 'slides', 'image', 'subcatImages', 'shows'));
     }
 
     /**

@@ -118,10 +118,9 @@
 
 <!-- Premier Advertisers Section-->
 @if(!$premierAdvertisers->isEmpty())
-@include('markets._advertisers')
+@include('panels._premier-advertisers', ['premierAdvertisers' => $premierAdvertisers, 'slick' => true])
 @endif  
 <!-- End Premier Advertisers Section-->
-
 
 @endsection
 

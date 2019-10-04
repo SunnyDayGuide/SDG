@@ -91,43 +91,9 @@
 		</div>
 
 	</section>  <!-- End Main Content -->
-
-	<!-- Premier Advertiser Section -->
-	<section class="panel panel-advertisers mt-5">
-		<div class="container">
-
-			<div class="border-bottom border-white mb-3 w-100">
-				<h2>{{ $market->name }} Highlights</h2>
-			</div>
-
-			<div class="row">
-				<div class="card-deck w-100 mx-md-0">
-					@foreach ($premierAdvertisers as $advertiser)
-						@include('panels._advertisers')
-					@endforeach
-				</div> <!-- End Card Deck-->
-			</div> <!-- End Row-->
-
-		</div>
-	</section> <!-- End Premier Advertiser Section -->
 	
-	<!-- Related Articles Section -->
-	<section class="panel panel-articles mt-5">
-		<div class="container">
+	@include('panels._premier-advertisers', ['premierAdvertisers' => $premierAdvertisers, 'slick' => false])
 
-			<div class="border-bottom border-white mb-3 w-100">
-				<h2>You May Also Be Interested In</h2>
-			</div>
-
-			<div class="row">
-				<div class="card-deck w-100 mx-md-0">
-					@foreach ($relatedArticles as $relatedArticle)
-						@include('panels._articles')
-					@endforeach
-				</div> <!-- End Card Deck-->
-			</div> <!-- End Row-->			
-
-		</div>
-	</section> <!-- End Related Articles Section -->
+	@include('panels._related-articles', ['articles' => $relatedArticles])
 
 @endsection
