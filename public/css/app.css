@@ -12724,6 +12724,10 @@ legend {
   }
 }
 
+.panel-subcat h2 {
+  font-weight: 700;
+}
+
 .coupon-legend {
   font-size: 1rem;
 }

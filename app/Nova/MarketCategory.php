@@ -74,6 +74,8 @@ class MarketCategory extends Resource
 
             Froala::make('Body'),
 
+            Froala::make('Subcategory Header')->nullable(),
+
             Images::make('Slider Images', 'slider')
                 ->customPropertiesFields([
                         Text::make('Credit'),

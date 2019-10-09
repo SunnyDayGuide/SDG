@@ -1,8 +1,10 @@
 <div class="panel-subcat">
 	<div class="text-center mb-5">
-		<h2 class="font-weight-bold">Subcategories Heading</h2>
-		<h4>Some sort of Subcategory subheading text</h4>
+		<div class="fr-view">
+			{!! $page->subcategory_header !!}
+		</div>
 	</div>
+	
 	<div class="row">
 		<div class="card-deck w-100 mx-md-0 slick4 sdg-slick">
 			@foreach ($subcatImages as $subcatImage)
