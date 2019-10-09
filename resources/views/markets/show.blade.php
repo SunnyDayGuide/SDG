@@ -1,57 +1,63 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="mkt-home slider w-100">
-	<div class="slider-header">
-		<h1>Welcome to <br><span class="name">{{ $market->name }}, {{ $market->state->abbr }}!</span></h1>
-	</div>
-	<!-- Carousel -->
-	<div id="carouselIndicators" class="carousel slide mb-2" data-ride="carousel">
-		<ol class="carousel-indicators">
-			@foreach($sliderImages as $image)
-			<li data-target="#carouselIndicators" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
-			@endforeach
-		</ol>
-		<div class="carousel-inner" role="listbox">
-			@foreach($sliderImages as $image)
-			<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-				{{ $image('full') }}
-			</div>
-			@endforeach
-		</div>
-	</div>
-</div>
+@include('markets._jumbotron')
 @endsection
 
 @section('content')
 
-	<div class="container">
+<div class="container">
+	<!-- First Content Section -->
+	<section class="my-3 my-md-5">
 		<div class="row">
-			<div class="col">
-				<div class="jumbotron">
-				  <h1 class="display-4">Welcome to {{ $market->name }}, {{ $market->state->name }}!</h1>
-				  <p class="lead">Here lies some market specific slide show or something. You are on the {{ $market->code }} home page</p>
-				  <hr class="my-4">
-				  <p>It might list the market's cities like this: {{ $market->cities }} if they exist</p>
-				  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-				</div>
-			</div>
+			<div class="col-md-8 offset-md-2">
+
+				@include('markets.'.$market->code.'._content1')
+
+			</div> <!-- End Column -->
 		</div> <!-- End Row -->
 
-		<div class="row">
-			<div class="col">
-				<h2>Featured Articles</h2>
-				<div class="row">
-					@include('articles._featured')
-				</div>
-			</div>
-		</div>
+	</section>  <!-- End First Content -->
 
-		<div class="row">
-			<div class="col">
-				<h2>Featured Events</h2>
-			</div>
-		</div>
-	</div> <!-- End Container -->
+	<!-- Featured Categories Section -->
+	<section id="featured-categories" class="my-3">
+		@include('markets.'.$market->code.'._categories')
+	</section>
 
+	@include('banners._zone1')
+
+	<!-- Second Content Section -->
+	<section class="my-3 my-md-5">
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+
+				@include('markets.'.$market->code.'._content2')
+
+			</div> <!-- End Column -->
+		</div> <!-- End Row -->
+
+	</section> <!-- End Second Content -->
+
+	<!-- Featured Articles Section -->
+	@include('markets._articles')
+	<!-- End Featured Articles Section -->
+
+	@include('banners._zone3')
+
+	<!-- Featured Events Section -->
+	@include('markets._events')
+	<!-- End Featured Events Section -->
+
+</div>  <!-- End Container -->
+
+<!-- Premier Advertisers Section-->
+@if(!$premierAdvertisers->isEmpty())
+@include('panels._premier-advertisers', ['premierAdvertisers' => $premierAdvertisers, 'slick' => true])
+@endif  
+<!-- End Premier Advertisers Section-->
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/functions.js') }}"/></script>
 @endsection

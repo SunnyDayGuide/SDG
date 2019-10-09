@@ -44,8 +44,8 @@ class MarketController extends Controller
 
         $events = $market->events()->current()->active()->get(); // could also do "events this week"
 
-        // return view('markets.show', compact('market', 'sliderImages', 'articles'));
-        return view('markets.'.$market->code, compact('market', 'sliderImages', 'premierAdvertisers', 'latestArticles', 'latestArticle', 'events'));
+        return view('markets.show', compact('market', 'sliderImages', 'premierAdvertisers', 'latestArticles', 'latestArticle', 'events'));
+        // return view('markets.'.$market->code, compact('market', 'sliderImages', 'premierAdvertisers', 'latestArticles', 'latestArticle', 'events'));
     }
 
 }
