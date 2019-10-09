@@ -4,7 +4,26 @@
 <div class="slider w-100">
 	{{-- If there is more than one image, render a slider --}}
 	@if($slides->count() > 1)
-	<div id="slider" class="carousel slide" data-ride="carousel">
+	<div class="slick-single">
+		@foreach($slides as $slide)
+			<div class="slick-slide">
+				{{ $slide('full') }}
+				@if(null !== $slide->getCustomProperty('credit') || null !== $slide->getCustomProperty('caption'))
+				<div class="container">
+					<div class="figure-caption text-light pt-2">
+						@if(null !== $slide->getCustomProperty('caption'))
+						<div class="caption">{{ $slide->getCustomProperty('caption') }}</div>
+						@endif
+						@if(null !== $slide->getCustomProperty('credit'))
+						<div class="credit small mb-2">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}.</div>
+						@endif
+					</div>
+				</div>
+				@endif
+			</div>
+		@endforeach
+	</div>
+{{-- 	<div id="slider" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			@foreach($slides as $slide)
 		      <li data-target="#slider" data-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"></li>
@@ -12,16 +31,40 @@
 		</ol>
 		<div class="carousel-inner" role="listbox">
 			@foreach($slides as $slide)
-				<div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+				<figure class="carousel-item {{ $loop->first ? 'active' : '' }}">
 					{{ $slide('full') }}
-				</div>
+					@if(null !== $slide->getCustomProperty('credit') || null !== $slide->getCustomProperty('caption'))
+					<div class="container">
+						<figcaption class="figure-caption text-right pt-2">
+							@if(null !== $slide->getCustomProperty('caption'))
+							<div class="caption font-italic">{{ $slide->getCustomProperty('caption') }}</div>
+							@endif
+							@if(null !== $slide->getCustomProperty('credit'))
+							<div class="credit small">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}</div>
+							@endif
+						</figcaption>
+					</div>
+					@endif
+				</figure>
 			@endforeach
 		</div>
-	</div>
+	</div> --}}
 
 	{{-- Otherwise just spit out a single image --}}
 	@else
 	{{ $image }}
+		@if(null !== $slide->getCustomProperty('credit') || null !== $slide->getCustomProperty('caption'))
+		<div class="container">
+			<div class="figure-caption small text-right pt-2">
+					@if(null !== $slide->getCustomProperty('caption'))
+					<div class="caption">{{ $slide->getCustomProperty('caption') }}</div>
+					@endif
+					@if(null !== $slide->getCustomProperty('credit'))
+					<div class="credit">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}</div>
+					@endif
+				</div>
+		</div>
+		@endif
 
 	@endif
 
@@ -31,7 +74,7 @@
 @section('content')
 	
 	<!-- Main Content Section -->
-	<section class="container mt-3 mt-md-5">
+	<section class="container mt-1 mt-md-3">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
 
@@ -96,4 +139,9 @@
 
 	@include('panels._related-articles', ['articles' => $relatedArticles])
 
+@endsection
+
+
+@section('scripts')
+<script src="{{ asset('js/functions.js') }}"/></script>
 @endsection

@@ -1,3 +1,10 @@
+// Single Item slick
+$('.slick-single').slick({
+  arrows: false,
+  autoplay: true,
+  autoplaySpeed: 4500,
+});
+
 // 3 Column Slick
 $('.slick3').slick({
 	dots: true,

@@ -12689,6 +12689,15 @@ legend {
   height: calc(100vh - 119px);
 }
 
+#featured-categories h2 {
+  font-weight: 700;
+  text-align: center;
+  background-color: #FF6F61;
+  color: #fff;
+  padding: 0.5rem;
+  margin-bottom: 0;
+}
+
 .slider-header {
   position: absolute;
   z-index: 10;
@@ -12696,7 +12705,6 @@ legend {
   left: 0;
   right: 0;
   top: 20%;
-  width: 60%;
   color: #fff;
   text-align: center;
 }
@@ -13246,6 +13254,14 @@ body > div#branson-calendar-widget-legend-container {
 
 .meta-time {
   margin-right: 1rem;
+}
+
+.caption {
+  line-height: 1.2;
+}
+
+.credit {
+  font-style: italic;
 }
 
 .article-title {
