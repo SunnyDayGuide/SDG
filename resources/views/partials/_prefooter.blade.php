@@ -1,4 +1,4 @@
-<div class="guide-banner" style="background: url({{ asset('images/main/footer-banner-bkgrnd.jpg') }})  no-repeat center center; background-size: cover;">
+<div class="guide-banner" style="background: url({{ asset($footerImage) }})  no-repeat center center; background-size: cover;">
 	<div class="container">
 		<div class="row justify-content-around align-items-center buttons-container">
 			<div class="col-md-6 d-flex align-items-center h-100">

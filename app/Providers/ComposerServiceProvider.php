@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\ViewComposers\FooterViewComposer;
+use App\Http\ViewComposers\NavigationViewComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('partials.nav.*', 'App\Http\ViewComposers\NavigationViewComposer');
+        view()->composer('partials.nav.*', NavigationViewComposer::class);
+        view()->composer('partials._prefooter', FooterViewComposer::class);
     }
 }
