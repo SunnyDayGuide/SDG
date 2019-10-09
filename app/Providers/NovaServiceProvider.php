@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
+use App\Advertiser;
 use App\Scopes\MarketScope;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -17,11 +20,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
-        Nova::serving(function () {
-            \App\Article::withoutGlobalScope(MarketScope::class)->get();
+        Nova::serving(function() {
+            Event::listen('eloquent.booted: App\Advertiser', function($rating) {
+                Log::info('advertiser booted ' . request()->url());
+                Advertiser::withoutGlobalScopes();
+            });
         });
+
+        parent::boot();
     }
 
     /**
@@ -32,9 +38,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -51,6 +57,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 'meredith@sdg.com',
             ]);
         });
+
+        // use after installing permissions stuff
+        // Gate::define('viewNova', function ($user) {
+        //     return $user->hasRole('admin');
+        // });
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Article;
 use App\Category;
+use App\Concerns\HasRemovableGlobalScopes;
 use App\CustomTag;
 use App\Event;
 use App\Level;
@@ -36,6 +37,19 @@ class Advertiser extends Model implements HasMedia
     use Sluggable;
     use HasTags;
     use HasMediaTrait;
+    use HasRemovableGlobalScopes;
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MarketScope);
+    }
 
     /**
      * Don't auto-apply mass assignment protection.
