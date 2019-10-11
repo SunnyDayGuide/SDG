@@ -7,6 +7,7 @@ use App\Article;
 use App\Category;
 use App\Event;
 use App\Market;
+use App\MarketCategory;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
@@ -19,36 +20,47 @@ class SubcategoryController extends Controller
      * @param  Category $subcategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Market $market, Category $category, $subcategory)
+    public function show(Market $market, Category $category, Category $subcategory)
     {
-        $subcategory = Category::where('slug', $subcategory)
-            ->where('parent_id', $category->id)
-            ->first();
+        $page = MarketCategory::where('category_id', $subcategory->id)->where('market_id', $market->id)->first();
 
-        // get the market category lead page info
-        $page = $this->getMarketCategory($market, $category);
+        $slides = $page->getMedia('slider');
+        $image = $page->getFirstMedia('slider');
 
         // display the related articles
-        $articles = Article::categorized($subcategory, $market)
-            ->take(3)->get();      
+        $articleCount = count(Article::categorized($subcategory, $market)->get());
+
+        $subcatArticles = Article::categorized($subcategory, $market)->get();
+        $catArticles = Article::categorized($category, $market)->get()->random(3);
+
+        // merge subcat/cat articles into one collection
+        $mergedArticles = $subcatArticles->merge($catArticles);
+
+        if ($articleCount < 3) {
+            // if less than 3 related articles, return 3 merged articles (this will get subcat articles first if there are any)
+           $relatedArticles = $mergedArticles->take(3); 
+        } else {
+            // otherwise, return 3 random articles for this subcategory
+            $relatedArticles = $subcatArticles->random(3); 
+        }
 
         // display the related advertisers
-        $advertisers = Advertiser::categorized($subcategory, $market)->get();  
+        $advertisers = Advertiser::categorized($subcategory, $market)
+            ->with('tags', 'categories', 'coupons:id')
+            ->get()
+            ->sortBy('sortName');
 
         $premierAdvertisers = Advertiser::categorized($subcategory, $market)
-            ->with('tags')->premier()->get();
+            ->with('tags', 'categories', 'coupons:id')
+            ->premier()->get()
+            ->sortBy('sortName');
 
-        // TO-DO: display the related events
+        // display the related events
         $events = Event::categorized($subcategory, $market)
-            ->with('tags')->get();
+            ->with('tags', 'categories')->get();
         
         //show the subcategory page
-        return view('categories.show', compact('market', 'articles', 'page', 'category', 'subcategory', 'advertisers', 'premierAdvertisers', 'events'));
-    }
-
-    protected function getMarketCategory(Market $market, Category $category)
-    {
-        return $market->categories()->find($category->id);
+        return view('categories.subcategory-show', compact('market', 'relatedArticles', 'advertisers', 'events', 'page', 'subcategory', 'category', 'premierAdvertisers', 'slides', 'image'));
     }
 
 }
