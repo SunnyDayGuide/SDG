@@ -176,8 +176,9 @@
         </section>
 
       </div>
+
       <!-- Related Articles Section -->
-      <section class="panel related-articles mt-5">
+      <section class="panel panel-articles mt-5">
         <div class="container">
 
           <h2 class="mb-4 font-weight-bold text-center">Let Us Tempt You! - Or a More Clever Headline</h2>
@@ -185,7 +186,7 @@
           <div class="row article-cards">
             <div class="card-deck w-100 mx-md-0">
               @foreach ($relatedArticles as $relatedArticle)
-              @include('panels._articles')
+              @include('articles._card', ['article' => $relatedArticle])
               @endforeach
             </div> <!-- End Card Deck-->
           </div> <!-- End Row-->      

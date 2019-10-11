@@ -53,14 +53,14 @@
 	{{-- Otherwise just spit out a single image --}}
 	@else
 	{{ $image }}
-		@if(null !== $slide->getCustomProperty('credit') || null !== $slide->getCustomProperty('caption'))
+		@if(null !== $image->getCustomProperty('credit') || null !== $image->getCustomProperty('caption'))
 		<div class="container">
 			<div class="figure-caption small text-right pt-2">
-					@if(null !== $slide->getCustomProperty('caption'))
-					<div class="caption">{{ $slide->getCustomProperty('caption') }}</div>
+					@if(null !== $image->getCustomProperty('caption'))
+					<div class="caption">{{ $image->getCustomProperty('caption') }}</div>
 					@endif
-					@if(null !== $slide->getCustomProperty('credit'))
-					<div class="credit">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}</div>
+					@if(null !== $image->getCustomProperty('credit'))
+					<div class="credit">Photo courtesy of: {{ $image->getCustomProperty('credit') }}</div>
 					@endif
 				</div>
 		</div>
@@ -74,7 +74,7 @@
 @section('content')
 	
 	<!-- Main Content Section -->
-	<section class="container mt-1 mt-md-3">
+	<section class="container mt-3 mt-md-5">
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
 
@@ -135,9 +135,13 @@
 
 	</section>  <!-- End Main Content -->
 	
+	@if(!$premierAdvertisers->isEmpty())
 	@include('panels._premier-advertisers', ['premierAdvertisers' => $premierAdvertisers, 'slick' => false])
+	@endif
 
+	@if(!$relatedArticles->isEmpty())
 	@include('panels._related-articles', ['articles' => $relatedArticles])
+	@endif
 
 @endsection
 
