@@ -85,6 +85,10 @@ class ArticleController extends Controller
     {
       $article = $market->articles()->where('slug', 'tide-charts')->first();
 
+      if (!$article) {
+        abort(404);
+      }
+
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 
