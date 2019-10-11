@@ -132,15 +132,13 @@ class Article extends Resource
                 '0' => 'Draft',
             ])->displayUsingLabels(),
 
-            DateTime::make('Publish Date')
+            DateTime::make('Published At')
                 ->format('MMMM D YYYY, h:mm a')
                 ->help(
-                    'Pick a date in the future to SCHEDULE an article.'
-                )
-                ->rules('required')
-                ->hideFromIndex(),
+                    'Pick a date in the future to SCHEDULE an article. Default: NOW'
+                )->hideFromIndex(),
 
-            MorphToMany::make('Categories')->searchable(),
+            MorphToMany::make('Categories'),
             BelongsToMany::make('Advertisers'),
         ];
     }

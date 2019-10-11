@@ -51,7 +51,8 @@ class Article extends Model implements HasMedia
         static::addGlobalScope(new MarketScope);
 
         static::addGlobalScope('published', function (Builder $builder) {
-            $builder->where('publish_date', '<=', Carbon::now());
+            $builder->where('published_at', '<=', Carbon::now())
+            ->where('status', 1);
         });
     }
 
@@ -64,12 +65,12 @@ class Article extends Model implements HasMedia
      */
     protected $guarded = [];
 
-        /**
+    /**
      * Attributes to cast.
      */
-        protected $casts = [
-            'featured' => 'boolean'
-        ];
+    protected $casts = [
+        'featured' => 'boolean'
+    ];
 
     /**
      * The relationships to always eager-load.
@@ -88,7 +89,7 @@ class Article extends Model implements HasMedia
     protected $dates = [
        'created_at',
        'updated_at',
-       'publish_date',
+       'published_at',
        'deleted_at'
    ];
 
@@ -188,7 +189,7 @@ class Article extends Model implements HasMedia
      */
     public function scopePublished($query)
     {
-        return $query->where('publish_date', '<=', Carbon::now());
+        return $query->where('published_at', '<=', Carbon::now());
     }
 
 

@@ -25,17 +25,17 @@ class ArticleController extends Controller
 
       $featured = Article::with('media')
       ->featured()
-      ->latest('publish_date')
+      ->latest('published_at')
       ->get();
 
       $tripIdeas = Article::with('media')
       ->tripIdeas()
-      ->latest('publish_date')
+      ->latest('published_at')
       ->paginate(30);
 
       $visitorInfos = Article::with('media')
       ->where('article_type_id', 2)
-      ->latest('publish_date')
+      ->latest('published_at')
       ->get();
 
       $advSpotlights = Article::with('media')
@@ -91,7 +91,7 @@ class ArticleController extends Controller
       $premierAdvertisers = Advertiser::premier()->get()->random(3);
 
       $relatedArticles = $article->getRelatedArticles()
-      ->sortByDesc('publish_date'); 
+      ->sortByDesc('published_at'); 
 
       return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
     }
@@ -102,7 +102,7 @@ class ArticleController extends Controller
 
       $featured = Article::with('media')
       ->featured()
-      ->latest('publish_date')
+      ->latest('published_at')
       ->get();
 
       if ($request->has('q')) {

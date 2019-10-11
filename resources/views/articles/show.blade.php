@@ -87,7 +87,7 @@
 						@if($article->author)
 						<div class="meta-byline">by {{ $article->author }}</div>
 						@endif
-						<time class="meta-time">{{ $article->publish_date->format('F j, Y g:ia') }}</time>
+						<time class="meta-time">{{ $article->published_at->format('F j, Y g:ia') }}</time>
 					</div>
 				</div>
 				
