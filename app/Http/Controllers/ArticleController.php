@@ -55,7 +55,7 @@ class ArticleController extends Controller
     public function show(Market $market, Article $article)
     {
       $type = Str::slug($article->articleType->name, '-');
-      // $type = $article->convert_to_slug($article->articleType->name);
+      
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 
