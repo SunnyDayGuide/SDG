@@ -42,6 +42,7 @@ class MarketCategory extends Pivot implements HasMedia
         ->registerMediaConversions(function (Media $media) {
             
             $this->addMediaConversion('full')
+                ->crop(Manipulations::CROP_CENTER, 1440, 524)
                 ->withResponsiveImages();
 
             $this
