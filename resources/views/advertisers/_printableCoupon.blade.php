@@ -18,7 +18,7 @@
 		@endif
 
 	</div>
-	<div class="logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
+	<div class="coupon-logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
 	
 	<div class="mt-4 coupon-footer">
 		<div class="text-uppercase">Coupon printed from {{ $market->brand->name }} online.</div>

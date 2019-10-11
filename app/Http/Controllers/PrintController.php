@@ -11,7 +11,6 @@ class PrintController extends Controller
 {
     public function allCoupons(Market $market, Advertiser $advertiser)
     {
-        $logo = $advertiser->logo->getFirstMedia('logo');
         $coupons = $advertiser->coupons;
 
         return view('advertisers.printAllCoupons', compact('market', 'advertiser', 'coupons'));
@@ -19,8 +18,6 @@ class PrintController extends Controller
 
     public function singleCoupon(Market $market, Advertiser $advertiser, Coupon $coupon)
     {
-        $logo = $advertiser->logo->getFirstMedia('logo');
-
         return view('advertisers.printSingleCoupon', compact('market', 'advertiser', 'coupon'));
     }
 }
