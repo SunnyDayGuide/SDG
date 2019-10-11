@@ -4,7 +4,7 @@
 
 <div class="content mb-4">
 	<div class="fr-view">
-		<p>Throughout Branson, stop by some of the attractions that are always a ton of fun. Silver Dollar City mixes the pioneering spirit of the region with thrilling roller coasters, rides and games. Get a glimpse of the past at the Shepherd of the Hills Outdoor Theatre through the dramatization of Harold Bell Wright’s novel. There are also zoos, mountain coasters, museums and other family-friendly activities including mini-golf or racetracks.</p>
-		<p>Make the most of your vacation in the Show-Me-State. We have show schedules, money-saving coupons, maps, and area features with insider information that will help you along the way and make you feel right at home in Branson.</p>
+		<p>In the evening feast at one of the local seafood buffets or pig out at one of Maryland’s renowned crab houses. The nightlife in Ocean City is also very active. In the summer, catch concerts on the beach, fireworks in the night sky and dance at evening parties on the sand.</p>
+		<p>SunnyDayGuide.com can help you make the most of your Ocean City vacation. We have money-saving coupons, maps, and articles featuring insider information that is easily accessible on your smartphone and will help you along the way, making you feel right at home on Maryland’s Eastern Shore.</p>
 	</div>
 </div>

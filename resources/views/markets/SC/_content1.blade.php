@@ -1,11 +1,10 @@
 <div class="header mb-4">
-	<h2>The heart of the mid-west is a perfect get-away destination</h2>
+	<h2>Escape to Paradise on Sanibel and Captiva</h2>
 </div>
 
 <div class="content mb-4">
 	<div>
-		<p>Welcome to Branson, Missouri! Everything you could want for a fabulous vacation can be found here—exciting activities, entertaining shows, gourmet meals, unique shopping opportunities, and even a dancing fountain.</p>
-		<p>The city is probably most famous for its many shows that are hosted in grand theaters with more seats available for spectators than in all of New York City. Bring your family and friends for a performance that will leave you laughing, singing, or even dancing in the aisles. You can choose to see magicians, comedians, concerts and tribute bands, or original acts and circus stunts.</p>
-		<p>But that’s not all Branson is famous for… Located in the foothills of the Ozarks and surrounded by Table Rock Lake and Lake Taneycomo, outdoor adventures await intrepid explorers. Ever visit a cave or go on a hunt for Bigfoot? Well, you can do that here! Maybe go hiking in the hills or zip-line over them—your choice! Plus there are many exciting things to do on the water including boat tours on yachts and paddleboats, paddleboarding, jet skiing, and so much more.</p>
+		<p>Consistently ranked as some of the best beaches in the nation, the Islands of Sanibel and Captiva are wonderful destinations for sun- and nature-loving vacationers. The relaxed feel of the islands invites its guests to sit back on the beach and let their cares disappear. From your bike, beach chair or kayak, you’ll marvel at how gorgeous these islands are and how entertaining the local wildlife can be.</p>
+		<p>Sanibel and Captiva will certainly give you the slow, easy-going, natural vacation you’ve been craving. Even still, the islands host an array of modern luxuries and fun activities. Enjoy fine dining or casual bites at any one of the restaurants you’ll find. Go on a nature cruise to see dolphins or manatees. Or even explore the J.N. "Ding" Darling National Wildlife Refuge from the comfort of the tram, stopping along the way to get out and explore.</p>
 	</div>
 </div>

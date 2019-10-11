@@ -1,10 +1,9 @@
 <div class="header mb-4">
-	<h2>Some other Header</h2>
+	<h2>More to Explore</h2>
 </div>
 
 <div class="content mb-4">
 	<div class="fr-view">
-		<p>Throughout Branson, stop by some of the attractions that are always a ton of fun. Silver Dollar City mixes the pioneering spirit of the region with thrilling roller coasters, rides and games. Get a glimpse of the past at the Shepherd of the Hills Outdoor Theatre through the dramatization of Harold Bell Wright’s novel. There are also zoos, mountain coasters, museums and other family-friendly activities including mini-golf or racetracks.</p>
-		<p>Make the most of your vacation in the Show-Me-State. We have show schedules, money-saving coupons, maps, and area features with insider information that will help you along the way and make you feel right at home in Branson.</p>
+		<p>And just because you’re in the Historic Triangle doesn’t mean that modern-day excitement can’t be found around town. Actually, it’s around every corner. You’ll find fun attractions and rides throughout the region. Some examples are Busch Gardens, Water Country USA, racetracks, and mini-golf. Afterward, you can take advantage of the towns' amazing dining options and unique shops.  And don’t forget to use your <em>Colonial Guide</em> coupons for extra savings throughout the area!</p>
 	</div>
 </div>
