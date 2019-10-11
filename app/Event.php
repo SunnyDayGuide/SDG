@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Concerns\HasRemovableGlobalScopes;
 use App\Market;
 use App\Recurrence;
+use App\Scopes\MarketScope;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +25,19 @@ class Event extends Model implements HasMedia
     use Marketable;
     use HasTags;
     use HasMediaTrait;
+    use HasRemovableGlobalScopes;
 
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MarketScope);
+    }
 
     /**
      * Don't auto-apply mass assignment protection.

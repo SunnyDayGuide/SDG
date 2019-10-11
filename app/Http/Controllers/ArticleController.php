@@ -22,27 +22,26 @@ class ArticleController extends Controller
     public function index(Market $market)
     {
       $page = $market->pages()->where('slug', 'articles')->first();
-      $articles = $this->getArticles($market);
 
-      $featured = $articles
-        ->where('featured', true)
-        ->latest('publish_date')
-        ->get();
+      $featured = Article::with('media')
+      ->featured()
+      ->latest('publish_date')
+      ->get();
 
-      $tripIdeas = $articles
-        ->where('article_type_id', 1)
-        ->latest('publish_date')
-        ->paginate(30);
+      $tripIdeas = Article::with('media')
+      ->tripIdeas()
+      ->latest('publish_date')
+      ->paginate(30);
 
-      $visitorInfos = $articles
-        ->where('article_type_id', 2)
-        ->latest('publish_date')
-        ->get();
+      $visitorInfos = Article::with('media')
+      ->where('article_type_id', 2)
+      ->latest('publish_date')
+      ->get();
 
-      $advSpotlights = $articles
-        ->where('article_type_id', 3)
-        ->orderBy('title', 'asc')
-        ->get();
+      $advSpotlights = Article::with('media')
+      ->where('article_type_id', 3)
+      ->orderBy('title', 'asc')
+      ->get();
 
       return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
     }
@@ -65,11 +64,12 @@ class ArticleController extends Controller
 
       $content = $article->insertAdCode($article->content, $ad1, $ad2);
 
-      $premierAdvertisers = Advertiser::where('market_id', $market->id)
-      ->premier()->get()->random(3);
+      $premierAdvertisers = Advertiser::premier()
+      ->get()
+      ->random(3);
 
-      $relatedArticles = $article->getRelatedArticles($market)
-        ->sortByDesc('publish_date'); 
+      $relatedArticles = $article->getRelatedArticles()
+      ->sortByDesc('publish_date'); 
 
       return view('articles.show', compact('article', 'content', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
     }
@@ -88,44 +88,27 @@ class ArticleController extends Controller
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
 
-      $premierAdvertisers = Advertiser::where('market_id', $market->id)
-      ->premier()->get()->random(3);
+      $premierAdvertisers = Advertiser::premier()->get()->random(3);
 
-      $relatedArticles = $article->getRelatedArticles($market)
-        ->sortByDesc('publish_date'); 
+      $relatedArticles = $article->getRelatedArticles()
+      ->sortByDesc('publish_date'); 
 
       return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
-    }
-
-    /**
-     * get all the articles in a market.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public static function getArticles(Market $market)
-    {
-      return Article::marketed($market)
-        ->with('tags') 
-        ->published();
-
-      // return $market->articles()->with('tags') 
-      // ->published();
     }
 
     public function search(Request $request, Market $market)
     {
       $page = $market->pages()->where('slug', 'articles')->first();
 
-      $featured = $this->getArticles($market)
-      ->where('featured', true)
+      $featured = Article::with('media')
+      ->featured()
       ->latest('publish_date')
       ->get();
 
       if ($request->has('q')) {
-        $search = request('q');
+        $query = request('q');
 
-        $articles = Article::search($search)
+        $articles = Article::search($query)
         ->get();
 
         if (request()->expectsJson()) {
@@ -146,8 +129,6 @@ class ArticleController extends Controller
           //           return $articles;
           //       }
           //   }     
-
-      $articles = $articles->where('market_id', $market->id);
 
       return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
 

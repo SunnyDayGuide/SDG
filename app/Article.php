@@ -5,6 +5,7 @@ namespace App;
 use Algolia\ScoutExtended\Splitters\HtmlSplitter;
 use App\Advertiser;
 use App\Category;
+use App\Concerns\HasRemovableGlobalScopes;
 use App\CustomTag;
 use App\Helpers\WordPressContentFormatter;
 use App\Market;
@@ -36,21 +37,22 @@ class Article extends Model implements HasMedia
     use HasMediaTrait;
     use Searchable;
     use Bannerable;
+    use HasRemovableGlobalScopes;
     
-     /**
+    /**
      * The "booting" method of the model.
      *
      * @return void
      */
-     protected static function boot()
-     {
+    protected static function boot()
+    {
         parent::boot();
 
-        // static::addGlobalScope(new MarketScope);
+        static::addGlobalScope(new MarketScope);
 
-        // static::addGlobalScope('published', function ($builder) {
-        //     $builder->where('publish_date', '>=', Carbon::now());
-        // });
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('publish_date', '<=', Carbon::now());
+        });
     }
 
 
@@ -237,7 +239,7 @@ class Article extends Model implements HasMedia
      * @param  App\Market $market
      * @return \Illuminate\Database\Eloquent\Builder
      */
-     public function getRelatedArticles(Market $market)
+     public function getRelatedArticles()
      {
         $tag_ids = $this->tags()->pluck('id');
         $category_ids = $this->subcategories()->pluck('id');
@@ -251,14 +253,9 @@ class Article extends Model implements HasMedia
           ->get();
 
         $relatedArticles = $articles
-          ->except($this->id)
-          ->where('market_id', $market->id);
+          ->except($this->id);
 
-        if ($relatedArticles->count() >= 3) {
-            return $relatedArticles;
-        } else {
-            return $relatedArticles;
-        }
+        return $relatedArticles;
 
     }
 

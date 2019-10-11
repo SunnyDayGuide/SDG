@@ -20,16 +20,13 @@ class TagController extends Controller
      */
     public function show(Market $market, CustomTag $tag)
     {
-        $articles = Article::marketed($market)
-            ->withAnyTags($tag->name)
+        $articles = Article::withAnyTags($tag->name)
             ->get();
 
-        $advertisers = Advertiser::marketed($market)
-            ->withAnyTags($tag->name)
+        $advertisers = Advertiser::withAnyTags($tag->name)
             ->get();
 
-        $events = Event::marketed($market)
-            ->withAnyTags($tag->name)
+        $events = Event::withAnyTags($tag->name)
             ->current()->active()
             ->get();
 

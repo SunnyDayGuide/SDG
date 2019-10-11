@@ -56,9 +56,8 @@ class CategoryController extends Controller
         $articleCount = count(Article::categorized($category, $market)->get());
 
         if ($articleCount < 3) {
-           $relatedArticles = Article::marketed($market)
-            ->with('tags')
-            ->get()->random(3);
+           $relatedArticles = Article::with('tags')
+            ->get()->random();
         } else {
             $relatedArticles = Article::categorized($category, $market)
             ->with('tags', 'categories')
