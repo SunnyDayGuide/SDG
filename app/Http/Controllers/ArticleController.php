@@ -14,24 +14,30 @@ use Illuminate\Support\Str;
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of all articles by article type
+     * Display a listing of all trip ideas and advertorials/profiles
      *
      * @param  Market      $market
      * @return \Illuminate\Http\Response
      */
     public function index(Market $market)
     {
-      $page = $market->pages()->where('slug', 'articles')->first();
+      $page = $market->pages()->where('slug', 'trip-ideas')->firstorFail();
 
-      $featured = Article::with('media')
-      ->featured()
-      ->latest('published_at')
-      ->get();
+      // pull 5 random featured articles
+      // $featured = Article::with(['media', 'categories'])
+      // ->featured()
+      // ->latest('published_at')
+      // ->get()
+      // ->random(5);
+      
+      // pull 5 most popular articles
+      $articles =  new Article();
+      $featured = $articles->mostPopular(5); 
 
-      $tripIdeas = Article::with('media')
+      $tripIdeas = Article::with(['media', 'categories'])
       ->tripIdeas()
       ->latest('published_at')
-      ->paginate(30);
+      ->paginate(20);
 
       $visitorInfos = Article::with('media')
       ->where('article_type_id', 2)
@@ -160,6 +166,15 @@ class ArticleController extends Controller
     public function getPremierAds($premierAdvertisers)
     {
       return view('panels._advertisers', compact('premierAdvertisers'));
+    }
+
+    public function mostPopular($number)
+    {
+      $articles = Article::orderBy('rating', 'desc')
+        ->get()
+        ->random($number);
+
+        return $articles;
     }
 
   }

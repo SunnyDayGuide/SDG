@@ -228,6 +228,15 @@ class Article extends Model implements HasMedia
         return $query->where('market_id', $market->id);
     }
 
+    public function mostPopular($number)
+    {
+      $articles = $this->orderBy('rating', 'desc')
+        ->get()
+        ->random($number);
+
+        return $articles;
+    }
+
 
     public function getBlurbAttribute()
     {
