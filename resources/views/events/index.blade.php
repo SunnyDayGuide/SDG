@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('jumbotron')
-<div class="w-100">
-
-</div>
+@include('partials._jumbo-slider')
 @endsection
 
 @section('content')
