@@ -68,10 +68,18 @@
 		@include('categories._advertisers-list-premier')
 		@endif
 		<!--End Premier Advertisers Section -->
-
+		
+		@if(count($advertisers) >= 3)
 		<!--Regular Advertisers Section -->
 		@include('categories._advertisers-list')
 		<!--End Regular Advertisers Section -->
+		@endif
+
+		@if(count($advertisers) < 3)
+		<!--Regular Advertisers Section if less than 3 -->
+		@include('categories._advertisers-list-horiz')
+		<!--End Regular Advertisers Section if less than 3 -->
+		@endif
 
 	</div> <!-- End Container -->
 </section>
