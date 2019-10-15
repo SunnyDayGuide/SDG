@@ -35,7 +35,7 @@ class Category extends Model
     protected $guarded = [];
 
     /**
-     * The relationships to always eager-load.
+     * The relationships to always eager-load. this breaks everything
      *
      * @var array
      */
@@ -88,7 +88,7 @@ class Category extends Model
 
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id')->withCount('advertisers');
+        return $this->hasMany(Category::class, 'parent_id');
     }
 
     // determines what subcategories show up in the top navigation

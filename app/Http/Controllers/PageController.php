@@ -17,6 +17,7 @@ class PageController extends Controller
 
         $relatedArticles = Article::featured()
         ->withoutGlobalScope(MarketScope::class)
+        ->with('market')
         ->latest()->take(6)
         ->get();
  

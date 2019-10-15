@@ -52,7 +52,7 @@ class Article extends Model implements HasMedia
 
         static::addGlobalScope('published', function (Builder $builder) {
             $builder->where('published_at', '<=', Carbon::now())
-            ->where('status', 1);
+                    ->where('status', 1);
         });
     }
 
@@ -77,7 +77,7 @@ class Article extends Model implements HasMedia
      *
      * @var array
      */
-    // protected $with = ['categories:id,name', 'media', 'articleType'];
+    protected $with = ['market', 'articleType'];
 
     /**
      * All of the relationships to be touched.
@@ -110,8 +110,7 @@ class Article extends Model implements HasMedia
      */
     public function path()
     {
-        $type = Str::slug($this->articleType->name, '-');
-        return $this->market->path() . "/{$type}/{$this->slug}";
+        return $this->market->path() . "/{$this->articleType->slug}/{$this->slug}";
     }
 
     /**
@@ -154,7 +153,7 @@ class Article extends Model implements HasMedia
      */
     public function articleType()
     {
-    	return $this->belongsTo(ArticleType::class)->orderBy('order');
+    	return $this->belongsTo(ArticleType::class);
     }
 
     /**
