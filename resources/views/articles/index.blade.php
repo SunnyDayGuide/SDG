@@ -9,29 +9,46 @@
 
 @section('content')
 
-@include('articles._search')
-
-<div class="container mt-5">
-
-	<div>
-		<div class="content">
-			<h1>{{ $page->title }}</h1>
-			<div class="fr-view">{!! $page->content !!}</div>
-		</div>
-	</div> <!-- End Row -->
-
-	@if(!$tripIdeas->isEmpty())
-	<section id="tripIdeas" class="tripIdeas">
-		<div class="d-flex justify-content-between border-bottom border-editorial mb-3">
-			<h2>Trip Ideas</h2>
-			<div>Sort by: Date?</div>
+<div class="container my-3 my-md-5">
+	<div class="content">
+		<div class="page-title">
+			<h1 class="display-4">{{ $page->title }}</h1>
 		</div>
 
+		<div class="fr-view page-body">
+			{!! $page->content !!}
+		</div>
+	</div>
+</div>
+
+<section class="panel panel-white">
+	<div class="container">
+		<div class="text-center">
+			<h2 class="font-weight-bold">Articles and Features</h2>
+		</div>
+
+		@include('articles._search')
+
+		@if(!$tripIdeas->isEmpty())
 		<div class="row article-cards">
 			<div class="card-deck w-100 mx-md-0">
 				@foreach ($tripIdeas as $article)
 					@include('articles._card')
+
+					@if($loop->iteration % 12 == 0)
+					<div class="col-12 mb-md-4 mb-3 px-md-0">
+						@include('banners._zone1')
+					</div>
+					@endif
+
 				@endforeach
+
+				@if($tripIdeas->count() < 12)
+				<div class="col-12 mb-md-4 mb-3 px-md-0">
+					@include('banners._zone1')
+				</div>
+				@endif
+
 			</div> <!-- End Card Deck-->
 		</div> <!-- End Row-->
 
@@ -42,35 +59,10 @@
 				</div>
 			</div>
 		</div>
+		@endif
 
-	</section>
-	@endif
-
-	@include('banners._zone1')
-
-	@if(!$visitorInfos->isEmpty())
-	<section id="visitorInfo" class="visitorInfo">
-
-		<div class="d-flex justify-content-between border-bottom border-primary mb-3">
-			<h2>Visitor Info</h2>
-			<div>Sort by: Date?</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-9">
-				@foreach ($visitorInfos as $article)
-				@include('articles._cardh')
-				@endforeach
-			</div>
-
-			@include('banners._zone2')
-
-		</div> <!-- End Row-->
-
-	</section>
-	@endif
-
-</div> <!-- End Content Container -->
+	</div>
+</section>
 
 @if(!$advSpotlights->isEmpty())
 	<section id="advSpotlights" class="advSpotlights mt-5">
