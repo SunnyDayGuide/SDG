@@ -39,17 +39,16 @@ class ArticleController extends Controller
       ->latest('published_at')
       ->paginate(20);
 
-      $visitorInfos = Article::with('media')
-      ->where('article_type_id', 2)
+      $advSpotlights = Article::with(['media', 'categories'])
+      ->where('article_type_id', 3)
       ->latest('published_at')
       ->get();
 
-      $advSpotlights = Article::with('media')
-      ->where('article_type_id', 3)
-      ->orderBy('title', 'asc')
-      ->get();
+      $searchCategories = $market->categories()
+            ->isParent()
+            ->with('searchSubcategories')->get();
 
-      return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'visitorInfos', 'advSpotlights'));
+      return view('articles.index', compact('market', 'page', 'featured', 'tripIdeas', 'advSpotlights', 'searchCategories'));
     }
 
     /**
@@ -80,9 +79,32 @@ class ArticleController extends Controller
       return view('articles.show', compact('article', 'content', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
     }
 
+    /**
+     * Display the visitor info page.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function visitorInfo(Market $market)
+    {
+      $page = $market->pages()->where('slug', 'visitor-info')->firstorFail();
+
+      $slides = $page->getMedia('slider');
+      $image = $page->getFirstMedia('slider');
+
+      $visitorInfos = Article::with('media')
+      ->where('article_type_id', 2)
+      ->latest('published_at')
+      ->get(); 
+
+      $advertisers = Advertiser::all();
+
+      return view('articles.visitor-info', compact('market', 'page', 'visitorInfos', 'slides', 'image', 'advertisers'));
+    }
+
 
     /**
-     * Display the specified resource.
+     * Display the specified resource (tide charts if they got 'em).
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

@@ -65,6 +65,7 @@ Route::prefix('destinations/{market}')->group(function () {
     Route::get('trip-ideas', 'ArticleController@index')->name('articles');
 	Route::get('trip-ideas/search', 'ArticleController@search')->name('articles.search');
 	Route::get('trip-ideas/{article}', 'ArticleController@show')->name('articles.show');
+	Route::get('visitor-info', 'ArticleController@visitorInfo')->name('visitor-info');
 	Route::get('visitor-info/{article}', 'ArticleController@show')->name('articles.show');
 	Route::get('advertiser-spotlights/{article}', 'ArticleController@show')->name('articles.show');
 	Route::get('tide-charts', 'ArticleController@tideCharts')->name('tide-charts');
