@@ -38,11 +38,15 @@ label {
 }
 
 .search {
-	background-color: $blue-light;
+	// background-color: $blue-light;
 }
 
 .ads {
-	margin: 4rem 0;
+	margin: 2rem 0;
+
+	@include media-breakpoint-up(md) {
+		margin: 4rem 0;
+	}
 }
 .btn {
 	font-family: $font-family-sans-serif;

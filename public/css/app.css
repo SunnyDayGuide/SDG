@@ -13773,12 +13773,14 @@ label {
   font-weight: 500;
 }
 
-.search {
-  background-color: #bfdaf0;
+.ads {
+  margin: 2rem 0;
 }
 
-.ads {
-  margin: 4rem 0;
+@media (min-width: 768px) {
+  .ads {
+    margin: 4rem 0;
+  }
 }
 
 .btn {

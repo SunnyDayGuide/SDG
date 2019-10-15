@@ -17,10 +17,8 @@
 					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->blurb])
 
 					@if($loop->iteration % 12 == 0)
-					<div class="col-md-12 mb-md-4 mb-3 px-md-0">
-						<div class="banner-ad">
-							I AM A BANNER AD
-						</div>
+					<div class="mb-md-4 mb-3 px-md-0">
+						@include('banners._zone1')
 					</div>
 					@endif
 
@@ -28,17 +26,15 @@
 
 					@unless($advertisers->count() % 3 == 0)
 					<div class="col mb-md-4 mb-3 px-md-0">
-						<div class="banner-ad mt-0">
-							I AM A FILLER BANNER/GOOGLE AD
+						<div class="card mt-0">
+							@include('banners._zone1')
 						</div>
 					</div>
 					@endunless
 
-					@if($advertisers->count() < 6)
-					<div class="col-md-12 mb-md-4 mb-3 px-md-0">
-						<div class="banner-ad">
-							I AM A BANNER AD
-						</div>
+					@if($advertisers->count() < 12)
+					<div class="mb-md-4 mb-3 px-md-0">
+						@include('banners._zone1')
 					</div>
 					@endif
 
