@@ -130,23 +130,36 @@ class ArticleController extends Controller
 
     public function search(Request $request, Market $market)
     {
-      $page = $market->pages()->where('slug', 'articles')->first();
+      $page = $market->pages()->where('slug', 'trip-ideas')->first();
+
+      if (!$page) {
+        abort(404);
+      }
 
       $featured = Article::with('media')
-      ->featured()
-      ->latest('published_at')
-      ->get();
+        ->featured()
+        ->latest('published_at')
+        ->get();
 
       if ($request->has('q')) {
         $query = request('q');
 
-        $articles = Article::search($query)
-        ->get();
+        $tripIdeas = Article::search($query)
+        ->paginate(30);
 
         if (request()->expectsJson()) {
-          return $articles;
+          return $tripIdeas;
         }
       }  
+
+      $searchCategories = $market->categories()
+            ->isParent()
+            ->with('searchSubcategories')->get();
+
+      $advSpotlights = Article::with(['media', 'categories'])
+        ->where('article_type_id', 3)
+        ->latest('published_at')
+        ->get();
 
           // if ($request->has('category')) {
           //       $category = request('category');
@@ -162,7 +175,7 @@ class ArticleController extends Controller
           //       }
           //   }     
 
-      return view('articles.search-results', compact('market', 'page', 'articles', 'featured'));
+      return view('articles.index', compact('market', 'page', 'tripIdeas', 'featured', 'searchCategories', 'advSpotlights'));
 
     }
 

@@ -1,13 +1,15 @@
-<div class="search p-3 p-md-5">
-	<h2 class="mb-3 text-center">Search {{ $page->title }}</h2>
-	<div class="container mx-auto text-center">
+<div class="search py-3 py-md-5">
+	<div class="mx-auto text-center">
 		<form method="GET" action="{{ route('articles.search', $market->slug) }}">
 			<div class="form-row">
 				<div class="form-group col-md-5">
 				  <select id="category" name="category" class="form-control">
 			        <option value>Category Search</option>
-			        @foreach($market->categories as $category)
-					<option value="{{ $category->id }}">{{ $category->name }}</option>
+			        @foreach($searchCategories as $searchCategory)
+					<option value="{{ $searchCategory->id }}">{{ $searchCategory->name }}</option>
+					@foreach ($searchCategory->searchSubcategories->sortBy('name') as $subcategory)
+					<option value="{{ $subcategory->id }}" class="ml-1">-- {{ $subcategory->name }}</option>
+					@endforeach
 					@endforeach
 			      </select>
 				</div>

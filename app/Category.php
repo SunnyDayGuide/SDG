@@ -123,6 +123,28 @@ class Category extends Model
         return $query->whereNull('parent_id');
     }
 
+
+    // determines what subcategories show up in the top navigation
+    public function searchSubcategories()
+    {
+        // grab route parameters to determine what market we are in.
+        $currentRoute = Route::current();
+        $params = $currentRoute->parameters;
+
+        $market = $params['market']['id'];
+
+        // only take subcategories that HAVE advertisers, then sort by how many advertisers a subcat has
+        $subcategories = $this->children()->whereHas('articles', function (Builder $query) use ($market) {
+                $query->where('market_id', $market);
+            })
+            ->withCount(['articles' => function ($query) use ($market) {
+                 $query->where('market_id', $market);
+            }])
+            ->orderBy('articles_count', 'desc');
+
+            return $subcategories;
+    }
+
     public function articles()
     {
     	return $this->morphedByMany(Article::class, 'categoriable');
