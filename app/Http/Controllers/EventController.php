@@ -15,9 +15,18 @@ class EventController extends Controller
      */
     public function index(Market $market)
     {
+        $page = $market->pages()->where('slug', 'events')->first();
+
+        if (!$page) {
+            abort(404);
+        }
+
+        $slides = $page->getMedia('slider');
+        $image = $page->getFirstMedia('slider');
+
         $events = $market->events()->current()->active()->get();
 
-        return view('events.index', compact('market', 'events'));
+        return view('events.index', compact('market', 'page', 'events', 'slides', 'image'));
     }
 
     /**
