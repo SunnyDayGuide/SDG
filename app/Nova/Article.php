@@ -93,22 +93,8 @@ class Article extends Resource
             Froala::make('Content')
                 ->withFiles('trix')
                 ->rules('required'),
-            // CKEditor::make('Content'),
-            // NovaTinyMCE::make('Content')->options([
-            //     'plugins' => [
-            //         'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-            //         'searchreplace wordcount visualblocks visualchars code fullscreen',
-            //         'insertdatetime media nonbreaking save table contextmenu directionality',
-            //         'emoticons template paste textcolor colorpicker textpattern importcss'
-            //     ],
-            //     'toolbar' => 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media',
-            //     'use_lfm' => true,
-            //     'image_caption' => true,
-            //     'content_css' => config('app.url').'/css/app.css',
-            //     'importcss_append' => true
-            // ]),
-            Text::make('Author')->hideFromIndex(),
             Textarea::make('Excerpt')->hideFromIndex(),
+            Text::make('Author')->hideFromIndex(),
 
             Images::make('Slider Images', 'slider')
                 ->customPropertiesFields([
@@ -130,7 +116,7 @@ class Article extends Resource
             Select::make('Status', 'status')->options([
                 '1' => 'Published',
                 '0' => 'Draft',
-            ])->displayUsingLabels(),
+            ])->displayUsingLabels()->rules('required'),
 
             DateTime::make('Published At')
                 ->format('MMMM D YYYY, h:mm a')
