@@ -7,7 +7,7 @@
 		@endif
 
 		<div class="card-body">
-			@if ($article->subcategories->count())
+			@if (!$article->subcategories->isEmpty())
 			@include('categories._links', ['item' => $article])
 			@endif
 			
