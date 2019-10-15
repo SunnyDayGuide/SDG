@@ -116,7 +116,7 @@ class Market extends Model implements HasMedia
 
         // to get the categories regardless of if they have advertisers or not     
         return $this->categories()
-            ->whereNull('parent_id')
+            ->isParent()
             ->whereNotIn('category_id', [5])   // NOT lodging  
             ->with('navSubcategories');
     }

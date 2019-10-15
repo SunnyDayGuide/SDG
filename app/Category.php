@@ -112,6 +112,17 @@ class Category extends Model
             return $subcategories;
     }
 
+    /**
+     * Scope a query to only include parent categories.
+     *
+     * @param $market
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+     public function scopeIsParent($query)
+     {
+        return $query->whereNull('parent_id');
+    }
+
     public function articles()
     {
     	return $this->morphedByMany(Article::class, 'categoriable');
