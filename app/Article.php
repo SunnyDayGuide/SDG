@@ -365,7 +365,7 @@ class Article extends Model implements HasMedia
         $formatter = new WordPressContentFormatter;
         if ($this->content) {
             $content = $formatter->wptexturize($this->content);
-            $content = $formatter->wpautop($content);
+            $content = $formatter->wpautop($this->content);
             return $content;
         }
     }

@@ -62,7 +62,7 @@ class ArticleController extends Controller
       $ad1 = $this->getBannerZone('1');
       $ad2 = $this->getBannerZone('3');
 
-      $content = $article->insertAdCode($article->content, $ad1, $ad2);
+      $content = $article->insertAdCode($article->content, $ad1, $ad2); 
 
       $premierAdvertisers = Advertiser::premier()
       ->get()

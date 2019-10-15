@@ -22,16 +22,18 @@ trait Bannerable {
     {
         /**-----------------------------------------------------------------------------
          *
-         *  wptexturize is applied to the $content. This inserts p tags that will help to  
+         *  wptexturize is applied to the $content.
+         *  This inserts p tags that will help to  
          *  split the text into paragraphs. The text is split into paragraphs after each
          *  closing p tag. Remember, each double break constitutes a paragraph.
+         *   (I did not do this because this is not WP)
          *  
          *  @todo If you really need to delete the attachments in paragraph one, you want
          *        to do it here before you start your foreach loop
          *
         *------------------------------------------------------------------------------*/ 
         $closing_p = '</p>';
-        $paragraphs = explode( $closing_p, $this->content );
+        $paragraphs = preg_split("/(?=<\/p>)/", $this->content, null, PREG_SPLIT_DELIM_CAPTURE);
         if ($ad1 == null) {
             $ad1 = $defaultAd1;
         }
@@ -60,8 +62,10 @@ trait Bannerable {
             $first = array_slice($paragraphs, 0, $midpoint );
             if( $count%2 == 1 ) {
                 $second = array_slice( $paragraphs, $midpoint, $midpoint, true );
-            }else{
-                $second = array_slice( $paragraphs, $midpoint, $midpoint-1, true );
+            }else{ 
+                // this was array_slice( $paragraphs, $midpoint, $midpoint-1, true );
+                // but that caused blocks other than <p> to drop
+                $second = array_slice( $paragraphs, $midpoint, $midpoint, true );
             }
             $totals = array( $first, $second );
         }
