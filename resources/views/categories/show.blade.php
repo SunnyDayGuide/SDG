@@ -47,7 +47,7 @@
 </div>
 
 <!--Subcategories carousel Section -->
-<section id="main-panel" class="mt-5">
+<section id="subcat-panel" class="mt-5">
 	<div class="container">
 		@include('categories._subcat-panel')
 	</div>
