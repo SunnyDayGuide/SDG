@@ -8,14 +8,11 @@
 		@foreach($slides as $slide)
 			<div class="slick-slide">
 				{{ $slide('full') }}
-				@if(null !== $slide->getCustomProperty('credit') || null !== $slide->getCustomProperty('caption'))
+				@if(null !== $slide->getCustomProperty('credit'))
 				<div class="container">
-					<div class="figure-caption text-light pt-2">
-						@if(null !== $slide->getCustomProperty('caption'))
-						<div class="caption">{{ $slide->getCustomProperty('caption') }}</div>
-						@endif
+					<div class="figure-caption text-right text-light pt-2">
 						@if(null !== $slide->getCustomProperty('credit'))
-						<div class="credit small mb-2">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}.</div>
+						<div class="credit small">Photo courtesy of: {{ $slide->getCustomProperty('credit') }}.</div>
 						@endif
 					</div>
 				</div>
@@ -53,16 +50,13 @@
 	{{-- Otherwise just spit out a single image --}}
 	@else
 	{{ $image }}
-		@if(null !== $image->getCustomProperty('credit') || null !== $image->getCustomProperty('caption'))
+		@if(null !== $image->getCustomProperty('credit'))
 		<div class="container">
 			<div class="figure-caption small text-right pt-2">
-					@if(null !== $image->getCustomProperty('caption'))
-					<div class="caption">{{ $image->getCustomProperty('caption') }}</div>
-					@endif
-					@if(null !== $image->getCustomProperty('credit'))
-					<div class="credit">Photo courtesy of: {{ $image->getCustomProperty('credit') }}</div>
-					@endif
-				</div>
+				@if(null !== $image->getCustomProperty('credit'))
+				<div class="credit">Photo courtesy of: {{ $image->getCustomProperty('credit') }}</div>
+				@endif
+			</div>
 		</div>
 		@endif
 
