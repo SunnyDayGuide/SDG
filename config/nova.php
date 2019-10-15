@@ -1,8 +1,8 @@
 <?php
 
+use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\Authorize;
 use Laravel\Nova\Http\Middleware\BootTools;
-use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
 
 return [
@@ -80,9 +80,15 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | TinyMCE API Key for TinyMCE nova field
+    | Nova Pagination Type
     |--------------------------------------------------------------------------
+    |
+    | This option defines the visual style used in Nova's resource pagination.
+    | You may choose between 3 types: "simple", "load-more" and "links".
+    | Feel free to set this option to the visual style you like.
+    |
     */
-    'tinymce_api_key' => env('TINYMCE_API_KEY'),
+
+    'pagination' => 'simple',
 
 ];
