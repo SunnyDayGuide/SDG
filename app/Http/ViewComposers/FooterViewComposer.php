@@ -18,8 +18,6 @@ class FooterViewComposer
 
     public function compose(View $view) 
     {
-    	$navCategories =  $this->market->navCategories;
-
         if ($this->market->id == 1) {
             $footerImage = 'images/main/footer-banner-bkgrnd-BR.jpg';
         } elseif ($this->market->id == 10) {
@@ -29,7 +27,7 @@ class FooterViewComposer
         } else
         $footerImage = 'images/main/footer-banner-bkgrnd.jpg';
 
-        $view->with(compact('navCategories', 'footerImage'));
+        $view->with(compact('footerImage'));
     }
 
     // find the current market

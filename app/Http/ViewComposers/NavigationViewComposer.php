@@ -19,6 +19,7 @@ class NavigationViewComposer
 
     public function compose(View $view) 
     {
+        $market = $this->market;
     	$navCategories =  $this->market->navCategories;
 
         $navArticles =  $this->market->getFeaturedArticles()
@@ -31,7 +32,7 @@ class NavigationViewComposer
             ->orderBy('start_date', 'asc')
             ->take(4)->get();
 
-        $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents'));
+        $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents', 'market'));
     }
 
     // find the current market

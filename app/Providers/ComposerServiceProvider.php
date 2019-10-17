@@ -26,7 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('partials.nav.*', NavigationViewComposer::class);
+        view()->composer('layouts.app', NavigationViewComposer::class);
         view()->composer('partials._prefooter', FooterViewComposer::class);
     }
 }
