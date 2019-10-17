@@ -52,21 +52,7 @@ class CategoryController extends Controller
         $subcatImages = $this->getSubcatImages($market, $category);
 
         // display the related articles
-        $articleCount = count(Article::categorized($category, $market)->get());
-
-        $catArticles = Article::categorized($category, $market)->get();
-        $articles = Article::get()->random(3);
-
-        // merge subcat/cat articles into one collection
-        $mergedArticles = $catArticles->merge($articles);
-
-        if ($articleCount < 3) {
-            // if less than 3 related articles, return 3 merged articles (this will get category articles first if there are any)
-           $relatedArticles = $mergedArticles->take(3); 
-        } else {
-            // otherwise, return 3 random articles for this category
-            $relatedArticles = $catArticles->random(3); 
-        }
+        $relatedArticles = $category->getRelatedArticles($category, null, 3);
 
         // display the related advertisers
         $advertisers = Advertiser::categorized($category)

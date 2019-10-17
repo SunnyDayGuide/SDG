@@ -194,5 +194,27 @@ class Category extends Model
         $category = $model->parent;
         return $query->where('parent_id', $category->getKey());
     }
+
+    /**
+     * Returns a collection of Articles related to a Category (or subcategory).
+     * 
+     * @param Category $category
+     * @param Category $subcategory = null
+     * @param integer $quantity
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getRelatedArticles($category, $subcategory = null, $quantity)
+    {
+        $articles = Article::inRandomOrder()->get();
+        $catArticles = Article::categorized($category)->inRandomOrder()->get();
+        $subcatArticles = Article::categorized($subcategory)->inRandomOrder()->get();
+
+        if ( is_null($subcategory)  ) {
+            $mergedArticles = $catArticles->merge($articles);
+        } else $mergedArticles = $subcatArticles->merge($catArticles)->merge($articles);
+
+        // return the first 3
+        return $relatedArticles = $mergedArticles->take($quantity);
+    }
     
 }

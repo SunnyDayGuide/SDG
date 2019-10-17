@@ -28,21 +28,7 @@ class SubcategoryController extends Controller
         $image = $page->getFirstMedia('slider');
 
         // display the related articles
-        $articleCount = count(Article::categorized($subcategory, $market)->get());
-
-        $subcatArticles = Article::categorized($subcategory, $market)->get();
-        $catArticles = Article::categorized($category, $market)->get()->random(3);
-
-        // merge subcat/cat articles into one collection
-        $mergedArticles = $subcatArticles->merge($catArticles);
-
-        if ($articleCount < 3) {
-            // if less than 3 related articles, return 3 merged articles (this will get subcat articles first if there are any)
-           $relatedArticles = $mergedArticles->take(3); 
-        } else {
-            // otherwise, return 3 random articles for this subcategory
-            $relatedArticles = $subcatArticles->random(3); 
-        }
+        $relatedArticles = $subcategory->getRelatedArticles($category, $subcategory, 3);
 
         // display the related advertisers
         $advertisers = Advertiser::categorized($subcategory)
