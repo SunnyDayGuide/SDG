@@ -45,18 +45,18 @@ class SubcategoryController extends Controller
         }
 
         // display the related advertisers
-        $advertisers = Advertiser::categorized($subcategory, $market)
+        $advertisers = Advertiser::categorized($subcategory)
             ->with('tags', 'categories', 'coupons:id')
             ->get()
             ->sortBy('sortName');
 
-        $premierAdvertisers = Advertiser::categorized($subcategory, $market)
+        $premierAdvertisers = Advertiser::categorized($subcategory)
             ->with('tags', 'categories', 'coupons:id')
             ->premier()->get()
             ->sortBy('sortName');
 
         // display the related events
-        $events = Event::categorized($subcategory, $market)
+        $events = Event::categorized($subcategory)
             ->with('tags', 'categories')->get();
         
         //show the subcategory page

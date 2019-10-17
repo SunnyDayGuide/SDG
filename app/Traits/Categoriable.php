@@ -50,8 +50,8 @@ trait Categoriable {
      * ie: Activities list includes all Act subcats without having to attach the Act category to the model
      * This also works for subcategories! 
      */
-        public function scopeCategorized($query, Category $category=null, Market $market=null) {
-        if ( is_null($category) || is_null($market) ) return $query->with('categories', 'market');
+        public function scopeCategorized($query, Category $category=null) {
+        if ( is_null($category)  ) return $query->with('categories');
 
         // get subcat ids
         $categoryIds = $category->children()->pluck('id');
@@ -59,8 +59,7 @@ trait Categoriable {
         // add current cat id to the array
         $categoryIds[] = $category->getKey();
 
-        return $this->where('market_id', $market->id)
-            ->whereHas('categories', function (Builder $query) use ($categoryIds) {
+        return $this->whereHas('categories', function (Builder $query) use ($categoryIds) {
                 $query->whereIn('category_id', $categoryIds);
             });
     }

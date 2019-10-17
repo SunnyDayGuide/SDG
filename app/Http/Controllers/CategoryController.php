@@ -69,19 +69,19 @@ class CategoryController extends Controller
         }
 
         // display the related advertisers
-        $advertisers = Advertiser::categorized($category, $market)
-            ->with('tags', 'categories', 'coupons:id')
+        $advertisers = Advertiser::categorized($category)
+            ->with('tags:slug,name', 'coupons:id')
             ->get()
             ->sortBy('sortName');
 
-        $premierAdvertisers = Advertiser::categorized($category, $market)
-            ->with('tags', 'categories', 'coupons:id')
+        $premierAdvertisers = Advertiser::categorized($category)
+            ->with('tags:slug,name', 'coupons:id')
             ->premier()->get()
             ->sortBy('sortName');
 
         // display the related events
-        $events = Event::categorized($category, $market)
-            ->with('tags', 'categories')->get();
+        $events = Event::categorized($category)
+            ->with('tags:slug,name', 'categories')->get();
 
         $shows = Show::where('active', true)->get()->sortBy('sortName');
         
