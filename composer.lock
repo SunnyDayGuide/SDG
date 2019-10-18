@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61083af2eb12b363abb368ca7545f7d2",
+    "content-hash": "a42d57852798818c22cf095827f8b072",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -2848,6 +2848,49 @@
                 "enum"
             ],
             "time": "2019-08-19T13:53:00+00:00"
+        },
+        {
+            "name": "naxon/nova-field-sortable",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Naxon/nova-field-sortable.git",
+                "reference": "d176154c5d4e300c6bd3cfe00577a5c368375992"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Naxon/nova-field-sortable/zipball/d176154c5d4e300c6bd3cfe00577a5c368375992",
+                "reference": "d176154c5d4e300c6bd3cfe00577a5c368375992",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.1.0",
+                "spatie/eloquent-sortable": "^3.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Naxon\\NovaFieldSortable\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Naxon\\NovaFieldSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2018-10-01T15:14:19+00:00"
         },
         {
             "name": "nesbot/carbon",
