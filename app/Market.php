@@ -4,6 +4,7 @@ namespace App;
 
 use App\Advertiser;
 use App\Event;
+use App\MarketCategory;
 use App\Page;
 use App\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -26,13 +27,6 @@ class Market extends Model implements HasMedia
     protected $guarded = [];
 
     /**
-     * The relationships to always eager-load.
-     * Categories should load because of navigation
-     * @var array
-     */
-    // protected $with = ['categories'];
-
-    /**
      * Get the route key name for Laravel.
      *
      * @return string
@@ -41,30 +35,6 @@ class Market extends Model implements HasMedia
     {
         return 'slug';
     }
-
-    // not using but hang on to in case I need
-    public function deleteCategoryImage($marketId, $categoryId) 
-    {
-        // foreach ($this->categories as $category) {
-            // return $image = $category->pivot->image;
-            Storage::disk('public')->delete($image);
-        // }
-    }
-
-    // delete attached category image files before detaching from market and market delete
-    public function deleteCategoryImages($id) 
-    {
-        $images = [];
-
-        foreach ($this->categories as $category) {
-            $images[] = $category->pivot->image;
-        }
-
-        Storage::disk('public')->delete($images);
-    }
-
-
-
 
     /**
      * Get a string path for the market.
@@ -76,30 +46,29 @@ class Market extends Model implements HasMedia
         return "/destinations/{$this->slug}";
     }
 
-
-    // relationships
+    /**
+     * Get the brand that owns the market.
+     */
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
 
+    /**
+     * The pages that belong to the market.
+     */
     public function pages()
     {   
         return $this->hasMany(Page::class);
     }
 
-    // function categories() 
-    // {
-    //     return $this->belongsToMany(Category::class, 'market_category')
-    //     ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
-    //     ->withTimestamps();
-    // }
-
+    /**
+     * The categories that belong to the market.
+     */
     function categories() 
     {
         return $this->belongsToMany(Category::class, 'market_category')
-        ->using('\App\MarketCategory')
-        ->withPivot('title', 'body', 'image', 'meta_title', 'meta_description')
+        ->using(MarketCategory::class)
         ->withTimestamps();
     }
 
@@ -121,47 +90,52 @@ class Market extends Model implements HasMedia
             ->with('navSubcategories');
     }
 
+    /**
+     * Get the articles for the market.
+     */
     public function articles()
     {   
         return $this->hasMany(Article::class);
     }
 
+    /**
+     * Get the events for the market.
+     */
     public function events()
     {   
         return $this->hasMany(Event::class);
     }
 
+    /**
+     * Get the state that the market is in.
+     */
     public function state()
     {
         return $this->belongsTo(State::class);
     }
 
+    /**
+     * The users (sales reps, traffic, or distribution) that belong to the market.
+     */
     public function users()
     {
         $this->belongsToMany(User::class, 'user_market');
     }
 
+     /**
+     * Get the advertisers for the market.
+     */
     public function advertisers()
     {   
         return $this->hasMany(Advertiser::class);
     }
 
+     /**
+     * Get the coupons for the market.
+     */
     public function coupons()
     {   
         return $this->hasMany(Coupon::class);
-    }
-
-
-    /**
-     * Get a market's featured articles.
-     *
-     * @return a collection of Articles
-     */
-    public function getFeaturedArticles()
-    {
-        return $this->articles()
-            ->where('featured', 1)
-            ->with('tags');
     }
 
     /**
@@ -285,6 +259,27 @@ class Market extends Model implements HasMedia
         $forecast = "<a class='weatherwidget-io' href='https://forecast7.com/en/".$uid."/".$slug."/?unit=us' data-label_1='".$data1."' data-label_2='7-DAY FORECAST' data-font='Roboto' data-theme='pure' >CURRENT WEATHER AND FORECAST</a>";
 
         return $forecast;
+    }
+
+    // not using but hang on to in case I need
+    public function deleteCategoryImage($marketId, $categoryId) 
+    {
+        foreach ($this->categories as $category) {
+            return $image = $category->pivot->image;
+            Storage::disk('public')->delete($image);
+        }
+    }
+
+    // delete attached category image files before detaching from market and market delete
+    public function deleteCategoryImages($id) 
+    {
+        $images = [];
+
+        foreach ($this->categories as $category) {
+            $images[] = $category->pivot->image;
+        }
+
+        Storage::disk('public')->delete($images);
     }
 
 

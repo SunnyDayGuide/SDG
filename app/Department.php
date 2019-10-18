@@ -14,11 +14,17 @@ class Department extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The employees that belong to the department.
+     */
     public function employees()
     {
     	return $this->belongsToMany(User::class, 'user_department')->withTimestamps();
     }
 
+    /**
+     * Get the manager that runs the department.
+     */
     public function manager()
     {
         return $this->belongsTo(User::class, 'manager_id');

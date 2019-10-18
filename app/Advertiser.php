@@ -377,6 +377,10 @@ class Advertiser extends Model implements HasMedia
         return Str::limit($this->write_up, 170, '...');
     }
 
+    /**
+    * Remove the leading article for sorting.
+    * @return string
+    */
     public function getSortNameAttribute()
     {
         return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));

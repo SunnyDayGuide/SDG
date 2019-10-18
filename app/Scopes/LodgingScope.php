@@ -19,14 +19,13 @@ class LodgingScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $category = Category::where('id', 5);
-
-        // get subcat ids
+        // get lodging subcat ids
         $categoryIds = Category::where('parent_id', 5)->pluck('id');
 
-        // add current cat id to the array
+        // add lodging cat id to the array
         $categoryIds[] = 5;
 
+        // return all models within the lodging category/subcategories
         return $builder->whereHas('categories', function (Builder $builder) use ($categoryIds) {
                 $builder->whereIn('category_id', $categoryIds);
             });

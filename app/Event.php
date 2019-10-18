@@ -117,25 +117,6 @@ class Event extends Model implements HasMedia
         return $this->hasMany(Recurrence::class);
     }
 
-    // register media collection with conversion
-    public function registerMediaCollections()
-	{
-	    $this
-	        ->addMediaCollection('inset')
-	        ->singleFile()
-	        ->registerMediaConversions(function (Media $media) {
-	            $this
-	                ->addMediaConversion('card')
-	                ->crop(Manipulations::CROP_CENTER, 246, 131)
-	                ->withResponsiveImages();
-
-                $this
-                    ->addMediaConversion('overlay-card')
-                    ->crop(Manipulations::CROP_CENTER, 275, 295)
-                    ->withResponsiveImages();
-	        });
-	}
-
     public function startsAt(\DateTimeInterface $startsAt)
     {
         $this->start_date = Carbon::parse($startsAt);
@@ -207,6 +188,25 @@ class Event extends Model implements HasMedia
         }
 
         return $dates;
+    }
+    
+    // register media collection with conversion
+    public function registerMediaCollections()
+    {
+        $this
+            ->addMediaCollection('inset')
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('card')
+                    ->crop(Manipulations::CROP_CENTER, 246, 131)
+                    ->withResponsiveImages();
+
+                $this
+                    ->addMediaConversion('overlay-card')
+                    ->crop(Manipulations::CROP_CENTER, 275, 295)
+                    ->withResponsiveImages();
+            });
     }
 
 }

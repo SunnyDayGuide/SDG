@@ -7,14 +7,6 @@ use Spatie\OpeningHours\OpeningHours;
 
 class Hour extends Model
 {
-    /**
-     * Get the user that owns the phone.
-     */
-    public function advertiser()
-    {
-        return $this->belongsTo('App\Advertiser');
-    }
-
     public function fillHours()
     {
         $openingHours = (new OpeningHours)->fill([

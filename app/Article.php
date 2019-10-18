@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Algolia\ScoutExtended\Splitters\HtmlSplitter;
 use App\Advertiser;
 use App\Category;
 use App\Concerns\HasRemovableGlobalScopes;
 use App\CustomTag;
-use App\Helpers\WordPressContentFormatter;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Bannerable;
@@ -20,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laracasts\Presenter\PresentableTrait;
 use Laravel\Scout\Searchable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -38,6 +37,7 @@ class Article extends Model implements HasMedia
     use Searchable;
     use Bannerable;
     use HasRemovableGlobalScopes;
+    use PresentableTrait;
     
     /**
      * The "booting" method of the model.
@@ -55,8 +55,6 @@ class Article extends Model implements HasMedia
                     ->where('status', 1);
         });
     }
-
-
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -92,6 +90,13 @@ class Article extends Model implements HasMedia
        'published_at',
        'deleted_at'
    ];
+
+   /**
+     * Class for View Presenter.
+     *
+     * @var string
+     */
+   protected $presenter = 'Presenters\ArticlePresenter';
 
      /**
      * Get the route key name.
@@ -143,7 +148,7 @@ class Article extends Model implements HasMedia
      */
     public function splitContent($value)
     {
-        return HtmlSplitter::class;
+        return Algolia\ScoutExtended\Splitters\HtmlSplitter::class;
     }
 
     /**
@@ -370,7 +375,7 @@ class Article extends Model implements HasMedia
 
     public function getFormattedContentAttribute()
     {
-        $formatter = new WordPressContentFormatter;
+        $formatter = new \App\Helpers\WordPressContentFormatter;
         if ($this->content) {
             $content = $formatter->wptexturize($this->content);
             $content = $formatter->wpautop($this->content);

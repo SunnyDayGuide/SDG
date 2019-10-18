@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Freemail extends Model
 {
-         /**
+    /**
      * Don't auto-apply mass assignment protection.
      *
      * @var array

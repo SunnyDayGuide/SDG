@@ -18,6 +18,7 @@ class Distributor extends Advertiser
     {
         parent::boot();
 
+        // Distributors are just advertisers that are in the Lodging category
         static::addGlobalScope(new LodgingScope);
     }
 

@@ -22,8 +22,8 @@ class NavigationViewComposer
         $market = $this->market;
     	$navCategories =  $this->market->navCategories;
 
-        $navArticles =  $this->market->getFeaturedArticles()
-            ->where('article_type_id', 1)
+        $navArticles =  $this->market->articles()
+            ->where('featured', 1)
             ->orderBy('updated_at', 'desc')->take(4)->get();
 
         $featuredArticle = $navArticles->first();

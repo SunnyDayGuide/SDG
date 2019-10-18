@@ -66,22 +66,6 @@ class Coupon extends Model implements HasMedia
         return $query->where('active', true);
     }
 
-        /**
-     * Register the media collections.
-     *
-     * @return array
-     */
-    // public function registerMediaCollections()
-    // {
-    //     // may not need this anymore. Keep for now.
-    //     $this
-    //     ->addMediaCollection('logo')
-    //     ->singleFile()
-    //     ->registerMediaConversions(function (Media $media) {
-    //         $this->addMediaConversion('full')
-    //         ->withResponsiveImages();
-    //     });
-    // }
 
     public function getBarcodeSVGAttribute()
     {

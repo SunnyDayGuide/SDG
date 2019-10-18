@@ -23,7 +23,7 @@ class Menu extends Model
 	protected $table = 'pdfs';
 
     /**
-     * A pdf belongs to a market.
+     * A menu belongs to a market.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,7 +33,7 @@ class Menu extends Model
     }
 
      /**
-     * Get the advertisers that appear in this pdf.
+     * Get the advertisers that appear in this menu.
      */
     public function advertisers()
     {

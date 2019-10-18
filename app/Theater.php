@@ -17,7 +17,7 @@ class Theater extends Model
     }
 
     /**
-	 * Get the user's full name.
+	 * Get the theater's full formatted address.
 	 *
 	 * @return string
 	 */
@@ -30,6 +30,11 @@ class Theater extends Model
 	     return Str::replaceFirst(', USA', '', $this->formatted_address);
 	}
 
+	 /**
+	 * Get the theater's directions URL.
+	 *
+	 * @return string
+	 */
 	public function getDirectionsAttribute()
 	{
 		$url = 'https://www.google.com/maps/dir/?api=1&&destination='.urlencode($this->formatted_address);

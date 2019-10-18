@@ -36,16 +36,25 @@ class User extends Authenticatable
         'created' => UserCreated::class
     ];
 
+    /**
+     * The departments that belong to the user.
+     */
     public function departments()
     {
         return $this->belongsToMany(Department::class, 'user_department')->withTimestamps();
     }
 
+    /**
+     * The markets that belong to the user.
+     */
     public function markets()
     {
         return $this->belongsToMany(Market::class, 'user_market')->withTimestamps();
     }
 
+    /**
+     * The departments that a user manages.
+     */
     public function manages()
     {
         return $this->hasMany(Department::class);

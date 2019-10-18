@@ -36,8 +36,7 @@ class Show extends Model
     */
     public function path()
     {
-        // if the show has advertisers, get the first one and use it's path
-        // otherwise use the show path
+        // if the show has an advertiser, use its path; otherwise use the show path
         if ($this->advertiser_id != null) {
             $path = $this->advertiser->path();
         } else {
@@ -57,7 +56,7 @@ class Show extends Model
     }
 
     /**
-    * Get the phone record associated with the user.
+    * Get the gadget record associated with the show.
     */
     public function gadget()
     {
@@ -98,7 +97,10 @@ class Show extends Model
       return $engine;
     }
 
-
+    /**
+    * Remove the leading article for sorting.
+    * @return string
+    */
     public function getSortNameAttribute()
     {
         return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));
