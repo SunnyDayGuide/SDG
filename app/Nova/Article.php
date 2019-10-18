@@ -52,7 +52,7 @@ class Article extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'title',
+        'slug', 'title',
     ];
 
     /**
