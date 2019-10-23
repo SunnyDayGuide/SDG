@@ -77,17 +77,17 @@
 						{{ $article->market->name }} {{ $article->articleType->name }}
 					</div>
 					<h1 class="article-title">{{ $article->title }}</h1>
-					<div class="meta">
+					<div class="article-meta">
+						<span class="posted-on"><i class="far fa-calendar mr-1"></i>{!! $article->present()->date !!}</span>
 						@if($article->author)
-						<div class="meta-byline">by {{ $article->author }}</div>
+						<span class="byline"><i class="fas fa-user mr-1"></i>{{ $article->author }}</span>
 						@endif
-						<time class="meta-time">{{ $article->published_at->format('F j, Y g:ia') }}</time>
 					</div>
 				</div>
 				
-				<div class="excerpt mb-4">
+				{{-- <div class="excerpt mb-4">
 					{{ $article->excerpt }}
-				</div>
+				</div> --}}
 
 				<div class="content mb-4">
 					<div class="fr-view">{!! $content !!}</div>

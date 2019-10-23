@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Algolia\ScoutExtended\Splitters\HtmlSplitter;
 use App\Advertiser;
 use App\Category;
 use App\Concerns\HasRemovableGlobalScopes;
@@ -96,7 +97,7 @@ class Article extends Model implements HasMedia
      *
      * @var string
      */
-   protected $presenter = 'Presenters\ArticlePresenter';
+   protected $presenter = 'App\Presenters\ArticlePresenter';
 
      /**
      * Get the route key name.
@@ -148,7 +149,7 @@ class Article extends Model implements HasMedia
      */
     public function splitContent($value)
     {
-        return Algolia\ScoutExtended\Splitters\HtmlSplitter::class;
+        return HtmlSplitter::class;
     }
 
     /**

@@ -13252,7 +13252,11 @@ body > div#branson-calendar-widget-legend-container {
   }
 }
 
-.meta-time {
+.article-meta {
+  font-size: 0.9rem;
+}
+
+.article-date {
   margin-right: 1rem;
 }
 

@@ -14,7 +14,7 @@
 			<a href="{{ $article->path() }}" class="stretched-link text-decoration-none">
 				<h5 class="card-title">{{ $article->title }}</h5>
 			</a>
-			<p class="card-text">{{ $article->blurb }}</p>
+			<p class="card-text">{!! $article->present()->excerpt !!}</p>
 		</div>
 
 		{{-- @if ($article->tags->count())

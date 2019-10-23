@@ -12,7 +12,7 @@
     <a href="{{ $article->path() }}" class="stretched-link text-reset text-decoration-none">
       <h5>{{ $article->title }}</h5>
     </a>
-    <p>{{ $article->blurb }}</p>
+    <p>{{ $article->present()->excerpt }}</p>
 
     @if ($article->tags->count())
     <div class="media-footer">

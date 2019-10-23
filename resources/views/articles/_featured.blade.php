@@ -8,8 +8,8 @@
 			@endif
 
 			<h2 class="card-title">{{ $article->title }}</h2>
-			<p>Published: {{ $article->publish_date->diffForHumans() }}</p>
-			<p class="card-text">{{ $article->excerpt }}</p>
+			<p>{!! $article->present()->published_at !!}</p>
+			<p class="card-text">{{ $article->present()->excerpt }}</p>
 			<a href="{{ $article->path() }}" class="btn btn-primary">Read More</a>
 			<p>{{ $article->market->name }} {{ $article->articleType->name }}</p>
 		</div> <!-- End Card Body-->

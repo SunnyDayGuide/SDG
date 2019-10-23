@@ -60,7 +60,12 @@
         @include font-size($h5-font-size);
     }
 }
-.meta-time {
+
+.article-meta {
+    font-size: .9rem;
+}
+
+.article-date {
     margin-right: 1rem;
 }
 
