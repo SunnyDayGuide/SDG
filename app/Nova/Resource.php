@@ -4,11 +4,14 @@ namespace App\Nova;
 
 use App\Scopes\MarketScope;
 use Illuminate\Support\Str;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+    public static $defaultSortField = 'sort_order';
+    
     /**
      * Build an "index" query for the given resource.
      *
@@ -97,5 +100,78 @@ abstract class Resource extends NovaResource
     //     return '/resources/'.static::uriKey().'/'.$resource->getKey();
     //     return '/resources/'.static::uriKey();
     // }
+    
+     
+    public function attributeFields()
+    {
+        $attributes = app('rinvex.attributes.attribute')::whereHas('entities', function ($query) {
+            $query->where('entity_type', '=', 'App\Advertiser');
+        })->get();
+        if (!$attributes) {
+            return [];
+        }
+        $fields = [];
+
+        $fields[] = Heading::make('Attributes');
+        foreach ($attributes as $attribute) {
+            $namespace = 'Laravel\Nova\Fields\\';
+
+            switch ($attribute->type) {
+                case 'varchar':
+                    $type = 'Text';
+                    break;
+                case 'text':
+                    $type = 'Textarea';
+                    break;
+                case 'boolean':
+                    $type = 'Boolean';
+                    break;
+                default:
+                    $type = 'Text';
+                    break;
+            }
+
+            $type = $namespace . $type;
+
+            $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
+        }
+        return $fields;
+    }
+
+    public function diningAttributeFields()
+    {
+        $attributes = app('rinvex.attributes.attribute')::where('group', 'dining-meals')->whereHas('entities', function ($query) {
+            $query->where('entity_type', '=', 'App\Advertiser');
+        })->get();
+        if (!$attributes) {
+            return [];
+        }
+        $fields = [];
+
+        $fields[] = Heading::make('Meals Served');
+        foreach ($attributes as $attribute) {
+            $namespace = 'Laravel\Nova\Fields\\';
+
+            switch ($attribute->type) {
+                case 'varchar':
+                    $type = 'Text';
+                    break;
+                case 'text':
+                    $type = 'Textarea';
+                    break;
+                case 'boolean':
+                    $type = 'Boolean';
+                    break;
+                default:
+                    $type = 'Text';
+                    break;
+            }
+
+            $type = $namespace . $type;
+
+            $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
+        }
+        return $fields;
+    }
 
 }

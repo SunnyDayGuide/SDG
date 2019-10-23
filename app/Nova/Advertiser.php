@@ -7,6 +7,8 @@ use App\Nova\Filters\MarketFilter;
 use App\Scopes\NotLodgingScope;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Eminiarts\Tabs\Tabs;
+use Eminiarts\Tabs\TabsOnEdit;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -19,6 +21,7 @@ use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\MorphToMany;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -29,6 +32,8 @@ use Spatie\TagsField\Tags;
 
 class Advertiser extends Resource
 {
+    use TabsOnEdit;
+
     /**
      * The model the resource corresponds to.
      *
@@ -92,47 +97,104 @@ class Advertiser extends Resource
 
             Tags::make('Tags')->hideFromIndex(),
 
-            Heading::make('URLs'),
-            Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
-            Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
-            Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
-            Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
+            new Tabs('Tabs', [
+                'Images'    => [
+                    BelongsTo::make('Logo')->searchable()->nullable(), 
+                    Images::make('Slider Images', 'slider')
+                        ->customPropertiesFields([
+                                Text::make('Credit'),
+                                Textarea::make('Caption'),
+                            ])
+                        ->conversion('full')
+                        ->conversionOnView('card')
+                        ->thumbnail('sm-card')
+                        ->multiple()
+                        ->fullSize()    
+                        ->hideFromIndex(),
+                ],
+                'URLs'    => [
+                    Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
+                    Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
+                    Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
+                    Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
+                ],
+                'Social Media'    => [
+                    Text::make('Facebook')->rules('nullable')->hideFromIndex(),
+                    Text::make('Twitter')->rules('nullable')->hideFromIndex(),
+                    Text::make('Instagram')->rules('nullable')->hideFromIndex(),
+                    Text::make('YouTube', 'youtube')->rules('nullable')->hideFromIndex(),
+                    Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
+                    Text::make('Yelp')->rules('nullable')->hideFromIndex(),
+                    Text::make('TripAdvisor')->rules('nullable')->hideFromIndex(),
+                ],
+                'Business Hours' => $this->hoursFields(),
+                'About the Business' => $this->businessFields(),
+                'About the Restaurant' => $this->restaurantFields(),
+            ]),
 
-            Heading::make('Social Media'),
-            Text::make('Facebook')->rules('nullable')->hideFromIndex(),
-            Text::make('Twitter')->rules('nullable')->hideFromIndex(),
-            Text::make('Instagram')->rules('nullable')->hideFromIndex(),
-            Text::make('YouTube', 'youtube')->rules('nullable')->hideFromIndex(),
-            Text::make('Pinterest')->rules('nullable')->hideFromIndex(),
-            Text::make('Yelp')->rules('nullable')->hideFromIndex(),
-            Text::make('TripAdvisor')->rules('nullable')->hideFromIndex(),
-
-            Heading::make('Images'),
-            BelongsTo::make('Logo')->searchable()->nullable(), 
-
-            Images::make('Slider Images', 'slider')
-                ->customPropertiesFields([
-                        Text::make('Credit'),
-                        Textarea::make('Caption'),
-                    ])
-                ->conversion('full')
-                ->conversionOnView('card')
-                ->thumbnail('sm-card')
-                ->multiple()
-                ->fullSize()    
-                ->hideFromIndex(),
-
-            new Panel('Business Hours', $this->hoursFields()),
-
-            HasMany::make('Locations'),
-            MorphToMany::make('Categories'),
-            BelongsToMany::make('Coupons'),
-            BelongsToMany::make('Ads'),
-            BelongsToMany::make('Menus'),
-            BelongsToMany::make('Articles'),
-            BelongsToMany::make('Events'),
+            (new Tabs('Relations', [
+                HasMany::make('Locations'),
+                MorphToMany::make('Categories'),
+                BelongsToMany::make('Coupons'),
+                BelongsToMany::make('Ads'),
+                BelongsToMany::make('Menus'),
+                BelongsToMany::make('Articles'),
+                BelongsToMany::make('Events'),
+            ]))->defaultSearch(true),
+            
         ];
     }
+
+protected function businessFields()
+{
+    return [
+        Boolean::make('Fully Accessible', 'accessible')->hideFromIndex(),
+        Boolean::make('Pet Friendly', 'pet_friendly')->hideFromIndex(),
+        TextArea::make('Restrictions'),
+        Heading::make('Discounts Offered'),
+        Boolean::make('Early Bird Specials', 'early_bird_specials')->hideFromIndex(),
+        Boolean::make('Military Discount', 'military_discount')->hideFromIndex(),
+        Boolean::make('Senior Discount', 'senior_discount')->hideFromIndex(),
+    ];
+}
+
+protected function restaurantFields()
+{
+    return [
+        Heading::make('Meals Served'),
+        Boolean::make('Breakfast')->hideFromIndex(),
+        Boolean::make('Lunch')->hideFromIndex(),
+        Boolean::make('Dinner')->hideFromIndex(),
+        Boolean::make('Brunch')->hideFromIndex(),
+
+        Heading::make('Atmosphere'),
+        Boolean::make('Kid/Family Friendly', 'kidfamily_friendly')->hideFromIndex(),
+        Boolean::make('Good for Groups', 'good_for_groups')->hideFromIndex(),
+        Boolean::make('Outdoor Seating', 'outdoor_seating')->hideFromIndex(),
+        Boolean::make('Entertainment', 'entertainment')->hideFromIndex(),
+
+        Boolean::make('Take-Out', 'takeout')->hideFromIndex(),
+        Boolean::make('Delivery', 'delivery')->hideFromIndex(),
+
+        Select::make('Alcohol Served', 'alcohol')
+        ->options(\App\Advertiser::getAlcohol())
+        ->hideFromIndex(),
+
+        Select::make('Entree Price', 'entree_price')
+        ->options(\App\Advertiser::getPrices())
+        ->hideFromIndex(),
+
+        Select::make('Attire', 'attire')
+        ->options(\App\Advertiser::getAttires())
+        ->hideFromIndex(),
+
+        Heading::make('Reservations'),
+        Boolean::make('Not Required', 'not_required')->hideFromIndex(),
+        Boolean::make('Recommended', 'recommended')->hideFromIndex(),
+        Boolean::make('Required', 'required')->hideFromIndex(),
+        Boolean::make('Call-ahead Available', 'call_ahead')->hideFromIndex(),
+    ];
+}
 
  /**
  * Get the hours fields for the resource.
@@ -143,8 +205,6 @@ class Advertiser extends Resource
 protected function hoursFields()
 {
     return [
-        Heading::make('Business Hours')->onlyOnForms(),
-
         JSON::make('Hours', [
             Time::make('Mon. Open', 'monday->hours->start')->format('h:mm a'),
             Time::make('Mon. Close', 'monday->hours->end')->format('h:mm a'),

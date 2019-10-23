@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use App\Market;
+use App\Advertiser;
 use App\Category;
+use App\Distributor;
+use App\Market;
+use Illuminate\Support\ServiceProvider;
+use Rinvex\Attributes\Models\Attribute;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,15 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with(compact('markets'));
         });
+
+        Attribute::typeMap([
+            'varchar' => \Rinvex\Attributes\Models\Type\Varchar::class,
+            'boolean' => \Rinvex\Attributes\Models\Type\Boolean::class,
+            'text' => \Rinvex\Attributes\Models\Type\Text::class,
+        ]);
+
+        app('rinvex.attributes.entities')->push(\App\Advertiser::class);
+        app('rinvex.attributes.entities')->push(\App\Distributor::class);
     }
 
     /**

@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Rinvex\Attributes\Traits\Attributable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -38,6 +39,7 @@ class Advertiser extends Model implements HasMedia
     use HasTags;
     use HasMediaTrait;
     use HasRemovableGlobalScopes;
+    use Attributable;
 
     /**
      * The "booting" method of the model.
@@ -384,6 +386,43 @@ class Advertiser extends Model implements HasMedia
     public function getSortNameAttribute()
     {
         return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));
+    }
+
+    const PRICE_1 = '$';
+    const PRICE_2 = '$$';
+    const PRICE_3 = '$$$';
+    const ATTIRE_CASUAL = 'Casual';
+    const ATTIRE_RESORT = 'Resort Casual';
+    const ATTIRE_DRESSY = 'Dressy';
+    const ALCOHOL_BEER = 'Beer/Wine';
+    const ALCOHOL_FULL = 'Full Bar';
+    const ALCOHOL_NONE = 'None';
+
+    public static function getPrices()
+    {
+        return [
+            self::PRICE_1 => self::PRICE_1,
+            self::PRICE_2 => self::PRICE_2,
+            self::PRICE_3 => self::PRICE_3,
+        ];
+    }
+
+    public static function getAttires()
+    {
+        return [
+            self::ATTIRE_CASUAL => self::ATTIRE_CASUAL,
+            self::ATTIRE_RESORT => self::ATTIRE_RESORT,
+            self::ATTIRE_DRESSY => self::ATTIRE_DRESSY,
+        ];
+    }
+
+    public static function getAlcohol()
+    {
+        return [
+            self::ALCOHOL_BEER => self::ALCOHOL_BEER,
+            self::ALCOHOL_FULL => self::ALCOHOL_FULL,
+            self::ALCOHOL_NONE => self::ALCOHOL_NONE,
+        ];
     }
 
 
