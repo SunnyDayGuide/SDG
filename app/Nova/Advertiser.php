@@ -12,6 +12,7 @@ use Eminiarts\Tabs\TabsOnEdit;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -33,6 +34,8 @@ use Spatie\TagsField\Tags;
 class Advertiser extends Resource
 {
     use TabsOnEdit;
+
+    public static $with = ['level', 'tags', 'logo'];
 
     /**
      * The model the resource corresponds to.
@@ -177,16 +180,16 @@ protected function restaurantFields()
         Boolean::make('Delivery', 'delivery')->hideFromIndex(),
 
         Select::make('Alcohol Served', 'alcohol')
-        ->options(\App\Advertiser::getAlcohol())
-        ->hideFromIndex(),
+        ->options($this->getAlcohol())
+        ->hideFromIndex()->displayUsingLabels(),
 
         Select::make('Entree Price', 'entree_price')
-        ->options(\App\Advertiser::getPrices())
-        ->hideFromIndex(),
+        ->options($this->getPrices())
+        ->hideFromIndex()->displayUsingLabels(),
 
         Select::make('Attire', 'attire')
-        ->options(\App\Advertiser::getAttires())
-        ->hideFromIndex(),
+        ->options($this->getAttires())
+        ->hideFromIndex()->displayUsingLabels(),
 
         Heading::make('Reservations'),
         Boolean::make('Not Required', 'not_required')->hideFromIndex(),
@@ -350,6 +353,27 @@ protected function hoursFields()
         
         // For now just grab subcats
         return $query->has('parent');
+    }
+
+    public static function getAlcohol()
+    {
+        $normals = DB::table('normals')->where('attribute_id', 16)->pluck('normalized', 'id');
+
+        return $normals->toArray();
+    }
+
+    public static function getAttires()
+    {
+        $normals = DB::table('normals')->where('attribute_id', 15)->pluck('normalized', 'id');
+
+        return $normals->toArray();
+    }
+
+    public static function getPrices()
+    {
+        $normals = DB::table('normals')->where('attribute_id', 3)->pluck('normalized', 'id');
+
+        return $normals->toArray();
     }
 
 }

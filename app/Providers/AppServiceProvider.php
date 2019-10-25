@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             'varchar' => \Rinvex\Attributes\Models\Type\Varchar::class,
             'boolean' => \Rinvex\Attributes\Models\Type\Boolean::class,
             'text' => \Rinvex\Attributes\Models\Type\Text::class,
+            'integer' => \Rinvex\Attributes\Models\Type\Integer::class,
         ]);
 
         app('rinvex.attributes.entities')->push(\App\Advertiser::class);

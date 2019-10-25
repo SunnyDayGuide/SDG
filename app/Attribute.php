@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Normal;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Attribute extends \Rinvex\Attributes\Models\Attribute
@@ -15,5 +16,10 @@ class Attribute extends \Rinvex\Attributes\Models\Attribute
     public function attributeEntities(): HasMany
     {
         return parent::entities();
+    }
+
+    public function normals()
+    {
+        return $this->hasMany(Normal::class);
     }
 }
