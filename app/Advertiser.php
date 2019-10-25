@@ -12,6 +12,7 @@ use App\Location;
 use App\Logo;
 use App\Market;
 use App\Menu;
+use App\Normal;
 use App\Scopes\MarketScope;
 use App\Show;
 use App\Traits\Categoriable;
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laracasts\Presenter\PresentableTrait;
 use Rinvex\Attributes\Traits\Attributable;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -40,6 +42,7 @@ class Advertiser extends Model implements HasMedia
     use HasMediaTrait;
     use HasRemovableGlobalScopes;
     use Attributable;
+    use PresentableTrait;
 
     /**
      * The "booting" method of the model.
@@ -99,6 +102,13 @@ class Advertiser extends Model implements HasMedia
     {
         return $this->market->path() . "/places/{$this->slug}";
     }
+
+    /**
+     * Class for View Presenter.
+     *
+     * @var string
+     */
+   protected $presenter = 'App\Presenters\AdvertiserPresenter';
 
       /**
      * An advertiser belongs to a display level.
@@ -313,6 +323,38 @@ class Advertiser extends Model implements HasMedia
         return $query->where('level_id', $level);
     }
 
+
+    /**
+    * Remove the leading article for sorting.
+    * @return string
+    */
+    public function getSortNameAttribute()
+    {
+        return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));
+    }
+
+     /**
+     * Determine if an advertiser is a restaurant
+     *
+     * @return boolean
+     */
+    public function isRestaurant()
+    {
+        // get dining subcat ids
+        $categoryIds = Category::where('parent_id', 2)->pluck('id');
+
+        // add dining cat id to the array
+        $categoryIds[] = 2; 
+
+        $restaurant = $this->categories->whereIn('parent_id', $categoryIds);
+
+        if ($restaurant->isNotEmpty()) {
+            return true;
+        } else return false;
+
+    }
+
+
     /**
      * mutate advertiser hours to conform to '2:00-20:00' string that 
      * Spatie\OpeningHours\OpeningHours::fill() method requires
@@ -368,62 +410,5 @@ class Advertiser extends Model implements HasMedia
             return true;
         } else return false;
     }
-
-    public function getBlurbAttribute()
-    {
-        return Str::words($this->write_up, 10, '...');
-    }
-
-    public function getBlurbLongAttribute()
-    {
-        return Str::limit($this->write_up, 170, '...');
-    }
-
-    /**
-    * Remove the leading article for sorting.
-    * @return string
-    */
-    public function getSortNameAttribute()
-    {
-        return trim(str_replace([' A ', ' An ', ' The '], '', ' ' . $this['name'] . ' '));
-    }
-
-    const PRICE_1 = '$';
-    const PRICE_2 = '$$';
-    const PRICE_3 = '$$$';
-    const ATTIRE_CASUAL = 'Casual';
-    const ATTIRE_RESORT = 'Resort Casual';
-    const ATTIRE_DRESSY = 'Dressy';
-    const ALCOHOL_BEER = 'Beer/Wine';
-    const ALCOHOL_FULL = 'Full Bar';
-    const ALCOHOL_NONE = 'None';
-
-    public static function getPrices()
-    {
-        return [
-            self::PRICE_1 => self::PRICE_1,
-            self::PRICE_2 => self::PRICE_2,
-            self::PRICE_3 => self::PRICE_3,
-        ];
-    }
-
-    public static function getAttires()
-    {
-        return [
-            self::ATTIRE_CASUAL => self::ATTIRE_CASUAL,
-            self::ATTIRE_RESORT => self::ATTIRE_RESORT,
-            self::ATTIRE_DRESSY => self::ATTIRE_DRESSY,
-        ];
-    }
-
-    public static function getAlcohol()
-    {
-        return [
-            self::ALCOHOL_BEER => self::ALCOHOL_BEER,
-            self::ALCOHOL_FULL => self::ALCOHOL_FULL,
-            self::ALCOHOL_NONE => self::ALCOHOL_NONE,
-        ];
-    }
-
 
 }

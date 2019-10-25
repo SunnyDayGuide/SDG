@@ -4,7 +4,7 @@
 			<div class="row advertiser-cards">
 				<div class="card-deck w-100 mx-md-0">
 					@foreach ($advertisers as $advertiser)
-					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->blurb])
+					@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->present()->blurb])
 
 					@if($loop->iteration % 12 == 0)
 					<div class="mb-md-4 mb-3 px-md-0">
