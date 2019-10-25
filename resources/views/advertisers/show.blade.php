@@ -135,50 +135,46 @@
 				<div class="col-md-6 mb-4">
 					<h4>More Business Info</h4>
 					<ul class="list-unstyled">
-						<li>Some amenity here</li>
-						<li>Some amenity here</li>
-						<li>Some amenity here</li>
+						<li class="mb-3"><span class="amenity">Restrictions</span>
+							{{ $advertiser->restrictions ? $advertiser->restrictions : 'None' }}
+						</li>
+						<li class="mb-3"><span class="amenity">Fully Accessible <i class="fab fa-accessible-icon"></i></span>{{ $advertiser->accessible ? 'Yes' : 'No' }}</li>
+						<li class="mb-3"><span class="amenity">Pets Welcome</span>{{ $advertiser->pet_friendly ? 'Yes' : 'No' }}</li>
+						<li><span class="amenity">Early Bird Specials</span>{{ $advertiser->early_bird_specials ? 'Yes' : 'No' }}</li>
+						<li><span class="amenity">Military Discounts</span>{{ $advertiser->military_discount ? 'Yes' : 'No' }}</li>
+						<li><span class="amenity">Senior Discounts</span>{{ $advertiser->senior_discount ? 'Yes' : 'No' }}</li>
 					</ul>
 					@foreach($ads as $ad)
-					<a class="btn btn-advertiser text-white" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
+					<a class="btn btn-advertiser text-white mt-3" href="{{ url($ad->file) }}" target="_blank" role="button">Guide Ad {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 					@endforeach
-				</div>
+				</div> <!-- End Business Info -->
 
 				<!-- Hours -->
+				@if($hasHours)
 				<div class="col-md-6 mb-4 hours">
-					@if($hasHours)
 					@include('advertisers._hours')
-					@endif
 				</div>
+				@endif <!-- End Hours -->
 
 				<!-- Restaurant Info -->
-				@if($advertiser->categories->contains(2))
-				<div class="col-md-6">
-					<h4>Restaurant Info</h4>
-					<ul class="list-unstyled">
-						<li>Some amenity here</li>
-						<li>Some amenity here</li>
-						<li>Some amenity here</li>
-					</ul>
-
-					@foreach($menus as $menu)
-					<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
-					@endforeach
-
-				</div>
-				@endif
-
+				@if($advertiser->isRestaurant())
+				@include('advertisers._restaurant-info')
+				@endif <!-- End Restaurant Info -->
+				
+				@if(count($advertiser->articles) > 0)
 				<!-- Related Articles -->
-				<div class="col-md-6 mb-4 hours">
-					@if(count($advertiser->articles) > 0)
+				<div class="col-md-6 mb-4">
+					
 					<h4>Related:</h4>
 					<ul class="list-unstyled">
 						@foreach($advertiser->articles as $article)
 						<li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
 						@endforeach
 					</ul>
-					@endif
+					
 				</div>
+				@endif <!-- End Related Articles -->
+
 
 			</div>
 
@@ -186,7 +182,6 @@
 	</div> <!-- End Row -->
 
 	<!-- Map -->
-	<!-- Come back here and do straight up embed for one location partial -->
 	@if(count($locations) > 0)
 	<div class="map-container">
 		<button id="show-map" class="btn map-button">
