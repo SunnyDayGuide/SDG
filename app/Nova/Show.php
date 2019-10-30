@@ -128,5 +128,6 @@ class Show extends Resource
     public function relatableAdvertisersFilter(NovaRequest $request, $query)
     {
         return $query->where('market_id', 1);
+        return $query->where('market_id', 1)->where('active', 1);
     }
 }

@@ -54,6 +54,10 @@ class Advertiser extends Model implements HasMedia
         parent::boot();
 
         static::addGlobalScope(new MarketScope);
+
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', 1);
+        });
     }
 
     /**

@@ -313,6 +313,7 @@ protected function hoursFields()
     public static function indexQuery(NovaRequest $request, $query)
     {
         $query->withGlobalScope(NotLodgingScope::class, new NotLodgingScope());
+        $query->withoutGlobalScope('active');
     }
 
     /**
