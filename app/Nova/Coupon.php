@@ -65,6 +65,8 @@ class Coupon extends Resource
                 '4' => 'Entertainment',
                 '5' => 'Accommodations',
             ])->displayUsingLabels()->rules('required')->sortable(),
+            Boolean::make('Active')->sortable(),
+            BelongsTo::make('Logo')->searchable(),
             Text::make('Offer')->rules('required'),
             Text::make('Suboffer')->hideFromIndex(),
             Textarea::make('Disclaimer'),
@@ -72,11 +74,7 @@ class Coupon extends Resource
             Text::make('Barcode')->hideFromIndex(),
             Select::make('Barcode Type')->options(Config::get('coupons.barcode_types'))
                 ->displayUsingLabels()->hideFromIndex(),
-            Boolean::make('Active')->sortable(),
-            BelongsTo::make('Logo')->searchable(),
-            // Images::make('Logo', 'logo')
-            //     ->thumbnail('full')
-            //     ->hideFromIndex(),
+
             BelongsToMany::make('Advertisers'),
         ];
     }
@@ -97,14 +95,15 @@ class Coupon extends Resource
     }
 
     /**
-     * Get the cards available for the request.
+     * Return the location to redirect the user after creation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
      */
-    public function cards(Request $request)
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        return [];
+        return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/advertisers?viaRelationship=advertisers&polymorphic=0';
     }
 
     /**
@@ -121,25 +120,4 @@ class Coupon extends Resource
         ];
     }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }
