@@ -15,8 +15,6 @@
 		</div> <!-- End Card Deck-->
 	</div> <!-- End Row-->
 
-	@include('banners._zone1')
-
 	<!-- Standard Advertisers -->
 	<div class="row justify-content-center coupon-listings">
 		<div class="col-md-8">

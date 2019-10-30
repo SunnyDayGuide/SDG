@@ -3,7 +3,7 @@
 		<div class="card h-100">
 			@if(null !== $advertiser->getFirstMedia('slider'))
 			<div class="card-img-top">
-				@include('partials._images', ['item' => $advertiser])
+				@include('partials._images', ['item' => $advertiser, 'random' => true])
 			</div>
 			@endif
 			

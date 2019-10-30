@@ -12,7 +12,7 @@
 			@if($coupon->barcode)
 			<div>
 				{!! $coupon->barcodeSVG !!}
-				<div>{{ $coupon->barcode }}</div>
+				{{-- <div>{{ $coupon->barcode }}</div> --}}
 			</div>
 			@endif			
 		</div>

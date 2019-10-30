@@ -16,8 +16,11 @@
 	</div>
 
 	@include('coupons._category', ['category' => 'activities'])
+	@include('banners._zone1')
 	@include('coupons._category', ['category' => 'dining'])
+	@include('banners._zone1')
 	@include('coupons._category', ['category' => 'shopping'])
+	@include('banners._zone1')
 	@include('coupons._category', ['category' => 'entertainment'])
 
 </div> <!-- End Container -->
