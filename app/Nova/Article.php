@@ -82,7 +82,7 @@ class Article extends Resource
 
         return [
             ID::make()->hideFromIndex(),
-            BelongsTo::make('Market'),
+            BelongsTo::make('Market')->sortable(),
             Text::make('Title')
                 ->sortable()
                 ->rules('required'),

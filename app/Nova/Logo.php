@@ -51,7 +51,7 @@ class Logo extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Logo Name', 'name'),
+            Text::make('Logo Name', 'name')->sortable(),
             Images::make('Logo', 'logo')
             ->withResponsiveImages()
             ->thumbnail('thumb')

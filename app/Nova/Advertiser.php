@@ -85,13 +85,13 @@ class Advertiser extends Resource
                 ->hideFromIndex()
                 ->rules('required'),
 
-            BelongsTo::make('Market'),
+            BelongsTo::make('Market')->sortable(),
             BelongsTo::make('Display Level', 'level', 'App\Nova\Level'),
             Boolean::make('Active')->sortable(),
 
             Heading::make('Basic Info')->hideFromDetail(),
             Froala::make('Write Up', 'write_up')
-                ->rules('required'),
+                ->rules('required')->stacked(),
 
             PhoneNumber::make('Toll Free Phone Number', 'toll_free')
                 ->onlyCountries('US')
