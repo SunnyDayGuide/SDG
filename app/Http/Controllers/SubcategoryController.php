@@ -33,7 +33,7 @@ class SubcategoryController extends Controller
         // display the related advertisers
         $advertisers = Advertiser::categorized($subcategory)
             ->with('tags', 'categories', 'coupons:id')
-            ->get()
+            ->notPremier()->get()
             ->sortBy('sortName');
 
         $premierAdvertisers = Advertiser::categorized($subcategory)

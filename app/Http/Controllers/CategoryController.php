@@ -57,7 +57,7 @@ class CategoryController extends Controller
         // display the related advertisers
         $advertisers = Advertiser::categorized($category)
             ->with('tags:slug,name', 'coupons:id')
-            ->get()
+            ->notPremier()->get()
             ->sortBy('sortName');
 
         $premierAdvertisers = Advertiser::categorized($category)

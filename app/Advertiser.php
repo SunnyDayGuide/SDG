@@ -316,6 +316,17 @@ class Advertiser extends Model implements HasMedia
     }
 
     /**
+     * Scope a query to only include non-premier advertisers.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeNotPremier($query)
+    {
+        return $query->where('level_id', '!=', 3);
+    }
+
+    /**
      * Scope a query to only include advertisers of a given level.
      *
      * @param  \Illuminate\Database\Eloquent\Builder $query
