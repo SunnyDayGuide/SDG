@@ -384,9 +384,19 @@ class Advertiser extends Model implements HasMedia
             } else
             $hours = [];
             return $hours;
-        });
+        }); 
+        // dd($schedule->collect($changed), $schedule, $changed, $changed->all());
         
         return $changed->all();
+    }
+
+    public function getTimeRange()
+    {
+        $days = $this->hours;
+        foreach ($days as $day => $hours) {
+            $range = $hours['hours']['start']. '-' . $hours['hours']['end'];
+        }
+        return $range;
     }
 
     /**
@@ -395,8 +405,10 @@ class Advertiser extends Model implements HasMedia
     public function fillHours()
     {
         $schedule = $this->mutateHours();
+        $opening_hours = OpeningHours::create(array_merge($schedule,['overflow' => true]));
+        $openingHours = (new OpeningHours)->fill(array_merge($schedule,['overflow' => true]));
 
-        $openingHours = (new OpeningHours)->fill($schedule);
+        // dd($opening_hours, $openingHours); 
 
         return $openingHours;
     }

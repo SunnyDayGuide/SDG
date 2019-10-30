@@ -9,7 +9,7 @@
 			<span class="day">{{ ucfirst(trans($day)) }}</span>
 			@foreach($openingHours->forDay($day) as $time) 
 			{{ $time->start()->format('g:ia') }} - {{ $time->end()->format('g:ia') }}
-			@endforeach
+			@endforeach 
 			<span class="ml-3">{{ $advertiser->hours[$day]['data'] }}</span>
 		@else <span class="day">{{ ucfirst(trans($day)) }}</span> Closed 
 		@endif 

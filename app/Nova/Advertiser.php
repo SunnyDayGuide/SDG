@@ -236,11 +236,9 @@ protected function hoursFields()
             Time::make('Sun. Open', 'sunday->hours->start')->format('h:mm a'),
             Time::make('Sun. Close', 'sunday->hours->end')->format('h:mm a'),
             Text::make('Notes', 'sunday->data'),
-        ])->fieldClasses('flex flex-wrap items-start w-full')
-          ->childConfig([
-            'labelClasses' => 'flex w-1/6 items-start px-6 py-6',
-            'fieldClasses' => 'flex w-auto items-start px-6 py-6'
-          ])->onlyOnForms(),
+
+            Boolean::make('Overflow'),
+        ])->hideFromIndex()->stacked(),
     ];
 }
 
