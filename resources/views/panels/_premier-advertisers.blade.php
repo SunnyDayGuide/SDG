@@ -9,7 +9,7 @@
 			<div class="row advertiser-cards">
 				<div class="card-deck w-100 mx-md-0 {{ $slick == true ? 'slick3 sdg-slick' : '' }}">
 					@foreach ($premierAdvertisers as $advertiser)
-						@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->blurbLong])
+						@include('advertisers._card', ['item' => $advertiser, 'column' => 'col-md-4', 'profile' => 'card', 'excerpt' => $advertiser->present()->blurb_long])
 					@endforeach
 				</div> <!-- End Card Deck-->
 			</div> <!-- End Row-->
