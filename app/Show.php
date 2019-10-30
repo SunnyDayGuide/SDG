@@ -3,14 +3,31 @@
 namespace App;
 
 use App\Advertiser;
+use App\Concerns\HasRemovableGlobalScopes;
 use App\Gadget;
 use App\Theater;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Show extends Model
 {
     use Sluggable;
+    use HasRemovableGlobalScopes;
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', 1);
+        });
+    }
 
     /**
     * The relationships to always eager-load.

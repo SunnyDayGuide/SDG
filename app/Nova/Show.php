@@ -120,6 +120,18 @@ class Show extends Resource
     }
 
     /**
+     * Build an "index" query that ONLY includes active shows.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->withoutGlobalScope('active');
+    }
+
+    /**
      * Make just Branson's advertisers available for the request.
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -127,7 +139,6 @@ class Show extends Resource
      */
     public function relatableAdvertisersFilter(NovaRequest $request, $query)
     {
-        return $query->where('market_id', 1);
         return $query->where('market_id', 1)->where('active', 1);
     }
 }
