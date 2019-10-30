@@ -18,6 +18,13 @@
         <link rel="stylesheet" href="/nova-api/styles/{{ $name }}">
     @endforeach
 
+    <style>
+        .fr-box.fr-basic .fr-element p {
+            margin-top: 1em !important;
+            margin-bottom: 1em !important;
+        }
+    </style>
+
     <!-- Custom Meta Data -->
     @include('nova::partials.meta')
 
