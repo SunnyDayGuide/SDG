@@ -82,7 +82,10 @@ class Location extends Resource
         return $this->merge([
             Place::make('Address', 'address_line_1')
                 ->countries(['US']),
-            Text::make('Address Line 2')->hideFromIndex(),
+            Text::make('Alt Address')->help(
+                'Use this if the advertiser wants an address format other than the Googles to appear on their profile page.'
+            )
+            ->hideFromIndex(),
             Text::make('City'),
             Text::make('State')->hideFromIndex(),
             Text::make('Postal Code')->hideFromIndex(),
@@ -103,7 +106,10 @@ class Location extends Resource
             GoogleAutocomplete::make('Address', 'formatted_address')
                 ->withValues(['street_number', 'route', 'locality', 'administrative_area_level_1', 'postal_code', 'country', 'latitude', 'longitude'])
                 ->countries(['US']),
-            Text::make('Address Line 2')->hideFromIndex(),
+            Text::make('Alt Address')->help(
+                'Use this if the advertiser wants an address format other than the Googles to appear on their profile page.'
+            )
+            ->hideFromIndex(),
             AddressMetadata::make('Street Number')->fromValue('street_number')->invisible()->hideFromIndex()->hideFromDetail(),
             AddressMetadata::make('Route')->fromValue('route')->invisible()->hideFromIndex()->hideFromDetail(),
             AddressMetadata::make('City')->fromValue('locality')->invisible()->hideFromIndex()->hideFromDetail(),

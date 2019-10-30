@@ -22,8 +22,8 @@ class Location extends Model
 	 */
 	public function getFullAddressAttribute()
 	{
-		if ($this->address_line_2) {
-			return "{$this->address_line_2}, {$this->city}, {$this->state} {$this->postal_code}";
+		if ($this->alt_address) {
+			return "{$this->alt_address}, {$this->city}, {$this->state} {$this->postal_code}";
 		} else
 		
 	     return Str::replaceFirst(', USA', '', $this->formatted_address);
