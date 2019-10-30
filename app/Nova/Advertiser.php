@@ -180,15 +180,15 @@ protected function restaurantFields()
         Boolean::make('Delivery', 'delivery')->hideFromIndex(),
 
         Select::make('Alcohol Served', 'alcohol')
-        ->options($this->getAlcohol())
+        ->options($this->getOptions(16))
         ->hideFromIndex()->displayUsingLabels(),
 
         Select::make('Entree Price', 'entree_price')
-        ->options($this->getPrices())
+        ->options($this->getOptions(3))
         ->hideFromIndex()->displayUsingLabels(),
 
         Select::make('Attire', 'attire')
-        ->options($this->getAttires())
+        ->options($this->getOptions(15))
         ->hideFromIndex()->displayUsingLabels(),
 
         Heading::make('Reservations'),
@@ -253,18 +253,7 @@ protected function hoursFields()
      */
     public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        // return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
-    }
-
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
+        return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
     }
 
     /**
@@ -279,28 +268,6 @@ protected function hoursFields()
             new MarketFilter,
             new Category,
         ];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
     }
 
     /**
@@ -356,23 +323,10 @@ protected function hoursFields()
         return $query->has('parent');
     }
 
-    public static function getAlcohol()
+    public function getOptions($attribute)
     {
-        $normals = DB::table('normals')->where('attribute_id', 16)->pluck('normalized', 'id');
-
-        return $normals->toArray();
-    }
-
-    public static function getAttires()
-    {
-        $normals = DB::table('normals')->where('attribute_id', 15)->pluck('normalized', 'id');
-
-        return $normals->toArray();
-    }
-
-    public static function getPrices()
-    {
-        $normals = DB::table('normals')->where('attribute_id', 3)->pluck('normalized', 'id');
+        $attribute = \App\Attribute::find($attribute);
+        $normals = $attribute->normals()->pluck('normalized', 'id');
 
         return $normals->toArray();
     }
