@@ -8,13 +8,13 @@
 		<div class="col-md-8 offset-md-2">
 
 			<!-- Header -->
-			<div class="d-flex mb-3"> 
-				<div class="flex-grow-1">
+			<div class="d-flex align-content-center justify-content-between mb-md-4"> 
+				<div class="">
 					<h1>{{ $advertiser->name }}</h1>
 
 					<!-- Web & social buttons -->
 					<div class=""> 
-						<div class="web-buttons mr-3 mb-2 mb-md-0">
+						<div class="web-buttons my-2">
 							@if(count($advertiser->locations) > 0)
 							<a class="btn btn-advertiser text-white mr-1" href="#show-map" role="button">Map</a>
 							@endif
@@ -44,7 +44,7 @@
 							@endif
 						</div>
 
-						<div class="social mt-3">
+						<div class="social my-2">
 							@if($advertiser->facebook)
 							<a href="{{ $advertiser->facebook }}" target="_blank" class="social-item text-light" aria-label="View {{ $advertiser->name }} Facebook page"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i></span></a>
 							@endif
@@ -78,7 +78,7 @@
 
 				</div>
 				@if($advertiser->logo)
-				<div class="header-logo ml-3 d-none d-md-block">{{ $logo }}</div>
+				<div class="flex-shrink-1 header-logo ml-3 d-none d-md-block">{{ $logo }}</div>
 				@endif
 			</div>
 

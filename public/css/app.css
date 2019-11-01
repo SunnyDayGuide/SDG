@@ -12790,7 +12790,9 @@ legend {
 }
 
 .header-logo {
-  width: 190px;
+  width: 200px;
+  min-width: 200px;
+  padding-top: 10px;
 }
 
 .write-up {
@@ -13288,6 +13290,10 @@ body > div#branson-calendar-widget-legend-container {
 
 .content a {
   text-decoration: underline;
+}
+
+.content a.btn {
+  text-decoration: none;
 }
 
 .content a:hover {
