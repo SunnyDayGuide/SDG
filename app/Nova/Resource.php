@@ -19,11 +19,11 @@ abstract class Resource extends NovaResource
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        // $query->withoutGlobalScope(MarketScope::class);
-        // return $query;
-    }
+    // public static function indexQuery(NovaRequest $request, $query)
+    // {
+    //     $query->withoutGlobalScope(MarketScope::class);
+    //     return $query;
+    // }
 
     /**
      * Build a Scout search query for the given resource.
