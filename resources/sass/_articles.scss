@@ -97,6 +97,10 @@
     text-decoration: underline;
 }
 
+.content a.btn {
+    text-decoration: none;
+}
+
 .content a:hover {
     color: $primary;
     text-decoration: none;
