@@ -11,13 +11,20 @@
 	<div class="content">
 		<div class="page-title d-md-flex justify-content-between">
 			<h1 class="display-4">{{ $page->title }}</h1>
-			<div class="d-flex align-items-center mr-md-2"><button type="button" class="btn btn-highlight text-white float-right">Submit an Event</button></div>
+			<div class="d-flex align-items-center mr-md-2">
+				<a href="{{ route('events.create', $market) }}" class="btn btn-highlight text-white float-right">Submit an Event</a></div>
 		</div>
 
 		<div class="fr-view page-body">
 			{!! $page->content !!}
 		</div>
 	</div>
+
+	@if (session('message'))
+	    <div class="alert alert-editorial" role="alert">
+	        {{ session('message') }}
+	    </div>
+	@endif
 
 	<div class="col-sm-8 offset-sm-2 p-2">
 	@foreach($events as $event)

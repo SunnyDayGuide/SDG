@@ -76,6 +76,8 @@ Route::prefix('destinations/{market}')->group(function () {
 	
 	// Other Page Routes
 	Route::get('events', 'EventController@index')->name('events');
+	Route::get('events/submit', 'EventController@create')->name('events.create');
+	Route::post('events/submit', 'EventController@store')->name('events.store');
 	Route::get('coupons', 'CouponController@index')->name('coupons');
 	Route::get('weather', 'PageController@weather')->name('weather');
 
