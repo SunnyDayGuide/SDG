@@ -8,6 +8,12 @@
 
 <div class="container my-3 my-md-5">
 
+	@if (session('message'))
+	    <div class="alert alert-editorial" role="alert">
+	        {{ session('message') }}
+	    </div>
+	@endif
+
 	<div class="content">
 		<div class="page-title d-md-flex justify-content-between">
 			<h1 class="display-4">{{ $page->title }}</h1>
@@ -19,12 +25,6 @@
 			{!! $page->content !!}
 		</div>
 	</div>
-
-	@if (session('message'))
-	    <div class="alert alert-editorial" role="alert">
-	        {{ session('message') }}
-	    </div>
-	@endif
 
 	<div class="col-sm-8 offset-sm-2 p-2">
 	@foreach($events as $event)

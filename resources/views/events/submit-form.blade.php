@@ -35,14 +35,14 @@
 					<legend>Event Information</legend>
 					<div class="form-group">
 						<label for="title">Event Title*</label>
-						<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+						<input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required>
 						<div class="font-weight-bold text-danger">{{ $errors->first('title') }}</div>
 					</div>
 					<div class="form-row">
 						<div class="form-group col-6 col-md-3">
 							<label for="start_date">Start Date*</label>
 							<div class="input-group date">
-								<input type="text" class="form-control event_date" name="start_date" value="{{ old('start_date') }}">
+								<input type="text" class="form-control event_date" name="start_date" value="{{ old('start_date') }}" required>
 								<div class="input-group-append">
 									<div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
 								</div>
