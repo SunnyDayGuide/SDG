@@ -19,8 +19,9 @@
 * <strong>Email:</strong> {{ $event['email'] }}
 * <strong>Company/Organization:</strong> {{ $event['company'] }}
 * <strong>Cookie Consent:</strong> {{ $event['cookie_consent'] }}
-@endcomponent
 
 @component('mail::button', ['url' => url("/nova/resources/events/new")])
 Create Event Now
+@endcomponent
+
 @endcomponent
