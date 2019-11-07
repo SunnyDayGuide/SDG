@@ -31,13 +31,12 @@ class AdvertiserController extends Controller
         $categories = $advertiser->subcategories()->get()->groupBy('parent_id');
 
         $openingHours = $advertiser->fillHours();
-        $hasHours = $advertiser->hasHours($openingHours);
 
         $coupons = $advertiser->coupons;
         $ads = $advertiser->ads;
-        $menus = $advertiser->menus;
+        $menus = $advertiser->menus; 
 
-        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'slides', 'image', 'locations', 'categories', 'openingHours', 'hasHours', 'coupons', 'ads', 'menus'));
+        return view('advertisers.show', compact('market', 'advertiser', 'logo', 'slides', 'image', 'locations', 'categories', 'openingHours', 'coupons', 'ads', 'menus'));
     }
 
 }

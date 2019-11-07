@@ -28,7 +28,6 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
 use Michielfb\Time\Time;
-use R64\NovaFields\JSON;
 use Spatie\TagsField\Tags;
 
 class Advertiser extends Resource
@@ -130,13 +129,13 @@ class Advertiser extends Resource
                     Text::make('Yelp')->rules('nullable')->hideFromIndex(),
                     Text::make('TripAdvisor')->rules('nullable')->hideFromIndex(),
                 ],
-                'Business Hours' => $this->hoursFields(),
                 'About the Business' => $this->businessFields(),
                 'About the Restaurant' => $this->restaurantFields(),
             ]),
 
             (new Tabs('Relations', [
                 HasMany::make('Locations'),
+                HasMany::make('Hours', 'openingHours'),
                 MorphToMany::make('Categories'),
                 BelongsToMany::make('Coupons'),
                 BelongsToMany::make('Ads'),
@@ -196,49 +195,6 @@ protected function restaurantFields()
         Boolean::make('Recommended', 'recommended')->hideFromIndex(),
         Boolean::make('Required', 'required')->hideFromIndex(),
         Boolean::make('Call-ahead Available', 'call_ahead')->hideFromIndex(),
-    ];
-}
-
- /**
- * Get the hours fields for the resource.
- * Come back to the styling of this!!!
- *
- * @return array
- */
-protected function hoursFields()
-{
-    return [
-        JSON::make('Hours', [
-            Time::make('Mon. Open', 'monday->hours->start')->format('h:mm a'),
-            Time::make('Mon. Close', 'monday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'monday->data'),
-
-            Time::make('Tue. Open', 'tuesday->hours->start')->format('h:mm a'),
-            Time::make('Tue. Close', 'tuesday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'tuesday->data'),
-
-            Time::make('Wed. Open', 'wednesday->hours->start')->format('h:mm a'),
-            Time::make('Wed. Close', 'wednesday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'wednesday->data'),
-
-            Time::make('Thu. Open', 'thursday->hours->start')->format('h:mm a'),
-            Time::make('Thu. Close', 'thursday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'thursday->data'),
-
-            Time::make('Fri. Open', 'friday->hours->start')->format('h:mm a'),
-            Time::make('Fri. Close', 'friday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'friday->data'),
-
-            Time::make('Sat. Open', 'saturday->hours->start')->format('h:mm a'),
-            Time::make('Sat. Close', 'saturday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'saturday->data'),
-            
-            Time::make('Sun. Open', 'sunday->hours->start')->format('h:mm a'),
-            Time::make('Sun. Close', 'sunday->hours->end')->format('h:mm a'),
-            Text::make('Notes', 'sunday->data'),
-
-            Boolean::make('Overflow'),
-        ])->hideFromIndex()->stacked(),
     ];
 }
 

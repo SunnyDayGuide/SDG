@@ -8,11 +8,11 @@
 		@if($openingHours->isOpenOn($day))
 			<span class="day">{{ ucfirst(trans($day)) }}</span>
 			@foreach($openingHours->forDay($day) as $time) 
-			{{ $time->start()->format('g:ia') }} - {{ $time->end()->format('g:ia') }}
+			<time>{{ $time->start()->format('g:iA') }}</time> - <time>{{ $time->end()->format('g:iA') }}</time>{{ $loop->last ? '' : '; ' }}
 			@endforeach 
-			<span class="ml-3">{{ $advertiser->hours[$day]['data'] }}</span>
 		@else <span class="day">{{ ucfirst(trans($day)) }}</span> Closed 
-		@endif 
+		@endif
 	</li>	
 	@endforeach
-</ul> 
+</ul>
+<p><small>*Hours may be seasonal or vary on holidays.</small></p>

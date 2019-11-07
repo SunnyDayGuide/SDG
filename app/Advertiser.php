@@ -7,6 +7,7 @@ use App\Category;
 use App\Concerns\HasRemovableGlobalScopes;
 use App\CustomTag;
 use App\Event;
+use App\Hour;
 use App\Level;
 use App\Location;
 use App\Logo;
@@ -130,6 +131,14 @@ class Advertiser extends Model implements HasMedia
     public function locations()
     {
         return $this->hasMany(Location::class);
+    }
+
+    /**
+     * The hours that belong to the advertiser.
+     */
+    public function openingHours()
+    {
+        return $this->hasMany(Hour::class);
     }
 
       /**
@@ -369,73 +378,43 @@ class Advertiser extends Model implements HasMedia
 
     }
 
-
-    /**
-     * mutate advertiser hours to conform to '2:00-20:00' string that 
-     * Spatie\OpeningHours\OpeningHours::fill() method requires
-     */
-    public function mutateHours()
-    {
-        $schedule = collect($this->hours);
-
-        $changed = $schedule->map(function ($value, $key) {
-            if ($value['hours']['start']) {
-                $hours = [collect($value['hours'])->sort()->implode('-')];
-            } else
-            $hours = [];
-            return $hours;
-        }); 
-        // dd($schedule->collect($changed), $schedule, $changed, $changed->all());
-        
-        return $changed->all();
-    }
-
-    public function getTimeRange()
-    {
-        $days = $this->hours;
-        foreach ($days as $day => $hours) {
-            $range = $hours['hours']['start']. '-' . $hours['hours']['end'];
-        }
-        return $range;
-    }
-
     /**
      * fill advertiser hours into Spatie\OpeningHours\OpeningHours
      */
     public function fillHours()
     {
-        $schedule = $this->mutateHours();
-        $opening_hours = OpeningHours::create(array_merge($schedule,['overflow' => true]));
-        $openingHours = (new OpeningHours)->fill(array_merge($schedule,['overflow' => true]));
+        $hours = $this->createHoursArray();
+        // Come back and do exceptions
+        // $exceptions = $this->exceptions;
+        
+        $opening_hours = OpeningHours::createAndMergeOverlappingRanges(array_merge($hours,['overflow' => true]));
 
-        // dd($opening_hours, $openingHours); 
-
-        return $openingHours;
+        return $opening_hours;
     }
 
-    public function hasHours($openingHours)
+    public function createHoursArray()
     {
-        if ($openingHours->isOpenOn('sunday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('monday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('tuesday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('wednesday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('thursday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('friday')) {
-            return true;
-        }
-        if ($openingHours->isOpenOn('saturday')) {
-            return true;
-        } else return false;
+        $openingHours = $this->openingHours;
+        $grouped = $openingHours->groupBy('day');
+        $days = $grouped->toArray();
+
+        $hours_array = [];
+
+        foreach ($days as $day => $hours) {
+            $i = count($hours);
+
+            $range = [];
+
+            while($i > 0) {
+                $range[] = $hours[$i-1]['range'];
+                $i--;
+            }
+
+            $hours_array[$day] = $range;
+        } 
+        unset($day);
+
+        return $hours_array;
     }
 
 }

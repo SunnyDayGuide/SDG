@@ -150,7 +150,7 @@
 				</div> <!-- End Business Info -->
 
 				<!-- Hours -->
-				@if($hasHours)
+				@if(count($advertiser->openingHours) > 0)
 				<div class="col-md-6 mb-4 hours">
 					@include('advertisers._hours')
 				</div>

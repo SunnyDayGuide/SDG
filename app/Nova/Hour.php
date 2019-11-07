@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Michielfb\Time\Time;
+use R64\NovaFields\Select;
+use R64\NovaFields\Text;
 
 class Hour extends Resource
 {
@@ -48,78 +50,18 @@ class Hour extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-
-            Time::make('Monday Open', 'monday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Monday Close', 'monday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Tuesday Open', 'tuesday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Tuesday Close', 'tuesday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Wednesday Open', 'wednesday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Wednesday Close', 'wednesday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Thursday Open', 'thursday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Thursday Close', 'thursday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Friday Open', 'friday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Friday Close', 'friday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Saturday Open', 'saturday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Saturday Close', 'saturday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Sunday Open', 'sunday->start')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
-            Time::make('Sunday Close', 'sunday->end')
-            ->format('h:mm a')->hideFromIndex()
-            ->resolveUsing(function ($value) {
-                return $value;
-            }),
+            ID::make()->sortable()->hideFromIndex(),
+            Select::make('Day')->options([
+                'monday' => 'Monday',
+                'tuesday' => 'Tuesday',
+                'wednesday' => 'Wednesday',
+                'thursday' => 'Thursday',
+                'friday' => 'Friday',
+                'saturday' => 'Saturday',
+                'sunday' => 'Sunday',
+            ])->displayUsingLabels()->sortable(),
+            Time::make('Open')->format('h:mm A'),
+            Time::make('Close')->format('h:mm A'),
         ];
     }
 

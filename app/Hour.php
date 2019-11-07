@@ -7,39 +7,23 @@ use Spatie\OpeningHours\OpeningHours;
 
 class Hour extends Model
 {
-    public function fillHours()
-    {
-        $openingHours = (new OpeningHours)->fill([
-            'monday' => [
-                $this->monday->hours
-            ],
-            'tuesday' => [
-                $this->tuesday->hours
-            ],
-            'wednesday' => [
-                $this->wednesday->hours
-            ],
-            'thursday' => [
-                $this->thursday->hours
-            ],
-            'friday' => [
-                $this->friday->hours
-            ],
-            'saturday' => [
-                $this->saturday->hours
-            ],
-            'sunday' => [
-                $this->sunday->hours
-            ],
-        ]);
+    /**
+     * Don't auto-apply mass assignment protection.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
-        return $openingHours;
-        
-    }
-    public function getHours()
+    protected $appends = ['range'];
+
+    public function advertiser()
     {
-        $hours = $this->fillHours();
-        return $openingHours = $hours->forWeek();
+        return $this->belongsTo('App\Advertiser');
+    }
+
+    public function getRangeAttribute()
+    {
+        return "{$this->open}-{$this->close}";
     }
 
 
