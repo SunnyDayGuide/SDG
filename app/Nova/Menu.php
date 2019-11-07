@@ -40,7 +40,7 @@ class Menu extends Resource
      *
      * @var string
      */
-    public static $group = 'Uploads';
+    public static $group = 'Advertisers';
 
     /**
      * Get the fields displayed by the resource.

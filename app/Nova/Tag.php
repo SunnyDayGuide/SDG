@@ -29,7 +29,7 @@ class Tag extends Resource
      *
      * @var string
      */
-    public static $group = 'Site Admin';
+    public static $group = 'Taxonomies';
     /**
      * The columns that should be searched.
      *

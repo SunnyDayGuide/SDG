@@ -38,7 +38,7 @@ class Logo extends Resource
      *
      * @var string
      */
-    public static $group = 'Uploads';
+    public static $group = 'Advertisers';
     /**
 
     /**

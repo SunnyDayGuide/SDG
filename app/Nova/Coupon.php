@@ -45,7 +45,7 @@ class Coupon extends Resource
      *
      * @var string
      */
-    public static $group = 'Places';
+    public static $group = 'Advertisers';
 
     /**
      * Get the fields displayed by the resource.

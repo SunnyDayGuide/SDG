@@ -34,6 +34,13 @@ class AttributeEntity extends Resource
     ];
 
     /**
+     * The logical group associated with the resource.
+     *
+     * @var string
+     */
+    public static $group = 'Attributes';
+
+    /**
      * Get the displayable label of the resource.
      *
      * @return  string

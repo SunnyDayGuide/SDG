@@ -38,7 +38,7 @@ class Level extends Resource
      *
      * @var string
      */
-    public static $group = 'Site Admin';
+    public static $group = 'Advertisers';
 
     /**
      * Get the displayable label of the resource.
