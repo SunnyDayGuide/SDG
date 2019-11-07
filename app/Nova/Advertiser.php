@@ -77,12 +77,12 @@ class Advertiser extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Name')
-                ->sortable()
-                ->rules('required'),
+            ->sortable()
+            ->rules('required'),
             Text::make('Slug')
-                ->hideWhenCreating()
-                ->hideFromIndex()
-                ->rules('required'),
+            ->hideWhenCreating()
+            ->hideFromIndex()
+            ->rules('required'),
 
             BelongsTo::make('Market')->sortable(),
             BelongsTo::make('Display Level', 'level', 'App\Nova\Level'),
@@ -90,12 +90,12 @@ class Advertiser extends Resource
 
             Heading::make('Basic Info')->hideFromDetail(),
             Froala::make('Write Up', 'write_up')
-                ->rules('required')->stacked(),
+            ->rules('required')->stacked(),
 
             PhoneNumber::make('Toll Free Phone Number', 'toll_free')
-                ->onlyCountries('US')
-                ->withCustomFormats('###-###-####')->onlyCustomFormats()
-                ->hideFromIndex(),
+            ->onlyCountries('US')
+            ->withCustomFormats('###-###-####')->onlyCustomFormats()
+            ->hideFromIndex(),
 
             Tags::make('Tags')->hideFromIndex(),
 
@@ -103,16 +103,16 @@ class Advertiser extends Resource
                 'Images'    => [
                     BelongsTo::make('Logo')->searchable()->nullable(), 
                     Images::make('Slider Images', 'slider')
-                        ->customPropertiesFields([
-                                Text::make('Credit'),
-                                Textarea::make('Caption'),
-                            ])
-                        ->conversion('full')
-                        ->conversionOnView('card')
-                        ->thumbnail('sm-card')
-                        ->multiple()
-                        ->fullSize()    
-                        ->hideFromIndex(),
+                    ->customPropertiesFields([
+                        Text::make('Credit'),
+                        Textarea::make('Caption'),
+                    ])
+                    ->conversion('full')
+                    ->conversionOnView('card')
+                    ->thumbnail('sm-card')
+                    ->multiple()
+                    ->fullSize()    
+                    ->hideFromIndex(),
                 ],
                 'URLs'    => [
                     Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
@@ -147,56 +147,56 @@ class Advertiser extends Resource
         ];
     }
 
-protected function businessFields()
-{
-    return [
-        Boolean::make('Fully Accessible', 'accessible')->hideFromIndex(),
-        Boolean::make('Pet Friendly', 'pet_friendly')->hideFromIndex(),
-        TextArea::make('Restrictions'),
-        Heading::make('Discounts Offered'),
-        Boolean::make('Early Bird Specials', 'early_bird_specials')->hideFromIndex(),
-        Boolean::make('Military Discount', 'military_discount')->hideFromIndex(),
-        Boolean::make('Senior Discount', 'senior_discount')->hideFromIndex(),
-    ];
-}
+    protected function businessFields()
+    {
+        return [
+            Boolean::make('Fully Accessible', 'accessible')->hideFromIndex(),
+            Boolean::make('Pet Friendly', 'pet_friendly')->hideFromIndex(),
+            TextArea::make('Restrictions'),
+            Heading::make('Discounts Offered'),
+            Boolean::make('Early Bird Specials', 'early_bird_specials')->hideFromIndex(),
+            Boolean::make('Military Discount', 'military_discount')->hideFromIndex(),
+            Boolean::make('Senior Discount', 'senior_discount')->hideFromIndex(),
+        ];
+    }
 
-protected function restaurantFields()
-{
-    return [
-        Heading::make('Meals Served'),
-        Boolean::make('Breakfast')->hideFromIndex(),
-        Boolean::make('Lunch')->hideFromIndex(),
-        Boolean::make('Dinner')->hideFromIndex(),
-        Boolean::make('Brunch')->hideFromIndex(),
+    protected function restaurantFields()
+    {
+        return [
+            Heading::make('Meals Served'),
+            Boolean::make('Breakfast')->hideFromIndex(),
+            Boolean::make('Lunch')->hideFromIndex(),
+            Boolean::make('Dinner')->hideFromIndex(),
+            Boolean::make('Brunch')->hideFromIndex(),
 
-        Heading::make('Atmosphere'),
-        Boolean::make('Kid/Family Friendly', 'kidfamily_friendly')->hideFromIndex(),
-        Boolean::make('Good for Groups', 'good_for_groups')->hideFromIndex(),
-        Boolean::make('Outdoor Seating', 'outdoor_seating')->hideFromIndex(),
-        Boolean::make('Entertainment', 'entertainment')->hideFromIndex(),
+            Heading::make('Atmosphere'),
+            Boolean::make('Kid/Family Friendly', 'kidfamily_friendly')->hideFromIndex(),
+            Boolean::make('Good for Groups', 'good_for_groups')->hideFromIndex(),
+            Boolean::make('Outdoor Seating', 'outdoor_seating')->hideFromIndex(),
+            Boolean::make('Entertainment', 'entertainment')->hideFromIndex(),
 
-        Boolean::make('Take-Out', 'takeout')->hideFromIndex(),
-        Boolean::make('Delivery', 'delivery')->hideFromIndex(),
+            Boolean::make('Take-Out', 'takeout')->hideFromIndex(),
+            Boolean::make('Delivery', 'delivery')->hideFromIndex(),
 
-        Select::make('Alcohol Served', 'alcohol')
-        ->options($this->getOptions(16))
-        ->hideFromIndex()->displayUsingLabels(),
+            Select::make('Alcohol Served', 'alcohol')
+            ->options($this->getOptions(16))
+            ->hideFromIndex()->displayUsingLabels(),
 
-        Select::make('Entree Price', 'entree_price')
-        ->options($this->getOptions(3))
-        ->hideFromIndex()->displayUsingLabels(),
+            Select::make('Entree Price', 'entree_price')
+            ->options($this->getOptions(3))
+            ->hideFromIndex()->displayUsingLabels(),
 
-        Select::make('Attire', 'attire')
-        ->options($this->getOptions(15))
-        ->hideFromIndex()->displayUsingLabels(),
+            Select::make('Attire', 'attire')
+            ->options($this->getOptions(15))
+            ->hideFromIndex()->displayUsingLabels(),
 
-        Heading::make('Reservations'),
-        Boolean::make('Not Required', 'not_required')->hideFromIndex(),
-        Boolean::make('Recommended', 'recommended')->hideFromIndex(),
-        Boolean::make('Required', 'required')->hideFromIndex(),
-        Boolean::make('Call-ahead Available', 'call_ahead')->hideFromIndex(),
-    ];
-}
+            Heading::make('Reservations'),
+            Boolean::make('Not Required', 'not_required')->hideFromIndex(),
+            Boolean::make('Recommended', 'recommended')->hideFromIndex(),
+            Boolean::make('Required', 'required')->hideFromIndex(),
+            Boolean::make('Call-ahead Available', 'call_ahead')->hideFromIndex(),
+        ];
+    }
 
     /**
      * Return the location to redirect the user after creation.
