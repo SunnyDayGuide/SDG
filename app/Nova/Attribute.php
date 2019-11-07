@@ -76,7 +76,7 @@ class Attribute extends Resource
     {
         return [
             Sortable::make(__('Sort Order'), 'id')->onlyOnIndex(),
-            Text::make(__('Name'), 'name'),
+            Text::make(__('Name'), 'name')->sortable(),
             Select::make(__('Type'), 'type')
                 ->options(
                     array_combine(
@@ -86,15 +86,15 @@ class Attribute extends Resource
                 )
                 ->rules('required'),
 
-            Text::make(__('Group'), 'group'),
+            Text::make(__('Group'), 'group')->sortable(),
 
             Boolean::make(__('Is Required'), 'is_required')
                 ->rules('required'),
 
             Boolean::make(__('Is Collection'), 'is_collection')
-                ->rules('required'),
+                ->rules('required')->hideFromIndex(),
 
-            Text::make(__('Default'), 'default'),
+            Text::make(__('Default'), 'default')->hideFromIndex(),
 
             HasMany::make(__('Attribute Entities'), 'AttributeEntities')
                 ->rules('required'),
