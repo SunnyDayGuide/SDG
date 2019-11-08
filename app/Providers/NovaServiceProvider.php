@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Advertiser;
 use App\Article;
+use App\Distributor;
 use App\Scopes\MarketScope;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
@@ -25,6 +26,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Event::listen('eloquent.booted: App\Advertiser', function($rating) {
                 Log::info('advertiser booted ' . request()->url());
                 Advertiser::withoutGlobalScope(MarketScope::class);
+            });
+            Event::listen('eloquent.booted: App\Distributor', function($rating) {
+                Log::info('distributor booted ' . request()->url());
+                Distributor::withoutGlobalScope(MarketScope::class);
             });
             Event::listen('eloquent.booted: App\Article', function($rating) {
                 Log::info('article booted ' . request()->url());

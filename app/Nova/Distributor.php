@@ -17,6 +17,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -28,14 +29,14 @@ class Distributor extends Resource
 {
     use TabsOnEdit;
 
-    public static $with = ['level', 'tags', 'logo'];
+    public static $with = ['level', 'logo'];
 
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Advertiser';
+    public static $model = 'App\Distributor';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -52,6 +53,26 @@ class Distributor extends Resource
     public static $search = [
         'id', 'name',
     ];
+
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return  string
+     */
+    public static function label()
+    {
+        return __('Distributors');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return  string
+     */
+    public static function singularLabel()
+    {
+        return __('Distributor');
+    }
 
     /**
      * The logical group associated with the resource.
@@ -91,8 +112,6 @@ class Distributor extends Resource
                 ->withCustomFormats('###-###-####')->onlyCustomFormats()
                 ->hideFromIndex(),
 
-            Tags::make('Tags')->hideFromIndex(),
-
             new Tabs('Tabs', [
                 'Images'    => [
                     BelongsTo::make('Logo')->searchable()->nullable()->hideFromIndex(), 
@@ -110,8 +129,6 @@ class Distributor extends Resource
                 ],
                 'URLs'    => [
                     Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
-                    Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
-                    Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
                     Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
                 ],
                 'Social Media'    => [
@@ -129,12 +146,8 @@ class Distributor extends Resource
                 'Distribution'    => $this->groupAttributeFields('lodging-inhouse', 'App\Distributor'),
             ]),
             (new Tabs('Relations', [
-                HasMany::make('Locations'),
+                MorphMany::make('Locations'),
                 MorphToMany::make('Categories'),
-                BelongsToMany::make('Coupons'),
-                BelongsToMany::make('Ads'),
-                BelongsToMany::make('Articles'),
-                BelongsToMany::make('Events'),
             ]))->defaultSearch(true),
             
         ];
@@ -210,7 +223,7 @@ class Distributor extends Resource
      */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->withGlobalScope(LodgingScope::class, new LodgingScope());
+        // $query->withGlobalScope(LodgingScope::class, new LodgingScope());
         $query->withoutGlobalScope('active');
     }
 
@@ -228,7 +241,7 @@ class Distributor extends Resource
     }
 
     /**
-     * Return the location to redirect the user after update.
+     * Return the location to redirect the user after create.
      * In this case, to the detail page to add category & location
      *
      * @param \Laravel\Nova\Http\Requests\NovaRequest $request
@@ -237,20 +250,8 @@ class Distributor extends Resource
      */
     public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        return '/resources/'.static::uriKey().'/'.$resource->getKey();
-        // return '/resources/'.static::uriKey();
-    }
-
-    /**
-     * Return the location to redirect the user after update.
-     *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
-     * @param \App\Nova\Resource $resource
-     * @return string
-     */
-    public static function redirectAfterUpdate(NovaRequest $request, $resource)
-    {
         // return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
         // return '/resources/'.static::uriKey();
     }
 

@@ -5,6 +5,7 @@ namespace App;
 use App\Advertiser;
 use App\Article;
 use App\Coupon;
+use App\Distributor;
 use App\Event;
 use App\MarketCategory;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -118,6 +119,14 @@ class Category extends Model
     public function advertisers()
     {
         return $this->morphedByMany(Advertiser::class, 'categoriable');
+    }
+
+    /**
+     * Get all of the advertisers that are assigned this category.
+     */
+    public function distributors()
+    {
+        return $this->morphedByMany(Distributor::class, 'categoriable');
     }
 
     /**
