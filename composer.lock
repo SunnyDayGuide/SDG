@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00379340cb6c8b6850f31a49468b8185",
+    "content-hash": "ed9b8cc2e2ed0ab35335a400588aaf3c",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -523,6 +523,47 @@
                 "sluggable"
             ],
             "time": "2019-10-10T04:32:04+00:00"
+        },
+        {
+            "name": "dillingham/nova-attach-many",
+            "version": "1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-attach-many.git",
+                "reference": "66e0b01e1be3aecbbfc72e7df81b45bf7fb9674a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-attach-many/zipball/66e0b01e1be3aecbbfc72e7df81b45bf7fb9674a",
+                "reference": "66e0b01e1be3aecbbfc72e7df81b45bf7fb9674a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaAttachMany\\Providers\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaAttachMany\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Attach Many Nova field",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-03-22T13:17:50+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3958,6 +3999,59 @@
             "time": "2019-09-23T21:43:43+00:00"
         },
         {
+            "name": "shiftonelabs/laravel-cascade-deletes",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shiftonelabs/laravel-cascade-deletes.git",
+                "reference": "4302f0ecb7c0a166b9c4977cfbc10fe6ebedff0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shiftonelabs/laravel-cascade-deletes/zipball/4302f0ecb7c0a166b9c4977cfbc10fe6ebedff0a",
+                "reference": "4302f0ecb7c0a166b9c4977cfbc10fe6ebedff0a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=4.1",
+                "illuminate/events": ">=4.1",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0",
+                "shiftonelabs/codesniffer-standard": "0.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ShiftOneLabs\\LaravelCascadeDeletes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Patrick Carlo-Hickman",
+                    "email": "patrick@shiftonelabs.com"
+                }
+            ],
+            "description": "Adds application level cascading deletes to Eloquent Models.",
+            "homepage": "https://github.com/shiftonelabs/laravel-cascade-deletes",
+            "keywords": [
+                "cascade",
+                "deletes",
+                "eloquent",
+                "laravel",
+                "lumen",
+                "model"
+            ],
+            "time": "2016-12-07T07:59:43+00:00"
+        },
+        {
             "name": "spatie/eloquent-sortable",
             "version": "3.7.0",
             "source": {
@@ -6395,54 +6489,6 @@
             "time": "2019-09-05T20:06:01+00:00"
         },
         {
-            "name": "waynestate/nova-ckeditor4-field",
-            "version": "0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/waynestate/nova-ckeditor4-field.git",
-                "reference": "d21fdeb5f372f3258f62154505044919178c94d4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/waynestate/nova-ckeditor4-field/zipball/d21fdeb5f372f3258f62154505044919178c94d4",
-                "reference": "d21fdeb5f372f3258f62154505044919178c94d4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Waynestate\\Nova\\CKEditorFieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Waynestate\\Nova\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Web Communications",
-                    "email": "web@wayne.edu"
-                }
-            ],
-            "description": "This nova package allows you to use CKEditor 4 for text areas.",
-            "keywords": [
-                "CKEditor",
-                "laravel",
-                "nova"
-            ],
-            "time": "2019-01-14T19:35:11+00:00"
-        },
-        {
             "name": "webpatser/laravel-countries",
             "version": "dev-master",
             "source": {
@@ -8344,6 +8390,54 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2019-06-13T22:48:21+00:00"
+        },
+        {
+            "name": "waynestate/nova-ckeditor4-field",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/waynestate/nova-ckeditor4-field.git",
+                "reference": "d21fdeb5f372f3258f62154505044919178c94d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/waynestate/nova-ckeditor4-field/zipball/d21fdeb5f372f3258f62154505044919178c94d4",
+                "reference": "d21fdeb5f372f3258f62154505044919178c94d4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Waynestate\\Nova\\CKEditorFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Waynestate\\Nova\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Web Communications",
+                    "email": "web@wayne.edu"
+                }
+            ],
+            "description": "This nova package allows you to use CKEditor 4 for text areas.",
+            "keywords": [
+                "CKEditor",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-01-14T19:35:11+00:00"
         },
         {
             "name": "webmozart/assert",

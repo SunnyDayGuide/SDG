@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Laracasts\Presenter\PresentableTrait;
 use Rinvex\Attributes\Traits\Attributable;
+use ShiftOneLabs\LaravelCascadeDeletes\CascadesDeletes;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -44,6 +45,7 @@ class Advertiser extends Model implements HasMedia
     use HasRemovableGlobalScopes;
     use Attributable;
     use PresentableTrait;
+    use CascadesDeletes;
 
     /**
      * The "booting" method of the model.
@@ -87,6 +89,8 @@ class Advertiser extends Model implements HasMedia
     protected $casts = [
         'hours' => 'array',
     ];
+
+    protected $cascadeDeletes = ['locations'];
 
      /**
      * Get the route key name.
