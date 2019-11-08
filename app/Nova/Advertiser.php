@@ -21,6 +21,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphMany;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -58,6 +59,26 @@ class Advertiser extends Resource
     public static $search = [
         'id', 'name',
     ];
+
+    /**
+     * Get the displayable label of the resource.
+     *
+     * @return  string
+     */
+    public static function label()
+    {
+        return __('Advertisers');
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return  string
+     */
+    public static function singularLabel()
+    {
+        return __('Advertiser');
+    }
 
     /**
      * The logical group associated with the resource.

@@ -96,7 +96,7 @@ class Attribute extends Resource
 
             Text::make(__('Default'), 'default')->hideFromIndex(),
 
-            HasMany::make(__('Attribute Entities'), 'AttributeEntities')
+            HasMany::make(('Attribute Entities'), 'attributeEntities')
                 ->rules('required'),
         ];
     }
