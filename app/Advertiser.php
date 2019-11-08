@@ -126,11 +126,11 @@ class Advertiser extends Model implements HasMedia
     }
 
     /**
-     * The locations that belong to the advertiser.
+     * Get ALL of the advertiser's locations.
      */
     public function locations()
     {
-        return $this->hasMany(Location::class);
+        return $this->morphMany(Location::class, 'locationable');
     }
 
     /**

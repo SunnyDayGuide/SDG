@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Advertiser;
+use App\Distributor;
 use Bissolli\NovaPhoneField\PhoneNumber;
 use EmilianoTisato\GoogleAutocomplete\AddressMetadata;
 use EmilianoTisato\GoogleAutocomplete\GoogleAutocomplete;
@@ -10,6 +12,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -28,7 +31,7 @@ class Location extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'formatted_address';
 
     /**
      * The columns that should be searched.
@@ -36,7 +39,7 @@ class Location extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'formatted_address',
     ];
 
     /**
@@ -45,14 +48,6 @@ class Location extends Resource
      * @var bool
      */
     public static $displayInNavigation = false;
-
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Places';
-    /**
 
     /**
      * Get the fields displayed by the resource.
@@ -68,31 +63,7 @@ class Location extends Resource
             PhoneNumber::make('Phone Number', 'telephone')
                 ->onlyCountries('US')
                 ->withCustomFormats('###-###-####')->onlyCustomFormats(),
-            BelongsTo::make('Advertiser')->exceptOnForms(),
         ];
-    }
-
-    /**
-     * Get the address fields for the resource.
-     *
-     * @return \Illuminate\Http\Resources\MergeValue
-     */
-    protected function addressFields()
-    {
-        return $this->merge([
-            Place::make('Address', 'address_line_1')
-                ->countries(['US']),
-            Text::make('Alt Address')->help(
-                'Use this if the advertiser wants an address format other than the Googles to appear on their profile page.'
-            )
-            ->hideFromIndex(),
-            Text::make('City'),
-            Text::make('State')->hideFromIndex(),
-            Text::make('Postal Code')->hideFromIndex(),
-            Country::make('Country')->hideFromIndex(),
-            Text::make('Latitude')->hideFromIndex(),
-            Text::make('Longitude')->hideFromIndex(),
-        ]);
     }
 
     /**
@@ -120,47 +91,5 @@ class Location extends Resource
             AddressMetadata::make('longitude')->fromValue('longitude')->hideFromIndex(),
         ]);
     }
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
-    {
-        return [];
-    }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }

@@ -134,7 +134,7 @@ class Advertiser extends Resource
             ]),
 
             (new Tabs('Relations', [
-                HasMany::make('Locations'),
+                MorphMany::make('Locations'),
                 HasMany::make('Hours', 'openingHours'),
                 MorphToMany::make('Categories'),
                 BelongsToMany::make('Coupons'),

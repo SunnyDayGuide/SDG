@@ -3,16 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Location extends Model
-{
+{	
     /**
-     * The advertsiers that belong to the location.
+     * Get all of the owning locationable models.
      */
-    public function advertiser()
+    public function locationable()
     {
-        return $this->belongsTo(Advertiser::class);
+        return $this->morphTo();
     }
 
     /**
