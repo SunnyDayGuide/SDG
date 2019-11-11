@@ -18,7 +18,8 @@
 						<h5 class="card-title">{{ $premierAdvertiser->name }}</h5>
 					</a>
 					<p class="card-text">{!! $premierAdvertiser->present()->blurb_long !!}</p>
-
+					
+					@if(get_class($premierAdvertiser) == 'App\Advertiser')
 					@if($premierAdvertiser->coupons->count())
 					<div class="coupon-icon">
 						<span class="fa-stack fa-sm">
@@ -27,12 +28,15 @@
 						</span>
 					</div>
 					@endif
+					@endif
 				</div>
-
+				
+				@if(get_class($premierAdvertiser) == 'App\Advertiser')
 				@if ($premierAdvertiser->tags->count())
 				<div class="card-footer">
 					@include('tags._links', ['item' => $premierAdvertiser, 'color' => 'advertiser'])
 				</div>
+				@endif
 				@endif
 
 			</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Advertiser;
 use App\Article;
 use App\Category;
+use App\Distributor;
 use App\Event;
 use App\Market;
 use App\MarketCategory;
@@ -57,13 +58,18 @@ class CategoryController extends Controller
         // display the related advertisers
         $advertisers = Advertiser::categorized($category)
             ->with('tags:slug,name', 'coupons:id')
-            ->notPremier()->get()
-            ->sortBy('sortName');
+            ->notPremier()->get();
 
         $premierAdvertisers = Advertiser::categorized($category)
             ->with('tags:slug,name', 'coupons:id')
             ->premier()->get()
             ->sortBy('sortName');
+
+        // if accommodations page, get the related distributors and then merge advertisers & distributors
+        if ($category->slug == 'accommodations') {
+            $advertisers = $this->getLodgingList($advertisers, $category);
+            $premierAdvertisers = $this->getPremierLodgingList($premierAdvertisers, $category);
+        } 
 
         // display the related events
         $events = Event::categorized($category)
@@ -84,9 +90,14 @@ class CategoryController extends Controller
      */
     public function getSubcatImages($market, $category)
     {
-        $subcatIds = collect($category->children()->whereHas('advertisers', function (Builder $query) use ($market) {
+        $subcatIds = collect($category->children()
+            ->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market->id);
-            })->pluck('id', 'name'));
+            })
+            ->orWhereHas('distributors', function (Builder $query) use ($market) {
+                $query->where('market_id', $market->id);
+            })
+            ->pluck('id', 'name'));
 
         // find the matching market category page or create one
         // this is a prevent for breaking page if you assign an advertiser to a category where a page has not yet been created. 
@@ -102,6 +113,36 @@ class CategoryController extends Controller
         });
 
        return $mapped;
+    }
+
+    public function getLodgingList($advertisers, $category)
+    {
+        $distributors = Distributor::categorized($category)
+            ->notPremier()->get();
+            
+            $reg_collection = collect();
+
+            foreach ($advertisers as $advertiser)
+                $reg_collection->push($advertiser);
+            foreach ($distributors as $distributor)
+                $reg_collection->push($distributor);
+
+            return $reg_collection->sortBy('sortName');
+    }
+
+    public function getPremierLodgingList($premierAdvertisers, $category)
+    {
+        $premierdistributors = Distributor::categorized($category)
+                ->premier()->get();
+
+        $premier_collection = collect();
+
+        foreach ($premierAdvertisers as $premierAdvertiser)
+            $premier_collection->push($premierAdvertiser);
+        foreach ($premierdistributors as $premierdistributor)
+            $premier_collection->push($premierdistributor);
+
+        return $premier_collection->sortBy('sortName');
     }
 
 }

@@ -132,14 +132,6 @@ class Distributor extends Model implements HasMedia
          return $this->belongsTo(Logo::class);
      }
 
-     /**
-     * The coupons that belong to the advertiser.
-     */
-    public function coupons()
-    {
-        return $this->belongsToMany(Coupon::class);
-    }
-
     /**
      * Return the sluggable configuration array for this model.
      *

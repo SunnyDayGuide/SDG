@@ -11,7 +11,8 @@
 				<h5 class="card-title">{{ $item->name }}</h5>
 			</a>
 			<p class="card-text">{!! $excerpt !!}</p>
-
+			
+			@if(get_class($item) == 'App\Advertiser')
 			@if($item->coupons->count())
 			<div class="coupon-icon">
 				<span class="fa-stack fa-sm">
@@ -20,13 +21,16 @@
 				</span>
 			</div>
 			@endif
+			@endif
 
 		</div>
-
+		
+		@if(get_class($item) == 'App\Advertiser')
 		@if ($item->tags->count())
 		<div class="card-footer">
 			@include('tags._links', ['item' => $item, 'color' => 'advertiser'])
 		</div>
+		@endif
 		@endif
 
 	</div> <!-- End Card-->
