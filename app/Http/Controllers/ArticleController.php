@@ -63,20 +63,26 @@ class ArticleController extends Controller
       
       $slides = $article->getMedia('slider');
       $image = $article->getFirstMedia('slider');
-
-      $ad1 = $this->getBannerZone('1');
-      $ad2 = $this->getBannerZone('3');
-
-      $content = $article->insertAdCode($article->content, $ad1, $ad2); 
-
+      
       $premierAdvertisers = Advertiser::premier()
       ->get()
       ->random(3);
+      
+      $ad1 = $this->getBannerZone('1');
+      $ad2 = $this->getBannerZone('3');
+
+      // $ad2 = $this->getAd2($premierAdvertisers, $market);
+      $content = $article->insertAdCode($article->content, $ad1, $ad2); 
 
       $relatedArticles = $article->getRelatedArticles()
       ->sortByDesc('publish_date'); 
 
       return view('articles.show', compact('article', 'content', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
+    }
+
+    public function getAd2($premierAdvertisers, $market)
+    {
+      return view('panels._premier-advertisers', ['premierAdvertisers' => $premierAdvertisers, 'slick' => false, 'market' => $market]);
     }
 
     /**
