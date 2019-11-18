@@ -1509,16 +1509,16 @@
         },
         {
             "name": "froala/nova-froala-field",
-            "version": "3.2.0",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/froala/nova-froala-field.git",
-                "reference": "124dcbce78872c845920fbb36ae4c638fd8a411d"
+                "reference": "f5deec88787c5280cd097f118a9cb6d706907211"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/froala/nova-froala-field/zipball/124dcbce78872c845920fbb36ae4c638fd8a411d",
-                "reference": "124dcbce78872c845920fbb36ae4c638fd8a411d",
+                "url": "https://api.github.com/repos/froala/nova-froala-field/zipball/f5deec88787c5280cd097f118a9cb6d706907211",
+                "reference": "f5deec88787c5280cd097f118a9cb6d706907211",
                 "shasum": ""
             },
             "require": {
@@ -1543,7 +1543,10 @@
             "autoload": {
                 "psr-4": {
                     "Froala\\NovaFroalaField\\": "src/"
-                }
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1566,7 +1569,7 @@
                 "nova",
                 "wysiwyg"
             ],
-            "time": "2019-09-06T22:08:09+00:00"
+            "time": "2019-11-17T14:35:59+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
