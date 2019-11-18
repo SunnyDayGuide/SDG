@@ -39,6 +39,15 @@ class User extends Authenticatable
     ];
 
     /**
+     * Determines if the User is a Super admin
+     * @return null
+    */
+    public function isSuperAdmin()
+    {
+        return $this->hasRole('super-admin');
+    }
+
+    /**
      * The departments that belong to the user.
      */
     public function departments()
