@@ -24,6 +24,7 @@
         "fideloper/proxy": "^4.0",
         "fourstacks/nova-checkboxes": "^0.1.2",
         "froala/nova-froala-field": "^3.2",
+        "gregoriohc/laravel-nova-theme-responsive": "^0.8.0",
         "intervention/imagecache": "^2.3",
         "laracasts/presenter": "^0.2.2",
         "laravel/framework": "^6.0",
