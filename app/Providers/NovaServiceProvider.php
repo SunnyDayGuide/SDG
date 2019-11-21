@@ -70,7 +70,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                'meredith@sdg.com',
+                'meredith@sunnydayguide.com',
+                'icehouze@gmail.com',
             ]);
         });
 
@@ -99,7 +100,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            new \Eminiarts\NovaPermissions\NovaPermissions(),
+        ];
     }
 
     /**

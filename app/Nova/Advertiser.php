@@ -87,6 +87,21 @@ class Advertiser extends Resource
      */
     public static $group = 'Advertisers';
 
+    public static function availableForNavigation(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if ($user->can('view advertisers')) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -103,11 +118,12 @@ class Advertiser extends Resource
             Text::make('Slug')
             ->hideWhenCreating()
             ->hideFromIndex()
+            ->canSeeWhen('manage advertisers', $this)
             ->rules('required'),
 
             BelongsTo::make('Market')->sortable(),
             BelongsTo::make('Display Level', 'level', 'App\Nova\Level'),
-            Boolean::make('Active')->sortable(),
+            Boolean::make('Active')->sortable()->canSeeWhen('manage advertisers', $this),
 
             Heading::make('Basic Info')->hideFromDetail(),
             Froala::make('Write Up', 'write_up')
@@ -118,11 +134,19 @@ class Advertiser extends Resource
             ->withCustomFormats('###-###-####')->onlyCustomFormats()
             ->hideFromIndex(),
 
-            Tags::make('Tags')->hideFromIndex(),
+            Tags::make('Tags')
+            ->hideFromIndex()
+            ->canSee(function ($request) {
+                return $request->user()->can('manage advertisers', $this);
+            }),
 
             new Tabs('Tabs', [
                 'Images'    => [
-                    BelongsTo::make('Logo')->searchable()->nullable(), 
+                    BelongsTo::make('Logo')
+                    ->searchable()
+                    ->nullable()
+                    ->canSeeWhen('manage advertisers', $this), 
+                    
                     Images::make('Slider Images', 'slider')
                     ->customPropertiesFields([
                         Text::make('Credit'),
@@ -133,7 +157,7 @@ class Advertiser extends Resource
                     ->thumbnail('sm-card')
                     ->multiple()
                     ->fullSize()    
-                    ->hideFromIndex(),
+                    ->hideFromIndex()->canSeeWhen('manage advertisers', $this),
                 ],
                 'URLs'    => [
                     Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),

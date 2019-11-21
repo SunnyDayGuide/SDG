@@ -55,6 +55,21 @@ class Market extends Resource
         'id' => 'asc'
     ];
 
+    public static function availableForNavigation(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if ($user->can('manage markets')) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Build an "index" query for the given resource.
      *

@@ -68,6 +68,21 @@ class Category extends Resource
      */
     public static $perPageViaRelationship = 15;
 
+    public static function availableForNavigation(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if ($user->can('manage categories')) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

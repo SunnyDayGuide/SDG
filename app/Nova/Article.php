@@ -108,18 +108,18 @@ class Article extends Resource
                 ->fullSize()    
                 ->hideFromIndex(),
 
-            BelongsTo::make('Article Type', 'articleType'),
+            BelongsTo::make('Article Type', 'articleType')->sortable(),
             Boolean::make('Featured')->sortable(),
-            Number::make('Rating')->exceptOnForms(),
+            Number::make('Rating')->exceptOnForms()->sortable(),
 
             Tags::make('Tags')->hideFromIndex(),
             Select::make('Status', 'status')->options([
                 '1' => 'Published',
                 '0' => 'Draft',
-            ])->displayUsingLabels()->rules('required'),
+            ])->displayUsingLabels()->rules('required')->sortable(),
 
-            DateTime::make('Published At')
-                ->format('MMMM D YYYY, h:mm a')
+            DateTime::make('Published On', 'published_at')
+                ->format('M/D/YY, h:mma')
                 ->help(
                     'Pick a date in the future to SCHEDULE an article. Default: NOW'
                 )->hideFromIndex(),

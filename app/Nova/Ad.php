@@ -43,6 +43,25 @@ class Ad extends Resource
      */
     public static $group = 'Advertisers';
 
+    public static function availableForNavigation(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if ($user->can('manage advertisers')) {
+            return true;
+        }
+
+        if ($user->can('manage logos')) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

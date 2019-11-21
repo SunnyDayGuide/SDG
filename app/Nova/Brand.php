@@ -40,6 +40,21 @@ class Brand extends Resource
         'id', 'name',
     ];
 
+    public static function availableForNavigation(Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+
+        if ($user->can('manage markets')) {
+            return true;
+        }
+
+        return false;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
