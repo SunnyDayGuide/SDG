@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ea59e7f683ebe4eb1484dbd7e545a96",
+    "content-hash": "b3948db89ef151dba5a8b280cf6301d8",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -1222,6 +1222,48 @@
             "time": "2018-11-17T17:21:30+00:00"
         },
         {
+            "name": "eminiarts/nova-permissions",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eminiarts/nova-permissions.git",
+                "reference": "8390c53e46f3305dcada099e464c9e1758f6518b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eminiarts/nova-permissions/zipball/8390c53e46f3305dcada099e464c9e1758f6518b",
+                "reference": "8390c53e46f3305dcada099e464c9e1758f6518b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.0",
+                "spatie/laravel-permission": "3.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Eminiarts\\NovaPermissions\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Eminiarts\\NovaPermissions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Laravel Nova Grouped Permissions.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-09-09T05:32:17+00:00"
+        },
+        {
             "name": "eminiarts/nova-tabs",
             "version": "1.1.1",
             "source": {
@@ -1570,6 +1612,56 @@
                 "wysiwyg"
             ],
             "time": "2019-11-17T14:35:59+00:00"
+        },
+        {
+            "name": "gregoriohc/laravel-nova-theme-responsive",
+            "version": "v0.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gregoriohc/laravel-nova-theme-responsive.git",
+                "reference": "0394991448f10c77504d8412ae39bcec7dfc7faf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gregoriohc/laravel-nova-theme-responsive/zipball/0394991448f10c77504d8412ae39bcec7dfc7faf",
+                "reference": "0394991448f10c77504d8412ae39bcec7dfc7faf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gregoriohc\\LaravelNovaThemeResponsive\\ThemeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gregoriohc\\LaravelNovaThemeResponsive\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gregorio Hernández Caso",
+                    "email": "gregoriohc@gmail.com",
+                    "homepage": "https://github.com/gregoriohc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova responsive theme.",
+            "homepage": "https://github.com/gregoriohc/laravel-nova-theme-responsive",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-11-18T11:46:58+00:00"
         },
         {
             "name": "guzzlehttp/psr7",

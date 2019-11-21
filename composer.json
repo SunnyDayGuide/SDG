@@ -18,6 +18,7 @@
         "ebess/advanced-nova-media-library": "^2.0",
         "emilianotisato/nova-google-autocomplete-field": "^0.7.1",
         "emilianotisato/nova-tinymce": "^0.5.4",
+        "eminiarts/nova-permissions": "^1.0",
         "eminiarts/nova-tabs": "1.1.1",
         "epartment/nova-dependency-container": "^1.1",
         "fico7489/laravel-pivot": "^3.0",
