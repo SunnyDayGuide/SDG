@@ -18,23 +18,23 @@ class UsersSeeder extends Seeder
 
         collect([
             [
-                'name' => 'Meredith',
-                'email' => 'meredith@sdg.com',
+                'name' => 'Meredith Byrum',
+                'email' => 'meredith@sunnydayguide.com',
                 'password' => bcrypt('password')
             ],
             [
-                'name' => 'Indiana Jones',
-                'email' => 'indy@example.com',
+                'name' => 'Scott Maccubbin',
+                'email' => 'scott@sunnydayguide.com',
                 'password' => bcrypt('password')
             ],
             [
-                'name' => 'Ben Solo',
-                'email' => 'kylo@example.com',
+                'name' => 'Jill Prescott',
+                'email' => 'jill@sunnydayguide.com',
                 'password' => bcrypt('password')
             ],
             [
-                'name' => 'Marty McFly',
-                'email' => 'calvin@example.com',
+                'name' => 'Nick Henney',
+                'email' => 'nick@sunnydayguide.com',
                 'password' => bcrypt('password')
             ],
         ])->each(function ($user) {

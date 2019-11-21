@@ -37,7 +37,7 @@ class ArticleController extends Controller
       $tripIdeas = Article::with(['media', 'categories'])
       ->tripIdeas()
       ->latest('published_at')
-      ->paginate(20);
+      ->paginate(21);
 
       $advSpotlights = Article::with(['media', 'categories'])
       ->where('article_type_id', 3)
