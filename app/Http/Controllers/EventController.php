@@ -26,7 +26,8 @@ class EventController extends Controller
         $slides = $page->getMedia('slider');
         $image = $page->getFirstMedia('slider');
 
-        $events = $market->events()->current()->active()->get();
+        $events = $market->events()->current()->active()
+        ->orderBy('start_date', 'asc')->get();
 
         return view('events.index', compact('market', 'page', 'events', 'slides', 'image'));
     }

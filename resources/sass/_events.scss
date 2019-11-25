@@ -1,0 +1,28 @@
+.event-details {
+	background-color: $editorial;
+	padding: 1.25rem;
+	border-radius: 0 0 12px 12px;
+}
+.event-info {
+	border-bottom: 2px solid $editorial;
+}
+.event-dates {
+	background-color: $editorial-lt;
+	border-radius: 12px;
+	padding: 6px;
+}
+.event-title {
+	color: $editorial;
+	font-weight: $font-weight-bold;
+}
+.end-time {
+	::before {
+		content: "- ";
+	}
+}
+.event-info .carat .svg-inline--fa {
+  transition: .3s transform ease-in-out;
+}
+.event-info .collapsed .carat .svg-inline--fa {
+  transform: rotate(-90deg);
+}

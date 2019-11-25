@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Filters\MarketFilter;
+use Bissolli\NovaPhoneField\PhoneNumber;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
@@ -101,7 +102,10 @@ class Event extends Resource
 
             Froala::make('Description')->hideFromIndex(),
             Textarea::make('Location')->hideFromIndex(),
-            Text::make('Phone Number', 'phone')->hideFromIndex(),
+            PhoneNumber::make('Phone Number', 'phone')
+            ->onlyCountries('US')
+            ->withCustomFormats('###-###-####')->onlyCustomFormats()
+            ->hideFromIndex(),
             Text::make('Website URL')->rules('nullable', 'url')->hideFromIndex(),
             Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
             Text::make('Facebook URL')->rules('nullable', 'url')->hideFromIndex(),

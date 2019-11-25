@@ -11,6 +11,7 @@ use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Laracasts\Presenter\PresentableTrait;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -26,6 +27,7 @@ class Event extends Model implements HasMedia
     use HasTags;
     use HasMediaTrait;
     use HasRemovableGlobalScopes;
+    use PresentableTrait;
 
     /**
      * The "booting" method of the model.
@@ -58,6 +60,7 @@ class Event extends Model implements HasMedia
         'dtstart' => 'datetime:Y-m-d',
         'until' => 'datetime:Y-m-d',
         'start_time' => 'time:g:ia',
+        'end_time' => 'time:g:ia',
         // 'rrule->bysetpos' => 'array',
     ];
 
@@ -67,7 +70,16 @@ class Event extends Model implements HasMedia
 	    'created_at',
 	    'updated_at',
         'deleted_at',
+        'start_time',
+        'end_time',
 	];
+
+    /**
+     * Class for View Presenter.
+     *
+     * @var string
+     */
+   protected $presenter = 'App\Presenters\EventPresenter';
 
     /**
      * @param $query

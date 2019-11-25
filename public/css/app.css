@@ -13407,6 +13407,42 @@ blockquote:before {
   color: white;
 }
 
+.event-details {
+  background-color: #60A3D9;
+  padding: 1.25rem;
+  border-radius: 0 0 12px 12px;
+}
+
+.event-info {
+  border-bottom: 2px solid #60A3D9;
+}
+
+.event-dates {
+  background-color: #bfdaf0;
+  border-radius: 12px;
+  padding: 6px;
+}
+
+.event-title {
+  color: #60A3D9;
+  font-weight: 700;
+}
+
+.end-time ::before {
+  content: "- ";
+}
+
+.event-info .carat .svg-inline--fa {
+  transition: 0.3s -webkit-transform ease-in-out;
+  transition: 0.3s transform ease-in-out;
+  transition: 0.3s transform ease-in-out, 0.3s -webkit-transform ease-in-out;
+}
+
+.event-info .collapsed .carat .svg-inline--fa {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
 /* ---- Tide Charts */
 
 .tide_charts_body {
