@@ -12,8 +12,8 @@ class Recurrence extends Model
         parent::boot();
         
         static::saving(function ($instance) {
-            $instance->dtstart = $instance->event->start_date;
-            $instance->until = $instance->event->end_date;
+            $instance->dtstart = new \DateTime( $instance->event->start_date.' '.$instance->event->start_time );
+            $instance->until = new \DateTime( $instance->event->end_date.' '.$instance->event->end_time );
         });
     }
 

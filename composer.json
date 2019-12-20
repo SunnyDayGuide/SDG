@@ -40,6 +40,7 @@
         "predis/predis": "~1.0",
         "rinvex/laravel-attributes": "^3.0",
         "shiftonelabs/laravel-cascade-deletes": "^1.0",
+        "simshaun/recurr": "^4.0",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-permission": "^3.2",
         "spatie/laravel-tags": "^2.1",

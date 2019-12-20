@@ -31,7 +31,7 @@
 @import '_home';
 
 .content-wrapper {
-  min-height: 100vh;
+	min-height: 100vh;
 }
 
 label {
@@ -99,6 +99,54 @@ label {
 	background: -webkit-linear-gradient(45deg,  $advertisers 0%, $editorial 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(45deg,  $advertisers 0%, $editorial 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#add33b', endColorstr='#60A3D9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+@font-face {
+	font-family: 'sunnyday';
+	src:  url('/fonts/sunnyday.eot?cqwswr');
+	src:  url('/fonts/sunnyday.eot?cqwswr#iefix') format('embedded-opentype'),
+	url('/fonts/sunnyday.ttf?cqwswr') format('truetype'),
+	url('/fonts/sunnyday.woff?cqwswr') format('woff'),
+	url('/fonts/sunnyday.svg?cqwswr#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'sunnyday' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bucket:before {
+	content: "\e900";
+}
+
+.bucket-btn {
+	font-size: 2.75rem;
+	line-height: .5;
+}
+
+.bucket-items {
+	display: block;
+	font-size: 1rem;
+	position: absolute;
+	left: 32%;
+	bottom: 10%;
+}
+
+.bucket-instructions {
+	font-family: $headings-font-family;
 }
 
 

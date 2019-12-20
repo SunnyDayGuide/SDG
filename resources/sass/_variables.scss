@@ -29,6 +29,7 @@ $editorial: $blue;
 $editorial-lt: $blue-light;
 $advertisers: $green;
 $advertisers-lt: $green-light;
+$white: #FFF;
 
 $theme-colors: (
   "editorial": $editorial,
@@ -36,6 +37,7 @@ $theme-colors: (
   "highlight" : $highlight,
   "editorial-lt": $editorial-lt,
   "advertisers-lt": $advertisers-lt,
+  "white": $white
 );
  
 // Body

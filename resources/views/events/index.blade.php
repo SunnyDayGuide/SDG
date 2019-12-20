@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link href="{{ asset('vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('jumbotron')
 @include('partials._jumbo-slider')
 @endsection
@@ -17,27 +21,59 @@
 	<div class="content">
 		<div class="page-title d-md-flex justify-content-between">
 			<h1 class="display-4">{{ $page->title }}</h1>
-			<div class="d-flex align-items-center mr-md-2">
-				<a href="{{ route('events.create', $market) }}" class="btn btn-highlight text-white float-right">Submit an Event</a></div>
+			<div class="d-flex">
+				<div class="d-flex align-items-center">
+					<div class="bucket-instructions text-editorial font-weight-bold mr-3 w-50 text-right">Add Event to your Bucket List <i class="fas fa-arrow-right"></i></div>
+					<div class="bucket-btn"><span class="icon-bucket position-relative text-editorial"><span class="bucket-items"><i class="fas fa-plus-circle text-white"></i></span></span></div>
+				</div>
+				<div class="d-flex align-items-center mr-md-2">
+					<a href="{{ route('events.create', $market) }}" class="btn btn-highlight text-white float-right">Submit an Event</a>
+				</div>
 			</div>
+			
+		</div>
 
-			<div class="fr-view page-body">
-				{!! $page->content !!}
+		<div class="fr-view page-body">
+			{!! $page->content !!}
+		</div>
+
+		<div class="text-center">
+			<h2 class="font-weight-bold text-primary">Filter {{ $market->name }} Events</h2>
+		</div>
+
+		@include('events._search')
+
+		<div class="d-md-flex justify-content-end mb-3">
+			<div class="d-flex align-items-center">
+				<div class="bucket-instructions text-editorial font-weight-bold mr-3 w-50 text-right">Add Event to your Bucket List <i class="fas fa-arrow-right"></i></div>
+				<div class="bucket-btn"><span class="icon-bucket position-relative text-editorial"><span class="bucket-items"><i class="fas fa-plus-circle text-white"></i></span></span></div>
 			</div>
 		</div>
+	</div>
 
 		<div class="col-sm-8 offset-sm-2">
 			@foreach($events as $event)
 			<div class="event-container my-4">
-				<div class="row">
-					<div class="col-2">
-						<div class="event-dates">
-							{{ $event->date_range }}
+				<div class="row mx-0">
+
+					<div class="col-3">
+						<div class="event-dates float-right"  data-toggle="collapse" href="#event_{{ $event->id }}" role="button" aria-expanded="false" aria-controls="event_{{ $event->id }}">
+							<span class="event-start text-center">
+								<em class="date">{{ $event->start_date->day }}</em>
+								<em class="month">{{ $event->start_date->formatLocalized('%b') }}</em>
+							</span>
+							@if($event->end_date != $event->start_date)
+							<span class="event-end text-right">
+								<em class="date">{{ $event->end_date->day }}</em>
+								<em class="month">{{ $event->end_date->formatLocalized('%b') }}</em>
+							</span>
+							@endif
+							<em class="clearfix"></em>
 						</div>
 					</div>
 
-					<div class="event-info col-10">
-						<a class="text-reset text-decoration-none d-flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+					<div class="event-info col-9">
+						<a class="text-reset text-decoration-none d-flex" data-toggle="collapse" href="#event_{{ $event->id }}" role="button" aria-expanded="false" aria-controls="event_{{ $event->id }}">
 							<div class="pr-2 ml-n3 carat"><i class="fas fa-chevron-down font-weight-bold text-editorial"></i></div>
 							<div class="event-text">
 								<h5 class="event-title">{{ $event->title }}</h5>
@@ -46,21 +82,25 @@
 									@if($event->end_time)<span class="end-time">{!! $event->present()->end_time !!}</span>@endif
 									<i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i><span class="mr-2">{{ $event->location }}</span>
 								</p>
+								@if($event->recurrences->count())
+								<p>{{ $event->rrule }}</p>
+								@endif
 							</div>
 						</a>
 					</div>
 				</div> <!-- End Row -->
 
-				<div class="row no-gutters collapse mr-0" id="collapseExample">
-					<div class="col-md-2"></div>
-					<div class="col-md-10 event-details p-3">
+				<div class="row no-gutters collapse mr-0" id="event_{{ $event->id }}">
+					<div class="col-3"></div>
+					<div class="col-9 event-details p-3">
 						<div class="fr-view event-description text-white">{!! $event->description !!}</div>
 						<div class="event-buttons d-flex justify-content-between">
-							<a href="#">Bucket</a>
-							<div class="buttons">
-								@if($event->facebook_url)<a class="event-fb text-light" href="{{ $event->facebook_url }}" target="_blank"><span class="fa-stack fa-2x"><i class="fas fa-circle fa-stack-2x"></i><i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i></span></a>@endif
-								@if($event->ticket_url)<a class="btn btn-primary" href="{{ $event->ticket_url }}" target="_blank">Buy Tickets</a>@endif
-								@if($event->website_url)<a class="btn btn-primary" href="{{ $event->website_url }}" target="_blank">Website</a>@endif
+
+							<a href="#" class="text-reset text-decoration-none bucket-btn"><span class="icon-bucket position-relative text-white"><span class="bucket-items"><i class="fas fa-plus-circle text-advertiser"></i></span></span></a>
+							<div class="buttons d-flex align-items-center">
+								@if($event->facebook_url)<a class="text-white ml-2" href="{{ $event->facebook_url }}" target="_blank"><i class="fab fa-facebook fa-2x"></i></span></a>@endif
+								@if($event->ticket_url)<a class="btn btn-white text-editorial ml-4" href="{{ $event->ticket_url }}" target="_blank">Buy Tickets</a>@endif
+								@if($event->website_url)<a class="btn btn-white text-editorial ml-2" href="{{ $event->website_url }}" target="_blank">Website</a>@endif
 							</div>
 						</div>
 					</div>
@@ -73,3 +113,14 @@
 	</div>
 
 	@endsection
+
+@section('scripts')
+<script src="{{ asset('vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script type="text/javascript">
+	$('.event_date').datepicker({
+		autoclose: true,
+		todayBtn: "linked",
+		orientation: "auto"
+	});  
+</script> 
+@endsection

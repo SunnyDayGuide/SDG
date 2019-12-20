@@ -29,7 +29,13 @@ class EventController extends Controller
         $events = $market->events()->current()->active()
         ->orderBy('start_date', 'asc')->get();
 
-        return view('events.index', compact('market', 'page', 'events', 'slides', 'image'));
+        $searchCategories = $market->categories()
+            ->isParent()
+            ->with('searchSubcategories')->get();
+
+        dd($this->tryToRecurr($market));
+
+        return view('events.index', compact('market', 'page', 'events', 'slides', 'image', 'searchCategories'));
     }
 
     /**
@@ -106,6 +112,53 @@ class EventController extends Controller
             ->send(new EventSubmittedMail($event));
 
         return redirect()->route('events', $market->slug)->with('message', 'Thanks for submitting your event! It will be appear on our website soon.');
+    }
+
+    public function tryToRecurr($market)
+    {
+        if ($market->code == 'BR') {
+            $timezone = 'America/Chicago';
+        } else $timezone = 'America/New_York';
+
+        $event = Event::find(14);
+        $recurrence = $event->recurrences()->first();
+
+        // $startDate   = new \DateTime('2013-01-31 20:00:00', new \DateTimeZone($timezone));
+        $startDate   = new \DateTime($event->start_date, new \DateTimeZone($timezone));
+        $rule        = new \Recurr\Rule('FREQ=MONTHLY;COUNT=5', $startDate, null, $timezone);
+
+        // $rule = (new \Recurr\Rule)
+        //     ->setStartDate($startDate)
+        //     ->setTimezone($timezone)
+        //     ->setCount($recurrence->count)
+        //     ->setFreq($recurrence->freq)
+        //     ->setInterval($recurrence->interval)
+        //     ->setBySetPosition($recurrence->bysetpos)
+        //     ->setByDay(explode(',', $recurrence->byweekday))
+        //     ->setByMonthDay(explode(',', $recurrence->bymonthday))
+        //     ->setByMonth(explode(',', $recurrence->bymonth))
+        //     ->setUntil($recurrence->until)
+        // ;
+
+        $rule = (new \Recurr\Rule)
+            ->setStartDate($startDate)
+            ->setTimezone($timezone)
+            ->setFreq($recurrence->freq)
+            ->setInterval($recurrence->interval)
+            ->setBySetPosition(explode(',', $recurrence->bysetpos))
+            ->setByDay(explode(',', $recurrence->byweekday))
+            ->setUntil($recurrence->until)
+        ; dd($rule->getString());
+
+        $transformer = new \Recurr\Transformer\ArrayTransformer();
+
+        $transformerConfig = new \Recurr\Transformer\ArrayTransformerConfig();
+        $transformerConfig->enableLastDayOfMonthFix();
+        $transformer->setConfig($transformerConfig);
+
+        // print_r($transformer->transform($rule));
+
+        return $transformer->transform($rule);
     }
 
 }

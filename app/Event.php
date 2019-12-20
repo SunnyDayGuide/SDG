@@ -38,7 +38,7 @@ class Event extends Model implements HasMedia
     {
         parent::boot();
 
-        static::addGlobalScope(new MarketScope);
+        // static::addGlobalScope(new MarketScope);
     }
 
     /**
@@ -57,21 +57,17 @@ class Event extends Model implements HasMedia
         'featured'        => 'boolean',
         'active' => 'boolean',
         'rrule' => 'array',
-        'dtstart' => 'datetime:Y-m-d',
-        'until' => 'datetime:Y-m-d',
-        'start_time' => 'time:g:ia',
-        'end_time' => 'time:g:ia',
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d',
+        'start_time' => 'time',
+        'end_time' => 'time',
         // 'rrule->bysetpos' => 'array',
     ];
 
 	protected $dates = [
-	    'start_date',
-	    'end_date',
 	    'created_at',
 	    'updated_at',
         'deleted_at',
-        'start_time',
-        'end_time',
 	];
 
     /**
@@ -168,7 +164,9 @@ class Event extends Model implements HasMedia
      */
     public function getDtstartAttribute()
     {
-        return $this->start_date;
+        $dt_start = new \DateTime( $this->start_date.' '.$this->start_time );
+        // $dt_start = Carbon::parse($this->start_date.' '.$this->start_time);
+        return $dt_start;
     }
 
     /**
@@ -178,7 +176,9 @@ class Event extends Model implements HasMedia
      */
     public function getUntilAttribute()
     {
-        return $this->end_date;
+        $until = new \DateTime( $this->end_date.' '.$this->end_time );
+        // $until = Carbon::parse($this->end_date.' '.$this->end_time);
+        return $until;
     }
 
         /**
@@ -220,5 +220,10 @@ class Event extends Model implements HasMedia
                     ->withResponsiveImages();
             });
     }
+
+ public function getRRuleAttribute()
+ {
+     return 'rrule';
+ }
 
 }

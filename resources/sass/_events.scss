@@ -3,17 +3,79 @@
 	padding: 1.25rem;
 	border-radius: 0 0 12px 12px;
 }
-.event-info {
-	border-bottom: 2px solid $editorial;
-}
+
 .event-dates {
-	background-color: $editorial-lt;
-	border-radius: 12px;
-	padding: 6px;
+	background-color: lighten($blue, 18);
+	background-color: $editorial;
+	border-radius: 12px 0 0 0;
+	// border-radius: 12px;
+	padding: 4px 16px 8px 16px;
+	color: $white;
+    font-size: 2.25rem;
+    line-height: 1;
+    // height: 80px;
+    position: relative;
+    display: inline-block;
+    height: 100%;
+
+    em {
+	    font-style: normal;
+	    text-transform: uppercase;
+	    line-height: 110%;
+	}
+
+	span {
+	    line-height: 100%;
+	    vertical-align: super;
+	}
+}
+
+.event-dates .event-start, .event-dates .event-end {
+    float: left;
+}
+
+.event-dates .event-end {
+    padding-left: 16px;
+    position: relative;
+}
+
+.event-dates .event-start em.date, .event-dates .event-end em.date {
+    font-weight: $font-weight-medium;
+    font-family: $headings-font-family;
+}
+
+.event-dates .event-start em.month, .event-dates .event-end em.month {
+    font-size: 1.15rem;
+    font-family: $font-family-sans-serif;
+    font-weight: $font-weight-medium;
+    display: block;
+    margin-top: -2px;
+}
+
+.event-dates .event-end:before {
+    background-color: $white;
+    height: 4px;
+    width: 8px;
+    margin-left: 4px;
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0px;
+    top: 37%;
+}
+.event-info {
+	border-bottom: 2px solid $light;
+	transition: .3s ease-in-out;
 }
 .event-title {
 	color: $editorial;
 	font-weight: $font-weight-bold;
+	font-size: 1.5rem;
+	margin-bottom: .25rem;
+}
+.event-location {
+	font-size: 1.1rem;
+	margin-bottom: .5rem;
 }
 .end-time {
 	::before {
