@@ -2,7 +2,6 @@
 
 namespace App\Nova;
 
-use Fourstacks\NovaCheckboxes\Checkboxes;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Date;
