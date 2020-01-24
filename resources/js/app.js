@@ -13,6 +13,8 @@ window.Vue = require('vue');
 
 require('selectize');
 
+import swal from 'sweetalert';
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -21,6 +23,10 @@ require('selectize');
 
 Vue.component('nav-weather', require('./components/NavWeatherComponent.vue').default);
 Vue.component('show-schedule', require('./components/ShowScheduleComponent.vue').default);
+Vue.component('contact-button', require('./components/ContactButton.vue').default);
+
+import VModal from 'vue-js-modal';
+Vue.use(VModal);
 
 const app = new Vue({
     el: '#app'

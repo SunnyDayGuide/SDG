@@ -16,6 +16,10 @@ Auth::routes();
 // Home Page route
 Route::get('/', 'PageController@home')->name('home');
 
+// Contact Page routes
+Route::get('contact', 'ContactController@create')->name('contacts.create');
+Route::post('contact', 'ContactController@store')->name('contacts.store');
+
 // Temporary routes for generating category advertiser lists
 Route::get('categories', 'CategoryController@all');
 Route::get('categories/{market}', 'CategoryController@index')->name('category-list');

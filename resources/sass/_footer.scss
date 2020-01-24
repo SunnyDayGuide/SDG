@@ -36,7 +36,7 @@
 
         img {
             // transform: rotate(-10deg);
-            z-index: 1000;
+            z-index: 900;
             float: left;
             position: absolute;
             top: -36px;
@@ -57,7 +57,7 @@
     width: 100%;
     padding: 2rem .5rem;
     background-color: $primary;
-    color: $white;
+    // color: $white;
     // color: lighten($blue, 30);
     // line-height: 1.3;
 
@@ -65,12 +65,13 @@
         margin-bottom: .75rem;
     }
 
-    a {
+    a, a:not([href]):not([tabindex]) {
         color: $white;
         text-decoration: none;
     }
-    a:hover {
+    a:hover, a:not([href]):not([tabindex]):hover {
         color: $blue-light;
+        cursor: pointer;
     }
 
     hr {
@@ -115,6 +116,18 @@
     @include media-breakpoint-down(xs) {
         // font-size: .85rem;
         // line-height: 1.2;
+    }
+
+}
+
+.contact-form-buttons {
+    a:not([href]):not([tabindex]) {
+        color: $highlight;
+    }
+
+    a:not([href]):not([tabindex]):hover {
+        color: $white;
+        cursor: pointer;
     }
 
 }

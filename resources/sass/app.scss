@@ -74,6 +74,10 @@ label {
 	transform: translate(-50%, -50%);
 }
 
+.shadow-inner {
+    box-shadow: inset 0 2px 4px 0 rgba(0,0,0,.06);
+}
+
 .banner-ad {
 	background-color: $light;
 	color: $white;

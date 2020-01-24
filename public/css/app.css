@@ -12564,6 +12564,10 @@ h2 {
   color: #FFF;
 }
 
+.hover:text-editorial-lt {
+  color: #bfdaf0;
+}
+
 fieldset {
   margin-bottom: 1rem;
 }
@@ -13745,7 +13749,7 @@ blockquote:before {
 }
 
 .guide-banner .footer-guide img {
-  z-index: 1000;
+  z-index: 900;
   float: left;
   position: absolute;
   top: -36px;
@@ -13765,20 +13769,22 @@ blockquote:before {
   width: 100%;
   padding: 2rem 0.5rem;
   background-color: #154270;
-  color: #FFF;
 }
 
 .footer li {
   margin-bottom: 0.75rem;
 }
 
-.footer a {
+.footer a,
+.footer a:not([href]):not([tabindex]) {
   color: #FFF;
   text-decoration: none;
 }
 
-.footer a:hover {
+.footer a:hover,
+.footer a:not([href]):not([tabindex]):hover {
   color: #bfdaf0;
+  cursor: pointer;
 }
 
 .footer hr {
@@ -13816,6 +13822,15 @@ blockquote:before {
 
 .footer .social a:hover {
   color: #bfdaf0;
+}
+
+.contact-form-buttons a:not([href]):not([tabindex]) {
+  color: #FF6F61;
+}
+
+.contact-form-buttons a:not([href]):not([tabindex]):hover {
+  color: #FFF;
+  cursor: pointer;
 }
 
 .copyright {
@@ -14084,6 +14099,10 @@ label {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+.shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
 .banner-ad {

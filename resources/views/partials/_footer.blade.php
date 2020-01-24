@@ -7,7 +7,7 @@
 					<a href="{{ route('home') }}">
 						<img src="{{ asset('images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
 					</a>
-					<address class="mt-4 pl-md-2">
+					<address class="mt-4 pl-md-2 text-white">
 						800 Seahawk Circle, Suite 106<br>
 						Virginia Beach, Virginia 23452<br>
 						<strong>1-800-786-6932</strong>
@@ -91,7 +91,7 @@
 						<a href="https://youtube.com/sunnydayguide" target="_blank" aria-label="View {{ $market->brand->name }}'s YouTube Channel"><i class="fab fa-youtube fa-lg" aria-hidden="true"></i></a>				
 					</div>
 					<ul class="list-unstyled footer-nav">
-						<li><a href="#">Contact Us</a></li>
+						<li><contact-button></contact-button></li>
 						<li><a href="{{ route('request-information.create', $market->slug) }}">Request Information</a></li>
 						<li><a href="https://sunnydaysolutions.com" target="_blank">Advertise</a></li>
 					</ul>
