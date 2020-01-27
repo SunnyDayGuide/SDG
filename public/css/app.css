@@ -14079,6 +14079,11 @@ label {
   font-family: "Roboto Condensed", sans-serif;
 }
 
+.swal-button {
+  background-color: #FF6F61;
+  color: #fff;
+}
+
 .tags-links {
   font-weight: 500;
   position: relative;

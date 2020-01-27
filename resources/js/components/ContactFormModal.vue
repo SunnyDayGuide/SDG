@@ -16,33 +16,72 @@
 	>
 	<div class="container py-4 mx-auto">
 		<h1 class="text-center">Have a Question?</h1>
-		<form autocomplete="off" @submit.prevent="contactUs" class="col-md-8 offset-md-2 p-4 mx-auto" @keydown="submitted = false">
+		<form 
+			autocomplete="off" 
+			class="col-md-8 offset-md-2 p-4 mx-auto" 
+			@submit.prevent="contactUs" 
+			@keydown="submitted = false"
+		>
+
 			<input type="hidden" name="_token" :value="csrf">
+
 			<fieldset>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<input type="text" class="form-control" id="first_name" placeholder="First Name*" v-model="message.first_name" @keydown="delete errors.first_name" required>
+						<input 
+							type="text" 
+							class="form-control" 
+							id="first_name" 
+							placeholder="First Name*" 
+							v-model="message.first_name" 
+							@keydown="delete errors.first_name" 
+							required>
 
-						<span class="small text-highlight pt-2" v-text="errors.first_name[0]" v-if="errors.first_name"></span>
+						<span 
+							class="small text-highlight pt-2" 
+							v-text="errors.first_name[0]" 
+							v-if="errors.first_name"
+						></span>
 					</div>
 
 					<div class="form-group col-md-6">
-						<input type="text" class="form-control" id="last_name" placeholder="Last Name*"  v-model="message.last_name" @keydown="delete errors.last_name" required>
+						<input 
+							type="text" 
+							class="form-control" 
+							id="last_name" 
+							placeholder="Last Name*"  
+							v-model="message.last_name" 
+							@keydown="delete errors.last_name" 
+							required>
 
-						<span class="small text-highlight pt-2" v-text="errors.last_name[0]" v-if="errors.last_name"></span>
+						<span 
+							class="small text-highlight pt-2" 
+							v-text="errors.last_name[0]" 
+							v-if="errors.last_name"
+						></span>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<input type="email" class="form-control" id="email" placeholder="Email*"  v-model="message.email" @keydown="delete errors.email" required>
+					<input 
+						type="email" 
+						class="form-control" 
+						id="email" 
+						placeholder="Email*"  
+						v-model="message.email" 
+						@keydown="delete errors.email" 
+						required>
 
-					<span class="small text-highlight pt-2" v-text="errors.email[0]" v-if="errors.email"></span>
+					<span 
+						class="small text-highlight pt-2" 
+						v-text="errors.email[0]" 
+						v-if="errors.email"
+					></span>
 				</div>
 
 				<div class="form-group">
 					<select class="form-control" v-model="message.market">
 						<option disabled value="">Destination of Interest</option>
-						<option value="13">None/General Inquiry</option>
 						<option value="1">Branson, MO</option>
 						<option value="2">Myrtle Beach, SC</option>
 						<option value="3">Hatteras-Ocracoke, NC</option>
@@ -64,16 +103,24 @@
 						<option value="distribution">Distribution</option>
 						<option value="other">Something Else</option>
 					</select>
-
-					<span class="small text-highlight pt-2" v-text="errors.department[0]" v-if="errors.department"></span>
-
 				</div>
 
 				<div class="form-group">
 					<label for="comment">Your Comment*</label>
-					<textarea class="form-control" id="comment" v-model="message.comment" @keydown="delete errors.comment" rows="5" required></textarea>
+					<textarea 
+						class="form-control" 
+						id="comment" 
+						v-model="message.comment" 
+						@keydown="delete errors.comment" 
+						rows="5" 
+						required
+					></textarea>
 
-					<span class="small text-highlight pt-2" v-text="errors.comment[0]" v-if="errors.comment"></span>
+					<span 
+						class="small text-highlight pt-2" 
+						v-text="errors.comment[0]" 
+						v-if="errors.comment"
+					></span>
 				</div>
 
 			</fieldset>
@@ -108,9 +155,20 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" id="verification" placeholder="What is 1 + 4?"  v-model="message.verification" @keydown="delete errors.verification" required>
+				<input 
+					type="text" 
+					class="form-control" 
+					id="verification" 
+					placeholder="What is 1 + 4?" 
+					v-model="message.verification" 
+					@keydown="delete errors.verification" 
+					required>
 
-				<span class="small text-highlight pt-2" v-text="errors.verification[0]" v-if="errors.verification"></span>
+				<span 
+					class="small text-highlight pt-2" 
+					v-text="errors.verification[0]" 
+					v-if="errors.verification"
+				></span>
 
 			</div>
 
@@ -154,7 +212,7 @@ export default {
 				.then(() => {
 					this.$modal.hide('contact-us-modal');
 
-					swal('Thanks! We will be in touch soon.');
+					swal('Thanks for your input!', 'We will be in touch soon.', 'success');
 				})
 				.catch(errors => {
 					this.errors = errors.response.data.errors;

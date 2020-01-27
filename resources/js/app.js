@@ -23,7 +23,7 @@ import swal from 'sweetalert';
 
 Vue.component('nav-weather', require('./components/NavWeatherComponent.vue').default);
 Vue.component('show-schedule', require('./components/ShowScheduleComponent.vue').default);
-Vue.component('contact-button', require('./components/ContactButton.vue').default);
+Vue.component('contact-form-modal', require('./components/ContactFormModal.vue').default);
 
 import VModal from 'vue-js-modal';
 Vue.use(VModal);

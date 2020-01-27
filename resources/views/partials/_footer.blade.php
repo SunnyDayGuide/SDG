@@ -91,7 +91,7 @@
 						<a href="https://youtube.com/sunnydayguide" target="_blank" aria-label="View {{ $market->brand->name }}'s YouTube Channel"><i class="fab fa-youtube fa-lg" aria-hidden="true"></i></a>				
 					</div>
 					<ul class="list-unstyled footer-nav">
-						<li><contact-button></contact-button></li>
+						<li><contact-form-modal></contact-form-modal></li>
 						<li><a href="{{ route('request-information.create', $market->slug) }}">Request Information</a></li>
 						<li><a href="https://sunnydaysolutions.com" target="_blank">Advertise</a></li>
 					</ul>

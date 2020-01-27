@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Contact;
+use App\Mail\ContactFormSubmittedMail;
 use App\Market;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -39,11 +41,10 @@ class ContactController extends Controller
             'last_name' => 'required',
             'email' => 'required|email',
             'market' => 'nullable|integer',
-            'department' => 'required',
             'comment' => 'required',
             'sdg_consent' => 'boolean',
             'cookie_consent' => 'accepted',
-            'verification' => 'required|size:5',
+            'verification' => 'required|in:5',
         ]);
 
         $contact = Contact::create([
@@ -57,7 +58,10 @@ class ContactController extends Controller
             'cookie_consent' => $validatedData['cookie_consent'],
         ]);
 
-        return redirect()->route('contact.show');
+        Mail::to('sdmedia@sunnydayguide.com')
+            ->send(new ContactFormSubmittedMail($contact));
+
+        return response('ok');
     }
 
 }
