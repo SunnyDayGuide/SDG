@@ -60,46 +60,17 @@ class Logo extends Resource
     }
 
     /**
-     * Get the cards available for the request.
+     * Return the location to redirect the user after creation.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
      */
-    public function cards(Request $request)
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
     {
-        return [];
+        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        return '/resources/'.static::uriKey();
     }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
 
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
-    }
 }
