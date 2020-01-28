@@ -31,7 +31,7 @@
     // Multiple markers location, latitude, and longitude
     var markers = [
     @foreach($locations as $location)
-    ['{{ $advertiser->name }}', {{ $location->latitude }}, {{ $location->longitude }}],
+    ['{{ $place->name }}', {{ $location->latitude }}, {{ $location->longitude }}],
     @endforeach
     ];
 
@@ -39,7 +39,7 @@
     var infoWindowContent = [
     @foreach($locations as $location)
     ['<div id="content" class="info-window">'+
-        '<h5 class="text-advertiser font-weight-bold">{{ $advertiser->name }}</h5>'+
+        '<h5 class="text-advertiser font-weight-bold">{{ $place->name }}</h5>'+
         '<p>{{ $location->full_address }}</p>' +
         '<a href="{{ $location->directions }}" class="btn btn-sm btn-primary">'+
         'Get Directions</a>'+

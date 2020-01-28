@@ -254,5 +254,5 @@
 
 @section('scripts')
 
-@include('advertisers._initMap')
+@include('advertisers._initMap', ['place' => $advertiser])
 @endsection
