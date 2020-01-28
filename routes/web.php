@@ -95,9 +95,9 @@ Route::prefix('destinations/{market}')->group(function () {
 	// Tag Routes
 	Route::get('tags/{tag}', 'TagController@show')->name('tags.show');
 
-	// Advertiser Routes
-	Route::get('places/{advertiser}', 'AdvertiserController@show')->name('advertisers.show');
-	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
+	// Advertiser/Distributor Routes
+	Route::get('places/{place}', 'PlaceController@show')->name('places.show');
+ 	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
 	Route::get('places/{advertiser}/print/{coupon}', 'PrintController@singleCoupon')->name('print.single');
 
 	// Show Schedule Routes
