@@ -13,8 +13,8 @@
 		</li>
 		@endif
 		
-		@if($advertiser->present()->amenities)
-		@foreach($advertiser->present()->amenities as $amenity)
+		@if($advertiser->present()->dining_amenities)
+		@foreach($advertiser->present()->dining_amenities as $amenity)
 		<li>{!! $amenity !!}</li>
 		@endforeach
 		@endif
