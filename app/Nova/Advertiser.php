@@ -176,6 +176,9 @@ class Advertiser extends Resource
                 ],
                 'About the Business' => $this->businessFields(),
                 'About the Restaurant' => $this->restaurantFields(),
+                'About the Property'    => $this->groupAttributeFields('lodging-property', 'App\Advertiser'),
+                'Services and Amenities'    => $this->groupAttributeFields('lodging-amenities', 'App\Advertiser'),
+                'Campgrounds'    => $this->campgroundFields(),
             ]),
 
             (new Tabs('Relations', [

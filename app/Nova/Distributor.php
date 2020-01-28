@@ -153,67 +153,6 @@ class Distributor extends Resource
         ];
     }
 
-    public function groupAttributeFields($group, $entityType, $heading = null)
-    {
-        $attributes = app('rinvex.attributes.attribute')::where('group', $group)
-            ->whereHas('entities', function ($query) use ($entityType) {
-                $query->where('entity_type', '=', $entityType);
-            })->get();
-
-        if (!$attributes) {
-            return [];
-        }
-        $fields = [];
-
-        // $fields[] = Heading::make($heading);
-        foreach ($attributes as $attribute) {
-            $type = $this->getType($attribute);
-
-            $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
-        }
-        return $fields;
-    }
-
-    public function getType($attribute)
-    {
-        $namespace = 'Laravel\Nova\Fields\\';
-
-            switch ($attribute->type) {
-                case 'varchar':
-                    $type = 'Text';
-                    break;
-                case 'text':
-                    $type = 'Textarea';
-                    break;
-                case 'boolean':
-                    $type = 'Boolean';
-                    break;
-                default:
-                    $type = 'Text';
-                    break;
-            }
-
-            return $type = $namespace . $type;
-    }
-
-    public function campgroundFields()
-    {
-        return [
-            Boolean::make('Full Hookups', 'full_hookups')->hideFromIndex(),
-            Boolean::make('Lounge', 'lounge')->hideFromIndex(),
-            Boolean::make('Pavilion', 'pavilion')->hideFromIndex(),
-            Boolean::make('Store', 'store')->hideFromIndex(),
-            Boolean::make('Cabins', 'cabins')->hideFromIndex(),
-            Boolean::make('Bath House', 'bath_house')->hideFromIndex(),
-            Select::make('Max Amp', 'max_amp')->options([
-                '20' => '20',
-                '30' => '30',
-                '50' => '50',
-                '50+' => '50+',
-            ])->hideFromIndex()
-        ];
-    }
-
     /**
      * Build an "index" query that ONLY includes Lodging advertisers/distributors.
      *
@@ -253,6 +192,19 @@ class Distributor extends Resource
         // return '/resources/'.static::uriKey().'/'.$resource->getKey();
         return '/resources/'.static::uriKey().'/'.$resource->getKey().'/attach/categories?viaRelationship=categories&polymorphic=1';
         // return '/resources/'.static::uriKey();
+    }
+
+    /**
+     * Get the filters available for the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function filters(Request $request)
+    {
+        return [
+            new MarketFilter,
+        ];
     }
 
 }

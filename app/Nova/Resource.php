@@ -4,26 +4,15 @@ namespace App\Nova;
 
 use App\Scopes\MarketScope;
 use Illuminate\Support\Str;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
     public static $defaultSortField = 'sort_order';
-    
-    /**
-     * Build an "index" query for the given resource.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    // public static function indexQuery(NovaRequest $request, $query)
-    // {
-    //     $query->withoutGlobalScope(MarketScope::class);
-    //     return $query;
-    // }
 
     /**
      * Build a Scout search query for the given resource.
@@ -75,33 +64,114 @@ abstract class Resource extends NovaResource
         return parent::relatableQuery($request, $query);
     }
 
+
     /**
      * Return the location to redirect the user after creation.
+     * Go to resource view after create instead of resource index page
      *
      * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @param \App\Nova\Resource $resource
      * @return string
      */
-    // public static function redirectAfterCreate(NovaRequest $request, $resource)
-    // {
-    //     return '/resources/'.static::uriKey().'/'.$resource->getKey();
-    //     return '/resources/'.static::uriKey();
-    // }
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        // return '/resources/'.static::uriKey();
+
+        if ($request->viaResource) {
+            return "/resources/{$request->viaResource}/{$request->viaResourceId}";
+        }
+
+        return parent::redirectAfterCreate($request, $resource);
+    }
 
     /**
      * Return the location to redirect the user after update.
+     * Go to resource view after update instead of resource index page
      *
      * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @param \App\Nova\Resource $resource
      * @return string
      */
-    // public static function redirectAfterUpdate(NovaRequest $request, $resource)
-    // {
-    //     return '/resources/'.static::uriKey().'/'.$resource->getKey();
-    //     return '/resources/'.static::uriKey();
-    // }
-    
-     
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        // return '/resources/'.static::uriKey().'/'.$resource->getKey();
+        // return '/resources/'.static::uriKey();
+
+        if ($request->viaResource) {
+            return "/resources/{$request->viaResource}/{$request->viaResourceId}";
+        }
+
+        return parent::redirectAfterUpdate($request, $resource);
+    }
+
+
+    // Mostly used with accommodations attributes, but get fields by their GROUP
+    public function groupAttributeFields($group, $entityType, $heading = null)
+    {
+        $attributes = app('rinvex.attributes.attribute')::where('group', $group)
+            ->whereHas('entities', function ($query) use ($entityType) {
+                $query->where('entity_type', '=', $entityType);
+            })->get();
+
+        if (!$attributes) {
+            return [];
+        }
+        $fields = [];
+
+        // $fields[] = Heading::make($heading);
+        foreach ($attributes as $attribute) {
+            $type = $this->getType($attribute);
+
+            $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
+        }
+        return $fields;
+    }
+
+    // Get which type of attribute an entity is
+    public function getType($attribute)
+    {
+        $namespace = 'Laravel\Nova\Fields\\';
+
+            switch ($attribute->type) {
+                case 'varchar':
+                    $type = 'Text';
+                    break;
+                case 'text':
+                    $type = 'Textarea';
+                    break;
+                case 'boolean':
+                    $type = 'Boolean';
+                    break;
+                default:
+                    $type = 'Text';
+                    break;
+            }
+
+            return $type = $namespace . $type;
+    }
+
+    // Campground fields for Advertisers (HO) and Distributors
+    public function campgroundFields()
+    {
+        return [
+            Boolean::make('Full Hookups', 'full_hookups')->hideFromIndex(),
+            Boolean::make('Lounge', 'lounge')->hideFromIndex(),
+            Boolean::make('Pavilion', 'pavilion')->hideFromIndex(),
+            Boolean::make('Store', 'store')->hideFromIndex(),
+            Boolean::make('Cabins', 'cabins')->hideFromIndex(),
+            Boolean::make('Bath House', 'bath_house')->hideFromIndex(),
+            Select::make('Max Amp', 'max_amp')->options([
+                '20' => '20',
+                '30' => '30',
+                '50' => '50',
+                '50+' => '50+',
+            ])->hideFromIndex()
+        ];
+    }
+
+
+    // Not sure what this is anymore. Believe it's from original github.com question
     public function attributeFields()
     {
         $attributes = app('rinvex.attributes.attribute')::whereHas('entities', function ($query) {
@@ -136,60 +206,6 @@ abstract class Resource extends NovaResource
             $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
         }
         return $fields;
-    }
-
-    public function diningAttributeFields()
-    {
-        $attributes = app('rinvex.attributes.attribute')::where('group', 'dining-meals')->whereHas('entities', function ($query) {
-            $query->where('entity_type', '=', 'App\Advertiser');
-        })->get();
-        if (!$attributes) {
-            return [];
-        }
-        $fields = [];
-
-        $fields[] = Heading::make('Meals Served');
-        foreach ($attributes as $attribute) {
-            $namespace = 'Laravel\Nova\Fields\\';
-
-            switch ($attribute->type) {
-                case 'varchar':
-                    $type = 'Text';
-                    break;
-                case 'text':
-                    $type = 'Textarea';
-                    break;
-                case 'boolean':
-                    $type = 'Boolean';
-                    break;
-                default:
-                    $type = 'Text';
-                    break;
-            }
-
-            $type = $namespace . $type;
-
-            $fields[] = $type::make(__($attribute->name), $attribute->slug)->hideFromIndex();
-        }
-        return $fields;
-    }
-
-    public static function redirectAfterCreate(NovaRequest $request, $resource)
-    {
-        if ($request->viaResource) {
-            return "/resources/{$request->viaResource}/{$request->viaResourceId}";
-        }
-
-        return parent::redirectAfterCreate($request, $resource);
-    }
-
-    public static function redirectAfterUpdate(NovaRequest $request, $resource)
-    {
-        if ($request->viaResource) {
-            return "/resources/{$request->viaResource}/{$request->viaResourceId}";
-        }
-
-        return parent::redirectAfterUpdate($request, $resource);
     }
 
 }
