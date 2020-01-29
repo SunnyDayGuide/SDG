@@ -243,4 +243,19 @@ abstract class Place extends Model implements HasMedia
         });
 
     }
+
+    /**
+     * Determine if an advertiser is an accommodation
+     *
+     * @return boolean
+     */
+    public function isCampground()
+    {
+        $campground = $this->categories->where('id', 53);
+
+        if ($campground->isNotEmpty()) {
+            return true;
+        } else return false;
+    }
+
 }

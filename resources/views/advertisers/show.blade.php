@@ -139,7 +139,7 @@
 							{{ $advertiser->restrictions ? $advertiser->restrictions : 'None' }}
 						</li>
 						<li class="mb-3"><span class="amenity">Fully Accessible <i class="fab fa-accessible-icon"></i></span>{{ $advertiser->accessible ? 'Yes' : 'No' }}</li>
-						<li class="mb-3"><span class="amenity">Pets Welcome</span>{{ $advertiser->pet_friendly ? 'Yes' : 'No' }}</li>
+						<li class="mb-3"><span class="amenity">Pet Friendly</span>{{ $advertiser->pet_friendly ? 'Yes' : 'No' }}</li>
 						<li><span class="amenity">Early Bird Specials</span>{{ $advertiser->early_bird_specials ? 'Yes' : 'No' }}</li>
 						<li><span class="amenity">Military Discounts</span>{{ $advertiser->military_discount ? 'Yes' : 'No' }}</li>
 						<li><span class="amenity">Senior Discounts</span>{{ $advertiser->senior_discount ? 'Yes' : 'No' }}</li>
@@ -160,6 +160,11 @@
 				@if($advertiser->isRestaurant())
 				@include('advertisers._restaurant-info')
 				@endif <!-- End Restaurant Info -->
+
+				<!-- Accommodations Info -->
+				@if($advertiser->isAccommodation())
+				@include('advertisers._accommodations-info', ['place' => $advertiser])
+				@endif <!-- End Accommodations Info -->
 				
 				@if(count($advertiser->articles) > 0)
 				<!-- Related Articles -->

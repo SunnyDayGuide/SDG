@@ -17,6 +17,7 @@ class AdvertiserPresenter extends Presenter
         return Str::limit($this->entity->write_up, 170, '...');
     }
 
+    // Dining Specific attributes
     public function meals()
     {
         return $this->groupAttributes('dining-meals');
@@ -29,20 +30,39 @@ class AdvertiserPresenter extends Presenter
 
     public function dining_amenities()
     {
-        return $this->amenities('dining-other', 'App\Advertiser');
+        return $this->amenities('dining-other');
+    }
+
+    // Accommodations Specific attributes
+    public function property_services()
+    {
+        return $this->amenities('lodging-property');
+    }
+
+    public function property_location()
+    {
+        return $this->groupAttributes('lodging-location');
+    }
+
+    public function property_amenities()
+    {
+        return $this->amenities('lodging-amenities');
+    }
+
+    public function campground_services()
+    {
+        return $this->amenities('lodging-campgrounds');
     }
 
     /**
-     * Present a list of a group's restaurant amenities.
+     * Present a list of a group's amenities separated by commas.
      *
      * @param  string  $group
      * @return string
      */
     public function groupAttributes($group)
     {
-        $attributes = app('rinvex.attributes.attribute')::where('group', $group)->whereHas('entities', function ($query) {
-            $query->where('entity_type', '=', 'App\Advertiser');
-        })->get();
+        $attributes = app('rinvex.attributes.attribute')::where('group', $group)->get()->sortBy('sort_order');
 
         if (!$attributes) {
             return [];
@@ -64,11 +84,9 @@ class AdvertiserPresenter extends Presenter
      *
      * @return array
      */
-    public function amenities($group, $entityType)
+    public function amenities($group)
     {
-    	$attributes = app('rinvex.attributes.attribute')::where('group', $group)->whereHas('entities', function ($query) use ($entityType) {
-            $query->where('entity_type', '=', $entityType);
-        })->get()->sortBy('sort_order');
+    	$attributes = app('rinvex.attributes.attribute')::where('group', $group)->get()->sortBy('sort_order');
 
         if (!$attributes) {
             return [];
@@ -101,5 +119,34 @@ class AdvertiserPresenter extends Presenter
         // return an array to iterate over
         return $values;
     }
+
+
+    /**
+     * Present a list of a group's restaurant amenities. Keep as it has Entity Type in there if needed.
+     *
+     * @param  string  $group
+     * @return string
+     */
+    // public function groupAttributes($group)
+    // {
+    //     $attributes = app('rinvex.attributes.attribute')::where('group', $group)->whereHas('entities', function ($query) {
+    //         $query->where('entity_type', '=', 'App\Place');
+    //     })->get();
+
+    //     if (!$attributes) {
+    //         return [];
+    //     }
+
+    //     $values = [];
+
+    //     foreach ($attributes as $attribute) {
+    //         if ($this->entity->has($attribute->slug) && $this->entity->{$attribute->slug} == true) {
+    //            $values[$attribute->slug] = $attribute->name;
+    //         }
+    //     }
+
+    //     return implode( ", ", $values );
+    // }
+
 
 }
