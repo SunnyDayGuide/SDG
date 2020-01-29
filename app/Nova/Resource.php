@@ -151,6 +151,20 @@ abstract class Resource extends NovaResource
             return $type = $namespace . $type;
     }
 
+    protected function propertyFields()
+    {
+        return [
+            Boolean::make('Oceanfront')->hideFromIndex(),
+            Boolean::make('Waterfront')->hideFromIndex(),
+            Boolean::make('Mountain View')->hideFromIndex(),
+            Boolean::make('Mobility Accessible Rooms')->hideFromIndex(),
+            Boolean::make('Suites')->hideFromIndex(),
+            Boolean::make('Kitchen/Kitchenettes', 'kitchenkitchenettes')->hideFromIndex(),
+            Boolean::make('In-Room Whirlpool Tubs', 'in_room_whirlpool_tubs')->hideFromIndex(),
+            Boolean::make('Pet Friendly', 'pet_friendly')->hideFromIndex(),
+        ];
+    }
+
     // Campground fields for Advertisers (HO) and Distributors
     public function campgroundFields()
     {
