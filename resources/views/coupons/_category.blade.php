@@ -1,8 +1,8 @@
 @if(!${ $category }->isEmpty())
-<section class="coupon-section my-5" id="{{ $category }}">
+<section class="panel coupon-section" id="{{ $category }}">
 	<h2 class="text-highlight mb-3">
 		{{ $market->name }} {{ ucwords($category) }} Coupons
-		<small class="text-muted"><a href="{{ url($market->slug.'/pdfs/coupons/'.$category.'.pdf') }}" class="text-reset pdf-download">Download PDF</a></small>
+		<small class="text-muted"><a href="{{ url($market->slug.'/pdfs/coupons/'.$market->code.'_'.$category.'.pdf') }}" class="text-reset pdf-download">Download PDF</a></small>
 	</h2>
 	<!-- Featured & Premier Advertisers -->
 	<div class="row coupon-cards">
