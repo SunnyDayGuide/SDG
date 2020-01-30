@@ -94,9 +94,10 @@
 					<div class="col-3"></div>
 					<div class="col-9 event-details p-3">
 						<div class="fr-view event-description text-white">{!! $event->description !!}</div>
-						<div class="event-buttons d-flex justify-content-between">
+						<div class="event-buttons d-flex justify-content-between align-items-center">
 
-							<a href="#" class="text-reset text-decoration-none bucket-btn"><span class="icon-bucket position-relative text-white"><span class="bucket-items"><i class="fas fa-plus-circle text-advertiser"></i></span></span></a>
+							<bucket-button item-id="{{ $event->id }}" item-class="App\Event"></bucket-button>
+
 							<div class="buttons d-flex align-items-center">
 								@if($event->facebook_url)<a class="text-white ml-2" href="{{ $event->facebook_url }}" target="_blank"><i class="fab fa-facebook fa-2x"></i></span></a>@endif
 								@if($event->ticket_url)<a class="btn btn-white text-editorial ml-4" href="{{ $event->ticket_url }}" target="_blank">Buy Tickets</a>@endif
