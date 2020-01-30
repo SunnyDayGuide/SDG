@@ -15,6 +15,12 @@ require('selectize');
 
 import swal from 'sweetalert';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faMinusCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faMinusCircle, faPlusCircle)
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -24,6 +30,8 @@ import swal from 'sweetalert';
 Vue.component('nav-weather', require('./components/NavWeatherComponent.vue').default);
 Vue.component('show-schedule', require('./components/ShowScheduleComponent.vue').default);
 Vue.component('contact-form-modal', require('./components/ContactFormModal.vue').default);
+Vue.component('bucket-button', require('./components/BucketButtonComponent.vue').default);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 import VModal from 'vue-js-modal';
 Vue.use(VModal);
