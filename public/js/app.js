@@ -199,6 +199,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -212,6 +223,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cancel: function cancel() {
+      this.$modal.hide('contact-us-modal');
+      this.resetForm();
+    },
     contactUs: function contactUs() {
       var _this = this;
 
@@ -219,10 +234,16 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/contact', this.message).then(function () {
         _this.$modal.hide('contact-us-modal');
 
+        _this.resetForm();
+
         swal('Thanks for your input!', 'We will be in touch soon.', 'success');
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
+    },
+    resetForm: function resetForm() {
+      this.message = {};
+      this.submitted = false;
     }
   }
 });
@@ -400,6 +421,8 @@ var render = function() {
             height: "auto",
             width: "100%",
             pivotY: 1,
+            scrollable: true,
+            adaptive: true,
             classes: "bg-white rounded-0 shadow-inner"
           }
         },
@@ -413,7 +436,7 @@ var render = function() {
               "form",
               {
                 staticClass: "col-md-8 offset-md-2 p-4 mx-auto",
-                attrs: { autocomplete: "off" },
+                attrs: { autocomplete: "off", novalidate: "" },
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
@@ -853,14 +876,6 @@ var render = function() {
                       _vm._v(".\n\t\t\t\t\t"),
                       _c("div", { staticClass: "form-check pt-3" }, [
                         _c("input", {
-                          attrs: {
-                            type: "hidden",
-                            name: "cookie_consent",
-                            value: "0"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
                           directives: [
                             {
                               name: "model",
@@ -877,6 +892,9 @@ var render = function() {
                               : _vm.message.cookie_consent
                           },
                           on: {
+                            click: function($event) {
+                              delete _vm.errors.cookie_consent
+                            },
                             change: function($event) {
                               var $$a = _vm.message.cookie_consent,
                                 $$el = $event.target,
@@ -993,11 +1011,7 @@ var render = function() {
                       {
                         staticClass:
                           "btn btn-outline-highlight btn-lg text-uppercase mr-3",
-                        on: {
-                          click: function($event) {
-                            return _vm.$modal.hide("contact-us-modal")
-                          }
-                        }
+                        on: { click: _vm.cancel }
                       },
                       [_vm._v("\n\t\t\t\t\tCancel\n\t\t\t\t")]
                     ),

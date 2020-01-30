@@ -12,6 +12,8 @@
 	height="auto"
 	width="100%"
 	:pivotY="1"
+	:scrollable='true'
+	:adaptive='true'
 	classes="bg-white rounded-0 shadow-inner"
 	>
 	<div class="container py-4 mx-auto">
@@ -21,6 +23,7 @@
 			class="col-md-8 offset-md-2 p-4 mx-auto" 
 			@submit.prevent="contactUs" 
 			@keydown="submitted = false"
+			novalidate
 		>
 
 			<input type="hidden" name="_token" :value="csrf">
@@ -143,13 +146,21 @@
 				<div class="alert alert-editorial" role="alert">
 					Your information will be only used to provide you with the information that you have requested. By using this website and submitting this form, you agree to our <a href="privacy-policy" class="text-reset alert-link">Privacy and Cookie Policy</a>.
 					<div class="form-check pt-3">
-						<input type="hidden" name="cookie_consent" value="0" />
-						<input class="form-check-input" type="checkbox" v-model="message.cookie_consent">
+						<input
+							class="form-check-input" 
+							type="checkbox" 
+							v-model="message.cookie_consent"
+							v-on:click="delete errors.cookie_consent" 
+						>
 						<label class="form-check-label" for="cookie_consent">
 							I agree to these terms and conditions.*
 						</label>
 
-						<span class="small text-highlight pt-2" v-text="errors.cookie_consent[0]" v-if="errors.cookie_consent"></span>
+						<span 
+							class="small text-highlight pt-2" 
+							v-text="errors.cookie_consent[0]" 
+							v-if="errors.cookie_consent"
+						></span>
 
 					</div>
 				</div>
@@ -175,7 +186,7 @@
 			<div class="form-group d-flex justify-content-end contact-form-buttons mt-4">
 				<a 
 					class="btn btn-outline-highlight btn-lg text-uppercase mr-3" 
-					@click="$modal.hide('contact-us-modal')"
+					@click="cancel"
 				>
 					Cancel
 				</a>
@@ -204,6 +215,11 @@ export default {
 	},
 
 	methods: {
+		cancel() {
+			this.$modal.hide('contact-us-modal');
+			this.resetForm();
+		},
+
 		contactUs() {
 			this.submitted = true;
 
@@ -212,11 +228,18 @@ export default {
 				.then(() => {
 					this.$modal.hide('contact-us-modal');
 
+					this.resetForm();
+
 					swal('Thanks for your input!', 'We will be in touch soon.', 'success');
 				})
 				.catch(errors => {
 					this.errors = errors.response.data.errors;
 				});
+		},
+
+		resetForm() {
+			this.message = {};
+			this.submitted = false;
 		}
 	}
 };
