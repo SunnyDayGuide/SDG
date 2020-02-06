@@ -108,6 +108,11 @@
 				@endforeach
 			</div>
 
+			<div class="d-flex align-items-center">
+				<div class="bucket-instructions text-primary font-weight-bold mr-3 text-right">Add Coupon to your Bucket List <i class="fas fa-arrow-right"></i></div>
+				<bucket-button item-id="{{ $distributor->id }}" item-class="Distributor" styles="bucket-btn"></bucket-button>
+			</div>
+
 			<!-- Write Up -->
 			<div class="fr-view write-up">{!! $distributor->write_up !!}</div>
 

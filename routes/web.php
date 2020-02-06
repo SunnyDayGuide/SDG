@@ -84,6 +84,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::post('events/submit', 'EventController@store')->name('events.store');
 	Route::get('coupons', 'CouponController@index')->name('coupons');
 	Route::get('weather', 'PageController@weather')->name('weather');
+	Route::get('bucket-list', 'BucketListController@index')->name('bucket-list');
 
 	// Lead Generating Routes
 	Route::get('vacation-guide', 'LeadController@create')->name('vacation-guide.create');

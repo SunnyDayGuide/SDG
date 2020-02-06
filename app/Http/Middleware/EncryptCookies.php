@@ -12,6 +12,10 @@ class EncryptCookies extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        'BUCKET_Coupon',
+        'BUCKET_Advertiser',
+        'BUCKET_Article',
+        'BUCKET_Event',
+        'BUCKET_Distributor'
     ];
 }

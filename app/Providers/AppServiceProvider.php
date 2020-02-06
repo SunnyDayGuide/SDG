@@ -6,6 +6,7 @@ use App\Advertiser;
 use App\Category;
 use App\Distributor;
 use App\Market;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Attributes\Models\Attribute;
 

@@ -61,9 +61,10 @@
                     <li class="align-self-center bucket-list-container" style="display:block">
                             <div class="bucket-list-wrapper">
                                 <div class="bucket-tab">
-                                    <a href="#" class="bucket-content text-reset text-decoration-none">
+                                    <a href="{{ route('bucket-list', $market) }}" class="bucket-content text-reset text-decoration-none">
                                         <div class="bucket-text text-center">Bucket List</div>
-                                        <div class="bucket-icon"><span class="bucket-items">45</span></div>
+{{--                                         <div class="bucket-icon"><span class="bucket-items">45</span></div>
+ --}}                                        <bucket-counter></bucket-counter>
 
                                     </a>
                                 </div>

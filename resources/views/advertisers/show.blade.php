@@ -120,6 +120,12 @@
 				@endif
 				@endforeach
 			</div>
+			
+			<!-- Temp spot for bucket button -->
+			<div class="d-flex align-items-center">
+				<div class="bucket-instructions text-primary font-weight-bold mr-3 text-right">Add Coupon to your Bucket List <i class="fas fa-arrow-right"></i></div>
+				<bucket-button item-id="{{ $advertiser->id }}" item-class="Advertiser" styles="bucket-btn" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
+			</div>
 
 			<!-- Write Up -->
 			<div class="fr-view write-up">{!! $advertiser->write_up !!}</div>
