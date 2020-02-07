@@ -16,6 +16,7 @@ class EncryptCookies extends Middleware
         'BUCKET_Advertiser',
         'BUCKET_Article',
         'BUCKET_Event',
-        'BUCKET_Distributor'
+        'BUCKET_Distributor',
+        'BUCKET_Show'
     ];
 }
