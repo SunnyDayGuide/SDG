@@ -20,10 +20,6 @@
 			@endif
 
 		</div>
-		<div class="card-icon">
-			<bucket-button item-id="{{ $coupon->id }}" item-class="Coupon" styles="bucket-btn bucket-btn-sm"></bucket-button>
-		</div>
-
 	</div> <!-- End Card-->
 
 </div> <!-- End Column-->

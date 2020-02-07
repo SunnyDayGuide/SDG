@@ -1,4 +1,4 @@
-<h3>Show Schedule<small class="text-muted"> / {{ $show->name }}</small></h3>
+<h2>Show Schedule<small class="text-muted"> / {{ $show->name }}</small></h2>
 <div id="{{ $show->gadget->gadget_slug }}" class="{{ $show->gadget->gadget_slug }} show-gadget">
 	<script type="application/javascript">
 		var show = document.getElementsByClassName('{{ $show->gadget->gadget_slug }}');

@@ -22,20 +22,7 @@ export default {
 	},
 
 	created() {
-		// this.getTotalCount();
-		// this.advCookieValue = this.$cookies.get("BUCKET_Advertiser");
-		// this.couponCookieValue = this.$cookies.get("BUCKET_Coupon");
-		// this.articleCookieValue = this.$cookies.get("BUCKET_Article");
-		// this.eventCookieValue = this.$cookies.get("BUCKET_Event");
-		// this.distributorCookieValue = this.$cookies.get("BUCKET_Distributor");
-
-		// var idArray = this.cookieValue.split('+');
-
 		this.getTotalCount();
-
-		// if (this.counter > 0) {
-		// 	this.hasCount = true;
-		// }
 	},
 
 	methods: {
