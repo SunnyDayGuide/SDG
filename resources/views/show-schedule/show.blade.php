@@ -24,35 +24,6 @@
 					</div>
 				</div> <!-- End Web buttons -->
 			</div>
-			
-			<!-- Temp spot for bucket button -->
-			<div class="d-flex align-items-center">
-				<div class="bucket-instructions text-primary font-weight-bold mr-3 text-right">Add Coupon to your Bucket List <i class="fas fa-arrow-right"></i></div>
-				<bucket-button item-id="{{ $show->id }}" item-class="Show" styles="bucket-btn"></bucket-button>
-			</div>
-
-			<!-- Theater -->
-			<div class="locations">
-				<h5 class="mb-0">{{ $show->theater->name }}</h5>
-				<div class="d-md-flex justify-content-between border-bottom border-light mb-4">
-					<div class="flex-grow-1 py-1">
-						<a href="{{ $show->theater->directions }}" target="_blank" aria-label="Get directions to {{ $show->theater->name }}">
-							<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $show->theater->full_address }}
-						</a>
-					</div>
-					@isset($show->local_phone)
-					<div class="py-1">
-						<a href="tel:{{ $show->local_phone }}" aria-label="Call {{ $show->name }}">
-							<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $show->local_phone }}
-						</a>
-						@isset($show->toll_free)
-						/ <a href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
-						@endisset
-					</div>
-					@endisset
-				</div>
-			</div>
-
 
 		</div> <!-- End Column -->
 	</div> <!-- End Row -->
@@ -69,7 +40,38 @@
 		</div>
 	</div>
 	<div id="map" style="display: none;"></div>
+
+	<!-- Theater -->
+	<div class="row mt-4">
+		<div class="col-md-8 offset-md-2 locations">
+			<h5 class="mb-0">{{ $show->theater->name }}</h5>
+			<div class="d-md-flex justify-content-between border-bottom border-light mb-4">
+				<div class="flex-grow-1 py-1">
+					<a href="{{ $show->theater->directions }}" target="_blank" aria-label="Get directions to {{ $show->theater->name }}">
+						<i class="fas fa-map-marker-alt fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $show->theater->full_address }}
+					</a>
+				</div>
+				@isset($show->local_phone)
+				<div class="py-1">
+					<a href="tel:{{ $show->local_phone }}" aria-label="Call {{ $show->name }}">
+						<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $show->local_phone }}
+					</a>
+					@isset($show->toll_free)
+					/ <a href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
+					@endisset
+				</div>
+				@endisset
+			</div>
+		</div>
+	</div>
 	@endif
+
+	<!-- Bucket button -->
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			<bucket-button item-id="{{ $show->id }}" item-class="Show" button-style="button" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
+		</div>
+	</div>
 
 	<!-- Schedule -->
 	<div id="show-schedule" class="row my-4">

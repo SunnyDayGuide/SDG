@@ -87,15 +87,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     itemId: String,
     itemClass: String,
-    styles: String
+    styles: String,
+    buttonStyle: String
   },
   data: function data() {
     return {
-      buttonMethod: this.addToBucket,
       user: {},
       errors: {},
       added: '',
@@ -105,8 +117,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    var date = new Date();
-    this.cookieDate = date.setDate(date.getDate() + 365);
     this.idArray = [];
 
     if (this.cookieValue != null) {
@@ -117,25 +127,32 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     isAdded: function isAdded() {
+      this.added = false;
+
       if (this.cookieValue != null) {
         if (this.idArray.includes(this.itemId)) {
           this.added = true;
         } else this.added = false;
-      } else this.added = false;
+      }
+    },
+    updateBucket: function updateBucket() {
+      if (!this.added) {
+        this.addToBucket();
+      } else this.removeFromBucket();
     },
     addToBucket: function addToBucket() {
-      this.added = true;
-      this.setCookie();
+      this.addToCookie();
       this.buttonMethod = this.removeFromBucket;
+      this.added = true;
       this.$emit('added');
     },
     removeFromBucket: function removeFromBucket() {
-      this.added = false;
       this.removeFromCookie();
       this.buttonMethod = this.addToBucket;
+      this.added = false;
       this.$emit('removed');
     },
-    setCookie: function setCookie() {
+    addToCookie: function addToCookie() {
       if (this.cookieValue != null) {
         var idString = this.cookieValue + '+' + this.itemId;
       } else idString = this.itemId; // set new cookie
@@ -147,7 +164,6 @@ __webpack_require__.r(__webpack_exports__);
       this.cookieValue = this.$cookies.get("BUCKET_" + this.itemClass), this.idArray = this.cookieValue.split('+');
     },
     removeFromCookie: function removeFromCookie() {
-      console.log(this.idArray);
       var cookieValue = this.$cookies.get("BUCKET_" + this.itemClass);
       this.idArray = [];
       this.idArray = cookieValue.split('+');
@@ -159,16 +175,13 @@ __webpack_require__.r(__webpack_exports__);
 
       var idString = this.idArray.join('+');
       this.$cookies.set("BUCKET_" + this.itemClass, idString, {
-        expires: this.cookieDate
+        expires: "1y"
       });
       this.cookieValue = this.$cookies.get("BUCKET_" + this.itemClass);
 
       if (this.cookieValue != null) {
         this.idArray = this.cookieValue.split('+');
       }
-
-      console.log(idString);
-      console.log('removed!', this.itemId);
     }
   }
 });
@@ -208,16 +221,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    // this.getTotalCount();
-    // this.advCookieValue = this.$cookies.get("BUCKET_Advertiser");
-    // this.couponCookieValue = this.$cookies.get("BUCKET_Coupon");
-    // this.articleCookieValue = this.$cookies.get("BUCKET_Article");
-    // this.eventCookieValue = this.$cookies.get("BUCKET_Event");
-    // this.distributorCookieValue = this.$cookies.get("BUCKET_Distributor");
-    // var idArray = this.cookieValue.split('+');
-    this.getTotalCount(); // if (this.counter > 0) {
-    // 	this.hasCount = true;
-    // }
+    this.getTotalCount();
   },
   methods: {
     getTotalCount: function getTotalCount() {
@@ -745,32 +749,73 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "a",
-      {
-        staticClass: "text-reset text-decoration-none",
-        class: this.styles,
-        on: { click: _vm.buttonMethod }
-      },
-      [
-        _c(
-          "span",
-          { staticClass: "icon-bucket position-relative text-primary" },
+    _vm.buttonStyle == "button"
+      ? _c(
+          "button",
+          {
+            staticClass: "d-flex align-items-center btn btn-advertiser mr-4",
+            on: { click: _vm.updateBucket }
+          },
+          [
+            _c("div", {
+              staticClass:
+                "bucket-instructions text-primary font-weight-bold mr-3",
+              domProps: {
+                textContent: _vm._s(
+                  _vm.added ? "Remove from your Bucket" : "Add to your Bucket"
+                )
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "bucket-btn bucket-btn-sm" }, [
+              _c(
+                "span",
+                { staticClass: "icon-bucket position-relative text-primary" },
+                [
+                  _c(
+                    "span",
+                    { staticClass: "bucket-items text-white" },
+                    [
+                      _c("font-awesome-icon", {
+                        attrs: {
+                          icon: _vm.added ? "minus-circle" : "plus-circle"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]
+              )
+            ])
+          ]
+        )
+      : _c(
+          "div",
+          {
+            staticClass: "bucket-btn bucket-btn-sm mr-4",
+            on: { click: _vm.updateBucket }
+          },
           [
             _c(
               "span",
-              { staticClass: "bucket-items text-white" },
+              { staticClass: "icon-bucket position-relative text-primary" },
               [
-                _c("font-awesome-icon", {
-                  attrs: { icon: _vm.added ? "minus-circle" : "plus-circle" }
-                })
-              ],
-              1
+                _c(
+                  "span",
+                  { staticClass: "bucket-items text-white" },
+                  [
+                    _c("font-awesome-icon", {
+                      attrs: {
+                        icon: _vm.added ? "minus-circle" : "plus-circle"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]
             )
           ]
         )
-      ]
-    )
   ])
 }
 var staticRenderFns = []
@@ -1625,11 +1670,9 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vue_cookies_ts__WEBPACK_IMPORTED_
 var app = new vue__WEBPACK_IMPORTED_MODULE_5___default.a({
   el: '#app',
   methods: {
-    bucketItemAdded: function bucketItemAdded() {
-      alert('bucket item added!');
+    bucketItemAdded: function bucketItemAdded() {// alert('bucket item added!');
     },
-    bucketItemRemoved: function bucketItemRemoved() {
-      alert('bucket item removed!');
+    bucketItemRemoved: function bucketItemRemoved() {// alert('bucket item removed!');
     }
   }
 });

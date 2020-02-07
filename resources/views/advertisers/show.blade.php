@@ -9,38 +9,38 @@
 
 			<!-- Header -->
 			<div class="d-flex align-content-center justify-content-between mb-md-4"> 
-				<div class="">
+				<div id="name_buttons">
 					<h1>{{ $advertiser->name }}</h1>
 
 					<!-- Web & social buttons -->
-					<div class=""> 
-						<div class="web-buttons my-2">
+					<div id="buttons"> 
+						<div class="web-buttons my-2 mb-1">
 							@if(count($advertiser->locations) > 0)
-							<a class="btn btn-advertiser text-white mr-1" href="#show-map" role="button">Map</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#show-map" role="button">Map</a>
 							@endif
 
 							@if(count($advertiser->coupons) > 0)
-							<a class="btn btn-advertiser text-white mr-1" href="#coupons" role="button">Coupons</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#coupons" role="button">Coupons</a>
 							@endif
 
 							@if($advertiser->website_url)
-							<a class="btn btn-advertiser text-white" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
 							@endif
 
 							@if($advertiser->ticket_url)
-							<a class="btn btn-advertiser text-white" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
 							@endif
 
 							@if($advertiser->reservation_url)
-							<a class="btn btn-advertiser text-white" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
 							@endif
 
 							@if($advertiser->booking_url)
-							<a class="btn btn-advertiser text-white" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 							@endif
 
 							@if(count($advertiser->shows) > 0)
-							<a class="btn btn-advertiser text-white" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
+							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
 							@endif
 						</div>
 
@@ -120,21 +120,22 @@
 				@endif
 				@endforeach
 			</div>
-			
-			<!-- Temp spot for bucket button -->
-			<div class="d-flex align-items-center">
-				<div class="bucket-instructions text-primary font-weight-bold mr-3 text-right">Add Coupon to your Bucket List <i class="fas fa-arrow-right"></i></div>
-				<bucket-button item-id="{{ $advertiser->id }}" item-class="Advertiser" styles="bucket-btn" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
-			</div>
 
 			<!-- Write Up -->
-			<div class="fr-view write-up">{!! $advertiser->write_up !!}</div>
+			<div class="fr-view write-up">
+				{!! $advertiser->write_up !!}
+			</div>
+			
+			<div class="d-flex align-items-center my-4">
+				<!-- Bucket button -->
+				<bucket-button item-id="{{ $advertiser->id }}" item-class="Advertiser" button-style="button" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
 
-			@if(count($advertiser->tags) > 0)
-			<!-- Tags Links -->
-			@include('tags._links', ['item' => $advertiser, 'color' => 'advertiser'])
-			@endif
-
+				@if(count($advertiser->tags) > 0)
+				<!-- Tags Links -->
+				@include('tags._links', ['item' => $advertiser, 'color' => 'advertiser'])
+				@endif
+			</div>
+			
 			<!-- Attributes -->
 			<div class="row info my-4">
 				<!-- Business Info -->

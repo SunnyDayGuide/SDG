@@ -47,10 +47,10 @@ const app = new Vue({
 
     methods: {
     	bucketItemAdded() {
-    		alert('bucket item added!');
+    		// alert('bucket item added!');
     	},
     	bucketItemRemoved() {
-    		alert('bucket item removed!');
+    		// alert('bucket item removed!');
     	}
     }
 });
