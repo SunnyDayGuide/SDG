@@ -20,6 +20,9 @@ Route::get('/', 'PageController@home')->name('home');
 Route::get('contact', 'ContactController@create')->name('contacts.create');
 Route::post('contact', 'ContactController@store')->name('contacts.store');
 
+Route::post('bucket-list', 'BucketListController@store');
+Route::patch('bucket-list', 'BucketListController@update');
+
 // Temporary routes for generating category advertiser lists
 Route::get('categories', 'CategoryController@all');
 Route::get('categories/{market}', 'CategoryController@index')->name('category-list');

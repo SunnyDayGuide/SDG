@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Advertiser;
 use App\Article;
+use App\Bucket;
 use App\Category;
 use App\Coupon;
 use App\Distributor;
@@ -26,8 +27,6 @@ class BucketListController extends Controller
     	$events = Event::whereIn('id', $this->getCookieArray('Event'))->get();
     	$articles = Article::whereIn('id', $this->getCookieArray('Article'))->get();
 
-    	// $articles = $category->getRelatedArticles($category, null, 3);
-
         // display the each category's advertisers
         $activities = $this->getAdvertisersByCategory(1);
         $restaurants = $this->getAdvertisersByCategory(2);
@@ -39,7 +38,12 @@ class BucketListController extends Controller
 	        ->whereIn('id', $this->getCookieArray('Show'))
 	        ->get()->sortBy('sortName'); 
 
-        // dd($restaurants);
+        if (request()->wantsJson()) {
+            return response()->json([
+                'entertainers' => $entertainers,
+                'activities' => $activities
+            ]);
+        }
 
     	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations'));
     }
@@ -87,5 +91,32 @@ class BucketListController extends Controller
             $reg_collection->push($distributor);
 
         return $reg_collection->sortBy('sortName');
+    }
+
+    public function store(Request $request)
+    {
+        $bucketId = Cookie::get('sunny_day_guide_bucket'); 
+        $bucket = Bucket::create(['id' => $bucketId]);
+
+        return response()->json([
+            'bucket' => $bucket,
+        ]);
+    }
+
+    public function update(Request $request)
+    {  
+        $bucketId = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::find($bucketId);
+
+        $validatedData = $request->validate([
+            'start_date' => 'date',
+            'end_date' => 'date',
+        ]);
+
+        $bucket->update(request([
+            'name', 'start_date', 'end_date'
+        ]));
+
+        return response('ok');
     }
 }

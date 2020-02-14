@@ -9,6 +9,10 @@
 
 <script>
 export default {
+	prop: {
+		bucketId: String,
+	},
+
 	data() {
 		return {
 			hasCount: false,
