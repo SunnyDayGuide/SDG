@@ -26,6 +26,7 @@
 
 </head>
 <body>
+    @include('cookieConsent::index')
     <div id="app">
         @include('partials.nav._navbar')
 

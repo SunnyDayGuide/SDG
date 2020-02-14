@@ -19,10 +19,10 @@
 
 </head>
 <body>
+  @include('cookieConsent::index')
   <div id="app" class="home">
     <!--Main Navigation-->
     <header>
-
       <!--Mask-->
       <div id="intro" class="view">
 
@@ -72,9 +72,7 @@
                   <hr>
 
                   <!-- Description -->
-                  <h4 class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Deleniti
-                  consequuntur.</h4>
+                  <h4 class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti consequuntur.</h4>
                 </div>
 
               </div>  <!-- End Column -->
