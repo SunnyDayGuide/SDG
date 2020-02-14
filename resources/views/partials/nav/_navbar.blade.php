@@ -58,14 +58,12 @@
                 <ul class="navbar-nav ml-auto d-none d-md-flex">
                     <nav-weather weather-city="{{ $market->weatherId }}" route="{{ route('weather', $market) }}"></nav-weather>
 
-                    <li class="align-self-center bucket-list-container" style="display:block">
+                    <li class="align-self-center bucket-list-container d-block">
                             <div class="bucket-list-wrapper">
                                 <div class="bucket-tab">
                                     <a href="{{ route('bucket-list', $market) }}" class="bucket-content text-reset text-decoration-none">
                                         <div class="bucket-text text-center">Bucket List</div>
-{{--                                         <div class="bucket-icon"><span class="bucket-items">45</span></div>
- --}}                                        <bucket-counter></bucket-counter>
-
+                                        <bucket-counter bucket-id="{{ $bucketId }}"></bucket-counter>
                                     </a>
                                 </div>
                                 

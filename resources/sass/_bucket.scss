@@ -29,17 +29,19 @@
 	content: "\e900";
 }
 
-.bucket-items {
-		display: block;
-		font-size: 1rem;
-		position: absolute;
-		left: 32%;
-		bottom: 10%;
-	}
-
+// bucket button icon container
 .bucket-btn {
 	font-size: 2.75rem;
 	line-height: .5;
+}
+
+// items inside bucket icon (count, or plus/minus)
+.bucket-items {
+	display: block;
+	font-size: 1rem;
+	position: absolute;
+	left: 32%;
+	bottom: 10%;
 }
 
 .bucket-btn-sm {
@@ -52,10 +54,25 @@
 	}
 }
 
+.bucket-btn-lg {
+	font-size: 4.25rem;
+
+	.bucket-items {
+		font-family: $font-family-sans-serif;
+		font-weight: $font-weight-bold;
+		font-size: 1.5rem;
+		line-height: 1.1;
+		min-width: 44%;
+		left: 31%;
+		bottom: 10%;
+	}
+}
+
 .bucket-instructions {
 	font-family: $headings-font-family;
 }
 
+// is this being used??
 .card-icon {
 	margin-left: 24px;
 	position: absolute;
@@ -64,7 +81,43 @@
 	z-index: 2;
 }
 
-// .bucket-prompt {
-// 	position: relative;
-// 	right: 0;
-// }
+// Nav Bucket Desktop
+@include media-breakpoint-up(md) {
+	.bucket-list-container {
+		position: relative;
+		top: 0;
+		right: 0;
+		height: 78px;
+		overflow: visible;
+	}
+
+	.bucket-list-container .bucket-list-wrapper {
+		width: 100%;
+		height: 150px;
+		z-index: 1000;
+	}
+
+	.bucket-list-container .bucket-tab {
+		position: relative;
+		display: block;
+		width: 143px;
+		height: 150px;
+		text-align: center;
+		background: url("/images/main/bucket-tab.png") no-repeat center center;
+		-webkit-background-size: 100%, 100%;
+		background-size: 100%, 100%;
+		z-index: 500;
+		padding: 1rem;
+	}
+
+	.bucket-tab {
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.bucket-text {
+		color: $primary;
+		font-size: 1.25rem;
+		text-transform: uppercase;
+	}	
+}
