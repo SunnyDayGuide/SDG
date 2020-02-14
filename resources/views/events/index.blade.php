@@ -96,7 +96,7 @@
 						<div class="fr-view event-description text-white">{!! $event->description !!}</div>
 						<div class="event-buttons d-flex justify-content-between align-items-center">
 
-							<bucket-button item-id="{{ $event->id }}" item-class="App\Event"></bucket-button>
+							@include('partials._bucket-button', ['item' => $event, 'class' => 'Event', 'button' => 'icon'])
 
 							<div class="buttons d-flex align-items-center">
 								@if($event->facebook_url)<a class="text-white ml-2" href="{{ $event->facebook_url }}" target="_blank"><i class="fab fa-facebook fa-2x"></i></span></a>@endif

@@ -92,11 +92,20 @@
 				<div class="content mb-4">
 					<div class="fr-view">{!! $content !!}</div>
 				</div>
+				
+				<div class="d-flex align-items-center my-4">
+					<!-- Bucket button -->
+					@include('partials._bucket-button', ['item' => $article, 'class' => 'Article', 'button' => 'button'])
 
-
+					@if(count($article->tags) > 0)
+					<!-- Tags Links -->
+					@include('tags._links', ['item' => $article, 'color' => 'advertiser'])
+					@endif
+				</div>
+{{-- 
 				@if(!$article->tags->isEmpty())
 				@include('tags._links', ['item' => $article, 'color' => 'advertiser'])
-				@endif				
+				@endif	 --}}			
 
 			</div> <!-- End Column -->
 		</div> <!-- End Row -->

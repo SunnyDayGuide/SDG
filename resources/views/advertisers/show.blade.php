@@ -128,7 +128,7 @@
 			
 			<div class="d-flex align-items-center my-4">
 				<!-- Bucket button -->
-				<bucket-button item-id="{{ $advertiser->id }}" item-class="Advertiser" button-style="button" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
+				@include('partials._bucket-button', ['item' => $advertiser, 'class' => 'Advertiser', 'button' => 'button'])
 
 				@if(count($advertiser->tags) > 0)
 				<!-- Tags Links -->
