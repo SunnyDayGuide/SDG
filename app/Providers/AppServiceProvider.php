@@ -3,11 +3,13 @@
 namespace App\Providers;
 
 use App\Advertiser;
+use App\Bucket;
 use App\Category;
 use App\Distributor;
 use App\Market;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 use Rinvex\Attributes\Models\Attribute;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,9 +24,13 @@ class AppServiceProvider extends ServiceProvider
         \View::composer('*', function ($view) {
             $markets = \Cache::rememberForever('markets', function () {
                 return Market::all();
-            });            
+            });
 
-            $view->with(compact('markets'));
+            if (Cookie::has('sunny_day_guide_bucket')) {
+                $bucketId = Cookie::get('sunny_day_guide_bucket');
+            } else $bucketId = null;
+
+            $view->with(compact('markets', 'bucketId'));
         });
 
         Attribute::typeMap([
