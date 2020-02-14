@@ -16,31 +16,31 @@
 					<div id="buttons"> 
 						<div class="web-buttons my-2 mb-1">
 							@if(count($advertiser->locations) > 0)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#show-map" role="button">Map</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="#show-map" role="button">Map</a>
 							@endif
 
 							@if(count($advertiser->coupons) > 0)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#coupons" role="button">Coupons</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="#coupons" role="button">Coupons</a>
 							@endif
 
 							@if($advertiser->website_url)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="{{ $advertiser->website_url }}" target="_blank" role="button">Website</a>
 							@endif
 
 							@if($advertiser->ticket_url)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="{{ $advertiser->ticket_url }}" target="_blank" role="button">Tickets</a>
 							@endif
 
 							@if($advertiser->reservation_url)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="{{ $advertiser->reservation_url }}" target="_blank" role="button">Reservations</a>
 							@endif
 
 							@if($advertiser->booking_url)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="{{ $advertiser->booking_url }}" target="_blank" role="button">Book It</a>
 							@endif
 
 							@if(count($advertiser->shows) > 0)
-							<a class="btn btn-advertiser text-white mr-1 mb-1" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
+							<a class="btn btn-advertiser mr-1 mb-1" href="#show-schedule" target="_blank" role="button">Show Schedule</a>
 							@endif
 						</div>
 

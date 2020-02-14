@@ -1,5 +1,5 @@
 <div class="mkt-home slider w-100">
-	<div class="slider-header">
+	<div class="slider-header px-3">
 		<h1>Welcome to <br><span class="name">{{ $market->name }}, {{ $market->state->name }}!</span></h1>
 	</div>
 	<!-- Carousel -->
