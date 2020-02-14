@@ -11,6 +11,10 @@
 
 .card-title, .card-title a {
     font-weight: $font-weight-bold;
+
+    a:hover {
+        color: $link-hover-color;
+    }
 }
 
 .card-footer {
@@ -59,6 +63,10 @@
 
     .card-title, .card-title a {
         color: $advertisers;
+        
+        a:hover {
+            color: $link-hover-color;
+        }
     }
 }
 
