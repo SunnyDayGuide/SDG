@@ -34,7 +34,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Event::listen('eloquent.booted: App\Article', function($rating) {
                 Log::info('article booted ' . request()->url());
                 Article::withoutGlobalScopes([
-                    MarketScope::class, 'published'
+                    MarketScope::class, 
+                    'published'
                 ]);
             });
             Event::listen('eloquent.booted: App\Event', function($rating) {
