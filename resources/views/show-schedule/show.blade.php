@@ -69,7 +69,7 @@
 	<!-- Bucket button -->
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
-			<bucket-button item-id="{{ $show->id }}" item-class="Show" button-style="button" v-on:added="bucketItemAdded" v-on:removed="bucketItemRemoved"></bucket-button>
+			@include('partials._bucket-button', ['item' => $show, 'class' => 'Show', 'button' => 'button'])
 		</div>
 	</div>
 
