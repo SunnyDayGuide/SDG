@@ -57,7 +57,7 @@
 						<i class="fas fa-phone fa-lg fa-fw mr-2" aria-hidden="true"></i>{{ $show->local_phone }}
 					</a>
 					@isset($show->toll_free)
-					/ <a href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
+					 <a href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
 					@endisset
 				</div>
 				@endisset
