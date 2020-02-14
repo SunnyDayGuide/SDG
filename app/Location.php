@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
+use Laracasts\Presenter\PresentableTrait;
 
 class Location extends Model
 {	
+	use PresentableTrait;
+
     /**
      * Get all of the owning locationable models.
      */
@@ -17,7 +20,14 @@ class Location extends Model
     }
 
     /**
-	 * Get the user's full name.
+     * Class for View Presenter.
+     *
+     * @var string
+     */
+    protected $presenter = 'App\Presenters\LocationPresenter';
+
+    /**
+	 * Get the locations's full address.
 	 *
 	 * @return string
 	 */
