@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('styles')
+<link href="{{ asset('vendor/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+
+@endsection
+
 @section('content')
 
 <div class="container my-3 my-md-5">
@@ -21,30 +26,87 @@
 			</div>
 		</div>
 	</div>
-	
+
+	{{-- Share buttons --}}
+	<div class="d-flex justify-content-end share mr-2 mb-3">
+		<a href="#" class="text-center d-flex flex-column ml-3">
+			<div class="fa-stack fa-sm">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+			</div>
+			<div class="text">Share</div>
+		</a>
+		<a href="#" class="text-center d-flex flex-column ml-3">
+			<div class="fa-stack fa-sm">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+			</div>
+			<div class="text">Tweet</div>
+		</a>
+		<a href="#" class="text-center d-flex flex-column ml-3">
+			<div class="fa-stack fa-sm">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+			</div>
+			<div class="text">Email</div>
+		</a>
+		<a href="#" class="text-center d-flex flex-column ml-3">
+			<div class="fa-stack fa-sm">
+				<i class="fas fa-circle fa-stack-2x"></i>
+				<i class="fas fa-print fa-stack-1x fa-inverse"></i>
+			</div>
+			<div class="text">Print</div>
+		</a>
+	</div>
+
+	<div class="bucket-form mb-3">
+		<form action="POST">
+			@csrf
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<input type="text" name="name" class="form-control form-control-lg bucket-name" placeholder="My {{ $market->name }} Trip">
+				</div>
+
+				<div class="form-group col-md-3">
+					<div class="input-group date">
+						<input type="text" class="form-control form-control-lg" id="start_date" name="start_date" placeholder="Arrival Date">
+						<div class="input-group-append">
+							<div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group col-md-3">
+					<div class="input-group date">
+						<input type="text" class="form-control form-control-lg" id="end_date" name="end_date" placeholder="Departure Date">
+						<div class="input-group-append">
+							<div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
 	<div class="bucket-section mb-5">
 		<div class="bucket-header py-2 bg-editorial mb-4">
 			<h2 class="text-center font-weight-bold text-white mb-0">Things to Do</h2>
 		</div>
 		
 		@if($activities->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/things-to-do">Add some THINGS TO DO to your Bucket!</a></h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/things-to-do">Add some THINGS TO DO to your Bucket!</a></h4>
 		@endif
 
-		@foreach($activities as $activity)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				<advertiser-bucket-item 
-					bucket-item="{{ $activity }}" 
-					route="{{ $activity->path() }}" 
-					name="{{ $activity->name }}" 
-					{{-- v-html:image="@include('partials._images', ['item' => $activity])"  --}}
-					locations="{{ $activity->locations }}">
-				</advertiser-bucket-item>
-				{{-- @include('bucket-list._card', ['bucket_item' => $activity]) --}}
+		<div class="row advertiser-cards">
+			<div class="card-deck w-100 mx-md-0">
+				@foreach($activities as $activity)
+				<bucket-item item-id="{{ $activity->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card', ['bucket_item' => $activity])
+				</bucket-item>
+				@endforeach
 			</div>
 		</div>
-		@endforeach
+
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -53,16 +115,18 @@
 		</div>
 
 		@if($restaurants->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/restaurants">Add some RESTAURANTS to your Bucket!</a></h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/restaurants">Add some RESTAURANTS to your Bucket!</a></h4>
 		@endif
 
-		@foreach($restaurants as $restaurant)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				@include('bucket-list._card', ['bucket_item' => $restaurant])
+		<div class="row advertiser-cards">
+			<div class="card-deck w-100 mx-md-0">
+				@foreach($restaurants as $restaurant)
+				<bucket-item item-id="{{ $restaurant->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card', ['bucket_item' => $restaurant])
+				</bucket-item>
+				@endforeach
 			</div>
 		</div>
-		@endforeach
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -71,18 +135,21 @@
 		</div>
 
 		@if($shops->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/shopping">Add some PLACES TO SHOP to your Bucket</a>!</h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/shopping">Add some PLACES TO SHOP to your Bucket</a>!</h4>
 		@endif
 
-		@foreach($shops as $shop)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				@include('bucket-list._card', ['bucket_item' => $shop])
+		<div class="row advertiser-cards">
+			<div class="card-deck w-100 mx-md-0">
+				@foreach($shops as $shop)
+				<bucket-item item-id="{{ $shop->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card', ['bucket_item' => $shop])
+				</bucket-item>
+				@endforeach
 			</div>
 		</div>
-		@endforeach
+
 	</div>
-	
+
 	@if($market->code == 'BR' || $market->code == 'SM')
 	<div class="bucket-section mb-5">
 		<div class="bucket-header py-2 bg-editorial mb-4">
@@ -90,21 +157,31 @@
 		</div>
 
 		@if($entertainers->count() == 0 && $shows->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/entertainment-shows">Add some ENTERTAINMENT to your Bucket</a>!</h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/entertainment-shows">Add some ENTERTAINMENT to your Bucket</a>!</h4>
 		@endif
 
-		@foreach($entertainers as $entertainer)
+		<div class="row advertiser-cards">
+			<div class="card-deck w-100 mx-md-0">
+				@foreach($entertainers as $entertainer)
+				<bucket-item item-id="{{ $entertainer->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card', ['bucket_item' => $entertainer])
+				</bucket-item>
+				@endforeach
+			</div>
+		</div>
+
+{{-- 		@foreach($entertainers as $entertainer)
 		<div class="row bucket-item border-bottom border-light mb-4">
 			<div class="col-md-10 offset-md-1">
 				@include('bucket-list._card', ['bucket_item' => $entertainer])
 			</div>
 		</div>
 		@endforeach
-
+		--}}
 		@foreach($shows as $show)
 		<div class="row bucket-item border-bottom border-light mb-4">
 			<div class="col-md-10 offset-md-1">
-				@include('bucket-list._card', ['bucket_item' => $show])
+				{{-- @include('bucket-list._show') --}}
 			</div>
 		</div>
 		@endforeach
@@ -117,16 +194,25 @@
 		</div>
 
 		@if($accommodations->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/accommodations">Add some ACCOMMODATIONS to your Bucket!</a></h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/accommodations">Add some ACCOMMODATIONS to your Bucket!</a></h4>
 		@endif
 
-		@foreach($accommodations as $accommodation)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				@include('bucket-list._card', ['bucket_item' => $accommodation])
+		<div class="row advertiser-cards">
+			<div class="card-deck w-100 mx-md-0">
+				@foreach($accommodations as $accommodation)
+				@if(get_class($accommodation) == 'App\Advertiser')
+				<bucket-item item-id="{{ $accommodation->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card', ['bucket_item' => $accommodation])
+				</bucket-item>
+				@else
+				<bucket-item item-id="{{ $accommodation->id }}" item-class="Distributor" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
+					@include('bucket-list._card2', ['bucket_item' => $accommodation])
+				</bucket-item>
+				@endif
+				@endforeach
 			</div>
 		</div>
-		@endforeach
+
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -135,18 +221,34 @@
 		</div>
 
 		@if($coupons->count() == 0)
-		    <h4 class="text-center pb-5"><a href="{{ $market->path() }}/accommodations">Add some COUPONS to your Bucket!</a></h4>
+		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/coupons">Add some COUPONS to your Bucket!</a></h4>
 		@endif
 
 		@foreach($coupons as $coupon)
 		<div class="row bucket-item">
-			<div class="col-md-8 offset-md-2">
+			<bucket-item item-id="{{ $coupon->id }}" item-class="Coupon" v-slot="{removeItem}" div-class="col-md-8 offset-md-2">
 				@include('bucket-list._coupon')
-			</div>
+			</bucket-item>
 		</div>
 		@endforeach
 	</div>
 
 </div> <!-- End Container -->
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('vendor/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script type="text/javascript">
+	$('#start_date').datepicker({
+		autoclose: true,
+		todayBtn: "linked",
+		orientation: "auto"
+	});  
+	$('#end_date').datepicker({
+		autoclose: true,
+		todayBtn: "linked",
+		orientation: "auto"
+	});  
+</script> 
 @endsection

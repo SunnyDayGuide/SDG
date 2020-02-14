@@ -12217,61 +12217,6 @@ a.text-white:focus {
   color: #154270;
 }
 
-@media (min-width: 768px) {
-  .bucket-list-container {
-    position: relative;
-    top: 0;
-    right: 0;
-    height: 78px;
-    overflow: visible;
-  }
-
-  .bucket-list-container .bucket-list-wrapper {
-    width: 100%;
-    height: 150px;
-    z-index: 1000;
-  }
-
-  .bucket-list-container .bucket-tab {
-    position: relative;
-    display: block;
-    width: 143px;
-    height: 150px;
-    text-align: center;
-    background: url("/images/main/bucket-tab.png") no-repeat center center;
-    background-size: 100%, 100%;
-    z-index: 500;
-    padding: 1rem;
-  }
-
-  .bucket-tab {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .bucket-tab .bucket-icon {
-    background: url("/images/main/bucket-icon.svg") no-repeat center center;
-    width: 57px;
-    height: 64px;
-    position: absolute;
-    bottom: 35px;
-    left: 42px;
-  }
-
-  .bucket-tab .bucket-items {
-    color: #FFF;
-    font-weight: 700;
-    font-size: 1.5rem;
-    line-height: 1.1;
-  }
-
-  .bucket-text {
-    color: #154270;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-  }
-}
-
 .weather {
   font-weight: 400;
   text-align: center;
@@ -12596,6 +12541,11 @@ legend {
   font-weight: 700;
 }
 
+.card-title a:hover,
+.card-title a a:hover {
+  color: #656565;
+}
+
 .card-footer {
   background-color: #FFF;
   border-top: none;
@@ -12635,6 +12585,11 @@ legend {
 .card-advertiser .card-title,
 .card-advertiser .card-title a {
   color: #add33b;
+}
+
+.card-advertiser .card-title a:hover,
+.card-advertiser .card-title a a:hover {
+  color: #656565;
 }
 
 .card-featured .card-header {
@@ -12880,6 +12835,11 @@ legend {
   content: "\E900";
 }
 
+.bucket-btn {
+  font-size: 2.75rem;
+  line-height: 0.5;
+}
+
 .bucket-items {
   display: block;
   font-size: 1rem;
@@ -12888,17 +12848,26 @@ legend {
   bottom: 10%;
 }
 
-.bucket-btn {
-  font-size: 2.75rem;
-  line-height: 0.5;
-}
-
 .bucket-btn-sm {
   font-size: 2rem;
 }
 
 .bucket-btn-sm .bucket-items {
   font-size: 0.75rem;
+  left: 31%;
+  bottom: 10%;
+}
+
+.bucket-btn-lg {
+  font-size: 4.25rem;
+}
+
+.bucket-btn-lg .bucket-items {
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  min-width: 44%;
   left: 31%;
   bottom: 10%;
 }
@@ -12913,6 +12882,62 @@ legend {
   bottom: 6px;
   right: 6px;
   z-index: 2;
+}
+
+@media (min-width: 768px) {
+  .bucket-list-container {
+    position: relative;
+    top: 0;
+    right: 0;
+    height: 78px;
+    overflow: visible;
+  }
+
+  .bucket-list-container .bucket-list-wrapper {
+    width: 100%;
+    height: 150px;
+    z-index: 1000;
+  }
+
+  .bucket-list-container .bucket-tab {
+    position: relative;
+    display: block;
+    width: 143px;
+    height: 150px;
+    text-align: center;
+    background: url("/images/main/bucket-tab.png") no-repeat center center;
+    background-size: 100%, 100%;
+    z-index: 500;
+    padding: 1rem;
+  }
+
+  .bucket-tab {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .bucket-text {
+    color: #154270;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+  }
+}
+
+.bucket-form .bucket-name {
+  font-family: "Raleway", sans-serif;
+}
+
+.share {
+  font-size: 1.35rem;
+}
+
+.share a:hover,
+.share a:focus {
+  text-decoration: none;
+}
+
+.share .text {
+  font-size: 0.85rem;
 }
 
 .mkt-home {
@@ -12989,6 +13014,14 @@ legend {
 .filler-card {
   margin-right: 15px;
   margin-left: 15px;
+}
+
+.locations {
+  line-height: 1.2;
+}
+
+.locations .fa-ul {
+  margin-left: 1.75rem;
 }
 
 @media (min-width: 768px) {

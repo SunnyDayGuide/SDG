@@ -20,9 +20,10 @@
 	</div>
 	<div class="coupon-logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
 	
-	<div class="mt-4 d-flex justify-content-between align-items-center coupon-footer">
-		<bucket-button item-id="{{ $coupon->id }}" item-class="Coupon" styles="bucket-btn bucket-btn-sm"></bucket-button>
-		<div class="text-uppercase">Print or show this {{ $coupon->market->brand->name }} coupon on your phone</div>
-		<div class="text-uppercase print"><a href="{{ route('print.single', [$coupon->market, $coupon->advertisers->first()->slug, $coupon->id]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print</a></div>
+	<div class="mt-4 d-flex justify-content-between align-items-end coupon-footer">
+		<div class="text-uppercase print"><a href="{{ route('print.single', [$coupon->market, $coupon->advertisers->first()->slug, $coupon->id]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print</a> or show this {{ $coupon->market->brand->name }} coupon on your phone</div>
+		<a v-on:click="removeItem">
+			<i class="far fa-trash-alt fa-lg" title="remove"></i>
+		</a>
 	</div>
 </div>
