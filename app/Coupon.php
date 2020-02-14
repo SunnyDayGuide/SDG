@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Bucketable;
 use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
 use Milon\Barcode\DNS1D;
@@ -12,6 +13,7 @@ class Coupon extends Model implements HasMedia
 {
 	use HasMediaTrait;
     use Marketable;
+    use Bucketable;
 
     /**
      * Don't auto-apply mass assignment protection.

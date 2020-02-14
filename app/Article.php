@@ -10,6 +10,7 @@ use App\CustomTag;
 use App\Market;
 use App\Scopes\MarketScope;
 use App\Traits\Bannerable;
+use App\Traits\Bucketable;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Carbon\Carbon;
@@ -32,6 +33,7 @@ class Article extends Model implements HasMedia
     use SoftDeletes;
     use Categoriable;
     use Marketable;
+    use Bucketable;
     use Sluggable;
     use HasTags;
     use HasMediaTrait;

@@ -6,6 +6,7 @@ use App\Concerns\HasRemovableGlobalScopes;
 use App\Level;
 use App\Location;
 use App\Scopes\MarketScope;
+use App\Traits\Bucketable;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -27,6 +28,7 @@ abstract class Place extends Model implements HasMedia
     use SoftDeletes;
     use Categoriable;
     use Marketable;
+    use Bucketable;
     use HasRemovableGlobalScopes;
     use Attributable;
     use PresentableTrait;

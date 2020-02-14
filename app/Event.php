@@ -6,6 +6,7 @@ use App\Concerns\HasRemovableGlobalScopes;
 use App\Market;
 use App\Recurrence;
 use App\Scopes\MarketScope;
+use App\Traits\Bucketable;
 use App\Traits\Categoriable;
 use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,7 @@ class Event extends Model implements HasMedia
     use SoftDeletes;
     use Categoriable;
     use Marketable;
+    use Bucketable;
     use HasTags;
     use HasMediaTrait;
     use HasRemovableGlobalScopes;
