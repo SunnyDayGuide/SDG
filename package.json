@@ -38,6 +38,7 @@
     "slick-carousel": "^1.8.1",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^9.7.0",
+    "v-calendar": "^1.0.0-beta.23",
     "vue-carousel": "^0.17.0",
     "vue-cookie": "^1.1.4",
     "vue-cookies-ts": "^1.5.19",

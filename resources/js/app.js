@@ -39,8 +39,12 @@ import VModal from 'vue-js-modal';
 Vue.use(VModal);
 
 import Vue from "vue"
+
 import VueCookies from "vue-cookies-ts"
 Vue.use(VueCookies)
+
+import VCalendar from 'v-calendar';
+Vue.use(VCalendar)
 
 const app = new Vue({
     el: '#app',
