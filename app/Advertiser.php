@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Article;
+use App\Bucket;
 use App\Category;
 use App\CustomTag;
 use App\Event;
@@ -69,6 +70,12 @@ class Advertiser extends Place
     public function coupons()
     {
         return $this->belongsToMany(Coupon::class);
+    }
+
+    public function bucketable()
+    {
+        return $this->morphToMany(Bucket::class, 'bucketable')
+            ->withTimestamps();
     }
 
     /**

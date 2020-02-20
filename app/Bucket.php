@@ -21,11 +21,36 @@ class Bucket extends Model
     ];
 
     /**
-     * Get all of the owning categoriable models.
+     * Get all of the owning bucketable models.
      */
-    public function bucketable()
+    public function advertisers()
     {
-        return $this->morphTo();
+        return $this->morphedByMany('App\Advertiser', 'bucketable');
+    }
+
+    public function coupons()
+    {
+        return $this->morphedByMany('App\Coupon', 'bucketable');
+    }
+
+    public function distributors()
+    {
+        return $this->morphedByMany('App\Distributor', 'bucketable');
+    }
+
+    public function shows()
+    {
+        return $this->morphedByMany('App\Show', 'bucketable');
+    }
+
+    public function events()
+    {
+        return $this->morphedByMany('App\Event', 'bucketable');
+    }
+
+    public function articles()
+    {
+        return $this->morphedByMany('App\Article', 'bucketable');
     }
 
 }

@@ -21,7 +21,8 @@ Route::get('contact', 'ContactController@create')->name('contacts.create');
 Route::post('contact', 'ContactController@store')->name('contacts.store');
 
 Route::post('bucket-list', 'BucketListController@store');
-Route::patch('bucket-list', 'BucketListController@update');
+Route::post('bucket-list/add', 'BucketListController@addItem');
+Route::post('bucket-list/remove', 'BucketListController@removeItem');
 
 // Temporary routes for generating category advertiser lists
 Route::get('categories', 'CategoryController@all');

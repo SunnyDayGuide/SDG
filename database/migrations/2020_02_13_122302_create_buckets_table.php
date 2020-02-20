@@ -14,16 +14,13 @@ class CreateBucketsTable extends Migration
     public function up()
     {
         Schema::create('buckets', function (Blueprint $table) {
-            $table->uuid('id')->unique();
+            $table->bigIncrements('id');
+            $table->uuid('uuid')->unique();
             $table->string('name')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
         });
-
-        Schema::table('buckets', function($table) {
-           $table->primary('id');
-       });
     }
 
     /**

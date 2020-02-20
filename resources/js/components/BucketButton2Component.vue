@@ -27,13 +27,15 @@ export default {
 	props: {
 		itemId: String,
 		itemClass: String,
+		styles: String,
 		buttonStyle: String,
-		inBucket: Boolean
 	},
 
 	data() {
 		return {
-			added: this.inBucket,
+			user: {},
+			errors: {},
+			added: '',
 			idArray: [],
 			cookieDate: '',
 			cookieValue: this.$cookies.get("BUCKET_"+this.itemClass),
@@ -46,7 +48,7 @@ export default {
 			this.idArray = this.cookieValue.split('+');
 		}
 
-		// this.isAdded();
+		this.isAdded();
 	},
 
 	methods: {
@@ -62,26 +64,8 @@ export default {
 
 		updateBucket() {
 			if(!this.added) {
-				this.addToBucket2();
-			} else this.removeFromBucket2();
-		},
-
-		async addToBucket2() {
-			await axios.post('/bucket-list/add', {
-			    id: this.itemId,
-			    class: this.itemClass
-			});
-			this.added = true;
-			this.$emit('added');
-		},
-
-		async removeFromBucket2() {
-			await axios.post('/bucket-list/remove', {
-			    id: this.itemId,
-			    class: this.itemClass
-			});
-			this.added = false;
-			this.$emit('removed');
+				this.addToBucket();
+			} else this.removeFromBucket();
 		},
 
 		addToBucket() {			

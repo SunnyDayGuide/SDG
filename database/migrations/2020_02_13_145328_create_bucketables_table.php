@@ -14,10 +14,10 @@ class CreateBucketablesTable extends Migration
     public function up()
     {
         Schema::create('bucketables', function (Blueprint $table) {
-            $table->uuid("bucket_id");
+            $table->unsignedBigInteger('bucket_id');
             $table->morphs('bucketable');
-            $table->text('notes');
-            $table->boolean('completed');
+            $table->text('notes')->nullable();
+            $table->boolean('completed')->default(false);
             $table->timestamps();
 
             $table->unique(['bucket_id', 'bucketable_id', 'bucketable_type']);
