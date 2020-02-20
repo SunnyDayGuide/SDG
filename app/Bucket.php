@@ -13,6 +13,13 @@ class Bucket extends Model
      */
     protected $guarded = [];
 
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'start_date',
+        'end_date',
+    ];
+
     /**
      * Get all of the owning categoriable models.
      */

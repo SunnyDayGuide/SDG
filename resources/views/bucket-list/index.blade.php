@@ -58,35 +58,12 @@
 			<div class="text">Print</div>
 		</a>
 	</div>
-
-	<div class="bucket-form mb-3">
-		<form action="POST">
-			@csrf
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<input type="text" name="name" class="form-control form-control-lg bucket-name" placeholder="My {{ $market->name }} Trip">
-				</div>
-
-				<div class="form-group col-md-3">
-					<div class="input-group date">
-						<input type="text" class="form-control form-control-lg" id="start_date" name="start_date" placeholder="Arrival Date">
-						<div class="input-group-append">
-							<div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="form-group col-md-3">
-					<div class="input-group date">
-						<input type="text" class="form-control form-control-lg" id="end_date" name="end_date" placeholder="Departure Date">
-						<div class="input-group-append">
-							<div class="input-group-text"><i class="fas fa-calendar-alt"></i></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-	</div>
+	<bucket-form 
+		bucket-id="{{ $bucket ? $bucket->id : $bucketId }}" 
+		name-placeholder="{{ $bucket->name ? $bucket->name : 'My '. $market->name . ' Trip' }}"
+		start-placeholder="{{ $bucket->start_date ? $bucket->start_date->format('m/d/Y') : 'Arrival Date' }}"
+		end-placeholder="{{ $bucket->end_date ? $bucket->end_date->format('m/d/Y') : 'Departure Date' }}"
+	></bucket-form>	
 
 	<div class="bucket-section mb-5">
 		<div class="bucket-header py-2 bg-editorial mb-4">

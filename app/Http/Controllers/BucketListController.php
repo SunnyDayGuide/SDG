@@ -12,6 +12,7 @@ use App\Event;
 use App\Market;
 use App\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cookie;
 
 class BucketListController extends Controller
@@ -23,6 +24,9 @@ class BucketListController extends Controller
      */
     public function index(Market $market)
     {
+        $bucketId = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::find($bucketId);
+
     	$coupons = Coupon::whereIn('id', $this->getCookieArray('Coupon'))->get();
     	$events = Event::whereIn('id', $this->getCookieArray('Event'))->get();
     	$articles = Article::whereIn('id', $this->getCookieArray('Article'))->get();
@@ -45,7 +49,7 @@ class BucketListController extends Controller
             ]);
         }
 
-    	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations'));
+    	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations', 'bucket'));
     }
 
     public function getCookieArray($model)
@@ -96,7 +100,25 @@ class BucketListController extends Controller
     public function store(Request $request)
     {
         $bucketId = Cookie::get('sunny_day_guide_bucket'); 
-        $bucket = Bucket::create(['id' => $bucketId]);
+
+        $validatedData = $request->validate([
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
+        ]);
+
+        // convert from js date
+        $start = Carbon::parse($validatedData['start_date']);
+        $end = Carbon::parse($validatedData['end_date']);
+
+        // update the bucket if it exists or make a new one
+        $bucket = Bucket::updateOrCreate(
+            ['id' => $bucketId],
+            [
+                'name' => $request['name'],
+                'start_date' => $start,
+                'end_date' => $end,
+            ]
+        );
 
         return response()->json([
             'bucket' => $bucket,

@@ -32,6 +32,7 @@ Vue.component('show-schedule', require('./components/ShowScheduleComponent.vue')
 Vue.component('contact-form-modal', require('./components/ContactFormModal.vue').default);
 Vue.component('bucket-button', require('./components/BucketButtonComponent.vue').default);
 Vue.component('bucket-counter', require('./components/BucketCounterComponent.vue').default);
+Vue.component('bucket-form', require('./components/BucketFormComponent.vue').default);
 Vue.component('bucket-item', require('./components/BucketItemComponent.vue').default);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
