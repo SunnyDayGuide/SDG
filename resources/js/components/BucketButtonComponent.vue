@@ -28,45 +28,23 @@ export default {
 		itemId: String,
 		itemClass: String,
 		buttonStyle: String,
-		inBucket: Boolean
+		inBucket: ''
 	},
 
 	data() {
 		return {
 			added: this.inBucket,
-			idArray: [],
-			cookieDate: '',
-			cookieValue: this.$cookies.get("BUCKET_"+this.itemClass),
 		};
 	},
 
-	mounted() {
-		this.idArray = [];
-		if (this.cookieValue != null) {
-			this.idArray = this.cookieValue.split('+');
-		}
-
-		// this.isAdded();
-	},
-
 	methods: {
-		isAdded() {
-			this.added = false;
-
-			if (this.cookieValue != null) {
-				if (this.idArray.includes(this.itemId)) {
-					this.added = true;
-				} else this.added = false;
-			} 
-		},
-
 		updateBucket() {
 			if(!this.added) {
-				this.addToBucket2();
-			} else this.removeFromBucket2();
+				this.addToBucket();
+			} else this.removeFromBucket();
 		},
 
-		async addToBucket2() {
+		async addToBucket() {
 			await axios.post('/bucket-list/add', {
 			    id: this.itemId,
 			    class: this.itemClass
@@ -75,60 +53,13 @@ export default {
 			this.$emit('added');
 		},
 
-		async removeFromBucket2() {
+		async removeFromBucket() {
 			await axios.post('/bucket-list/remove', {
 			    id: this.itemId,
 			    class: this.itemClass
 			});
 			this.added = false;
 			this.$emit('removed');
-		},
-
-		addToBucket() {			
-			this.addToCookie();
-			this.buttonMethod = this.removeFromBucket;
-			this.added = true;
-			this.$emit('added');
-		},
-
-		removeFromBucket() {
-			this.removeFromCookie();
-			this.buttonMethod = this.addToBucket;
-			this.added = false;
-			this.$emit('removed');
-		},
-
-		addToCookie() {
-			if (this.cookieValue != null) {
-				var idString = this.cookieValue + '+' + this.itemId;
-			} else idString = this.itemId;
-
-			// set new cookie
-			this.$cookies.set("BUCKET_"+this.itemClass, idString, { expires: "1y" });
-
-			this.cookieValue = this.$cookies.get("BUCKET_"+this.itemClass),
-			this.idArray = this.cookieValue.split('+');
-		},
-
-		removeFromCookie() {
-			var cookieValue = this.$cookies.get("BUCKET_"+this.itemClass);
-			this.idArray = [];
-			this.idArray = cookieValue.split('+');
-
-			const index = this.idArray.indexOf(this.itemId);
-			if (index > -1) {
-				this.idArray.splice(index, 1);
-			}
-
-			var idString = this.idArray.join('+');
-
-			this.$cookies.set("BUCKET_"+this.itemClass, idString, { expires: "1y" });
-
-			this.cookieValue = this.$cookies.get("BUCKET_"+this.itemClass);
-
-			if (this.cookieValue != null) {
-				this.idArray = this.cookieValue.split('+');
-			}
 		},
 
 	}

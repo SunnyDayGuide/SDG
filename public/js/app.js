@@ -46,40 +46,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     itemId: String,
     itemClass: String,
     buttonStyle: String,
-    inBucket: Boolean
+    inBucket: ''
   },
   data: function data() {
     return {
-      added: this.inBucket,
-      idArray: [],
-      cookieDate: '',
-      cookieValue: this.$cookies.get("BUCKET_" + this.itemClass)
+      added: this.inBucket
     };
   },
-  mounted: function mounted() {
-    this.idArray = [];
-
-    if (this.cookieValue != null) {
-      this.idArray = this.cookieValue.split('+');
-    } // this.isAdded();
-
-  },
   methods: {
-    isAdded: function isAdded() {
-      this.added = false;
-
-      if (this.cookieValue != null) {
-        if (this.idArray.includes(this.itemId)) {
-          this.added = true;
-        } else this.added = false;
-      }
-    },
     updateBucket: function updateBucket() {
       if (!this.added) {
-        this.addToBucket2();
-      } else this.removeFromBucket2();
+        this.addToBucket();
+      } else this.removeFromBucket();
     },
-    addToBucket2: function () {
+    addToBucket: function () {
       var _addToBucket = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -105,13 +85,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, this);
       }));
 
-      function addToBucket2() {
+      function addToBucket() {
         return _addToBucket.apply(this, arguments);
       }
 
-      return addToBucket2;
+      return addToBucket;
     }(),
-    removeFromBucket2: function () {
+    removeFromBucket: function () {
       var _removeFromBucket = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
@@ -137,55 +117,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, this);
       }));
 
-      function removeFromBucket2() {
+      function removeFromBucket() {
         return _removeFromBucket.apply(this, arguments);
       }
 
-      return removeFromBucket2;
-    }(),
-    addToBucket: function addToBucket() {
-      this.addToCookie();
-      this.buttonMethod = this.removeFromBucket;
-      this.added = true;
-      this.$emit('added');
-    },
-    removeFromBucket: function removeFromBucket() {
-      this.removeFromCookie();
-      this.buttonMethod = this.addToBucket;
-      this.added = false;
-      this.$emit('removed');
-    },
-    addToCookie: function addToCookie() {
-      if (this.cookieValue != null) {
-        var idString = this.cookieValue + '+' + this.itemId;
-      } else idString = this.itemId; // set new cookie
-
-
-      this.$cookies.set("BUCKET_" + this.itemClass, idString, {
-        expires: "1y"
-      });
-      this.cookieValue = this.$cookies.get("BUCKET_" + this.itemClass), this.idArray = this.cookieValue.split('+');
-    },
-    removeFromCookie: function removeFromCookie() {
-      var cookieValue = this.$cookies.get("BUCKET_" + this.itemClass);
-      this.idArray = [];
-      this.idArray = cookieValue.split('+');
-      var index = this.idArray.indexOf(this.itemId);
-
-      if (index > -1) {
-        this.idArray.splice(index, 1);
-      }
-
-      var idString = this.idArray.join('+');
-      this.$cookies.set("BUCKET_" + this.itemClass, idString, {
-        expires: "1y"
-      });
-      this.cookieValue = this.$cookies.get("BUCKET_" + this.itemClass);
-
-      if (this.cookieValue != null) {
-        this.idArray = this.cookieValue.split('+');
-      }
-    }
+      return removeFromBucket;
+    }()
   }
 });
 
