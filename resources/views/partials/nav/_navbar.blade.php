@@ -63,7 +63,7 @@
                                 <div class="bucket-tab">
                                     <a href="{{ route('bucket-list', $market) }}" class="bucket-content text-reset text-decoration-none">
                                         <div class="bucket-text text-center">Bucket List</div>
-                                        <bucket-counter bucket-id="{{ $bucketId }}"></bucket-counter>
+                                        <bucket-counter bucket-id="{{ $bucketId }}" initial-count="{{ $item_count }}"></bucket-counter>
                                     </a>
                                 </div>
                                 
