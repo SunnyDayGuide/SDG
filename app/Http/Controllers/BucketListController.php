@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Cookie;
 
 class BucketListController extends Controller
 {
-
     /**
      * Display a listing of the bucket items.
      *
@@ -28,64 +27,55 @@ class BucketListController extends Controller
         $bucketId = Cookie::get('sunny_day_guide_bucket');
         $bucket = Bucket::firstWhere('uuid', $bucketId);
 
-        // $coupons = $bucket->coupons;
-    	$coupons = Coupon::whereIn('id', $this->getCookieArray('Coupon'))->get();
-    	$events = Event::whereIn('id', $this->getCookieArray('Event'))->get();
-    	$articles = Article::whereIn('id', $this->getCookieArray('Article'))->get();
+        if (!$bucket) {
+            return view('bucket-list.start', compact('market'));
+        }
+
+        $coupons = $bucket->coupons;
+        $events = $bucket->events;
+        $articles = $bucket->articles;
 
         // display the each category's advertisers
-        $activities = $this->getAdvertisersByCategory(1);
-        $restaurants = $this->getAdvertisersByCategory(2);
-        $shops = $this->getAdvertisersByCategory(3);
-        $entertainers = $this->getAdvertisersByCategory(4);
-        $accommodations = $this->getLodgingList();
+        $activities = $this->getAdvertisersByCategory(1, $bucket);
+        $restaurants = $this->getAdvertisersByCategory(2, $bucket);
+        $shops = $this->getAdvertisersByCategory(3, $bucket);
+        $entertainers = $this->getAdvertisersByCategory(4, $bucket);
+        $accommodations = $this->getLodgingList($bucket);
 
-        $shows = Show::where('active', true)
-	        ->whereIn('id', $this->getCookieArray('Show'))
-	        ->get()->sortBy('sortName'); 
-
-        if (request()->wantsJson()) {
-            return response()->json([
-                'entertainers' => $entertainers,
-                'activities' => $activities
-            ]);
-        }
+        $shows = $bucket->shows()->where('active', true);
 
     	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations', 'bucket'));
     }
 
-    public function getCookieArray($model)
-    {
-    	$cookie = Cookie::get('BUCKET_'. $model);
-    	return explode("+", $cookie);
-    }
-
-    public function getAdvertisersByCategory($categoryId)
+    public function getAdvertisersByCategory($categoryId, $bucket)
     {
     	$category = Category::find($categoryId);
 
+        $advertiserIds = $bucket->advertisers()->pluck('id');
+
         $advertisers = Advertiser::categorized($category)
-        	->withoutGlobalScopes()
-            ->whereIn('id', $this->getCookieArray('Advertiser'))
+            ->withoutGlobalScopes()
+            ->whereIn('id', $advertiserIds)
             ->with('locations')
             ->get();
 
         return $advertisers;
     }
 
-    public function getLodgingList()
+    public function getLodgingList($bucket)
     {
     	$category = Category::find(5);
 
+        $advertiserIds = $bucket->advertisers()->pluck('id');
+
     	$advertisers = Advertiser::categorized($category)
     		->withoutGlobalScopes()
-            ->whereIn('id', $this->getCookieArray('Advertiser'))
+            ->whereIn('id', $advertiserIds)
             ->with('locations')
             ->get();
 
-        $distributors = Distributor::categorized($category)
+        $distributors = $bucket->distributors()
         	->withoutGlobalScopes()
-        	->whereIn('id', $this->getCookieArray('Distributor'))
             ->with('locations')
             ->get();
             

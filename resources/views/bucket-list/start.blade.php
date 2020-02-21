@@ -22,12 +22,17 @@
 					<p>Whether you're reserving a hotel room, a restaurant table or concert tickets, remember to directly book your dates by contacting the selections in your itinerary! We've made it easy by providing phone numbers and web addresses for each listing.</p>
 
 					<p>Look for the "Add to trip planner" icon throughout our website, for an easy way to plan your Ocean City, Maryland adventure. Just click on it, and whatever you're interested in will appear on a personalized list, below!</p>
+
+{{-- 					<div class="text-center mt-5">
+						<a class="btn btn-lg btn-advertiser bucket-instructions text-primary font-weight-bold" href="#" role="button">Get Started! (Where should this go?)</a>
+					</div>
+ --}}					
 				</div>
 			</div>
 		</div>
 	</div>
-
-	{{-- Share buttons --}}
+	
+		{{-- Share buttons --}}
 	<div class="d-flex justify-content-end share mr-2 mb-3">
 		<a href="#" class="text-center d-flex flex-column ml-3">
 			<div class="fa-stack fa-sm">
@@ -58,32 +63,20 @@
 			<div class="text">Print</div>
 		</a>
 	</div>
+
 	<bucket-form 
-		bucket-id="{{ $bucket ? $bucket->id : $bucketId }}" 
-		name-placeholder="{{ $bucket->name ? $bucket->name : 'My '. $market->name . ' Trip' }}"
-		start-placeholder="{{ $bucket->start_date ? $bucket->start_date->format('m/d/Y') : 'Arrival Date' }}"
-		end-placeholder="{{ $bucket->end_date ? $bucket->end_date->format('m/d/Y') : 'Departure Date' }}"
+		bucket-id="{{ $bucketId }}" 
+		name-placeholder="{{ 'My '. $market->name . ' Trip' }}"
+		start-placeholder="{{ 'Arrival Date' }}"
+		end-placeholder="{{ 'Departure Date' }}"
 	></bucket-form>	
 
 	<div class="bucket-section mb-5">
 		<div class="bucket-header py-2 bg-editorial mb-4">
 			<h2 class="text-center font-weight-bold text-white mb-0">Things to Do</h2>
 		</div>
-		
-		@if($activities->count() == 0)
+
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/things-to-do">Add some THINGS TO DO to your Bucket!</a></h4>
-		@endif
-
-		<div class="row advertiser-cards">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach($activities as $activity)
-				<bucket-item item-id="{{ $activity->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $activity])
-				</bucket-item>
-				@endforeach
-			</div>
-		</div>
-
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -91,19 +84,7 @@
 			<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Restaurants &amp; Dining</h2>
 		</div>
 
-		@if($restaurants->count() == 0)
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/restaurants">Add some RESTAURANTS to your Bucket!</a></h4>
-		@endif
-
-		<div class="row advertiser-cards">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach($restaurants as $restaurant)
-				<bucket-item item-id="{{ $restaurant->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $restaurant])
-				</bucket-item>
-				@endforeach
-			</div>
-		</div>
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -111,20 +92,7 @@
 			<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Shopping</h2>
 		</div>
 
-		@if($shops->count() == 0)
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/shopping">Add some PLACES TO SHOP to your Bucket</a>!</h4>
-		@endif
-
-		<div class="row advertiser-cards">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach($shops as $shop)
-				<bucket-item item-id="{{ $shop->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $shop])
-				</bucket-item>
-				@endforeach
-			</div>
-		</div>
-
 	</div>
 
 	@if($market->code == 'BR' || $market->code == 'SM')
@@ -133,35 +101,7 @@
 			<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Entertainment &amp; Shows</h2>
 		</div>
 
-		@if($entertainers->count() == 0 && $shows->count() == 0)
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/entertainment-shows">Add some ENTERTAINMENT to your Bucket</a>!</h4>
-		@endif
-
-		<div class="row advertiser-cards">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach($entertainers as $entertainer)
-				<bucket-item item-id="{{ $entertainer->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $entertainer])
-				</bucket-item>
-				@endforeach
-			</div>
-		</div>
-
-{{-- 		@foreach($entertainers as $entertainer)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				@include('bucket-list._card', ['bucket_item' => $entertainer])
-			</div>
-		</div>
-		@endforeach
-		--}}
-		@foreach($shows as $show)
-		<div class="row bucket-item border-bottom border-light mb-4">
-			<div class="col-md-10 offset-md-1">
-				{{-- @include('bucket-list._show') --}}
-			</div>
-		</div>
-		@endforeach
 	</div>
 	@endif
 
@@ -170,26 +110,7 @@
 			<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Places to Stay</h2>
 		</div>
 
-		@if($accommodations->count() == 0)
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/accommodations">Add some ACCOMMODATIONS to your Bucket!</a></h4>
-		@endif
-
-		<div class="row advertiser-cards">
-			<div class="card-deck w-100 mx-md-0">
-				@foreach($accommodations as $accommodation)
-				@if(get_class($accommodation) == 'App\Advertiser')
-				<bucket-item item-id="{{ $accommodation->id }}" item-class="Advertiser" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $accommodation])
-				</bucket-item>
-				@else
-				<bucket-item item-id="{{ $accommodation->id }}" item-class="Distributor" v-slot="{removeItem}" div-class="col-md-4 mb-md-4 mb-3 px-md-0">
-					@include('bucket-list._card', ['bucket_item' => $accommodation])
-				</bucket-item>
-				@endif
-				@endforeach
-			</div>
-		</div>
-
 	</div>
 
 	<div class="bucket-section mb-5">
@@ -197,18 +118,9 @@
 			<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Coupons</h2>
 		</div>
 
-		@if($coupons->count() == 0)
 		<h4 class="text-center pb-5"><a href="{{ $market->path() }}/coupons">Add some COUPONS to your Bucket!</a></h4>
-		@endif
-
-		@foreach($coupons as $coupon)
-		<div class="row bucket-item">
-			<bucket-item item-id="{{ $coupon->id }}" item-class="Coupon" v-slot="{removeItem}" div-class="col-md-8 offset-md-2">
-				@include('bucket-list._coupon')
-			</bucket-item>
-		</div>
-		@endforeach
 	</div>
+
 
 </div> <!-- End Container -->
 

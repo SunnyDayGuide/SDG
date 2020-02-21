@@ -28,6 +28,10 @@ trait Bucketable {
         $bucketId = Cookie::get('sunny_day_guide_bucket');
         $bucket = Bucket::firstWhere('uuid', $bucketId);
 
+        if (!$bucket) {
+            return false;
+        }
+
         return $this->bucketItems->where('id', $bucket->id)->isNotEmpty();
     }
 
