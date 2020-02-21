@@ -72,12 +72,6 @@ class Advertiser extends Place
         return $this->belongsToMany(Coupon::class);
     }
 
-    public function bucketable()
-    {
-        return $this->morphToMany(Bucket::class, 'bucketable')
-            ->withTimestamps();
-    }
-
     /**
      * The ads in which this advertiser appears.
      */

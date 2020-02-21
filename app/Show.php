@@ -6,6 +6,7 @@ use App\Advertiser;
 use App\Concerns\HasRemovableGlobalScopes;
 use App\Gadget;
 use App\Theater;
+use App\Traits\Bucketable;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ class Show extends Model
 {
     use Sluggable;
     use HasRemovableGlobalScopes;
+    use Bucketable;
 
     /**
      * The "booting" method of the model.

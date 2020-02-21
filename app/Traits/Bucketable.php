@@ -4,9 +4,9 @@ namespace App\Traits;
 
 use App\Bucket;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Cookie;
 
 trait Bucketable {
-	protected $queuedBucketItems = [];
 
 	public static function bootHasBucketItems()
     {
@@ -17,38 +17,18 @@ trait Bucketable {
         });
     }
 
-    /**
-     * Get ALL of the model's bucket items.
-     */
-    public function bucketable()
+    public function bucketItems()
     {
         return $this->morphToMany(Bucket::class, 'bucketable')
             ->withTimestamps();
     }
 
-    /**
-     * @param array|\ArrayAccess|App/Bucket $bucketItems
-     *
-     * @return $this
-     */
-    public function attachBucketItems($bucketItems)
+    public function isInBucket()
     {
-        $bucketItems = collect(Bucket::findOrCreate($bucketItems));
+        $bucketId = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::firstWhere('uuid', $bucketId);
 
-        $this->bucketItems()->syncWithoutDetaching($bucketItems->pluck('id')->toArray());
-
-        return $this;
+        return $this->bucketItems->where('id', $bucket->id)->isNotEmpty();
     }
-
-    /**
-     *
-     * @return $this
-     */
-    public function attachBucketItem($bucketItems)
-    {
-        return $this->attachTags([$tag]);
-    }
-
-
 
 }
