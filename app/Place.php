@@ -98,9 +98,8 @@ abstract class Place extends Model implements HasMedia
      */
     public function logo()
     {
-     return $this->belongsTo(Logo::class);
- }
-
+         return $this->belongsTo(Logo::class);
+    }
 
     /**
      * Scope a query to only include premier places.
