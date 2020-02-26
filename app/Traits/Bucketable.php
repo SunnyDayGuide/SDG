@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Bucket;
+use App\BucketItem;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cookie;
 
@@ -20,7 +21,8 @@ trait Bucketable {
     public function bucketItems()
     {
         return $this->morphToMany(Bucket::class, 'bucketable')
-            ->withTimestamps();
+            ->withTimestamps()
+            ->using(BucketItem::class);
     }
 
     public function isInBucket()

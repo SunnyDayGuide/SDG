@@ -40,9 +40,11 @@ class BucketListController extends Controller
         $restaurants = $this->getAdvertisersByCategory(2, $bucket);
         $shops = $this->getAdvertisersByCategory(3, $bucket);
         $entertainers = $this->getAdvertisersByCategory(4, $bucket);
-        $accommodations = $this->getLodgingList($bucket);
+        $accommodations = $this->getLodgingList($bucket); 
 
-        $shows = $bucket->shows()->where('active', true);
+        // dd($coupons);
+
+        $shows = $bucket->shows()->where('active', true)->get();
 
     	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations', 'bucket'));
     }
@@ -135,68 +137,5 @@ class BucketListController extends Controller
         return response('ok');
     }
 
-    public function addItem(Request $request)
-    {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstOrCreate(['uuid' => $bucketId]);
-
-        if ($request->class == 'Advertiser') {
-            $bucket->advertisers()->attach($request->id);
-        }
-
-        if ($request->class == 'Distributor') {
-            $bucket->distributors()->attach($request->id);
-        }
-
-        if ($request->class == 'Show') {
-            $bucket->shows()->attach($request->id);
-        }
-
-        if ($request->class == 'Coupon') {
-            $bucket->coupons()->attach($request->id);
-        }
-
-        if ($request->class == 'Event') {
-            $bucket->events()->attach($request->id);
-        }
-
-         if ($request->class == 'Article') {
-            $bucket->articles()->attach($request->id);
-        }
-
-        return response('ok');
-    }
-
-    public function removeItem(Request $request)
-    {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId);
-
-        if ($request->class == 'Advertiser') {
-            $bucket->advertisers()->detach($request->id);
-        }
-
-        if ($request->class == 'Distributor') {
-            $bucket->distributors()->detach($request->id);
-        }
-
-        if ($request->class == 'Show') {
-            $bucket->shows()->detach($request->id);
-        }
-
-        if ($request->class == 'Coupon') {
-            $bucket->coupons()->detach($request->id);
-        }
-
-        if ($request->class == 'Event') {
-            $bucket->events()->detach($request->id);
-        }
-
-         if ($request->class == 'Article') {
-            $bucket->articles()->detach($request->id);
-        }
-
-        return response('ok');
-    }
     
 }
