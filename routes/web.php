@@ -103,8 +103,8 @@ Route::prefix('destinations/{market}')->group(function () {
 
 	// Advertiser/Distributor Routes
 	Route::get('places/{place}', 'PlaceController@show')->name('places.show');
- 	Route::get('places/{advertiser}/print', 'PrintController@allCoupons')->name('print.all');
-	Route::get('places/{advertiser}/print/{coupon}', 'PrintController@singleCoupon')->name('print.single');
+ 	Route::get('places/{advertiser}/coupons', 'PrintController@allCoupons')->name('print.all');
+	Route::get('places/{advertiser}/coupons/{coupon}', 'PrintController@singleCoupon')->name('print.single');
 
 	// Show Schedule Routes
 	Route::get('shows/{show}', 'ShowController@show')->name('shows.show');
