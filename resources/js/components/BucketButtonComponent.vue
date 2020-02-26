@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import {eventBus} from "../app";
+
 export default {
 	props: {
 		itemId: String,

@@ -11,6 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -41,6 +42,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     itemId: String,
@@ -68,16 +70,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.post('/bucket-list/add', {
+                return axios.post('/bucket-item/store', {
                   id: this.itemId,
                   "class": this.itemClass
                 });
 
               case 2:
                 this.added = true;
+                _app__WEBPACK_IMPORTED_MODULE_1__["eventBus"].$emit('brothersaid', 'Mom said do your homework!');
                 this.$emit('added');
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -100,7 +103,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return axios.post('/bucket-list/remove', {
+                return axios.post('/bucket-item/delete', {
                   id: this.itemId,
                   "class": this.itemClass
                 });
@@ -137,6 +140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 //
 //
 //
@@ -146,89 +150,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  prop: {
-    bucketId: String
+  props: {
+    bucketId: String,
+    initialCount: ''
   },
   data: function data() {
     return {
       hasCount: false,
-      allBucketCookies: document.cookie.split(';').filter(function (item) {
-        return item.trim().startsWith('BUCKET_');
-      }),
-      advCount: '',
-      articleCount: '',
-      couponCount: '',
-      distCount: '',
-      eventCount: '',
-      showCount: '',
-      counter: ''
+      counter: this.initialCount
     };
   },
   created: function created() {
-    this.getTotalCount();
-  },
-  methods: {
-    getTotalCount: function getTotalCount() {
-      this.advCount = this.advertisers();
-      this.couponCount = this.coupons();
-      this.articleCount = this.articles();
-      this.eventCount = this.events();
-      this.distCount = this.distributors();
-      this.showCount = this.shows();
-      this.counter = this.advCount + this.couponCount + this.articleCount + this.eventCount + this.distCount + this.showCount;
-
-      if (this.counter > 0) {
-        this.hasCount = true;
-      }
-    },
-    advertisers: function advertisers() {
-      var advCookieValue = this.$cookies.get("BUCKET_Advertiser");
-
-      if (advCookieValue != null) {
-        var idArray = advCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
-    },
-    coupons: function coupons() {
-      var couponCookieValue = this.$cookies.get("BUCKET_Coupon");
-
-      if (couponCookieValue != null) {
-        var idArray = couponCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
-    },
-    articles: function articles() {
-      var articleCookieValue = this.$cookies.get("BUCKET_Article");
-
-      if (articleCookieValue != null) {
-        var idArray = articleCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
-    },
-    events: function events() {
-      var eventCookieValue = this.$cookies.get("BUCKET_Event");
-
-      if (eventCookieValue != null) {
-        var idArray = eventCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
-    },
-    distributors: function distributors() {
-      var distCookieValue = this.$cookies.get("BUCKET_Distributor");
-
-      if (distCookieValue != null) {
-        var idArray = distCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
-    },
-    shows: function shows() {
-      var showCookieValue = this.$cookies.get("BUCKET_Show");
-
-      if (showCookieValue != null) {
-        var idArray = showCookieValue.split('+');
-        return idArray.length;
-      } else return 0;
+    if (this.counter > 0) {
+      this.hasCount = true;
     }
   }
 });
@@ -309,15 +245,76 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemComponent.vue?vue&type=script&lang=js&":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BucketItemComponent.vue?vue&type=script&lang=js& ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -328,43 +325,246 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     itemId: String,
     itemClass: String,
-    divClass: String
+    cardClass: String,
+    itemNotes: String,
+    itemCompleted: ''
+  },
+  created: function created() {
+    this.completed = false;
+
+    if (this.itemCompleted == 1) {
+      this.completed = true;
+    }
   },
   data: function data() {
     return {
       shouldDisplay: true,
-      cookieValue: this.$cookies.get("BUCKET_" + this.itemClass)
+      notes: this.itemNotes,
+      completed: ''
     };
   },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get('/destinations/branson/bucket-list').then(function (response) {
-      _this.entertainers = response.data.entertainers;
-      console.log(_this.entertainers);
-    }); // this is really nothing. just seeing if getting the data works.
+  computed: {
+    checkboxId: function checkboxId() {
+      return 'check_' + this.itemId;
+    }
   },
   methods: {
-    removeItem: function removeItem() {
-      this.removeFromCookie();
-      console.log(this.itemId);
-      this.shouldDisplay = false;
-    },
-    removeFromCookie: function removeFromCookie() {
-      var cookieValue = this.$cookies.get("BUCKET_" + this.itemClass);
-      var idArray = [];
-      idArray = cookieValue.split('+');
-      var index = idArray.indexOf(this.itemId);
+    removeItem: function () {
+      var _removeItem = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.post('/bucket-item/delete', {
+                  id: this.itemId,
+                  "class": this.itemClass
+                });
 
-      if (index > -1) {
-        idArray.splice(index, 1);
+              case 2:
+                this.shouldDisplay = false;
+                this.$emit('removed');
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function removeItem() {
+        return _removeItem.apply(this, arguments);
       }
 
-      var idString = idArray.join('+');
-      this.$cookies.set("BUCKET_" + this.itemClass, idString, {
-        expires: "1y"
-      });
+      return removeItem;
+    }(),
+    updateItem: function () {
+      var _updateItem = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log('updated');
+                _context2.next = 3;
+                return axios.post('/bucket-item/update', {
+                  id: this.itemId,
+                  "class": this.itemClass,
+                  notes: this.notes,
+                  completed: this.completed
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function updateItem() {
+        return _updateItem.apply(this, arguments);
+      }
+
+      return updateItem;
+    }()
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BucketItemComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    itemId: String,
+    itemClass: String,
+    cardClass: String,
+    itemNotes: String,
+    itemCompleted: ''
+  },
+  created: function created() {
+    this.completed = false;
+
+    if (this.itemCompleted == 1) {
+      this.completed = true;
     }
+  },
+  data: function data() {
+    return {
+      shouldDisplay: true,
+      notes: this.itemNotes,
+      completed: ''
+    };
+  },
+  computed: {
+    checkboxId: function checkboxId() {
+      return 'check_' + this.itemId;
+    }
+  },
+  methods: {
+    removeItem: function () {
+      var _removeItem = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.post('/bucket-item/delete', {
+                  id: this.itemId,
+                  "class": this.itemClass
+                });
+
+              case 2:
+                this.shouldDisplay = false;
+                this.$emit('removed');
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function removeItem() {
+        return _removeItem.apply(this, arguments);
+      }
+
+      return removeItem;
+    }(),
+    updateItem: function () {
+      var _updateItem = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log('updated');
+                _context2.next = 3;
+                return axios.post('/bucket-item/update', {
+                  id: this.itemId,
+                  "class": this.itemClass,
+                  notes: this.notes,
+                  completed: this.completed
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function updateItem() {
+        return _updateItem.apply(this, arguments);
+      }
+
+      return updateItem;
+    }()
   }
 });
 
@@ -1014,6 +1214,199 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.shouldDisplay
+    ? _c(
+        "div",
+        {
+          staticClass: "row no-gutters bucket-item",
+          attrs: { id: _vm.itemId }
+        },
+        [
+          _c("div", { staticClass: "col-md-11" }, [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "row no-gutters card-h card-article overlay position-relative",
+                class: _vm.cardClass
+              },
+              [
+                _c(
+                  "div",
+                  { staticClass: "col-md-5 mb-md-0" },
+                  [_vm._t("image")],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "col-md-7 position-static pl-md-0 d-flex flex-column"
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "card-body pb-0 py-md-0 px-0 px-md-4" },
+                      [
+                        _c(
+                          "h5",
+                          { staticClass: "card-title mt-0" },
+                          [_vm._t("title")],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _vm._t("body"),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "bucket-buttons my-3" },
+                          [_vm._t("buttons")],
+                          2
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("textarea", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.notes,
+                                expression: "notes"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              id: "notes",
+                              value: "notes",
+                              rows: "2",
+                              placeholder: "Add Note:"
+                            },
+                            domProps: { value: _vm.notes },
+                            on: {
+                              change: _vm.updateItem,
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.notes = $event.target.value
+                              }
+                            }
+                          })
+                        ])
+                      ],
+                      2
+                    )
+                  ]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-md-1 d-flex flex-md-column align-items-end justify-content-end justify-content-md-start align-items-md-center"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "text-center mb-md-5" },
+                [
+                  _c(
+                    "p-check",
+                    {
+                      staticClass: "p-default p-curve p-fill p-bigger mr-0",
+                      attrs: { color: "success", id: _vm.checkboxId },
+                      on: { change: _vm.updateItem },
+                      model: {
+                        value: _vm.completed,
+                        callback: function($$v) {
+                          _vm.completed = $$v
+                        },
+                        expression: "completed"
+                      }
+                    },
+                    [
+                      _c("label", {
+                        attrs: { slot: "off-label" },
+                        slot: "off-label"
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { class: _vm.completed ? "text-advertiser" : "text-light" },
+                    [
+                      _c("small", {
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.completed ? "Complete" : "Check Off"
+                          )
+                        }
+                      })
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center ml-5 ml-md-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-light trash-can",
+                    on: { click: _vm.removeItem }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "far fa-trash-alt fa-lg",
+                      attrs: { title: "remove" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ]
+          )
+        ]
+      )
+    : _vm._e()
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-light" }, [
+      _c("small", [_vm._v("Remove")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemComponent.vue?vue&type=template&id=ecfff176&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/BucketItemComponent.vue?vue&type=template&id=ecfff176& ***!
@@ -1032,13 +1425,133 @@ var render = function() {
   return _vm.shouldDisplay
     ? _c(
         "div",
-        { class: _vm.divClass, attrs: { id: _vm.itemId } },
-        [_vm._t("default", null, { removeItem: _vm.removeItem })],
-        2
+        {
+          staticClass: "row no-gutters bucket-item",
+          attrs: { id: _vm.itemId }
+        },
+        [
+          _c(
+            "div",
+            { staticClass: "col-md-11 px-0 pt-0 pr-md-4" },
+            [
+              _vm._t("body"),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group mt-3" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.notes,
+                      expression: "notes"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "notes",
+                    value: "notes",
+                    rows: "2",
+                    placeholder: "Add Note:"
+                  },
+                  domProps: { value: _vm.notes },
+                  on: {
+                    change: _vm.updateItem,
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.notes = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "col-md-1 d-flex flex-md-column align-items-end justify-content-end justify-content-md-start align-items-md-center pt-2"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "text-center mb-md-5" },
+                [
+                  _c(
+                    "p-check",
+                    {
+                      staticClass: "p-default p-curve p-fill p-bigger mr-0",
+                      attrs: { color: "success", id: _vm.checkboxId },
+                      on: { change: _vm.updateItem },
+                      model: {
+                        value: _vm.completed,
+                        callback: function($$v) {
+                          _vm.completed = $$v
+                        },
+                        expression: "completed"
+                      }
+                    },
+                    [
+                      _c("label", {
+                        attrs: { slot: "off-label" },
+                        slot: "off-label"
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { class: _vm.completed ? "text-advertiser" : "text-light" },
+                    [
+                      _c("small", {
+                        domProps: {
+                          textContent: _vm._s(
+                            _vm.completed ? "Complete" : "Check Off"
+                          )
+                        }
+                      })
+                    ]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "text-center ml-5 ml-md-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-light trash-can",
+                    on: { click: _vm.removeItem }
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "far fa-trash-alt fa-lg",
+                      attrs: { title: "remove" }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ]
+          )
+        ]
       )
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-light" }, [
+      _c("small", [_vm._v("Remove")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -1803,11 +2316,12 @@ render._withStripped = true
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no exports provided */
+/*! exports provided: eventBus */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "eventBus", function() { return eventBus; });
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
@@ -1820,6 +2334,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_cookies_ts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-cookies-ts */ "./node_modules/vue-cookies-ts/lib/main.esm.js");
 /* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/lib/v-calendar.umd.min.js");
 /* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(v_calendar__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var pretty_checkbox_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! pretty-checkbox-vue */ "./node_modules/pretty-checkbox-vue/dist/pretty-checkbox-vue.js");
+/* harmony import */ var pretty_checkbox_vue__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(pretty_checkbox_vue__WEBPACK_IMPORTED_MODULE_8__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -1849,6 +2365,7 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('bucket-button', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('bucket-counter', __webpack_require__(/*! ./components/BucketCounterComponent.vue */ "./resources/js/components/BucketCounterComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('bucket-form', __webpack_require__(/*! ./components/BucketFormComponent.vue */ "./resources/js/components/BucketFormComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('bucket-item', __webpack_require__(/*! ./components/BucketItemComponent.vue */ "./resources/js/components/BucketItemComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('bucket-item-card', __webpack_require__(/*! ./components/BucketItemCardComponent.vue */ "./resources/js/components/BucketItemCardComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]);
 
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_4___default.a);
@@ -1857,6 +2374,9 @@ vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MO
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(vue_cookies_ts__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
 vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(v_calendar__WEBPACK_IMPORTED_MODULE_7___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_5___default.a.use(pretty_checkbox_vue__WEBPACK_IMPORTED_MODULE_8___default.a);
+var eventBus = new vue__WEBPACK_IMPORTED_MODULE_5___default.a();
 var app = new vue__WEBPACK_IMPORTED_MODULE_5___default.a({
   el: '#app',
   methods: {
@@ -2129,6 +2649,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketFormComponent_vue_vue_type_template_id_80650598___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketFormComponent_vue_vue_type_template_id_80650598___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/BucketItemCardComponent.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/BucketItemCardComponent.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BucketItemCardComponent.vue?vue&type=template&id=22629e15& */ "./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15&");
+/* harmony import */ var _BucketItemCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BucketItemCardComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _BucketItemCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/BucketItemCardComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketItemCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./BucketItemCardComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemCardComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketItemCardComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./BucketItemCardComponent.vue?vue&type=template&id=22629e15& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/BucketItemCardComponent.vue?vue&type=template&id=22629e15&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BucketItemCardComponent_vue_vue_type_template_id_22629e15___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

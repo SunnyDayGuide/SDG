@@ -34,6 +34,7 @@ Vue.component('bucket-button', require('./components/BucketButtonComponent.vue')
 Vue.component('bucket-counter', require('./components/BucketCounterComponent.vue').default);
 Vue.component('bucket-form', require('./components/BucketFormComponent.vue').default);
 Vue.component('bucket-item', require('./components/BucketItemComponent.vue').default);
+Vue.component('bucket-item-card', require('./components/BucketItemCardComponent.vue').default);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 import VModal from 'vue-js-modal';
@@ -49,6 +50,8 @@ Vue.use(VCalendar)
 
 import PrettyCheckbox from 'pretty-checkbox-vue';
 Vue.use(PrettyCheckbox);
+
+export const eventBus = new Vue();
 
 const app = new Vue({
     el: '#app',

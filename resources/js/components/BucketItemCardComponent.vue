@@ -1,21 +1,40 @@
 <template>
 	<div class="row no-gutters bucket-item" :id="itemId" v-if="shouldDisplay">
-		<div class="col-md-11 px-0 pt-0 pr-md-4">
-			<slot name="body"></slot>
-			<div class="form-group mt-3">
-				<textarea 
-				class="form-control" 
-				id="notes" 
-				v-model="notes" 
-				value="notes"
-				@change="updateItem"
-				rows="2"
-				placeholder="Add Note:" 
-				></textarea>
-			</div> 
+		<div class="col-md-11">
+			<div class="row no-gutters card-h card-article overlay position-relative" :class="cardClass">
+				<div class="col-md-5 mb-md-0">
+					<slot name="image"></slot>
+				</div>
+
+				<div class="col-md-7 position-static pl-md-0 d-flex flex-column">
+					<div class="card-body pb-0 py-md-0 px-0 px-md-4">
+						<h5 class="card-title mt-0">
+							<slot name="title"></slot>
+						</h5>
+
+						<slot name="body"></slot>
+
+						<div class="bucket-buttons my-3">
+							<slot name="buttons"></slot>
+						</div>
+
+						<div class="form-group">
+							<textarea 
+							class="form-control" 
+							id="notes" 
+							v-model="notes" 
+							value="notes"
+							@change="updateItem"
+							rows="2"
+							placeholder="Add Note:" 
+							></textarea>
+						</div>
+					</div> <!-- End Card Body -->
+				</div>
+			</div> <!-- End Row / Card -->
 		</div> <!-- End Column -->
 
-		<div class="col-md-1 d-flex flex-md-column align-items-end justify-content-end justify-content-md-start align-items-md-center pt-2">
+		<div class="col-md-1 d-flex flex-md-column align-items-end justify-content-end justify-content-md-start align-items-md-center">
 			<div class="text-center mb-md-5">
 				<p-check class="p-default p-curve p-fill p-bigger mr-0" color="success" :id="checkboxId" v-model="completed" @change="updateItem">
 					<label slot="off-label"></label>

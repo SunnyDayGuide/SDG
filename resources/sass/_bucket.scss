@@ -129,6 +129,24 @@
 	}
 }
 
+.bucket-item {
+	background: $white;
+	margin: 2rem 0;
+	padding: 1rem;
+	border-bottom: 8px solid $primary;
+
+	.locations ul {
+		border-bottom: 1px solid $light;
+		padding-bottom: 1rem;
+	}
+
+	.locations ul:last-child {
+		border-bottom: none;
+		padding-bottom: 0;
+	}
+}
+
+
 .share {
 	font-size: 1.35rem;
 
@@ -138,6 +156,8 @@
 	.text {
 		font-size: .85rem;
 	}
+}
 
-	
+.trash-can {
+	font-size: 1.1rem;
 }

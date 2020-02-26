@@ -1,4 +1,4 @@
-<div class="coupon-container p-3 mb-4">
+<div class="coupon-container p-3 my-0">
 	<div class="offer">{{ $coupon->offer }}</div>
 	<div class="suboffer">{{ $coupon->suboffer }}</div>
 	<div class="d-md-flex justify-content-between align-items-center">
@@ -11,7 +11,6 @@
 			@if($coupon->barcode)
 			<div>
 				{!! $coupon->barcodeSVG !!}
-				{{-- <div>{{ $coupon->barcode }}</div> --}}
 			</div>
 			@endif			
 		</div>
@@ -20,10 +19,7 @@
 	</div>
 	<div class="coupon-logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
 	
-	<div class="mt-4 d-flex justify-content-between align-items-end coupon-footer">
-		<div class="text-uppercase print"><a href="{{ route('print.single', [$coupon->market, $coupon->advertisers->first()->slug, $coupon->id]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print</a> or show this {{ $coupon->market->brand->name }} coupon on your phone</div>
-		<a v-on:click="removeItem">
-			<i class="far fa-trash-alt fa-lg" title="remove"></i>
-		</a>
+	<div class="mt-4 coupon-footer">
+		<div class="text-uppercase print">Show this {{ $coupon->market->brand->name }} coupon on your phone</div>
 	</div>
 </div>

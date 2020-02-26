@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import {eventBus} from "../app";
+
 export default {
 	props: {
 		bucketId: String,
