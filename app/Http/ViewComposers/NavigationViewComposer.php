@@ -3,6 +3,7 @@
 namespace App\Http\ViewComposers;
 
 use App\Bucket;
+use App\BucketItem;
 use App\Category;
 use App\Market;
 use Illuminate\Http\Request;
@@ -36,19 +37,12 @@ class NavigationViewComposer
 
         // Get initial bucket list item total count
         $bucketId = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::firstWhere('uuid', $bucketId);
 
-        $buckets = Bucket::withCount('advertisers', 'coupons', 'shows', 'events', 'articles', 'distributors')->get();
-        $bucket = $buckets->where('uuid', $bucketId)->first();
+        $items = BucketItem::where('bucket_id', $bucket->id)->get();
 
         if ($bucket) {
-            $item_count = collect([
-                $bucket->advertisers_count, 
-                $bucket->coupons_count, 
-                $bucket->shows_count,
-                $bucket->events_count,
-                $bucket->articles_count,
-                $bucket->distributors_count
-            ])->sum();
+            $item_count = count($items);
         } else $item_count = 0;
 
         $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents', 'market', 'item_count'));
