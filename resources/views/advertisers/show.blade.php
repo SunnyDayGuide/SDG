@@ -128,7 +128,7 @@
 			
 			<div class="d-flex align-items-center my-4">
 				<!-- Bucket button -->
-				@include('partials._bucket-button', ['item' => $advertiser, 'class' => 'Advertiser', 'button' => 'button'])
+				@include('partials._bucket-button', ['item' => $advertiser, 'button' => 'button'])
 
 				@if(count($advertiser->tags) > 0)
 				<!-- Tags Links -->

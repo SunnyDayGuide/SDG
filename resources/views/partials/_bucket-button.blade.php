@@ -1,6 +1,6 @@
 <bucket-button 
 	item-id="{{ $item->id }}" 
-	item-class="{{ $class }}" 
+	item-class="{{ get_class($item) }}" 
 	button-style="{{ $button }}" 
 	bucket-id="{{ $bucketId }}" 
 	in-bucket="{{ $item->isInBucket() }}" 

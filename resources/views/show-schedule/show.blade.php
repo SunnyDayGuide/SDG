@@ -69,7 +69,7 @@
 	<!-- Bucket button -->
 	<div class="row">
 		<div class="col-md-8 offset-md-2">
-			@include('partials._bucket-button', ['item' => $show, 'class' => 'Show', 'button' => 'button'])
+			@include('partials._bucket-button', ['item' => $show, 'button' => 'button'])
 		</div>
 	</div>
 

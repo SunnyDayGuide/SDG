@@ -22,7 +22,7 @@
 	<div class="coupon-logo">{{ $coupon->logo->getFirstMedia('logo') }}</div>
 	
 	<div class="mt-4 d-flex justify-content-between align-items-center coupon-footer">
-		@include('partials._bucket-button', ['item' => $coupon, 'class' => 'Coupon', 'button' => 'icon'])
+		@include('partials._bucket-button', ['item' => $coupon, 'button' => 'icon'])
 		<div class="text-uppercase">Print or show this {{ $market->brand->name }} coupon on your phone</div>
 		<div class="text-uppercase print"><a href="{{ route('print.single', [$market, $advertiser, $coupon->id]) }}"><i class="fas fa-print fa-lg fa-fw mr-2" aria-hidden="true"></i>Print</a></div>
 	</div>
