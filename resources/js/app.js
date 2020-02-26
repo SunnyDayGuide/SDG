@@ -47,6 +47,9 @@ Vue.use(VueCookies)
 import VCalendar from 'v-calendar';
 Vue.use(VCalendar)
 
+import PrettyCheckbox from 'pretty-checkbox-vue';
+Vue.use(PrettyCheckbox);
+
 const app = new Vue({
     el: '#app',
 
