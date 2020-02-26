@@ -45,16 +45,17 @@ export default {
 		},
 
 		async addToBucket() {
-			await axios.post('/bucket-list/add', {
+			await axios.post('/bucket-item/store', {
 			    id: this.itemId,
 			    class: this.itemClass
 			});
 			this.added = true;
+			eventBus.$emit('brothersaid', 'Mom said do your homework!')
 			this.$emit('added');
 		},
 
 		async removeFromBucket() {
-			await axios.post('/bucket-list/remove', {
+			await axios.post('/bucket-item/delete', {
 			    id: this.itemId,
 			    class: this.itemClass
 			});
