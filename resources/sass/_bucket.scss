@@ -81,7 +81,7 @@
 	z-index: 2;
 }
 
-// Nav Bucket Desktop
+// Nav Bucket Counter Desktop
 @include media-breakpoint-up(md) {
 	.bucket-list-container {
 		position: relative;
@@ -122,7 +122,7 @@
 	}	
 }
 
-// Bucket Page
+// Bucket List Page
 .bucket-form {
 	.bucket-input {
 		font-family: $headings-font-family;
@@ -145,7 +145,6 @@
 		padding-bottom: 0;
 	}
 }
-
 
 .share {
 	font-size: 1.35rem;

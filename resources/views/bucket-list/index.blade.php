@@ -50,7 +50,7 @@
 			</div>
 			<div class="text">Email</div>
 		</a>
-		<a href="#" class="text-center d-flex flex-column ml-3">
+		<a href="{{ route('bucket-list.print') }}" class="text-center d-flex flex-column ml-3">
 			<div class="fa-stack fa-sm">
 				<i class="fas fa-circle fa-stack-2x"></i>
 				<i class="fas fa-print fa-stack-1x fa-inverse"></i>
@@ -90,7 +90,7 @@
 					@endphp
 					<bucket-item item-id="{{ $event->id }}" item-class="App\Event" card-class="card-article" item-notes="{{ $notes }}" item-completed="{{ $item->pivot->completed ? $item->pivot->completed : '0' }}">
 						<template slot="body">
-							@include('events._listing')
+							@include('bucket-list._event')
 						</template>
 					</bucket-item>
 					@endforeach
@@ -160,28 +160,30 @@
 					@endphp
 					<bucket-item item-id="{{ $show->id }}" item-class="App\Show" card-class="card-advertiser" item-notes="{{ $notes }}" item-completed="{{ $item->pivot->completed ? $item->pivot->completed : '0' }}">
 						<template slot="body">
-							<div class="card-body p-0">
-								<h5 class="card-title mt-0">
-									<a href="{{ $show->path() }}" class="text-decoration-none">{{ $show->name }}</a>
-								</h5>
-								<div class="locations">
-									<p>{{ $show->theater->name }}</p>
-									<ul class="fa-ul">
-										<li class="mb-2"><a href="{{ $show->theater->directions }}" target="_blank" aria-label="Get directions to {{ $show->theater->name }}"><span class="fa-li"><i class="fas fa-map-marker-alt fa-lg mr-2"></i></span>{{ $show->theater->full_address }}</a></li>
-										@isset($show->local_phone)
-										<li><a href="tel:{{ $show->local_phone }}" aria-label="Call {{ $show->name }}"><span class="fa-li"><i class="fas fa-phone fa-lg mr-2"></i></span>{{ $show->local_phone }}</a>@endisset
-											@isset($show->toll_free)
-											<a class="ml-5" href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
-											@endisset
-										</li>
-									</ul>
-								</div>
+							<div class="card card-advertiser">
+								<div class="card-body p-0">
+									<h5 class="card-title mt-0">
+										<a href="{{ $show->path() }}" class="text-decoration-none">{{ $show->name }}</a>
+									</h5>
+									<div class="locations">
+										<p>{{ $show->theater->name }}</p>
+										<ul class="fa-ul">
+											<li class="mb-2"><a href="{{ $show->theater->directions }}" target="_blank" aria-label="Get directions to {{ $show->theater->name }}"><span class="fa-li"><i class="fas fa-map-marker-alt fa-lg mr-2"></i></span>{{ $show->theater->full_address }}</a></li>
+											@isset($show->local_phone)
+											<li><a href="tel:{{ $show->local_phone }}" aria-label="Call {{ $show->name }}"><span class="fa-li"><i class="fas fa-phone fa-lg mr-2"></i></span>{{ $show->local_phone }}</a>@endisset
+												@isset($show->toll_free)
+												<a class="ml-5" href="tel:{{ $show->toll_free }}" aria-label="Call {{ $show->name }}">Call Toll-Free: {{ $show->toll_free }}</a>
+												@endisset
+											</li>
+										</ul>
+									</div>
 
-								<div class="bucket-buttons my-3">
-									<a class="btn btn-advertiser mr-1" href="{{ $show->path() }}" target="_blank" role="button">Show Schedule</a>
-									@if($show->website_url)
-									<a class="btn btn-advertiser mr-1" href="{{ $show->website_url }}" target="_blank" role="button">Website</a>
-									@endif
+									<div class="bucket-buttons my-3">
+										<a class="btn btn-advertiser mr-1" href="{{ $show->path() }}" target="_blank" role="button">Show Schedule</a>
+										@if($show->website_url)
+										<a class="btn btn-advertiser mr-1" href="{{ $show->website_url }}" target="_blank" role="button">Website</a>
+										@endif
+									</div>
 								</div>
 							</div>
 						</template>
