@@ -1,7 +1,7 @@
 <template>
 	<div class="row no-gutters bucket-item" :id="itemId" v-if="shouldDisplay">
 		<div class="col-md-11">
-			<div class="row no-gutters card-h card-article overlay position-relative" :class="cardClass">
+			<div class="row no-gutters card-h overlay position-relative" :class="cardClass">
 				<div class="col-md-5 mb-md-0">
 					<slot name="image"></slot>
 				</div>

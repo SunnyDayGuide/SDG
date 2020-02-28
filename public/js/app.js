@@ -1241,8 +1241,7 @@ var render = function() {
             _c(
               "div",
               {
-                staticClass:
-                  "row no-gutters card-h card-article overlay position-relative",
+                staticClass: "row no-gutters card-h overlay position-relative",
                 class: _vm.cardClass
               },
               [
