@@ -29,20 +29,10 @@
 
 	{{-- Share buttons --}}
 	<div class="d-flex justify-content-end share mr-2 mb-3">
-		<a href="#" class="text-center d-flex flex-column ml-3">
-			<div class="fa-stack fa-sm">
-				<i class="fas fa-circle fa-stack-2x"></i>
-				<i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-			</div>
-			<div class="text">Share</div>
-		</a>
-		<a href="#" class="text-center d-flex flex-column ml-3">
-			<div class="fa-stack fa-sm">
-				<i class="fas fa-circle fa-stack-2x"></i>
-				<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-			</div>
-			<div class="text">Tweet</div>
-		</a>
+		<social-share-button url="{{ urlencode('https://sunnyday.test/destinations/branson/bucket-list') }}" network="facebook"></social-share-button>
+
+		<social-share-button url="{{ urlencode('https://sunnyday.test/destinations/branson/bucket-list') }}" network="twitter" message="Check out this cool way to plan your vacation!" hashtags="branson,vacation,bucketlist" via="SunnyDayGuide"></social-share-button>
+
 		<a href="#" class="text-center d-flex flex-column ml-3">
 			<div class="fa-stack fa-sm">
 				<i class="fas fa-circle fa-stack-2x"></i>
