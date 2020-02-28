@@ -39,9 +39,8 @@ class NavigationViewComposer
         $bucketId = Cookie::get('sunny_day_guide_bucket');
         $bucket = Bucket::firstWhere('uuid', $bucketId);
 
-        $items = BucketItem::where('bucket_id', $bucket->id)->get();
-
         if ($bucket) {
+            $items = BucketItem::where('bucket_id', $bucket->id)->get();
             $item_count = count($items);
         } else $item_count = 0;
 
