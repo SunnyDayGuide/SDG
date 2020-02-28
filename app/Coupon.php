@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Scopes\MarketScope;
 use App\Traits\Bucketable;
 use App\Traits\Marketable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Milon\Barcode\DNS1D;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -15,12 +17,21 @@ class Coupon extends Model implements HasMedia
     use Marketable;
     use Bucketable;
 
-    /**
-     * Don't auto-apply mass assignment protection.
+     /**
+     * The "booting" method of the model.
      *
-     * @var array
+     * @return void
      */
-    protected $guarded = [];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MarketScope);
+
+        static::addGlobalScope('active', function (Builder $builder) {
+            $builder->where('active', true);
+        });
+    }
 
     /**
      * The relationships to always eager-load.

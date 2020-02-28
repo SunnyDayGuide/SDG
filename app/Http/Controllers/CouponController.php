@@ -18,8 +18,7 @@ class CouponController extends Controller
     {
         $page = $market->pages()->where('slug', 'coupons')->first();
         $mainImage = $page->getFirstMedia('slider');
-        // $coupons = Coupon::where('market_id', $market->id)->active()->inRandomOrder()->get();
-        $coupons = $market->coupons()->active()->inRandomOrder()->get();
+        $coupons = Coupon::with('advertisers')->inRandomOrder()->get();
 
         $activities = $coupons->where('category_id', 1);
 
