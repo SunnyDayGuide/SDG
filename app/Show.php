@@ -32,13 +32,6 @@ class Show extends Model
     }
 
     /**
-    * The relationships to always eager-load.
-    *
-    * @var array
-    */
-    protected $with = ['advertiser'];
-
-    /**
     * Get the route key name.
     *
     * @return string

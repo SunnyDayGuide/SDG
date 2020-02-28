@@ -75,7 +75,7 @@ class CategoryController extends Controller
         $events = Event::categorized($category)
             ->with('tags:slug,name', 'categories')->get();
 
-        $shows = Show::where('active', true)->has('gadget')->get()->sortBy('sortName');
+        $shows = Show::with('advertiser', 'theater')->has('gadget')->get()->sortBy('sortName');
         
         //show the lead page
         return view('categories.show', compact('market', 'relatedArticles', 'advertisers', 'events', 'page', 'category', 'premierAdvertisers', 'slides', 'image', 'subcatImages', 'shows'));

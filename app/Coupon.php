@@ -34,11 +34,11 @@ class Coupon extends Model implements HasMedia
     }
 
     /**
-     * The relationships to always eager-load.
+     * Don't auto-apply mass assignment protection.
      *
      * @var array
      */
-    protected $with = ['market', 'advertisers'];
+    protected $guarded = [];
 
     /**
      * A coupon belongs to a category.
