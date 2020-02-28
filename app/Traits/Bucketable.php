@@ -12,13 +12,13 @@ trait Bucketable {
 	public static function bootHasBucketItems()
     {
         static::deleted(function (Model $deletedModel) {
-            $bucketItems = $deletedModel->bucketItems()->get();
+            $bucketItems = $deletedModel->bucketable()->get();
 
             $deletedModel->detachBucketItems($bucketItems);
         });
     }
 
-    public function bucketItems()
+    public function bucketable()
     {
         return $this->morphToMany(Bucket::class, 'bucketable')
             ->withTimestamps()
@@ -34,7 +34,7 @@ trait Bucketable {
             return false;
         }
 
-        return $this->bucketItems->where('id', $bucket->id)->isNotEmpty();
+        return $this->bucketable->where('id', $bucket->id)->isNotEmpty();
     }
 
 }

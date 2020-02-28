@@ -28,18 +28,19 @@ class Bucket extends Model
     public function advertisers()
     {
         return $this->morphedByMany('App\Advertiser', 'bucketable')
+            ->withoutGlobalScope(MarketScope::class)
             ->withTimestamps()
             ->withPivot([
                 'notes',
                 'completed',
             ])
-            ->using(BucketItem::class)
-            ->withoutGlobalScope(MarketScope::class);
+            ->using(BucketItem::class);
     }
 
     public function coupons()
     {
         return $this->morphedByMany('App\Coupon', 'bucketable')
+            ->withoutGlobalScope(MarketScope::class)
             ->withTimestamps()
             ->withPivot([
                 'notes',
@@ -51,13 +52,13 @@ class Bucket extends Model
     public function distributors()
     {
         return $this->morphedByMany('App\Distributor', 'bucketable')
+            ->withoutGlobalScope(MarketScope::class)
             ->withTimestamps()
             ->withPivot([
                 'notes',
                 'completed',
             ])
-            ->using(BucketItem::class)
-            ->withoutGlobalScope(MarketScope::class);
+            ->using(BucketItem::class);
     }
 
     public function shows()
@@ -85,13 +86,13 @@ class Bucket extends Model
     public function articles()
     {
         return $this->morphedByMany('App\Article', 'bucketable')
+            ->withoutGlobalScope(MarketScope::class)
             ->withTimestamps()
             ->withPivot([
                 'notes',
                 'completed',
             ])
-            ->using(BucketItem::class)
-            ->withoutGlobalScope(MarketScope::class);
+            ->using(BucketItem::class);
     }
 
 }
