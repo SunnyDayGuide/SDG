@@ -55,8 +55,20 @@
 }
 
 .locations {
+  line-height: 1.2;
+
   a {
     color: $body-color;
+    @media print {
+      color: #000;
+    }
+  }
+  
+  .fa-ul {
+    margin-left: 1.75rem;
+  }
+  @media print {
+    color: #000;
   }
 }
 

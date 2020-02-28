@@ -37,8 +37,10 @@
 	min-height: 100vh;
 }
 
-label {
-	font-weight: $font-weight-medium;
+@media print {
+	body {
+		color: #000;
+	}
 }
 
 .search {

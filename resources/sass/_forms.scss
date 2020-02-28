@@ -10,6 +10,10 @@ legend {
 	border-bottom: 1px solid $dark; 
 }
 
+label {
+	font-weight: $font-weight-medium;
+}
+
 .checkbox-lg .custom-control-label::before, 
 .checkbox-lg .custom-control-label::after {
 	top: .8rem;

@@ -23,14 +23,6 @@
 	margin-left: 15px;
 }
 
-.locations {
-	line-height: 1.2;
-
-	.fa-ul {
-		margin-left: 1.75rem;
-	}
-}
-
 .advertisers {
 	@include media-breakpoint-up(md) {
 	  .card-deck .card {

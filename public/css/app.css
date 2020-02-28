@@ -13488,6 +13488,10 @@ legend {
   border-bottom: 1px solid #656565;
 }
 
+label {
+  font-weight: 500;
+}
+
 .checkbox-lg .custom-control-label::before,
 .checkbox-lg .custom-control-label::after {
   top: 0.8rem;
@@ -13514,11 +13518,6 @@ legend {
 .card-title,
 .card-title a {
   font-weight: 700;
-}
-
-.card-title a:hover,
-.card-title a a:hover {
-  color: #656565;
 }
 
 .card-footer {
@@ -13936,6 +13935,27 @@ legend {
   font-size: 1.1rem;
 }
 
+.bucket-print-header {
+  border-bottom: 2px solid #C6C6C6;
+  margin-bottom: 1rem;
+}
+
+.bucket-item-print {
+  margin: 0 0 3rem 0;
+  padding: 0 0 2rem 0;
+  border-bottom: 1px solid #C6C6C6;
+  page-break-inside: avoid;
+}
+
+.bucket-item-print::last-child {
+  border-bottom: none;
+}
+
+.print-brand {
+  width: 225px;
+  margin-top: -25px;
+}
+
 .mkt-home {
   position: relative;
   display: inline-block;
@@ -14010,14 +14030,6 @@ legend {
 .filler-card {
   margin-right: 15px;
   margin-left: 15px;
-}
-
-.locations {
-  line-height: 1.2;
-}
-
-.locations .fa-ul {
-  margin-left: 1.75rem;
 }
 
 @media (min-width: 768px) {
@@ -14103,8 +14115,28 @@ legend {
   overflow-y: scroll;
 }
 
+.locations {
+  line-height: 1.2;
+}
+
 .locations a {
   color: #656565;
+}
+
+@media print {
+  .locations a {
+    color: #000;
+  }
+}
+
+.locations .fa-ul {
+  margin-left: 1.75rem;
+}
+
+@media print {
+  .locations {
+    color: #000;
+  }
 }
 
 .tollfree {
@@ -14275,6 +14307,7 @@ body > div#branson-calendar-widget-legend-container {
   padding: 0.5em;
   margin: 0.6em 0;
   text-align: center;
+  page-break-inside: avoid;
 }
 
 .coupon-container .coupon-logo {
@@ -15153,8 +15186,10 @@ html.home,
   min-height: 100vh;
 }
 
-label {
-  font-weight: 500;
+@media print {
+  body {
+    color: #000;
+  }
 }
 
 .ads {

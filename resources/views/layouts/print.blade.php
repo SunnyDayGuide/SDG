@@ -9,6 +9,7 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
 
 </head>
 
@@ -18,7 +19,9 @@
     </div>
 
 <!-- Scripts -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 @yield('scripts')
 
 </body>

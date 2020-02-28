@@ -160,3 +160,25 @@
 .trash-can {
 	font-size: 1.1rem;
 }
+
+// Bucket List Print Styles
+.bucket-print-header {
+	border-bottom: 2px solid $light;
+	margin-bottom: 1rem;
+}
+
+.bucket-item-print {
+	margin: 0 0 3rem 0;
+	padding: 0 0 2rem 0;
+	border-bottom: 1px solid $light;
+	page-break-inside: avoid;
+}
+
+.bucket-item-print::last-child {
+	border-bottom: none;
+}
+
+.print-brand {
+	width: 225px;
+	margin-top: -25px;
+}
