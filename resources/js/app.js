@@ -35,6 +35,7 @@ Vue.component('bucket-counter', require('./components/BucketCounterComponent.vue
 Vue.component('bucket-form', require('./components/BucketFormComponent.vue').default);
 Vue.component('bucket-item', require('./components/BucketItemComponent.vue').default);
 Vue.component('bucket-item-card', require('./components/BucketItemCardComponent.vue').default);
+Vue.component('bucket-list-email', require('./components/BucketListEmailComponent.vue').default);
 Vue.component('social-share-button', require('./components/SocialShareButtonComponent.vue').default);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

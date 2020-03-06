@@ -22,6 +22,8 @@ Route::post('contact', 'ContactController@store')->name('contacts.store');
 
 Route::post('bucket-list', 'BucketListController@store');
 Route::get('bucket-list/print', 'BucketListController@print')->name('bucket-list.print');
+Route::post('bucket-list/send', 'BucketListEmailController@send')->name('bucket-list.send');
+
 Route::post('bucket-item/update', 'BucketItemController@update');
 Route::post('bucket-item/store', 'BucketItemController@store');
 Route::post('bucket-item/delete', 'BucketItemController@delete');
