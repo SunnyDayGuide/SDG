@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Advertiser;
 use App\BucketItem;
+use App\Category;
 use App\Scopes\MarketScope;
 use Illuminate\Database\Eloquent\Model;
 
@@ -93,6 +95,54 @@ class Bucket extends Model
                 'completed',
             ])
             ->using(BucketItem::class);
+    }
+
+    public function items()
+    {
+        $items = collect([$this->advertisers, $this->coupons, $this->events, $this->articles, $this->shows])->collapse(); 
+
+        return $items;
+    }
+
+    public function getAdvertisersByCategory($categoryId)
+    {
+        $category = Category::find($categoryId);
+
+        $advertiserIds = $this->advertisers()->pluck('id');
+
+        $advertisers = Advertiser::categorized($category)
+            ->withoutGlobalScope(MarketScope::class)
+            ->whereIn('id', $advertiserIds)
+            ->with('locations')
+            ->get();
+
+        return $advertisers;
+    }
+    
+    public function getLodgingList()
+    {
+        $category = Category::find(5);
+
+        $advertiserIds = $this->advertisers()->pluck('id');
+
+        $advertisers = Advertiser::categorized($category)
+            ->withoutGlobalScope(MarketScope::class)
+            ->whereIn('id', $advertiserIds)
+            ->with('locations')
+            ->get();
+
+        $distributors = $this->distributors()
+            ->with('locations')
+            ->get();
+            
+        $reg_collection = collect();
+
+        foreach ($advertisers as $advertiser)
+            $reg_collection->push($advertiser);
+        foreach ($distributors as $distributor)
+            $reg_collection->push($distributor);
+
+        return $reg_collection->sortBy('sortName');
     }
 
 }

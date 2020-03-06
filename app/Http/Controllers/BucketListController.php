@@ -25,8 +25,17 @@ class BucketListController extends Controller
      */
     public function index(Market $market)
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId);
+        // See if a bucket cookie value is coming from email
+        if (request('cookie')) {
+            $cookieValue = request('cookie');
+
+            // set cookie with bucket value from email
+             Cookie::queue('sunny_day_guide_bucket', $cookieValue, 525600);
+        } 
+        // Otherwise grab the existing cookie value
+        else $cookieValue = Cookie::get('sunny_day_guide_bucket');
+
+        $bucket = Bucket::firstWhere('uuid', $cookieValue);
 
         if (!$bucket) {
             return view('bucket-list.start', compact('market'));
@@ -38,11 +47,11 @@ class BucketListController extends Controller
         $shows = $bucket->shows;
 
         // display the each category's advertisers
-        $activities = $this->getAdvertisersByCategory(1, $bucket);
-        $restaurants = $this->getAdvertisersByCategory(2, $bucket);
-        $shops = $this->getAdvertisersByCategory(3, $bucket);
-        $entertainers = $this->getAdvertisersByCategory(4, $bucket);
-        $accommodations = $this->getLodgingList($bucket); 
+        $activities = $bucket->getAdvertisersByCategory(1);
+        $restaurants = $bucket->getAdvertisersByCategory(2);
+        $shops = $bucket->getAdvertisersByCategory(3);
+        $entertainers = $bucket->getAdvertisersByCategory(4);
+        $accommodations = $bucket->getLodgingList(); 
 
     	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations', 'bucket'));
     }
@@ -54,8 +63,8 @@ class BucketListController extends Controller
      */
     public function print()
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId); 
+        $cookieValue = Cookie::get('sunny_day_guide_bucket'); 
+        $bucket = Bucket::firstWhere('uuid', $cookieValue);
 
         $coupons = $bucket->coupons; 
         $events = $bucket->events;
@@ -63,11 +72,11 @@ class BucketListController extends Controller
         $shows = $bucket->shows;
 
         // display the each category's advertisers
-        $activities = $this->getAdvertisersByCategory(1, $bucket);
-        $restaurants = $this->getAdvertisersByCategory(2, $bucket);
-        $shops = $this->getAdvertisersByCategory(3, $bucket);
-        $entertainers = $this->getAdvertisersByCategory(4, $bucket);
-        $accommodations = $this->getLodgingList($bucket); 
+        $activities = $bucket->getAdvertisersByCategory(1);
+        $restaurants = $bucket->getAdvertisersByCategory(2);
+        $shops = $bucket->getAdvertisersByCategory(3);
+        $entertainers = $bucket->getAdvertisersByCategory(4);
+        $accommodations = $bucket->getLodgingList(); 
 
         return view('bucket-list.print', compact('coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'accommodations', 'shows', 'bucket'));        
     }
@@ -80,7 +89,7 @@ class BucketListController extends Controller
      */
     public function store(Request $request)
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket'); 
+        $cookieValue = Cookie::get('sunny_day_guide_bucket'); 
 
         $validatedData = $request->validate([
             'start_date' => 'nullable|date',
@@ -98,9 +107,9 @@ class BucketListController extends Controller
 
         // update the bucket if it exists or make a new one
         $bucket = Bucket::updateOrCreate(
-            ['uuid' => $bucketId],
+            ['uuid' => $cookieValue],
             [
-                'uuid' => $bucketId,
+                'uuid' => $cookieValue,
                 'name' => $request['name'],
                 'start_date' => $start,
                 'end_date' => $end,
@@ -112,46 +121,4 @@ class BucketListController extends Controller
         ]);
     }
 
-    public function getAdvertisersByCategory($categoryId, $bucket)
-    {
-        $category = Category::find($categoryId);
-
-        $advertiserIds = $bucket->advertisers()->pluck('id');
-
-        $advertisers = Advertiser::categorized($category)
-            ->withoutGlobalScope(MarketScope::class)
-            ->whereIn('id', $advertiserIds)
-            ->with('locations')
-            ->get();
-
-        return $advertisers;
-    }
-
-    public function getLodgingList($bucket)
-    {
-        $category = Category::find(5);
-
-        $advertiserIds = $bucket->advertisers()->pluck('id');
-
-        $advertisers = Advertiser::categorized($category)
-            ->withoutGlobalScope(MarketScope::class)
-            ->whereIn('id', $advertiserIds)
-            ->with('locations')
-            ->get();
-
-        $distributors = $bucket->distributors()
-            ->with('locations')
-            ->get();
-            
-        $reg_collection = collect();
-
-        foreach ($advertisers as $advertiser)
-            $reg_collection->push($advertiser);
-        foreach ($distributors as $distributor)
-            $reg_collection->push($distributor);
-
-        return $reg_collection->sortBy('sortName');
-    }
-
-    
 }
