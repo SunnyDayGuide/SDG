@@ -102,9 +102,9 @@
 				<div class="form-group">
 					<select class="form-control" v-model="message.department">
 						<option disabled value="">Department</option>
-						<option value="advertising">Advertising</option>
-						<option value="distribution">Distribution</option>
-						<option value="other">Something Else</option>
+						<option value="Advertising">Advertising</option>
+						<option value="Distribution">Distribution</option>
+						<option value="Other">Something Else</option>
 					</select>
 				</div>
 

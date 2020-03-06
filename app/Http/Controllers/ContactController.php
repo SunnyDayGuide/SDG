@@ -30,10 +30,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        if (request('department') == 'advertiser') {
-            $department = Contact::ADVERTISER_TYPE;
-        } elseif (request('department') == 'distribution') {
-            $department = Contact::DISTRIBUTION_TYPE;
+        if (request('department')) {
+            $department = request('department');
         } else $department = Contact::OTHER_TYPE;
 
         $validatedData = $request->validate([
