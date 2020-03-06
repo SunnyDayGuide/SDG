@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<a href="#" @click.prevent="windowPopup" class="text-center d-flex flex-column ml-3">
+		<a href="#" @click.prevent="windowPopup" class="share d-flex flex-column ml-3">
 			<div class="fa-stack fa-sm">
 				<i class="fas fa-circle fa-stack-2x"></i>
 				<i class="fab fa-stack-1x fa-inverse" :class="iconClass"></i>

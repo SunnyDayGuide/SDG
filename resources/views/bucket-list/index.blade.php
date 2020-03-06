@@ -28,19 +28,14 @@
 	</div>
 
 	{{-- Share buttons --}}
-	<div class="d-flex justify-content-end share mr-2 mb-3">
+	<div class="d-flex justify-content-end mr-2 mb-3">
 		<social-share-button url="{{ urlencode('https://sunnyday.test/destinations/branson/bucket-list') }}" network="facebook"></social-share-button>
 
 		<social-share-button url="{{ urlencode('https://sunnyday.test/destinations/branson/bucket-list') }}" network="twitter" message="Check out this cool way to plan your vacation!" hashtags="branson,vacation,bucketlist" via="SunnyDayGuide"></social-share-button>
 
-		<a href="#" class="text-center d-flex flex-column ml-3">
-			<div class="fa-stack fa-sm">
-				<i class="fas fa-circle fa-stack-2x"></i>
-				<i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
-			</div>
-			<div class="text">Email</div>
-		</a>
-		<a href="{{ route('bucket-list.print') }}" class="text-center d-flex flex-column ml-3">
+		<bucket-list-email bucket="{{ $bucket->id }}"></bucket-list-email>
+
+		<a href="{{ route('bucket-list.print') }}" class="share d-flex flex-column ml-3">
 			<div class="fa-stack fa-sm">
 				<i class="fas fa-circle fa-stack-2x"></i>
 				<i class="fas fa-print fa-stack-1x fa-inverse"></i>
@@ -48,12 +43,14 @@
 			<div class="text">Print</div>
 		</a>
 	</div>
+
 	<bucket-form 
 	bucket-id="{{ $bucket ? $bucket->id : $bucketId }}" 
 	name-placeholder="{{ $bucket->name ? $bucket->name : 'My '. $market->name . ' Trip' }}"
 	start-placeholder="{{ $bucket->start_date ? $bucket->start_date->format('m/d/Y') : 'Arrival Date' }}"
 	end-placeholder="{{ $bucket->end_date ? $bucket->end_date->format('m/d/Y') : 'Departure Date' }}"
 	></bucket-form>	
+	
 </div> <!-- End Container -->
 
 <section class="panel panel-light mt-5">
