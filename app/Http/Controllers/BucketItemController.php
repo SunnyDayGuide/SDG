@@ -17,8 +17,8 @@ class BucketItemController extends Controller
      */
     public function store(Request $request)
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstOrCreate(['uuid' => $bucketId]);
+        $cookieValue = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::firstOrCreate(['uuid' => $cookieValue]);
 
         if ($request->class == 'App\Advertiser') {
             $bucket->advertisers()->attach($request->id);
@@ -56,8 +56,8 @@ class BucketItemController extends Controller
      */
     public function update(Request $request)
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId);
+        $cookieValue = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::firstWhere('uuid', $cookieValue);
 
         // $bucketable_id = $request->id;
         // $item = $bucket->model()->where('id', $bucketable_id)->first();
@@ -102,8 +102,8 @@ class BucketItemController extends Controller
      */
     public function delete(Request $request)
     {
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId);
+        $cookieValue = Cookie::get('sunny_day_guide_bucket');
+        $bucket = Bucket::firstWhere('uuid', $cookieValue);
 
         if ($request->class == 'App\Advertiser') {
             $bucket->advertisers()->detach($request->id);

@@ -36,13 +36,7 @@ class NavigationViewComposer
             ->take(4)->get();
 
         // Get initial bucket list item total count
-        $bucketId = Cookie::get('sunny_day_guide_bucket');
-        $bucket = Bucket::firstWhere('uuid', $bucketId);
-
-        if ($bucket) {
-            $items = BucketItem::where('bucket_id', $bucket->id)->get();
-            $item_count = count($items);
-        } else $item_count = 0;
+        $item_count = $this->getBucketCount();
 
         $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents', 'market', 'item_count'));
     }
@@ -56,5 +50,27 @@ class NavigationViewComposer
         $market = $params['market']['id'];
 
         return $market;
+    }
+
+    public function getBucketCount()
+    {
+         // See if a bucket cookie value is coming from email
+        if (request('cookie')) {
+            $cookieValue = request('cookie');
+
+            // set cookie with bucket value from email
+             Cookie::queue('sunny_day_guide_bucket', $cookieValue, 525600);
+        } 
+        // Otherwise grab the existing cookie value
+        else $cookieValue = Cookie::get('sunny_day_guide_bucket');
+
+        $bucket = Bucket::firstWhere('uuid', $cookieValue);
+
+        if ($bucket) {
+            $items = BucketItem::where('bucket_id', $bucket->id)->get();
+            $item_count = count($items);
+        } else $item_count = 0;
+
+        return $item_count;
     }
 }
