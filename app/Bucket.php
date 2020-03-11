@@ -104,16 +104,14 @@ class Bucket extends Model
         return $items;
     }
 
-    public function getAdvertisersByCategory($categoryId)
+    public function getAdvertisersByCategory($categoryId, $advertiserIds = [])
     {
         $category = Category::find($categoryId);
-
-        $advertiserIds = $this->advertisers()->pluck('id');
 
         $advertisers = Advertiser::categorized($category)
             ->withoutGlobalScope(MarketScope::class)
             ->whereIn('id', $advertiserIds)
-            ->with('locations')
+            ->with('locations', 'market')
             ->get();
 
         return $advertisers;

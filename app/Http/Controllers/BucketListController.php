@@ -47,10 +47,12 @@ class BucketListController extends Controller
         $shows = $bucket->shows;
 
         // display the each category's advertisers
-        $activities = $bucket->getAdvertisersByCategory(1);
-        $restaurants = $bucket->getAdvertisersByCategory(2);
-        $shops = $bucket->getAdvertisersByCategory(3);
-        $entertainers = $bucket->getAdvertisersByCategory(4);
+        $advertiserIds = $bucket->advertisers()->pluck('id');
+        
+        $activities = $bucket->getAdvertisersByCategory(1, $advertiserIds);
+        $restaurants = $bucket->getAdvertisersByCategory(2, $advertiserIds);
+        $shops = $bucket->getAdvertisersByCategory(3, $advertiserIds);
+        $entertainers = $bucket->getAdvertisersByCategory(4, $advertiserIds);
         $accommodations = $bucket->getLodgingList(); 
 
     	return view('bucket-list.index', compact('market', 'coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'shows', 'accommodations', 'bucket'));
@@ -72,10 +74,12 @@ class BucketListController extends Controller
         $shows = $bucket->shows;
 
         // display the each category's advertisers
-        $activities = $bucket->getAdvertisersByCategory(1);
-        $restaurants = $bucket->getAdvertisersByCategory(2);
-        $shops = $bucket->getAdvertisersByCategory(3);
-        $entertainers = $bucket->getAdvertisersByCategory(4);
+        $advertiserIds = $bucket->advertisers()->pluck('id');
+
+        $activities = $bucket->getAdvertisersByCategory(1, $advertiserIds);
+        $restaurants = $bucket->getAdvertisersByCategory(2, $advertiserIds);
+        $shops = $bucket->getAdvertisersByCategory(3, $advertiserIds);
+        $entertainers = $bucket->getAdvertisersByCategory(4, $advertiserIds);
         $accommodations = $bucket->getLodgingList(); 
 
         return view('bucket-list.print', compact('coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'accommodations', 'shows', 'bucket'));        

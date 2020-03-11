@@ -43,13 +43,16 @@ class BucketListMail extends Mailable
         $articles = $bucket->articles;
         $shows = $bucket->shows;
 
+        $advertiserIds = $bucket->advertisers()->pluck('id');
+
         // display the each category's advertisers
-        $activities = $bucket->getAdvertisersByCategory(1);
-        $restaurants = $bucket->getAdvertisersByCategory(2);
-        $shops = $bucket->getAdvertisersByCategory(3);
-        $entertainers = $bucket->getAdvertisersByCategory(4);
+        $activities = $bucket->getAdvertisersByCategory(1, $advertiserIds);
+        $restaurants = $bucket->getAdvertisersByCategory(2, $advertiserIds);
+        $shops = $bucket->getAdvertisersByCategory(3, $advertiserIds);
+        $entertainers = $bucket->getAdvertisersByCategory(4, $advertiserIds);
         $accommodations = $bucket->getLodgingList(); 
 
-        return $this->markdown('emails.bucket-list', compact('coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'accommodations', 'shows', 'bucket'));
+        return $this->subject('Your Vacation Bucket List')
+                    ->markdown('emails.bucket-list', compact('coupons', 'events', 'articles', 'activities', 'restaurants', 'shops', 'entertainers', 'accommodations', 'shows', 'bucket'));
     }
 }
