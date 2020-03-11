@@ -20,9 +20,11 @@ $notes = $item->pivot->notes;
 				<div><span class="font-weight-bolder text-uppercase">Read More:</span> <a class="text-reset" href="{{ $article->path() }}" target="_blank">{{ $article->path() }}</a></div>
 			</div>
 
-			<div class="bucket->notes">
-				{{ $notes }}
+			@if($notes)
+			<div class="bucket-notes">
+				<strong>NOTES: </strong>{{ $notes }}
 			</div>
+			@endif
 		</div> <!-- End Card Body -->
 	</div>
 </div> <!-- End Row / Card -->

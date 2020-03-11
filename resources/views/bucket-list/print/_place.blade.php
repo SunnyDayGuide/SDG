@@ -36,9 +36,11 @@ $notes = $item->pivot->notes;
 				@endif
 			</div>
 
-			<div class="bucket->notes">
-				{{ $notes }}
+			@if($notes)
+			<div class="bucket-notes">
+				<strong>NOTES: </strong>{{ $notes }}
 			</div>
+			@endif
 		</div> <!-- End Card Body -->
 	</div>
 </div> <!-- End Row / Card -->
