@@ -1,29 +1,67 @@
 @component('mail::message')
-
-<h1>{{ $bucket->name }}</h1>
+<p>Whether you're reserving an activity time, a restaurant table or show tickets, book directly by contacting the places in your bucket list! We've made it easy by providing phone numbers and web addresses for each item.</p>
+<h1 style="margin-bottom: 0; color: #FF6F61;">{{ $bucket->name }}</h1>
 @if($bucket->start_date && $bucket->end_date)
-<h4>{{ $bucket->start_date->format('m/d/Y') }} - {{ $bucket->end_date->format('m/d/Y') }}</h4>
+<h3 style="font-weight: normal">{{ $bucket->start_date->format('m/d/Y') }} - {{ $bucket->end_date->format('m/d/Y') }}</h3>
 @endif
 
-<ul>
-@foreach($restaurants as $restaurant)
-<li>{{ $restaurant->name }}</li>
+@if($coupons->count() > 0)
+<h2 class="section-header">Coupons</h2>
+@foreach($coupons as $coupon)
+@include('bucket-list.email._coupon')
 @endforeach
-</ul>
+@endif
 
-@component('mail::button', ['url' => url(route('bucket-list', [$market->slug, 'cookie' => $bucket->uuid]))])
+@if($activities->count() > 0 || $events->count() > 0)
+<h2 class="section-header">Things to Do</h2>
+@foreach($activities as $activity)
+@include('bucket-list.email._place', ['bucket_item' => $activity])
+@endforeach
+@foreach($events as $event)
+@include('bucket-list.email._event')
+@endforeach
+@endif
+
+@if($restaurants->count() > 0)
+<h2 class="section-header">Restaurants &amp; Dining</h2>
+@foreach($restaurants as $restaurant)
+@include('bucket-list.email._place', ['bucket_item' => $restaurant])
+@endforeach
+@endif
+
+@if($shops->count() > 0)
+<h2 class="section-header">Shopping</h2>
+@foreach($shops as $shop)
+@include('bucket-list.email._place', ['bucket_item' => $shop])
+@endforeach
+@endif
+
+@if($entertainers->count() > 0 || $shows->count() > 0)
+<h2 class="section-header">Entertainment &amp; Shows</h2>
+@foreach($entertainers as $entertainer)
+@include('bucket-list.email._place', ['bucket_item' => $entertainer])
+@endforeach
+@foreach($shows as $show)
+@include('bucket-list.email._show')
+@endforeach
+@endif
+
+@if($accommodations->count() > 0)
+<h2 class="section-header">Places to Stay</h2>
+@foreach($accommodations as $accommodation)
+@include('bucket-list.email._place', ['bucket_item' => $accommodation])
+@endforeach
+@endif
+
+@if($articles->count() > 0)
+<h2 class="section-header">Trip Ideas/Visitor Info</h2>
+@foreach($articles as $article)
+@include('bucket-list.email._article')
+@endforeach
+@endif
+
+@component('mail::button', ['url' => url(route('bucket-list', [$market->slug, 'cookie' => $bucket->uuid])), 'color' => 'highlight'])
 Go to your Bucket
-@endcomponent
-
-@component('mail::footer')
-<div>
-	<div class="social pb-4 pt-2">
-		<a href="{{ $market->brand->facebook }}" target="_blank" aria-label="View {{ $market->brand->name }}'s Facebook page"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a>	
-		<a href="{{ $market->brand->instagram }}" target="_blank" aria-label="View {{ $market->brand->name }}'s Instagram Feed"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
-		<a href="{{ $market->brand->twitter }}" target="_blank" aria-label="View {{ $market->brand->name }}'s Twitter Feed"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
-		<a href="https://youtube.com/sunnydayguide" target="_blank" aria-label="View {{ $market->brand->name }}'s YouTube Channel"><i class="fab fa-youtube fa-lg" aria-hidden="true"></i></a>				
-	</div>
-</div>
 @endcomponent
 
 @endcomponent

@@ -2,13 +2,12 @@
 
 body,
 body *:not(html):not(style):not(br):not(tr):not(code) {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto Condensed, Helvetica, Arial, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     box-sizing: border-box;
 }
 
 body {
-    /*background-color: #f8fafc;*/
     background-color: #154270;
     color: #74787e;
     height: 100%;
@@ -33,7 +32,7 @@ blockquote {
 }
 
 a {
-    color: #3869d4;
+    color: #154270;
 }
 
 a img {
@@ -44,7 +43,8 @@ a img {
 
 h1 {
     color: #154270;
-    font-size: 19px;
+    font-size: 24px;
+    line-height: 1.2;
     font-weight: bold;
     margin-top: 0;
     text-align: left;
@@ -52,7 +52,7 @@ h1 {
 
 h2 {
     color: #154270;
-    font-size: 16px;
+    font-size: 21px;
     font-weight: bold;
     margin-top: 0;
     text-align: left;
@@ -60,14 +60,18 @@ h2 {
 
 h3 {
     color: #154270;
-    font-size: 14px;
+    font-size: 19px;
     font-weight: bold;
     margin-top: 0;
     text-align: left;
 }
 
+h4 {
+    margin-top: 0;
+}
+
 p {
-    color: #3d4852;
+    color: #74787e;
     font-size: 16px;
     line-height: 1.5em;
     margin-top: 0;
@@ -85,7 +89,6 @@ img {
 /* Layout */
 
 .wrapper {
-    background-color: #154270;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -106,24 +109,31 @@ img {
 /* Header */
 
 .header {
-    padding: 25px 0;
+    padding: 20px 0 15px 0;
     text-align: center;
 }
 
+.tagline {
+    text-align: center;
+    color: #FFF;
+    font-size: 18px;
+    padding: 0 1em;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
 .header a {
+    text-align: center;
     color: #FFF;
     font-size: 19px;
     font-weight: bold;
     text-decoration: none;
-    text-shadow: 0 1px 0 white;
 }
 
 /* Body */
 
 .body {
-    background-color: #ffffff;
-    border-bottom: 1px solid #60A3D9;
-    border-top: 1px solid #60A3D9;
+    background-color: #f6f6f7;
     margin: 0;
     padding: 0;
     width: 100%;
@@ -133,7 +143,7 @@ img {
 }
 
 .inner-body {
-    background-color: #ffffff;
+    background-color: #f6f6f7;
     margin: 0 auto;
     padding: 0;
     width: 570px;
@@ -197,7 +207,7 @@ img {
 }
 
 .content-cell {
-    padding: 35px;
+    padding: 20px;
 }
 
 /* Buttons */
@@ -213,39 +223,42 @@ img {
 }
 
 .button {
+    text-align: center;
     border-radius: 3px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
     color: #fff;
     display: inline-block;
     text-decoration: none;
     -webkit-text-size-adjust: none;
+    margin-right: .75rem;
 }
 
 .button-blue,
 .button-primary {
-    background-color: #3490dc;
-    border-top: 10px solid #3490dc;
-    border-right: 18px solid #3490dc;
-    border-bottom: 10px solid #3490dc;
-    border-left: 18px solid #3490dc;
+    background-color: #154270;
+    border-top: 10px solid #154270;
+    border-right: 18px solid #154270;
+    border-bottom: 10px solid #154270;
+    border-left: 18px solid #154270;
 }
 
 .button-green,
 .button-success {
-    background-color: #38c172;
-    border-top: 10px solid #38c172;
-    border-right: 18px solid #38c172;
-    border-bottom: 10px solid #38c172;
-    border-left: 18px solid #38c172;
+    background-color: #add33b;
+    color: #154270;
+    border-top: 10px solid #add33b;
+    border-right: 18px solid #add33b;
+    border-bottom: 10px solid #add33b;
+    border-left: 18px solid #add33b;
 }
 
 .button-red,
-.button-error {
-    background-color: #e3342f;
-    border-top: 10px solid #e3342f;
-    border-right: 18px solid #e3342f;
-    border-bottom: 10px solid #e3342f;
-    border-left: 18px solid #e3342f;
+.button-error,
+.button-highlight {
+    background-color: #FF6F61;
+    border-top: 10px solid #FF6F61;
+    border-right: 18px solid #FF6F61;
+    border-bottom: 10px solid #FF6F61;
+    border-left: 18px solid #FF6F61;
 }
 
 /* Panels */
@@ -255,7 +268,7 @@ img {
 }
 
 .panel-content {
-    background-color: #f1f5f8;
+    background-color: #f6f6f7;
     padding: 16px;
 }
 
@@ -290,4 +303,136 @@ img {
 .promotion p {
     font-size: 15px;
     text-align: center;
+}
+
+/* Bucket List */
+
+.section-header {
+    background-color: #60A3D9;
+    padding: 8px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.bucket-item {
+    background: #FFFFFF;
+    margin: 0 0 2rem 0;
+    padding: 1rem;
+    border-bottom: 8px solid #154270;
+}
+
+.bucket-item::last-child {
+    border-bottom: none;
+}
+
+.bucket-item h3 {
+    margin-bottom: 0;
+}
+
+.bucket-item h3 a {
+    text-decoration: none;
+}
+
+.bucket-item .button {
+    margin-bottom: .5em;
+}
+
+.locations {
+    font-size: 14px;
+}
+
+.locations ul {
+    padding-left: 0;
+    list-style: none;
+    border-bottom: 1px solid #74787e;
+    padding-bottom: 1rem;
+}
+
+.locations ul:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.locations li {
+    margin-bottom: .25em;
+}
+
+.locations a {
+    color: #74787e;
+}
+
+.coupon-container {
+    background-color: #ffffff;
+    border: 4px dashed #74787e;
+    padding: .5em .75em;
+    margin-bottom: 1em;
+    text-align: center;
+    page-break-inside: avoid;
+}
+
+.coupon-logo {
+    text-align: center;
+}
+
+.coupon-logo img {
+    width: 50%;
+}
+
+.offer {
+    background-color: #154270;
+    color: #FFFFFF;
+    font-size: 24px;
+    line-height: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+.suboffer {
+    font-size: 19px;
+    line-height: 1;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.disclaimer {
+    margin-bottom: .75rem;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.promo-code {
+    font-weight: bold;
+}
+
+.coupon-footer {
+    font-size: 14px;
+    background-color: #f6f6f7;
+    text-transform: uppercase;
+    margin-top: 1.5em;
+    line-height: 1.2;
+    padding: .75em;
+}
+
+/* Utilities */
+.my-3 {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.mb-3 {
+    margin-bottom: 1em;
+}
+
+.mt-3 {
+    margin-top: 1em;
+}
+
+.mr-3 {
+    margin-right: 1em;
+}
+
+.ml-3 {
+    margin-left: 1em;
 }
