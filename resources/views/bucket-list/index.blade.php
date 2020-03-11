@@ -16,12 +16,12 @@
 				</div>
 
 				<div class="content">
-					<h2>REWRITE THIS TO BE GENERIC</h2>
-					<p>So many options. So little time. Don't get overwhelmed by the choices. Whether you're planning a family beach trip, a romantic getaway or a weekend outing, the Ocean City Trip Planner can help you make the most out of your vacation days. Browse the incredible number of things to do in OC, add your favorite selections, sort them according to your schedule and share your itinerary with friends online.</p>
+					<h2>REWRITE THIS - FROM OCOCEAN.COM</h2>
+					<p>Whether you&rsquo;re planning a family trip, a romantic getaway or a weekend outing, the Sunny Day Guide Bucket List can help you make the most out of your vacation days. Browse the tremendous number of things to do in {{ $market->name }}, add your favorites, and then print or email your Bucket to use while you&rsquo;re in town.</p>
 
-					<p>Whether you're reserving a hotel room, a restaurant table or concert tickets, remember to directly book your dates by contacting the selections in your itinerary! We've made it easy by providing phone numbers and web addresses for each listing.</p>
+					<p>Whether you&rsquo;re reserving an activity time, a restaurant table or show tickets, book directly by contacting the places in your bucket list! We&rsquo;ve made it easy by providing phone numbers and web addresses for each item.</p>
 
-					<p>Look for the "Add to trip planner" icon throughout our website, for an easy way to plan your Ocean City, Maryland adventure. Just click on it, and whatever you're interested in will appear on a personalized list, below!</p>
+					<p>Look for the "Add to your Bucket" icon throughout our website, for an easy way to plan your {{ $market->name }} adventure. Just click on it, and whatever you&rsquo;re interested in will be saved to your personalized Bucket List below!</p>
 				</div>
 			</div>
 		</div>
@@ -247,7 +247,7 @@
 
 		<div class="bucket-section mb-5">
 			<div class="bucket-header py-2 bg-editorial mb-4">
-				<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Trip Ideas/Visitor Info.</h2>
+				<h2 class="flex-grow-1 text-center font-weight-bold text-white mb-0">Trip Ideas/Visitor Info</h2>
 			</div>
 
 			@if($articles->count() == 0)
