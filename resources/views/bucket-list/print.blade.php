@@ -86,7 +86,7 @@
 		<div class="row">
 		@foreach($coupons as $coupon)
 			<div class="col-md-6 mb-5">
-				@include('bucket-list._coupon')
+				@include('bucket-list.print._coupon')
 			</div>
 		@endforeach
 		</div>
