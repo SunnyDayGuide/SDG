@@ -641,6 +641,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     bucket: String
@@ -1786,7 +1787,7 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "container p-5 mx-auto" }, [
-            _c("h3", [_vm._v("jgjwgdjahgd")]),
+            _c("h3", [_vm._v("Send your Bucket List")]),
             _vm._v(" "),
             _c(
               "form",
@@ -1797,6 +1798,9 @@ var render = function() {
                   submit: function($event) {
                     $event.preventDefault()
                     return _vm.sendEmail($event)
+                  },
+                  keydown: function($event) {
+                    _vm.submitted = false
                   }
                 }
               },

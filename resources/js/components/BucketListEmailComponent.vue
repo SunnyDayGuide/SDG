@@ -15,10 +15,11 @@
 		classes="bg-white rounded-0 shadow-inner"
 		>
 			<div class="container p-5 mx-auto">
-				<h3>jgjwgdjahgd</h3>
+				<h3>Send your Bucket List</h3>
 				<form 
 				class="mx-auto mt-4" 
 				@submit.prevent="sendEmail" 
+				@keydown="submitted = false"
 				novalidate
 				>
 				<div class="form-group">
