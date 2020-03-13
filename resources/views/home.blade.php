@@ -13,8 +13,6 @@
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-  <link href="{{ asset('vendor/slick/slick.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('vendor/slick/slick-theme.css') }}" rel="stylesheet" type="text/css" />
   <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
 
 </head>
@@ -72,7 +70,7 @@
                   <hr>
 
                   <!-- Description -->
-                  <h4 class="my-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti consequuntur.</h4>
+                  <h4 class="my-5">Figure out the perfect trip for your family with us</h4>
                 </div>
 
               </div>  <!-- End Column -->
@@ -109,7 +107,7 @@
             <div class="col-md-8">
 
               <!-- Description -->
-              <p>Chicken shoulder pork landjaeger tail sausage. Salami bresaola corned beef, tongue turkey jerky bacon. Tongue tri-tip pastrami burgdoggen, pancetta boudin beef prosciutto tenderloin frankfurter drumstick. Pork loin sirloin pork shankle pig bacon.</p>
+              <p>Sunny Day Guide covers many of your favorite beach towns from Delaware to Florida, and family destinations such as Branson, MO, the Smoky Mountains, and Williamsburg, VA. So, whether you're planning for a trip or you have already started your vacation, we want your family to say: <strong>&ldquo;Best. Trip. Ever.&rdquo;</strong></p>
 
             </div>
             <!--Grid column-->
@@ -124,7 +122,7 @@
             <div class="col-md-4 mb-5">
               <i class="fa fa-biking fa-4x text-advertiser"></i>
               <h4 class="my-4 font-weight-bold">Explore</h4>
-              <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
+              <p class="grey-text">Turn this into a sentence: take a tour/go sightseeing. nature, etc. family activities.</p>
             </div>
             <!--Grid column-->
 
@@ -132,7 +130,7 @@
             <div class="col-md-4 mb-1">
               <i class="fa fa-umbrella-beach fa-4x text-advertiser"></i>
               <h4 class="my-4 font-weight-bold">Relax</h4>
-              <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
+              <p class="grey-text">Turn this into a sentence: savor the moment. try a new food. romance? go shopping? This one is hard.</p>
             </div>
             <!--Grid column-->
 
@@ -140,7 +138,7 @@
             <div class="col-md-4 mb-1">
               <i class="fa fa-camera-retro fa-4x text-advertiser"></i>
               <h4 class="my-4 font-weight-bold">Experience</h4>
-              <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
+              <p class="grey-text">Turn this into a sentence: go shopping? see a show. museum/local history. family activities.</p>
             </div>
             <!--Grid column-->
 
@@ -167,10 +165,10 @@
 
         <!--Section: More Copy-->
         <section class="mb-5">
-          <h2 class="mb-5 font-weight-bold text-center">Another Heading - Something Great About Coupons</h2>
-          <p>Chicken shoulder pork landjaeger tail sausage. Salami bresaola corned beef, tongue turkey jerky bacon. Tongue tri-tip pastrami burgdoggen, pancetta boudin beef prosciutto tenderloin frankfurter drumstick. Pork loin sirloin pork shankle pig bacon.</p>
-          <p>Bacon ipsum dolor amet short loin ground round doner beef. Jerky drumstick tongue pork sausage cupim pancetta beef kevin salami cow spare ribs tenderloin. Cow flank andouille chuck, chicken sausage shankle pig leberkas fatback swine alcatra shank pancetta venison. Turkey ball tip pastrami fatback landjaeger. Spare ribs jerky boudin, cupim kielbasa pork loin corned beef landjaeger. Swine ribeye landjaeger beef ribs, strip steak turducken bresaola meatloaf.</p>
-          <p>Filet mignon pork chop t-bone, short loin sirloin shank venison drumstick kevin pork loin pork brisket. Cow ground round chuck meatloaf leberkas tri-tip picanha shank short ribs tenderloin boudin turducken venison ham hock shankle. Chicken t-bone boudin drumstick strip steak beef. Pork pork loin tongue, bacon pastrami brisket fatback beef ribs. Biltong andouille meatloaf kielbasa ham hock sausage buffalo meatball doner bresaola ground round. Pancetta chicken leberkas sirloin kevin, ball tip bacon frankfurter cupim salami pork chop.</p>
+          <h2 class="mb-5 font-weight-bold text-center">We’re Exactly Where You Need Us!</h2>
+          <p>Do you want to save money while traveling? Sure you do! And Sunny Day Guide is the best vacation resource available that lets you play and save. We work with local businesses at many vacation destinations to bring great deals to your family. Redeem coupons for your favorite activities, restaurants, shops, and shows straight from your phone.</p>
+          <p>Need ideas for where to go and what to see? Check out our suggested Trip Ideas and explore local history, regional foods, and area wildlife. Need ideas for where to go and what to see? Check out our suggested Trip Ideas and explore local history, regional foods, and area wildlife. BUT LESS USE OF THE WORD IDEAS AND MENTION EVENTS</p>
+          <p>We’ve been helping vacationing families discover cool places since 1971, so you know you can trust us with your vacation planning.</p>
         </section>
 
       </div>
@@ -179,7 +177,7 @@
       <section class="panel panel-articles mt-5">
         <div class="container">
 
-          <h2 class="mb-4 font-weight-bold text-center">Let Us Tempt You! - Or a More Clever Headline</h2>
+          <h2 class="mb-4 font-weight-bold text-center">Discover Something New to Do!</h2>
 
           <div class="row article-cards">
             <div class="card-deck w-100 mx-md-0">
@@ -258,7 +256,7 @@
                 <a href="https://youtube.com/sunnydayguide" target="_blank" aria-label="View Sunny Day Guide's YouTube Channel"><i class="fab fa-youtube fa-lg" aria-hidden="true"></i></a>        
               </div>
               <ul class="list-unstyled footer-nav pl-2">
-                <li><a href="#">Contact Us</a></li>
+                <li><contact-form-modal></contact-form-modal></li>
                 <li><a href="#">Request More Information</a></li>
                 <li><a href="https://sunnydaysolutions.com" target="_blank">Advertise With Us</a></li>
               </ul>

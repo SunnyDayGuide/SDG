@@ -24,10 +24,10 @@ html.home,
         width: 100%;
         height: 300px;
         z-index: 1;
-        background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.8));
-        background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.8));
-        background-image: -ms-linear-gradient(transparent, rgba(0,0,0,0.8));
-        background-image: linear-gradient(transparent, rgba(0,0,0,0.8));
+        background-image: -moz-linear-gradient(transparent, rgba(0,0,0,0.7));
+        background-image: -webkit-linear-gradient(transparent, rgba(0,0,0,0.7));
+        background-image: -ms-linear-gradient(transparent, rgba(0,0,0,0.7));
+        background-image: linear-gradient(transparent, rgba(0,0,0,0.7));
     }
 
 .view .mask {
@@ -118,16 +118,24 @@ html.home,
 .card-columns {
   column-gap: 0;
 
-  @include media-breakpoint-only(lg) {
-    column-count: 3;
-}
-@include media-breakpoint-only(xl) {
-    column-count: 3;
-}
-.card {
-    border: none;
-    margin-bottom: 0;
-}
+    @include media-breakpoint-only(lg) {
+        column-count: 3;
+    }
+    @include media-breakpoint-only(xl) {
+        column-count: 3;
+    }
+    .card {
+        border: none;
+        margin-bottom: 0;
+    }
+
+    .card-title {
+        margin-bottom: 0.25rem;
+    }
+
+    .card-img-overlay {
+      padding-bottom: .85rem;
+    }
 }
 
 .flip-card {
@@ -170,7 +178,7 @@ html.home,
 }
 .jumbo-header {
     position: relative;
-    padding-bottom: 3.5rem;
+    // padding-bottom: 3.5rem;
     z-index: 2;
 
     hr {
