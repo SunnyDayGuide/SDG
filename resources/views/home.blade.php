@@ -107,7 +107,7 @@
             <div class="col-md-8">
 
               <!-- Description -->
-              <p>Sunny Day Guide covers many of your favorite beach towns from Delaware to Florida, and family destinations such as Branson, MO, the Smoky Mountains, and Williamsburg, VA. So, whether you're planning for a trip or you have already started your vacation, we want your family to say: <strong>&ldquo;Best. Trip. Ever.&rdquo;</strong></p>
+              <p>Sunny Day Guide covers many of your favorite beach towns from Delaware to Florida, and family destinations such as Branson, MO, the Smoky Mountains, and Williamsburg, VA. So, whether you're planning for a trip or you have already started your vacation, we want your family to say: <strong>BEST. TRIP. EVER.</strong></p>
 
             </div>
             <!--Grid column-->

@@ -23,9 +23,9 @@
     <img src="{{ asset('images/home/sanibel-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'sanibel-captiva') }}" class="stretched-link text-reset text-decoration-none">
-        <h3 class="card-title">Discover the Natural Beauty of Sanibel-Captiva Islands</h3>
+        <h3 class="card-title">The Beauty of Sanibel-Captiva Islands and Fort Myers Beach</h3>
       </a>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text">Relax on the white, powdery sands and share Florida’s natural grandeur.</p>
     </div>
   </div>
 

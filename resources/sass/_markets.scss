@@ -16,6 +16,18 @@
     margin-bottom: 0;
 }
 
+.category-gallery {
+    .card-title {
+        font-size: $h2-font-size;
+        text-shadow: 0 0 15px rgba($gray-900, 1);
+    }
+
+    .card-text {
+        font-size: $font-size-lg;
+        text-shadow: 0 0 10px rgba($gray-900, 1);
+    }
+}
+
 .slider-header {
     position: absolute;
     z-index: 10;

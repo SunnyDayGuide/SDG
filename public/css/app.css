@@ -13975,6 +13975,16 @@ label {
   margin-bottom: 0;
 }
 
+.category-gallery .card-title {
+  font-size: 2rem;
+  text-shadow: 0 0 15px #212529;
+}
+
+.category-gallery .card-text {
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px #212529;
+}
+
 .slider-header {
   position: absolute;
   z-index: 10;
