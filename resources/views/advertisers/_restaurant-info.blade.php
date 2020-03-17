@@ -20,6 +20,9 @@
 		@endif
 	</ul>
 
+	@if($advertiser->menu_url)
+	<a class="btn btn-advertiser text-white" href="{{ $advertiser->menu_url }}" target="_blank" role="button">View Menu</a>
+	@endif
 	@foreach($menus as $menu)
 	<a class="btn btn-advertiser text-white" href="{{ url($menu->file) }}" target="_blank" role="button">View Menu {{ $loop->count <= 1 ? '' : $loop->iteration }}</a>
 	@endforeach

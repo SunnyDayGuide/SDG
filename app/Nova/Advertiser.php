@@ -164,6 +164,7 @@ class Advertiser extends Resource
                     Text::make('Ticket URL')->rules('nullable', 'url')->hideFromIndex(),
                     Text::make('Booking URL')->rules('nullable', 'url')->hideFromIndex(),
                     Text::make('Reservation URL')->rules('nullable', 'url')->hideFromIndex(),
+                    Text::make('Menu URL')->rules('nullable', 'url')->hideFromIndex(),
                 ],
                 'Social Media'    => [
                     Text::make('Facebook')->rules('nullable')->hideFromIndex(),
