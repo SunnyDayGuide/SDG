@@ -1,11 +1,11 @@
 <div class="header mb-4">
-	<h2>The heart of the mid-west is a perfect get-away destination</h2>
+	<h2>Vacationers often dream of staying on Florida’s Suncoast indefinitely</h2>
 </div>
 
 <div class="content mb-4">
 	<div>
-		<p>Welcome to Branson, Missouri! Everything you could want for a fabulous vacation can be found here—exciting activities, entertaining shows, gourmet meals, unique shopping opportunities, and even a dancing fountain.</p>
-		<p>The city is probably most famous for its many shows that are hosted in grand theaters with more seats available for spectators than in all of New York City. Bring your family and friends for a performance that will leave you laughing, singing, or even dancing in the aisles. You can choose to see magicians, comedians, concerts and tribute bands, or original acts and circus stunts.</p>
+		<p>Truly a paradise on earth, visitors to the chain of Sarasota and the surrounding Gulf Beach communities arrive eager to relax on miles of cool, sugar-white quartz sands and swim in the clear, turquoise Gulf waters under waving palms. Tour the luxurious living of Longboat Key and spend the day among the glamorous at Lido Key’s famous European-style shopping center St. Armands Circle. Come see why over a million tourists come to world-famous Siesta Key, honored as one of the best beaches in the nation, or have fun shark-tooth hunting and snorkeling off the shores of Casey Key. In fact, the only Sarasota spectacle you won’t find on SunnyDayGuide.com is the breathtaking sunset of Anna Maria Island – you’ll just have to see that for yourself.</p>
+		<p>Sarasota activities and attractions immerse you in Sarasota’s natural splendor, whether it is kite flying on the beach, kayaking in Sarasota Bay or shooting 18 holes at one of the extraordinary golf courses. Many area parks and beaches have family-friendly amenities like concession stands, picnic shelters and restroom facilities, making for a carefree day. Home to exotic year-round birds and many migrating species you won’t see anywhere else in America, Sarasota sanctuaries display residents’ love of area wildlife. World-class museums and art galleries, awe-inspiring ballet and symphonic performances are part of Sarasota’s cultural offerings for residents and visitors alike.</p>
 		<p>But that’s not all Branson is famous for… Located in the foothills of the Ozarks and surrounded by Table Rock Lake and Lake Taneycomo, outdoor adventures await intrepid explorers. Ever visit a cave or go on a hunt for Bigfoot? Well, you can do that here! Maybe go hiking in the hills or zip-line over them—your choice! Plus there are many exciting things to do on the water including boat tours on yachts and paddleboats, paddleboarding, jet skiing, and so much more.</p>
 	</div>
 </div>

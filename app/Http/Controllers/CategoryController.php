@@ -90,11 +90,19 @@ class CategoryController extends Controller
      */
     public function getSubcatImages($market, $category)
     {
-        $subcatIds = collect($category->children()
+
+        if ($category->slug == 'accommodations') {
+            $subcatIds = collect($category->children()
             ->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market->id);
             })
             ->orWhereHas('distributors', function (Builder $query) use ($market) {
+                $query->where('market_id', $market->id);
+            })
+            ->pluck('id', 'name'));
+        } else
+        $subcatIds = collect($category->children()
+            ->whereHas('advertisers', function (Builder $query) use ($market) {
                 $query->where('market_id', $market->id);
             })
             ->pluck('id', 'name'));

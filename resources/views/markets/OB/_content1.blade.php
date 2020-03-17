@@ -1,11 +1,10 @@
 <div class="header mb-4">
-	<h2>The heart of the mid-west is a perfect get-away destination</h2>
+	<h2>An Outer Banks Vacation to Treasure</h2>
 </div>
 
 <div class="content mb-4">
 	<div>
-		<p>Welcome to Branson, Missouri! Everything you could want for a fabulous vacation can be found here—exciting activities, entertaining shows, gourmet meals, unique shopping opportunities, and even a dancing fountain.</p>
-		<p>The city is probably most famous for its many shows that are hosted in grand theaters with more seats available for spectators than in all of New York City. Bring your family and friends for a performance that will leave you laughing, singing, or even dancing in the aisles. You can choose to see magicians, comedians, concerts and tribute bands, or original acts and circus stunts.</p>
-		<p>But that’s not all Branson is famous for… Located in the foothills of the Ozarks and surrounded by Table Rock Lake and Lake Taneycomo, outdoor adventures await intrepid explorers. Ever visit a cave or go on a hunt for Bigfoot? Well, you can do that here! Maybe go hiking in the hills or zip-line over them—your choice! Plus there are many exciting things to do on the water including boat tours on yachts and paddleboats, paddleboarding, jet skiing, and so much more.</p>
+		<p>The Outer Banks is a beloved destination for people from around the world. Every year, millions of visitors travel here to play in the coastal waters and the local towns. From the northern beaches of Corolla to the southern shores of Hatteras and Ocracoke Islands, beautiful scenery and adventure are yours for the choosing. Over 200 miles of fun can be enjoyed in these unique beachside towns—many filled with entertainment, exquisite restaurants and quaint shopping plazas. And despite the continual popularity of the Outer Banks, the small-town charm of yesteryear is still very much alive. The local residents warmly greet visitors with smiles, kind words and often helpful advice.</p>
+		<p>Slicing through the blue-green Atlantic waters, this strand of unblemished sands and windblown oak groves traces half of North Carolina – the magnificent Outer Banks! Home to generations of vacation memories, the chain of timeless waterfront communities draws tourists from all over the world to relax on the miles of natural beach, manicured only by wind, salt water and dune grasses.</p>
 	</div>
 </div>
