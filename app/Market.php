@@ -4,6 +4,7 @@ namespace App;
 
 use App\Advertiser;
 use App\Event;
+use App\Map;
 use App\MarketCategory;
 use App\Page;
 use App\User;
@@ -136,6 +137,14 @@ class Market extends Model implements HasMedia
     public function coupons()
     {   
         return $this->hasMany(Coupon::class);
+    }
+
+    /**
+     * Get the maps for the market.
+     */
+    public function maps()
+    {   
+        return $this->hasMany(Map::class);
     }
 
     /**

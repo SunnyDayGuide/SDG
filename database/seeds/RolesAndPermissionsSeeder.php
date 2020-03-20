@@ -37,6 +37,7 @@ class RolesAndPermissionsSeeder extends Seeder
             'show schedule',
             'freemails',
             'leads',
+            'maps'
         ]);
 
        $collection->each(function ($item, $key) {
