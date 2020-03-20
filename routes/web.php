@@ -80,7 +80,7 @@ Route::prefix('destinations/{market}')->group(function () {
 	Route::get('visitor-info', 'ArticleController@visitorInfo')->name('visitor-info');
 	Route::get('visitor-info/{article}', 'ArticleController@show')->name('articles.show');
 	Route::get('advertiser-spotlights/{article}', 'ArticleController@show')->name('articles.show');
-	Route::get('tide-charts', 'ArticleController@tideCharts')->name('tide-charts');
+	Route::get('visitor-info/tide-charts', 'ArticleController@tideCharts')->name('tide-charts');
 
 	Route::patch('articles/{article}/rate', 'ArticleController@rate')->name('articles.rate');
 	Route::patch('articles/{article}/rateno', 'ArticleController@rateno')->name('articles.rateno');

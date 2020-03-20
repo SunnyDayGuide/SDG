@@ -90,7 +90,7 @@
 				</div> --}}
 
 				<div class="content mb-4">
-					<div class="fr-view">{!! $content !!}</div>
+					<div class="fr-view d-inline-block">{!! $content !!}</div>
 				</div>
 				
 				<div class="d-flex align-items-center my-4">

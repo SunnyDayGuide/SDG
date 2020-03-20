@@ -13601,6 +13601,10 @@ label {
   }
 }
 
+.card-h {
+  background-color: #FFF;
+}
+
 .slider {
   position: relative;
 }
@@ -14816,35 +14820,25 @@ blockquote:before {
 
 /* ---- Tide Charts */
 
-.tide_charts_body {
-  float: left;
-  border-collapse: collapse;
-  border-spacing: 0;
-  border: 1px solid #bbb;
-  margin: 0.35em;
-  width: 250px;
+.tide-charts table {
+  margin: 1rem 0;
+  width: 100%;
   text-align: center;
 }
 
-.tideCharts .tide_charts_body td,
-.tide_charts_body td {
-  border-top: 1px solid #ddd;
-  padding: 4px 6px;
-  border-right: 1px solid #ddd;
+@media (min-width: 768px) {
+  .tide-charts table {
+    float: left;
+    width: 45%;
+    margin: 1rem 2.5%;
+  }
 }
 
-.tideCharts .tide_charts_body th,
-.tide_charts_body th {
-  padding: 4px 8px;
-  background-color: #336699;
+.tide-charts table .tides-month {
+  background-color: #154270;
   color: #FFF;
   font-weight: bold;
   font-size: 1.15rem;
-}
-
-.tide_charts_body tbody tr:nth-child(even) td,
-.tide_charts_body thead td {
-  background-color: #eee;
 }
 
 .guide-banner {
