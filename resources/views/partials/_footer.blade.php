@@ -22,9 +22,7 @@
 							<a href="{{ $market->path().'/'.$category->slug }}">{{ $category->name }}</a>
 						</li>
 						@endforeach
-						@if($market->code == 'BR')
-						<li><a href="#">Show Schedule</a></li>
-						@endif
+						<li><a href="{{ $market->path() }}/accommodations">Places to Stay</a></li>
 					</ul>
 					<hr>
 					<ul class="list-unstyled footer-nav category-nav">
