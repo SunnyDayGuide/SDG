@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c24f9c1a62ef5c400f11efeee44521f1",
+    "content-hash": "2ef5f264c2189b297922f049eb910513",
     "packages": [
         {
             "name": "64robots/nova-fields",
@@ -1631,16 +1631,16 @@
         },
         {
             "name": "froala/nova-froala-field",
-            "version": "3.2.3",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/froala/nova-froala-field.git",
-                "reference": "e88a89050847ee92deb5a266c2feceaaac2f2e5f"
+                "reference": "e4c5961662d29dcea95b0dab4e7ea25bf4dca2ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/froala/nova-froala-field/zipball/e88a89050847ee92deb5a266c2feceaaac2f2e5f",
-                "reference": "e88a89050847ee92deb5a266c2feceaaac2f2e5f",
+                "url": "https://api.github.com/repos/froala/nova-froala-field/zipball/e4c5961662d29dcea95b0dab4e7ea25bf4dca2ad",
+                "reference": "e4c5961662d29dcea95b0dab4e7ea25bf4dca2ad",
                 "shasum": ""
             },
             "require": {
@@ -1691,7 +1691,7 @@
                 "nova",
                 "wysiwyg"
             ],
-            "time": "2020-02-17T12:55:39+00:00"
+            "time": "2020-03-18T14:10:50+00:00"
         },
         {
             "name": "gregoriohc/laravel-nova-theme-responsive",
