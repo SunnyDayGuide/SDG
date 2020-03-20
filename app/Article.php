@@ -118,6 +118,9 @@ class Article extends Model implements HasMedia
      */
     public function path()
     {
+        // if ($this->slug == 'tide-charts') {
+        //     return $this->market->path() . "/{$this->slug}";
+        // }
         return $this->market->path() . "/{$this->articleType->slug}/{$this->slug}";
     }
 

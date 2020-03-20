@@ -61,7 +61,6 @@ class Article extends Resource
      * @var string
      */
     public static $group = 'Editorial';
-    /**
  
     /**
      * The relationships that should be eager loaded on index queries.
