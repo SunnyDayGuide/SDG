@@ -96,16 +96,16 @@ class ArticleController extends Controller
       $page = $market->pages()->where('slug', 'visitor-info')->firstorFail();
 
       $slides = $page->getMedia('slider');
-      $image = $page->getFirstMedia('slider');
+      $mainImage = $page->getFirstMedia('slider');
 
       $visitorInfos = Article::with('media')
       ->where('article_type_id', 2)
       ->latest('published_at')
       ->get(); 
 
-      $advertisers = Advertiser::all();
+      $maps = $market->maps;
 
-      return view('articles.visitor-info', compact('market', 'page', 'visitorInfos', 'slides', 'image', 'advertisers'));
+      return view('articles.visitor-info', compact('market', 'page', 'visitorInfos', 'slides', 'mainImage', 'maps'));
     }
 
 
@@ -131,7 +131,9 @@ class ArticleController extends Controller
       $relatedArticles = $article->getRelatedArticles()
       ->sortByDesc('published_at'); 
 
-      return view('articles.show', compact('article', 'market', 'image', 'slides', 'premierAdvertisers', 'relatedArticles'));
+      $content = $article->content;
+
+      return view('articles.show', compact('article', 'market', 'image', 'slides', 'content', 'premierAdvertisers', 'relatedArticles'));
     }
 
     public function search(Request $request, Market $market)
