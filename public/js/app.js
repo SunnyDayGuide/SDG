@@ -154,6 +154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     bucketId: String,
+    location: String,
     initialCount: ''
   },
   data: function data() {
@@ -1242,20 +1243,44 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bucket-btn bucket-btn-lg" }, [
-    _c("span", { staticClass: "icon-bucket position-relative text-primary" }, [
-      _vm.hasCount
-        ? _c("span", { staticClass: "bucket-items text-white" }, [
-            _vm._v(_vm._s(_vm.counter))
-          ])
-        : _c(
-            "span",
-            { staticClass: "bucket-items text-white" },
-            [_c("font-awesome-icon", { attrs: { icon: "plus-circle" } })],
-            1
-          )
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticClass: "bucket-btn",
+      class: _vm.location == "desktop" ? "bucket-btn-lg" : "bucket-btn-sm"
+    },
+    [
+      _c(
+        "span",
+        {
+          staticClass: "icon-bucket position-relative",
+          class: _vm.location == "desktop" ? "text-primary" : "text-advertiser"
+        },
+        [
+          _vm.hasCount
+            ? _c(
+                "span",
+                {
+                  staticClass: "bucket-items",
+                  class:
+                    _vm.location == "desktop" ? "text-white" : "text-primary"
+                },
+                [_vm._v(_vm._s(_vm.counter))]
+              )
+            : _c(
+                "span",
+                {
+                  staticClass: "bucket-items",
+                  class:
+                    _vm.location == "desktop" ? "text-white" : "text-primary"
+                },
+                [_c("font-awesome-icon", { attrs: { icon: "plus-circle" } })],
+                1
+              )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2596,7 +2621,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "nav-item pr-4 weather" }, [
+  return _c("div", { staticClass: "nav-item pr-4 weather" }, [
     _c(
       "a",
       { staticClass: "condition align-middle", attrs: { href: _vm.route } },

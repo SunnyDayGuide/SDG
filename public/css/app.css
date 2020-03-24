@@ -13180,6 +13180,52 @@ a.text-white:focus {
   color: #154270;
 }
 
+@media (max-width: 1199.98px) {
+  .offcanvas-collapse {
+    position: fixed;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #154270;
+    transition: visibility 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  }
+}
+
+@media (max-width: 1199.98px) and (max-width: 767.98px) {
+  .offcanvas-collapse {
+    top: 60px;
+    /* Height of navbar */
+  }
+}
+
+@media (max-width: 1199.98px) and (min-width: 768px) and (max-width: 991.98px) {
+  .offcanvas-collapse {
+    top: 119px;
+    /* Height of navbar */
+  }
+}
+
+@media (max-width: 1199.98px) and (min-width: 992px) and (max-width: 1199.98px) {
+  .offcanvas-collapse {
+    top: 119px;
+    /* Height of navbar */
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .offcanvas-collapse.open {
+    visibility: visible;
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+}
+
 .weather {
   font-weight: 400;
   text-align: center;
@@ -13231,6 +13277,12 @@ a.text-white:focus {
 .navbar-brand {
   width: 180px;
   padding: 0;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-brand {
+    width: 150px;
+  }
 }
 
 .nav-link {
@@ -13410,6 +13462,52 @@ a.text-white:focus {
   font-size: 0.9rem;
 }
 
+.hamburger-nav {
+  width: 22px;
+  height: 19px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .hamburger-nav {
+    display: none;
+  }
+}
+
+.hamburger-nav span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 9px;
+  opacity: 1;
+  right: 0;
+  margin-left: auto;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+
+.hamburger-nav span:first-child {
+  top: 0;
+}
+
+.hamburger-nav span:nth-child(2),
+.hamburger-nav span:nth-child(3) {
+  top: 7px;
+  width: 80%;
+}
+
+.hamburger-nav span:nth-child(4) {
+  top: 14px;
+  width: 60%;
+}
+
 .mobile-nav {
   min-height: 100vh;
 }
@@ -13489,6 +13587,38 @@ a.text-white:focus {
 
 .mobile-nav .menu-item-title {
   font-size: 1.35rem;
+}
+
+.mobile-nav .megamenu-guide {
+  position: relative;
+  padding: 0;
+  border-bottom: 4px solid #FF6F61;
+}
+
+.mobile-nav .guide-text {
+  padding-top: 0.75rem;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.mobile-nav .guide-image img {
+  position: absolute;
+  top: 1px;
+  -webkit-clip-path: inset(0 0 39px 0);
+          clip-path: inset(0 0 39px 0);
+  max-width: 100%;
+  max-height: 203px;
+}
+
+.mobile-nav .guide-link {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #FFF;
+  font-size: 1.45rem;
+}
+
+.mobile-nav .guide-link a {
+  color: #FFF;
 }
 
 h1 {
@@ -13856,6 +13986,8 @@ label {
   position: absolute;
   left: 32%;
   bottom: 10%;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 700;
 }
 
 .bucket-btn-sm {
@@ -13873,8 +14005,6 @@ label {
 }
 
 .bucket-btn-lg .bucket-items {
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: 700;
   font-size: 1.5rem;
   line-height: 1.1;
   min-width: 44%;
@@ -13894,43 +14024,41 @@ label {
   z-index: 2;
 }
 
-@media (min-width: 768px) {
-  .bucket-list-container {
-    position: relative;
-    top: 0;
-    right: 0;
-    height: 78px;
-    overflow: visible;
-  }
+.bucket-list-container {
+  position: relative;
+  top: 0;
+  right: 0;
+  height: 78px;
+  overflow: visible;
+}
 
-  .bucket-list-container .bucket-list-wrapper {
-    width: 100%;
-    height: 150px;
-    z-index: 1000;
-  }
+.bucket-list-container .bucket-list-wrapper {
+  width: 100%;
+  height: 150px;
+  z-index: 1000;
+}
 
-  .bucket-list-container .bucket-tab {
-    position: relative;
-    display: block;
-    width: 143px;
-    height: 150px;
-    text-align: center;
-    background: url("/images/main/bucket-tab.png") no-repeat center center;
-    background-size: 100%, 100%;
-    z-index: 500;
-    padding: 1rem;
-  }
+.bucket-list-container .bucket-tab {
+  position: relative;
+  display: block;
+  width: 143px;
+  height: 150px;
+  text-align: center;
+  background: url("/images/main/bucket-tab.png") no-repeat center center;
+  background-size: 100%, 100%;
+  z-index: 500;
+  padding: 1rem;
+}
 
-  .bucket-tab {
-    margin: 0 auto;
-    text-align: center;
-  }
+.bucket-tab {
+  margin: 0 auto;
+  text-align: center;
+}
 
-  .bucket-text {
-    color: #154270;
-    font-size: 1.25rem;
-    text-transform: uppercase;
-  }
+.bucket-text {
+  color: #154270;
+  font-size: 1.25rem;
+  text-transform: uppercase;
 }
 
 .bucket-form .bucket-input {
@@ -15006,6 +15134,10 @@ html.home,
   height: 100vh;
 }
 
+body.home {
+  padding-top: 0;
+}
+
 #intro {
   background: url("/images/home/sdg-home-main-beach-family.jpg") no-repeat center center fixed;
   background-size: cover;
@@ -15084,23 +15216,24 @@ html.home,
   width: 100%;
   border-radius: 0;
   border: none;
-  padding: 0.75rem 0;
+  padding: 0.75rem 1rem;
   margin-top: -0.5rem;
   font-family: "Raleway", sans-serif;
   font-size: 1.35rem;
 }
 
-@media (max-width: 767.98px) {
-  .home-nav .dropdown-menu {
-    height: 100vh;
-  }
-}
-
 .home-nav .dropdown-item {
-  font-weight: 500;
+  font-size: 1.75rem;
+  text-align: center;
+  font-weight: 700;
+  font-family: "Roboto Condensed", sans-serif;
+  text-transform: uppercase;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  padding-left: 3rem;
+  white-space: normal;
+  line-height: 1;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
 .home-nav .dropdown-item:hover,
@@ -15223,6 +15356,22 @@ html.home,
 @media (min-width: 768px) {
   .jumbo-header h4 {
     font-size: 2rem;
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+  /* Prevent scroll on narrow devices */
+}
+
+body {
+  padding-top: 60px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-top: 119px;
   }
 }
 

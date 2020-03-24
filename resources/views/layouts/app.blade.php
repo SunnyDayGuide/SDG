@@ -44,6 +44,7 @@
 <script src="{{ mix('js/vendor.js') }}"></script>
 <script src="{{ mix('js/app.js') }}"></script>
 <script src="{{ asset('vendor/slick/slick.min.js') }}"/></script>
+<script src="{{ asset('js/offcanvas.js') }}"/></script>
 @yield('scripts')
 
 </body>

@@ -42,6 +42,8 @@
 	position: absolute;
 	left: 32%;
 	bottom: 10%;
+	font-family: $font-family-sans-serif;
+	font-weight: $font-weight-bold;
 }
 
 .bucket-btn-sm {
@@ -58,8 +60,6 @@
 	font-size: 4.25rem;
 
 	.bucket-items {
-		font-family: $font-family-sans-serif;
-		font-weight: $font-weight-bold;
 		font-size: 1.5rem;
 		line-height: 1.1;
 		min-width: 44%;
@@ -82,45 +82,43 @@
 }
 
 // Nav Bucket Counter Desktop
-@include media-breakpoint-up(md) {
-	.bucket-list-container {
-		position: relative;
-		top: 0;
-		right: 0;
-		height: 78px;
-		overflow: visible;
-	}
-
-	.bucket-list-container .bucket-list-wrapper {
-		width: 100%;
-		height: 150px;
-		z-index: 1000;
-	}
-
-	.bucket-list-container .bucket-tab {
-		position: relative;
-		display: block;
-		width: 143px;
-		height: 150px;
-		text-align: center;
-		background: url("/images/main/bucket-tab.png") no-repeat center center;
-		-webkit-background-size: 100%, 100%;
-		background-size: 100%, 100%;
-		z-index: 500;
-		padding: 1rem;
-	}
-
-	.bucket-tab {
-		margin: 0 auto;
-		text-align: center;
-	}
-
-	.bucket-text {
-		color: $primary;
-		font-size: 1.25rem;
-		text-transform: uppercase;
-	}	
+.bucket-list-container {
+	position: relative;
+	top: 0;
+	right: 0;
+	height: 78px;
+	overflow: visible;
 }
+
+.bucket-list-container .bucket-list-wrapper {
+	width: 100%;
+	height: 150px;
+	z-index: 1000;
+}
+
+.bucket-list-container .bucket-tab {
+	position: relative;
+	display: block;
+	width: 143px;
+	height: 150px;
+	text-align: center;
+	background: url("/images/main/bucket-tab.png") no-repeat center center;
+	-webkit-background-size: 100%, 100%;
+	background-size: 100%, 100%;
+	z-index: 500;
+	padding: 1rem;
+}
+
+.bucket-tab {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.bucket-text {
+	color: $primary;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+}	
 
 // Bucket List Page
 .bucket-form {

@@ -33,6 +33,19 @@
 @import 'footer';
 @import '_home';
 
+html,
+body {
+  overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+body {
+  padding-top: 60px;
+
+  @include media-breakpoint-up(md) {
+		padding-top: 119px;
+	}
+}
+
 .content-wrapper {
 	min-height: 100vh;
 }
