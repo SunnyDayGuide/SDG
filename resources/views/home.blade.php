@@ -16,9 +16,9 @@
   <script src="{{ asset('vendor/fontawesome/js/all.min.js') }}"></script>
 
 </head>
-<body>
+<body class="home">
   @include('cookieConsent::index')
-  <div id="app" class="home">
+  <div id="app">
     <!--Main Navigation-->
     <header>
       <!--Mask-->
@@ -47,11 +47,11 @@
 
               <div class="home-nav col col-md-6">
                 <a id="marketDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <i class="fas fa-angle-right"></i> Choose Your Vacation Destination 
+                  <i class="fas fa-angle-right"></i> Choose Your Destination 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="marketDropdown">
                   @foreach ($markets as $market)
-                  <a class="dropdown-item" href="{{ route('market.home', $market->slug) }}">{{ $market->name }}, {{ $market->state->name }}</a>
+                  <a class="dropdown-item" href="{{ route('market.home', $market->slug) }}">{{ $market->name }}, {{ $market->state->abbr }}</a>
                   @endforeach
                 </div>
               </div>
@@ -70,7 +70,7 @@
                   <hr>
 
                   <!-- Description -->
-                  <h4 class="my-5">Figure out the perfect trip for your family with us</h4>
+                  <h4 class="my-5">Map out the perfect trip for your family with us</h4>
                 </div>
 
               </div>  <!-- End Column -->
@@ -96,7 +96,7 @@
 
           <!-- Heading -->
           <div class="home-header mb-5">
-            <h1 class="font-weight-bold">The Official Vacation Guide for Family Fun</h1>
+            <h1 class="font-weight-bold">The Official Vacation Guide to Family Fun</h1>
             <h3>Activities, Restaurants, Shopping, Entertainment & More</h3>
           </div>
 
