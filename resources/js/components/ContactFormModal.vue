@@ -244,3 +244,7 @@ export default {
 	}
 };
 </script>
+
+<style>
+.v--modal-overlay { z-index: 1040 }
+</style>
