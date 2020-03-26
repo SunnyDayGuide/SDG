@@ -29,27 +29,27 @@
           <div class="container d-flex flex-column justify-content-between h-100">
 
             <!--Navbar-->
-            <nav class="navbar row d-flex flex-column flex-md-row justify-content-between mt-md-5">
+            <nav class="navbar row d-flex flex-column flex-md-row justify-content-between mt-md-3">
               <!-- Desktop Logos -->
-              <div class="logo-wrapper col-6 col-md-4 col-lg-3 mb-2 mb-md-0">
+              <div class="logo-wrapper col col-md-4 mb-md-0">
                 <div class="d-none d-md-block">
                   <a class="navbar-brand mr-4 clearfix w-100" href="{{ url('/') }}">
-                    <img src="{{ asset('images/main/SDG-header-logo.svg') }}" alt="Sunny Day Guide logo" class="img-fluid">
+                    <img src="{{ asset('images/home/desktop-home-logo.svg') }}" alt="Sunny Day Guide logo" class="img-fluid">
                   </a>
                 </div>
                 <!-- Mobile Logos -->
-                <div class="d-md-none d-sm-block">
+                <div class="d-md-none d-sm-block text-center px-5">
                   <a class="navbar-brand mr-4 clearfix w-100" href="{{ url('/') }}">
-                    <img src="{{ asset('images/main/SDG-logo.svg') }}" alt="Sunny Day Guide Logo" class="img-fluid">
+                    <img src="{{ asset('images/home/mobile-home-logo.svg') }}" alt="Sunny Day Guide Logo" class="img-fluid">
                   </a>
                 </div>
               </div>
 
-              <div class="home-nav col col-md-6">
+              <div class="home-nav col col-md-7 my-md-4">
                 <a id="marketDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                  <i class="fas fa-angle-right"></i> Choose Your Destination 
+                  Choose Your Vacation Destination 
                 </a>
-                <div class="dropdown-menu" aria-labelledby="marketDropdown">
+                <div class="dropdown-menu justify-content-between" aria-labelledby="marketDropdown">
                   @foreach ($markets as $market)
                   <a class="dropdown-item" href="{{ route('market.home', $market->slug) }}">{{ $market->name }}, {{ $market->state->abbr }}</a>
                   @endforeach
@@ -64,13 +64,13 @@
 
                 <!-- Heading -->
                 <div class="jumbo-header">
-                  <h1 class="mb-5">Plan Your Ultimate Family Vacation!</h1>
+                  <h1 class="mb-4 mb-md-5">Plan Your Ultimate Family Vacation!</h1>
 
                   <!-- Divider -->
                   <hr>
 
                   <!-- Description -->
-                  <h4 class="my-5">Map out the perfect trip for your family with us</h4>
+                  <h4 class="my-4 my-md-5">Map out the perfect trip for your family with us</h4>
                 </div>
 
               </div>  <!-- End Column -->
