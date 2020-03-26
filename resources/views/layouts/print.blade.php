@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body class="pt-0">
     <div>
         @yield('content')
     </div>
