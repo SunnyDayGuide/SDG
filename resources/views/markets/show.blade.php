@@ -57,7 +57,3 @@
 <!-- End Premier Advertisers Section-->
 
 @endsection
-
-@section('scripts')
-<script src="{{ asset('js/functions.js') }}"/></script>
-@endsection
