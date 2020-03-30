@@ -1,4 +1,4 @@
-<div class="megamenu-std pt-4 px-2">
+<div class="">
 	<div class="row">
 		@foreach ($navCategories as $category)
 		<div class="col-lg-6 megamenu-block">
@@ -35,6 +35,27 @@
 		</div>
 
 	</div> <!-- End row -->
+
+	<!-- Digital Guide -->
+    <div class="megamenu-guide mt-2">
+        <div class="row no-gutters align-items-center">
+            <div class="col-4">
+                <a href="{{ route('vacation-guide.create', $market->slug) }}" class="guide-image">
+                    {{ $market->getFirstMedia('cover') }}
+                </a>
+            </div>
+
+            <div class="col-8">
+                <div class="guide-text">
+                    <h4 class="guide-link"><a href="{{ route('vacation-guide.create', $market->slug) }}">Free Digital Vacation Guide</a></h4>
+                    <p class="nav-item text-white">
+                        Bacon ipsum dolor amet jerky ground round short loin. Cow swine pig turkey pork loin tail.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 	<!-- Bottom left of megamenu -->
 	<div class="row mt-4 megamenu-bottom">

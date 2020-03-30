@@ -4,11 +4,13 @@
 		<div class="container">
 			<div class="row bg-white rounded-0 m-0 shadow">
 				<!-- Left Side Of Megamenu -->
-				@if(count($navCategories) < 4)
-				@include('partials.nav._mega-left-std')
-				@else
-				@include('partials.nav._mega-left-alt')
-				@endif
+				<div class="col-lg-8 col-xl-8">
+					@if(count($navCategories) < 4)
+					@include('partials.nav._mega-left-std')
+					@else
+					@include('partials.nav._mega-left-alt')
+					@endif
+				</div>
 
 				<!-- Right colored block of megamenu -->
 				<div class="col-lg-4 col-xl-4 p-3 d-none d-lg-block bg-highlight">

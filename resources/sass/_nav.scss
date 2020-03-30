@@ -227,7 +227,7 @@
 	font-family: $headings-font-family;
 	color: $primary;
 
-	@include media-breakpoint-down(sm) {
+	@include media-breakpoint-down(md) {
 		font-size: 1.25rem;
 		line-height: 1.3;
 		padding: .75rem .75rem;
@@ -267,6 +267,7 @@
 	    }
 	    @include media-breakpoint-only(md) {
 	    	top: 119px; /* Height of navbar */
+	    	// background-color: $white;
 	    }
 	    @include media-breakpoint-only(lg) {
 	    	top: 119px; /* Height of navbar */
@@ -340,11 +341,20 @@
 }
 
 // Mobile Nav Content
-.mobile-nav {
+.mobile-nav, .tablet-nav {
 	min-height: calc(100vh - 60px);
 	
 	.no-sub {
 		margin-left: 22px;
+	}
+
+	.nav-market {
+		font-size: 1.25rem;
+		line-height: 1.3;
+		padding: .75rem .75rem;
+		background-color: $editorial-lt;
+		margin-left: -1rem;
+		margin-right: -1rem;
 	}
 
 	.dropdown-toggle::after {
@@ -460,7 +470,7 @@
 	}
 
 	.guide-image img {
-		// height: 165px;
+		height: 165px;
 	}
 
 	.guide-link {
@@ -495,4 +505,35 @@
 		}
 	}
 } // End Mobile Nav
+
+// Tablet Nav
+.tablet-nav {
+	min-height: calc(100vh - 119px);
+	margin-left: -1rem;
+	margin-right: -1rem;
+
+	.main {
+		padding-left: 2rem;
+	}
+
+	.megamenu-guide {
+		padding: 0;
+		background-color: $primary;
+		margin-left: -1rem;
+		margin-right: -1rem;
+	}
+
+	.guide-image img {
+		width: 165px;
+		height: auto;
+	}
+
+	.guide-text {
+		font-size: 1.25rem;
+	}
+
+	.guide-link {
+		font-size: 2rem;
+	}
+}
 
