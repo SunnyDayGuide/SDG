@@ -89,7 +89,7 @@ class Event extends Resource
             Date::make('Start Date')
                 ->sortable()
                 ->format('M-DD-YYYY')
-                ->rules('required', 'before_or_equal:end_date'),
+                ->rules('required'),
             Date::make('End Date')
                 ->sortable()
                 ->format('M-DD-YYYY')

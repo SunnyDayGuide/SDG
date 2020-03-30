@@ -96,7 +96,8 @@ class Event extends Model implements HasMedia
      */
     public function scopeCurrent($query)
     {
-        return $query->where('end_date', '>=', Carbon::now());
+        return $query->where('start_date', '>=', Carbon::now())
+                    ->orWhere('end_date', '>=', Carbon::now());
     }
 
 

@@ -26,16 +26,34 @@ class EventController extends Controller
         $slides = $page->getMedia('slider');
         $image = $page->getFirstMedia('slider');
 
-        $events = $market->events()->current()->active()
-        ->orderBy('start_date', 'asc')->get();
+        $events = Event::current()->active()
+            ->orderBy('start_date', 'asc')->get();
+
+        $groupedEvents = Event::active()->orderBy('start_date', 'asc')->get()->groupBy(function ($event) {
+            if($event->start_date->isToday()) {
+                return 'Today';
+            }
+
+            if($event->start_date->isCurrentWeek()) {
+                return 'This Week';
+            }
+
+            if($event->start_date->isNextWeek()) {
+                return 'Next Week';
+            }
+
+             return 'the rest';
+        })->sort();
+
+        // dd($groupedEvents);
 
         $searchCategories = $market->categories()
             ->isParent()
             ->with('searchSubcategories')->get();
 
-        dd($this->tryToRecurr($market));
+        // dd($this->tryToRecurr($market));
 
-        return view('events.index', compact('market', 'page', 'events', 'slides', 'image', 'searchCategories'));
+        return view('events.index', compact('market', 'page', 'events', 'slides', 'image', 'searchCategories', 'groupedEvents'));
     }
 
     /**
