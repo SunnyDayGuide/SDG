@@ -21,7 +21,6 @@ const fs = require('fs');
 
 mix.js('resources/js/app.js', 'public/js')
 .sass('resources/sass/app.scss', 'public/css')
-.sass('resources/sass/home.scss', 'public/css')
 .sass('resources/sass/admin.scss', 'public/css').extract().version();
 
 mix.copy('node_modules/@defvayne23/svg-marker/SVGMarker.min.js', 'public/js/SVGMarker.min.js');

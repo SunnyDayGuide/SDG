@@ -266,7 +266,7 @@
               <a href="{{ route('home') }}">
                 <img src="{{ asset('images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
               </a>
-              <address class="mt-4 pl-md-2">
+              <address class="mt-4 pl-md-2 text-white">
                 800 Seahawk Circle, Suite 106<br>
                 Virginia Beach, Virginia 23452<br>
                 <strong>1-800-786-6932</strong>
@@ -299,6 +299,7 @@
   <script src="{{ mix('js/vendor.js') }}"></script>
   <script src="{{ mix('js/app.js') }}"></script>
   <script src="{{ asset('vendor/slick/slick.min.js') }}"/></script>
+  <script src="{{ asset('js/functions.js') }}"/></script>
 
 </body>
 </html>
