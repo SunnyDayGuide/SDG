@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        app('config')->set('rinvex.attributes.autoload_migrations',false);
+        // app('config')->set('rinvex.attributes.autoload_migrations',false);
         
         if ($this->app->isLocal()) {
             $this->app->register(TelescopeServiceProvider::class);
