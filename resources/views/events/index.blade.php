@@ -77,7 +77,7 @@
 									<p class="event-location">
 										@if($event->start_time)<i class="fas fa-clock fa-fw" aria-hidden="true"></i><span class="start-time">{!! $event->present()->start_time !!}</span>@endif
 										@if($event->end_time)<span class="end-time">{!! $event->present()->end_time !!}</span>@endif
-										<i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i><span class="mr-2">{{ $event->location }}</span>
+										@if($event->location)<i class="fas fa-map-marker-alt fa-fw" aria-hidden="true"></i><span class="mr-2">{{ $event->location }}</span>@endif
 									</p>
 									@if($event->recurrences->count())
 									<p>{{ $event->rrule }}</p>
