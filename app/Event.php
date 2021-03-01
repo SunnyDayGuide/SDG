@@ -40,7 +40,7 @@ class Event extends Model implements HasMedia
     {
         parent::boot();
 
-        // static::addGlobalScope(new MarketScope);
+        static::addGlobalScope(new MarketScope);
     }
 
     /**
