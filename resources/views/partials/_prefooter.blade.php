@@ -3,7 +3,7 @@
 		<div class="row justify-content-around align-items-center buttons-container">
 			<div class="col-md-6 d-flex align-items-center h-100">
 				<div class="footer-guide p-2">
-					{{ $market->getFirstMedia('cover') }}
+					{{ $coverImage('small') }}
 					<a class="btn btn-guide" href="{{ route('vacation-guide.create', $market->slug) }}">FREE Digital Vacation Guide</a>
 				</div>
 			</div>

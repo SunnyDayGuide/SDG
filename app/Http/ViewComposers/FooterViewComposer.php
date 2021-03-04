@@ -19,15 +19,17 @@ class FooterViewComposer
     public function compose(View $view) 
     {
         if ($this->market->id == 1) {
-            $footerImage = 'images/main/footer-banner-bkgrnd-BR.jpg';
+            $footerImage = 'storage/images/main/footer-banner-bkgrnd-BR.jpg';
         } elseif ($this->market->id == 10) {
-            $footerImage = 'images/main/footer-banner-bkgrnd-SM.jpg';
+            $footerImage = 'storage/images/main/footer-banner-bkgrnd-SM.jpg';
         } elseif ($this->market->id == 11) {
-           $footerImage = 'images/main/footer-banner-bkgrnd-CG.jpg';
+           $footerImage = 'storage/images/main/footer-banner-bkgrnd-CG.jpg';
         } else
-        $footerImage = 'images/main/footer-banner-bkgrnd.jpg';
+        $footerImage = 'storage/images/main/footer-banner-bkgrnd.jpg';
 
-        $view->with(compact('footerImage'));
+        $coverImage = $this->market->getFirstMedia('cover');
+
+        $view->with(compact('footerImage', 'coverImage'));
     }
 
     // find the current market

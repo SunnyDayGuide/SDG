@@ -23,7 +23,7 @@
 			<div class="row">
 				<div class="col">
 					<a href="{{ route('vacation-guide.create', $market->slug) }}" class="guide-image">
-						{{ $market->getFirstMedia('cover') }}
+						{{ $coverImage('small') }}
 					</a>
 				</div>
 

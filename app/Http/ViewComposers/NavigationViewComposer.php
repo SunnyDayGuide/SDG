@@ -24,6 +24,7 @@ class NavigationViewComposer
     {
         $market = $this->market;
     	$navCategories =  $this->market->navCategories;
+        $coverImage = $market->getFirstMedia('cover');
 
         $navArticles =  $this->market->articles()
             ->where('featured', 1)
@@ -38,7 +39,7 @@ class NavigationViewComposer
         // Get initial bucket list item total count
         $item_count = $this->getBucketCount();
 
-        $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents', 'market', 'item_count'));
+        $view->with(compact('navCategories', 'navArticles', 'featuredArticle', 'navEvents', 'market', 'item_count', 'coverImage'));
     }
 
     // find the current market
