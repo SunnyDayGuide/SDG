@@ -3,9 +3,13 @@ import axios from 'axios';
 class Weather {
     async forCity(city) {
         const key = '25b09bfe7f2dcb3b138d6054dc132b9b';
-        
+
+        var config = {
+            headers: {'Access-Control-Allow-Origin': '*'}
+        };
+
         const response = await axios.get(
-            'https://jsonplaceholder.typicode.com/'
+            'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial', config
         );
 
         return response.data;
