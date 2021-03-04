@@ -3695,7 +3695,7 @@ function () {
               case 0:
                 key = '25b09bfe7f2dcb3b138d6054dc132b9b';
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("https://api.openweathermap.org/data/2.5/weather?id=".concat(city, "&appid=").concat(key, "&units=imperial"));
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://api.openweathermap.org/data/2.5/weather?id=${city}&appid=${key}&units=imperial');
 
               case 3:
                 response = _context.sent;
