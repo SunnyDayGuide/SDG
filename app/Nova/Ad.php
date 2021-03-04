@@ -78,7 +78,7 @@ class Ad extends Resource
             Text::make('File Name', 'file')->exceptOnForms()->hideFromDetail(),
             File::make('File')
             ->disk('public')
-            ->path('pdfs/' . $market['slug'] . '/ads')
+            ->path('storage/pdfs/' . $market['slug'] . '/ads')
             ->storeAs(function (Request $request) {
                 return $request->file->getClientOriginalName();
             }),

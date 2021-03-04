@@ -76,7 +76,7 @@ class Map extends Resource
             Textarea::make('Description')->rules('required'),
             File::make('File')
             ->disk('public')
-            ->path('pdfs/' . $market['slug'] . '/maps')
+            ->path('storage/pdfs/' . $market['slug'] . '/maps')
             ->storeAs(function (Request $request) {
                 return $request->file->getClientOriginalName();
             }),

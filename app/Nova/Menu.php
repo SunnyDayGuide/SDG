@@ -77,7 +77,7 @@ class Menu extends Resource
             Text::make('File Name', 'file')->exceptOnForms()->hideFromDetail(),
             File::make('File')
             ->disk('public')
-            ->path('pdfs/' . $market['slug'] . '/menus')
+            ->path('storage/pdfs/' . $market['slug'] . '/menus')
             ->storeAs(function (Request $request) {
                 return $request->file->getClientOriginalName();
             }),

@@ -72,7 +72,7 @@ class Brand extends Resource
 
             Image::make('Logo')
                 ->disk('public')
-                ->path('images/main')
+                ->path('storage/images/main')
                 ->storeAs(function (Request $request) {
                     return $request->logo->getClientOriginalName();
                 })
