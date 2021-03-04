@@ -34,13 +34,13 @@
               <div class="logo-wrapper col col-md-4 mb-md-0">
                 <div class="d-none d-md-block">
                   <a class="navbar-brand mr-4 clearfix w-100" href="{{ url('/') }}">
-                    <img src="{{ asset('images/home/desktop-home-logo.svg') }}" alt="Sunny Day Guide logo" class="img-fluid">
+                    <img src="{{ asset('storage/images/home/desktop-home-logo.svg') }}" alt="Sunny Day Guide logo" class="img-fluid">
                   </a>
                 </div>
                 <!-- Mobile Logos -->
                 <div class="d-md-none d-sm-block text-center px-5">
                   <a class="navbar-brand mr-4 clearfix w-100" href="{{ url('/') }}">
-                    <img src="{{ asset('images/home/mobile-home-logo.svg') }}" alt="Sunny Day Guide Logo" class="img-fluid">
+                    <img src="{{ asset('storage/images/home/mobile-home-logo.svg') }}" alt="Sunny Day Guide Logo" class="img-fluid">
                   </a>
                 </div>
               </div>
@@ -264,7 +264,7 @@
 
             <div class="col-md-3 ml-0 mb-4 mb-md-0 text-center text-md-left">
               <a href="{{ route('home') }}">
-                <img src="{{ asset('images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
+                <img src="{{ asset('storage/images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
               </a>
               <address class="mt-4 pl-md-2 text-white">
                 800 Seahawk Circle, Suite 106<br>

@@ -1,6 +1,6 @@
 <div class="card-columns">
   <div class="card text-white overlay text-right">
-    <img src="{{ asset('images/home/branson-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/branson-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column justify-content-end">
       <a href="{{ route('market.home', 'branson') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Go BIG Time in Branson!</h3>
@@ -10,7 +10,7 @@
   </div>
 
   <div class="card text-primary overlay text-left">
-    <img src="{{ asset('images/home/outer-banks-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/outer-banks-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'outer-banks') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">The Magnificent Outer Banks</h3>
@@ -20,7 +20,7 @@
   </div>
 
   <div class="card text-primary overlay text-right">
-    <img src="{{ asset('images/home/sanibel-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/sanibel-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'sanibel-captiva') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">The Beauty of Sanibel-Captiva Islands and Fort Myers Beach</h3>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="card text-white overlay text-left">
-    <img src="{{ asset('images/home/sarasota-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/sarasota-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'sarasota-bradenton') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Florida's Scenic Suncoast</h3>
@@ -40,7 +40,7 @@
   </div>
 
   <div class="card text-primary overlay text-left">
-    <img src="{{ asset('images/home/ocracoke-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/ocracoke-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column justify-content-end">
       <a href="{{ route('market.home', 'hatteras-ocracoke') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Hatteras and Ocracoke Islands</h3>
@@ -50,7 +50,7 @@
   </div>
 
   <div class="card text-white overlay text-right">
-    <img src="{{ asset('images/home/virginia-beach-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/virginia-beach-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column justify-content-end">
       <a href="{{ route('market.home', 'virginia-beach') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Virginia Beach is Calling You</h3>
@@ -72,7 +72,7 @@
   </div>
 
   <div class="card text-white overlay text-right">
-    <img src="{{ asset('images/home/delaware-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/delaware-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'delaware-beaches') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">The Southern Delaware Coast</h3>
@@ -82,7 +82,7 @@
   </div>
 
   <div class="card text-white overlay text-left">
-    <img src="{{ asset('images/home/williamsburg-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/williamsburg-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay d-flex flex-column justify-content-end w-75">
       <a href="{{ route('market.home', 'williamsburg') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Virginia's Historic Triangle</h3>
@@ -92,7 +92,7 @@
   </div>
 
   <div class="card text-white overlay text-right">
-    <img src="{{ asset('images/home/smoky-mountains-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/smoky-mountains-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'smoky-mountains') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">The Great Smoky Mountains</h3>
@@ -102,7 +102,7 @@
   </div>
 
   <div class="card text-primary overlay text-left">
-    <img src="{{ asset('images/home/ocean-city-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/ocean-city-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'ocean-city') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Ocean City Boardwalk Vibes</h3>
@@ -112,7 +112,7 @@
   </div>
 
   <div class="card text-primary overlay text-left">
-    <img src="{{ asset('images/home/myrtle-beach-inset.jpg') }}" class="card-img" alt="...">
+    <img src="{{ asset('storage/images/home/myrtle-beach-inset.jpg') }}" class="card-img" alt="...">
     <div class="card-img-overlay">
       <a href="{{ route('market.home', 'myrtle-beach') }}" class="stretched-link text-reset text-decoration-none">
         <h3 class="card-title">Myrtle Beach - the GRAND Strand</h3>

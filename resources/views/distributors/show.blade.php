@@ -131,7 +131,7 @@
 	@if(count($locations) > 0)
 	<div class="map-container">
 		<button id="show-map" class="btn map-button">
-			<img src="{{ asset('images/main/map-button-graphic.svg') }}" alt="map button graphic">
+			<img src="{{ asset('storage/images/main/map-button-graphic.svg') }}" alt="map button graphic">
 			<div>Show Map</div>
 		</button>
 		<div class="placeholder bg-light">

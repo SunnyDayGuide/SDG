@@ -5,7 +5,7 @@
 
 				<div class="col-8 offset-2 col-md-3 offset-md-0 order-5 order-md-1 mx-auto mx-md-0 text-center text-md-left">
 					<a href="{{ route('home') }}">
-						<img src="{{ asset('images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
+						<img src="{{ asset('storage/images/main/SDG-footer-logo.svg') }}" alt="Sunny Day Guide logo" class="w-auto">
 					</a>
 					<address class="mt-4 pl-md-2 text-white">
 						800 Seahawk Circle, Suite 106<br>

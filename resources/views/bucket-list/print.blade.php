@@ -15,7 +15,7 @@
 			@endif
 		</div>
 		<div class="print-brand">
-			<img src="{{ asset('images/main/SDG-header-logo.svg') }}" alt="Sunny Day Guide logo">
+			<img src="{{ asset('storage/images/main/SDG-header-logo.svg') }}" alt="Sunny Day Guide logo">
 		</div>
 	</div>
 	

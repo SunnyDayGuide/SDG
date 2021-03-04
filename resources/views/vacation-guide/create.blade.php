@@ -11,7 +11,7 @@
         <div class="col">
             <h1 class="display-4 mb-3">{{ $page->title }}</h1>
             <div class="image-wrapper float-right col-6 col-md-4 ml-2 ml-md-4 pr-0 text-right">
-{{--                 <img src="{{ asset('images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+{{--                 <img src="{{ asset('storage/images/'.$market->slug.'/guide-cover.jpg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
  --}}                {{ $cover('full') }}
             </div>
             <div>

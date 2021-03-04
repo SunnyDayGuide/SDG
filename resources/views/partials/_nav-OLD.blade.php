@@ -5,11 +5,11 @@
             <div class="d-none d-md-block">
                 <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
                     @if($market->code == 'SM')
-                    <img src="{{ asset('images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @elseif($market->code == 'CG')
-                    <img src="{{ asset('images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @else
-                    <img src="{{ asset('images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @endif
                 </a>
             </div>
@@ -17,11 +17,11 @@
             <div class="d-md-none d-sm-block">
                 <a class="navbar-brand mr-4 clearfix" href="{{ url('/') }}">
                     @if($market->code == 'SM')
-                    <img src="{{ asset('images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/WTD-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @elseif($market->code == 'CG')
-                    <img src="{{ asset('images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/CG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @else
-                    <img src="{{ asset('images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
+                    <img src="{{ asset('storage/images/main/SDG-logo.svg') }}" alt="{{ $market->brand->name }}" class="img-fluid">
                     @endif
                 </a>
             </div>
