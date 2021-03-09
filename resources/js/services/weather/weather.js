@@ -4,8 +4,16 @@ class Weather {
     async forCity(city) {
         const key = '25b09bfe7f2dcb3b138d6054dc132b9b';
 
+        var options = {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'origin, X-CSRF-TOKEN, x-Requested-With, content-type',
+                'Access-Control-Allow-Methods': 'GET'
+            }
+        };
+
         const response = await axios.get(
-            'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial'
+            'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial', options
         );
 
         return response.data;

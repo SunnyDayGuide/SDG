@@ -3688,20 +3688,27 @@ function () {
       var _forCity = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(city) {
-        var key, response;
+        var key, options, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 key = '25b09bfe7f2dcb3b138d6054dc132b9b';
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial');
+                options = {
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'origin, X-CSRF-TOKEN, x-Requested-With, content-type',
+                    'Access-Control-Allow-Methods': 'GET'
+                  }
+                };
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial', options);
 
-              case 3:
+              case 4:
                 response = _context.sent;
                 return _context.abrupt("return", response.data);
 
-              case 5:
+              case 6:
               case "end":
                 return _context.stop();
             }
