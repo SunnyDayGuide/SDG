@@ -4,8 +4,8 @@ class Weather {
     async forCity(city) {
         const key = '25b09bfe7f2dcb3b138d6054dc132b9b';
 
-        response = await axios.get(
-            'https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial'
+        const response = await axios.get(
+            'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial'
         );
 
         return response.data;

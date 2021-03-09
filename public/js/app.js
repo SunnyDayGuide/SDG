@@ -3688,14 +3688,14 @@ function () {
       var _forCity = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(city) {
-        var key;
+        var key, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 key = '25b09bfe7f2dcb3b138d6054dc132b9b';
                 _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial');
 
               case 3:
                 response = _context.sent;
