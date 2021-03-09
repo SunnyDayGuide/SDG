@@ -5,7 +5,7 @@ class Weather {
         const key = '25b09bfe7f2dcb3b138d6054dc132b9b';
 
         const response = await axios.get(
-            'http://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial'
+            'https://api.openweathermap.org/data/2.5/weather?id=' + city + '&appid=' + key + '&units=imperial'
         );
 
         return response.data;
