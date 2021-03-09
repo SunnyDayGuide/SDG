@@ -52,7 +52,7 @@
 		<div class="col bg-highlight">
 			<div class="pr-3 py-4 text-center">
 				<a href="{{ route('vacation-guide.create', $market->slug) }}" class="guide-image">
-                    {{ $market->getFirstMedia('cover') }}
+                    {{ $coverImage('small') }}
                 </a>
                 <div class="guide-text pt-3">
                     <h4 class="guide-link"><a href="{{ route('vacation-guide.create', $market->slug) }}">Free Digital Vacation Guide</a></h4>
