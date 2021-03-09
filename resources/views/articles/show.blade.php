@@ -49,7 +49,7 @@
 
 	{{-- Otherwise just spit out a single image --}}
 	@else
-	{{ $image }}
+	{{ $image('full') }}
 		@if(null !== $image->getCustomProperty('credit'))
 		<div class="container">
 			<div class="figure-caption small text-right pt-2">
